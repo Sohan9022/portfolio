@@ -231,51 +231,113 @@ export const DECISION_LOG = [
 
 export const PRODUCT_TEARDOWNS = [
   {
-    id: 'teardown-linear',
-    title: 'Linear: Why Speed is a Product Feature, Not an Engineering Metric',
-    product: 'Linear',
-    category: 'B2B SaaS · Productivity',
-    observation: 'Linear treats sub-100ms client-side interaction as a core positioning strategy rather than an invisible engineering optimization.',
-    whatWorks: 'Optimistic UI updates, keyboard-first navigation (Cmd+K), and opinionated default cycles remove cognitive overhead and turn project management into a fast, fluid workflow.',
-    whatIWouldChange: 'Onboarding for non-technical cross-functional stakeholders (e.g., Marketing, Legal) still feels intimidating due to developer-centric terminology (Cycles, Triage, Backlog).'
+    id: 'teardown-upi-anxiety',
+    product: 'Google Pay vs. PhonePe vs. Paytm',
+    category: 'FinTech UX · Field Research (N=103)',
+    title: 'The Anatomy of Transactional Anxiety: Google Pay vs. PhonePe',
+    observation: 'UPI apps optimize aggressively for commercial ad inventory and payment velocity, overlooking the acute cognitive panic first-generation digital users feel when money is in transit.',
+    whatWorks: "Google Pay's explicit recipient confirmation card (high-contrast name, avatar, and linked bank signifier) creates immediate reassurance before PIN entry, directly combating the fear of 'pressing the wrong button' that affects 55.2% of users.",
+    whatIWouldChange: "Crisis state recovery. In failure states where funds are debited, PhonePe displays commercial loan ads while Google Pay spins ambiguously. 64.3% of vernacular users clutched to the irrelevant 'सुरक्षित' (Safe) badge out of panic. I would ship an in-situ 'Escrow Visualizer' with a guaranteed 48-hour refund countdown timer.",
+    sohansNotes: {
+      incentive: "Zero merchant discount rate (MDR) on peer-to-peer UPI forces PhonePe to treat its home screen like Times Square ad space. But this ad density causes 71.4% of vernacular users—who actively avoid text search—to get lost in visual noise.",
+      mentalModel: "To an urban PM, a pending transaction is an asynchronous database state. To a rural or semi-urban user, it's physical cash that may have dropped out of their pocket into an abyss. Trust demands immediate tactile and visual finality.",
+      experiment: "A/B test an In-Situ Escrow Status Modal during bank server timeouts vs. standard generic error codes. Hypothesis: 40% reduction in panicked repetitive retries and inbound support tickets."
+    }
   },
   {
-    id: 'teardown-notion',
-    title: 'Notion AI: When In-Line AI Context Beats the Floating Chat Window',
-    product: 'Notion AI',
-    category: 'Productivity · Generative AI',
-    observation: 'Instead of forcing users into a side-panel chatbot, Notion embedded generative actions directly into the text selection context menu.',
-    whatWorks: 'Zero cognitive context switching. The AI acts directly on the active paragraph (Summarize, Translate, Fix Spelling) without requiring the user to copy-paste into an external prompt window.',
-    whatIWouldChange: 'Prompt transparency. When Notion AI modifies a table or complex document, it is difficult to audit what exact constraints guided the transformation without checking version history.'
+    id: 'teardown-generative-prototyping',
+    product: 'Lovable & AI Prototyping',
+    category: 'Product Process · Generative Dev Engines',
+    title: 'The Death of the Static PRD: Prototyping as Product Discovery',
+    observation: 'Generative AI tools invert the PM development lifecycle. Writing speculative 20-page Jira PRDs in isolation is dying; building clickable, stateful MVPs in 2 hours is the new prerequisite for product validation.',
+    whatWorks: "Instant ergonomics testing. Having personally built and shipped 5 functional MVPs on Lovable, I uncovered button latency limits, unhandled edge cases, and confusing visual hierarchies in 5 minutes of real interaction that weeks of static Figma reviews would have missed.",
+    whatIWouldChange: "The 'UI Illusion' trap. Generative frontends make non-technical stakeholders believe the distributed systems engineering (auth, database locking, rate limits) is solved. I would implement automated PRD-to-Contract checks that flag unhandled asynchronous race conditions early.",
+    sohansNotes: {
+      incentive: "Traditional PMs spend 4 weeks writing PRDs because engineering time was the scarcest resource. Generative AI makes UI generation cheap, shifting the PM bottleneck from writing specifications to defining system constraints and user ergonomics.",
+      mentalModel: "Users and stakeholders can't evaluate abstract requirements documents. A live interactive URL (e.g., Lovable) elicits visceral, actionable critique; a 15-page Notion document gets polite nods and unread browser tabs.",
+      experiment: "Measure time-to-discovery: compare 2-week static PRD cycles against 48-hour clickable prototype cycles across 3 sprint teams. Hypothesis: 50% decrease in mid-sprint scope changes and rework."
+    }
   },
   {
-    id: 'teardown-zero-prompt',
-    title: 'Designing Zero-Prompt AI Interfaces',
-    product: 'Product Experiment & Thought Piece',
-    category: 'HCI · AI Interaction Design',
-    observation: 'The empty text box is the worst UI for 90% of non-technical users. Prompt engineering is a temporary bridge, not the final interaction paradigm.',
-    whatWorks: 'Contextual inference: systems that read ambient state, user history, and active viewport to suggest 1-click structured actions rather than demanding a crafted textual prompt.',
-    whatIWouldChange: 'Always provide transparent intent previews so users understand what the system deduced before irreversible actions execute.'
+    id: 'teardown-feed-context-collapse',
+    product: 'Modern Recommendation Engines',
+    category: 'Social Systems · Recommendation Architecture',
+    title: 'The Single-Persona Fallacy: Why Modern Recommendation Feeds Degrade',
+    observation: 'Platforms like YouTube and Twitter assume a single monolithic user identity, conflating a Friday night casual entertainment binge with Monday morning professional research.',
+    whatWorks: "Short-term reinforcement loops. Blending all watch history into a single vector maximizes immediate 30-minute session duration by relentlessly feeding recent high-dopamine clicks.",
+    whatIWouldChange: "Long-term feed corruption. Watching 2 technical machine learning lectures builds a productive feed; clicking 1 gaming video pollutes the homepage for weeks, forcing power users into incognito tabs or burner accounts. This friction inspired my architecture for Spaces: isolated contextual vector stores within a single master identity.",
+    sohansNotes: {
+      incentive: "Ad-driven platforms optimize for global session minutes and immediate click-through, prioritizing short-term algorithmic momentum over long-term cognitive utility.",
+      mentalModel: "Human beings are multi-contextual creatures. We are one person at 10 AM on Monday (focused engineer) and another at 10 PM on Saturday (casual consumer). Forcing all behaviors into one vector creates cognitive dissonance.",
+      experiment: "Introduce opt-in 'Contextual Focus Spaces' with strict telemetry firewalls. Metric: 25% increase in 90-day retention and day-time professional session quality among knowledge workers."
+    }
   }
 ];
 
 export const RESEARCH_SPOTLIGHT = {
-  title: 'Human-Centered UX for Digital Financial Inclusion',
-  tagline: 'Designing trust-building interfaces for first-time digital banking users in semi-urban India',
-  context: 'Despite high mobile penetration and UPI adoption across India, millions of first-time digital banking users experience acute anxiety during digital money transfers and balance checks.',
-  challenges: [
-    'Low digital literacy and fear of financial loss from accidental screen taps',
-    'Anxiety around ambiguous loading spinners and unconfirmed transaction states',
-    'Cognitive overload caused by dense financial jargon, nested menus, and English-dominant flows'
+  institution: 'Vishwakarma Institute of Technology (VIT), Pune',
+  lab: 'Department of Computer Engineering / UX Research Lab',
+  publicationStatus: 'IEEE Research Paper Draft & Patent Application Draft',
+  patentTitle: 'AI-Driven Multilingual Adaptive User Interface System & Risk-Free Financial Sandbox',
+  title: 'Empirical Cross-Analysis & Synthesis of UPI Usability',
+  tagline: 'Triangulating Macro Attitudinal Baselines (N = 66) with Micro Usability Diagnostics (N = 37) to Solve Digital Financial Exclusion',
+  sampleSize: 'N = 103 Total (66 Macro Baseline + 37 Screen Diagnostics across English & Marathi Cohorts)',
+  context: 'While India processes over 13 billion UPI transactions monthly, millions of first-generation and vernacular users experience acute transactional anxiety, high error rates, and digital exclusion. At the VIT UX Research Lab, we executed an empirical triangulation study comparing Google Pay, PhonePe, and Paytm across demographic and linguistic cohorts to uncover screen-level failure states and design human-centered interventions.',
+  
+  keyMetrics: [
+    { label: 'Search Bar Aversion', stat: '71.4%', detail: 'of vernacular users reject text search, relying solely on visual browsing (p = 0.0324, Odds Ratio = 9.00).' },
+    { label: 'Wrong-Button Fear', stat: '55.2%', detail: 'of users fear pressing the wrong button and losing money (Attitudinal Mean: 3.34 / 5.00).' },
+    { label: 'Crisis Clutching', stat: '64.3%', detail: 'of Marathi users latched onto irrelevant "Safe/Secure" badges in error states seeking psychological solace.' },
+    { label: 'Panic Threshold', stat: '4.33', detail: 'out of 5.00 anxiety score triggers complete workflow abandonment and surrender of user agency.' }
   ],
-  methodology: [
-    'Field observations and informal interviews with local shopkeepers and semi-urban families',
-    'Mental model mapping: comparing physical passbook habits with digital ledger screens',
-    'Prototyping localized auditory confirmation tones and tactile multi-dialect voice cues'
+
+  fivePillars: [
+    {
+      number: '01',
+      pillar: 'Visual Icon Preference vs. Search Aversion',
+      finding: 'Visual recognition scored 3.73/5.00 (#1 preference in the entire study). Vernacular users avoid search bars because non-native keyboard typing incurs high motor and cognitive effort. 60.0% of English users searched, while 71.4% of Marathi users manually browsed.',
+      designImpact: 'Dual-layer adaptive interface replacing text-heavy search queries with high-contrast, category-anchored pictorial navigation.'
+    },
+    {
+      number: '02',
+      pillar: 'Fear of Monetary Loss vs. Crisis Recovery Paralysis',
+      finding: '55.2% fear wrong button taps. In debit failure states, 64.3% clicked irrelevant safety badges rather than troubleshooting. Current error flows provide zero psychological de-escalation.',
+      designImpact: 'Plain-language escrow status visualizer with refund countdown guarantee, eliminating the terrifying "pending" black hole.'
+    },
+    {
+      number: '03',
+      pillar: 'Financial Jargon & Incomplete Code-Mixing',
+      finding: 'Superficial localization translates basic buttons but leaves technical terms in English ("Mandate", "Beneficiary", "Processing Fee"), confusing 28.6% and causing hesitation for 35.7% of vernacular users.',
+      designImpact: 'In-situ "Hold-to-Translate" micro-definitions providing localized real-world analogies without leaving the active screen.'
+    },
+    {
+      number: '04',
+      pillar: 'Environmental Anxiety vs. In-Situ Guidance',
+      finding: '58.2% fear network drops mid-transaction. Only 16.7% are willing to leave the app for help; 50.0% demand explainer tooltips directly on the active screen canvas.',
+      designImpact: 'In-situ contextual tooltips and gesture-anchored guides ("Circle-to-Understand") that never navigate away from the payment flow.'
+    },
+    {
+      number: '05',
+      pillar: 'Peak Anxiety Abandonment & Surrender of Agency',
+      finding: 'Users crossing the 4.33 anxiety threshold abandon self-service entirely, either tapping irrelevant commercial links (35.7%) or surrendering phone control to third parties.',
+      designImpact: 'Risk-Free Financial Practice Sandbox: a mirrored clone with dummy bank balances allowing users to practice transfers with zero financial risk.'
+    }
   ],
-  designPrinciples: [
-    'Auditory Affirmation: Instant localized voice feedback ("Payment of ₹500 verified") replaces silent spinners',
-    'Single-Action Visual Hierarchy: One unambiguous primary button per screen; zero nested financial jargon',
-    'Physical Metaphor Alignment: Digital receipts structured like familiar physical transaction slips with explicit settlement IDs'
+
+  patentArchitecture: {
+    title: 'Patent-Pending Architecture: AI-Driven Adaptive UX Framework & Sandbox',
+    components: [
+      { name: 'Dual-Mode Environment Controller', desc: 'Dynamically toggles between Live Production and a Mirrored Sandbox Replica populated with simulated bank balances and dummy billers.' },
+      { name: 'Risk-Free Practice Sandbox', desc: 'Allows users to build muscle memory scanning QR codes and sending payments with zero financial liability, eliminating the 4.33 anxiety panic threshold.' },
+      { name: 'In-Situ Micro-Translation ("Hold-to-Translate")', desc: 'Injects contextual vernacular explanations for loanwords (e.g. Mandate, Autopay) on touch without app switching or screen reloads.' },
+      { name: 'Gesture-Anchored Visual Inspection ("Circle-to-Understand")', desc: 'Attaches contextual conversational explanations directly to confusing screen icons or UI elements.' }
+    ]
+  },
+
+  figures: [
+    { title: 'Cross-Triangulation Framework', image: '/research/fig16_cross_triangulation_framework.png', caption: 'Synthesizing Macro Baselines (N=66) with Micro Diagnostics (N=37) to bridge the Attitudinal-Behavioral Gap' },
+    { title: 'App Usability Scorecard', image: '/research/fig8_app_comparison_scorecard.png', caption: 'Empirical comparison of Google Pay, PhonePe, and Paytm across task completion, error recovery, and vernacular cognitive load' },
+    { title: 'Patent Architecture Blueprint', image: '/research/fig17_solution_architecture_patent.png', caption: 'Full technical system diagram for the AI-Driven Adaptive UX Framework and Risk-Free Financial Sandbox' }
   ]
 };
+
