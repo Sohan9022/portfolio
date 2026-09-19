@@ -231,17 +231,17 @@ export const DECISION_LOG = [
 
 export const PRODUCT_TEARDOWNS = [
   {
-    id: 'teardown-upi-anxiety',
-    product: 'Google Pay vs. PhonePe vs. Paytm',
-    category: 'FinTech UX · Field Research (N=103)',
-    title: 'The Anatomy of Transactional Anxiety: Google Pay vs. PhonePe',
-    observation: 'UPI apps optimize aggressively for commercial ad inventory and payment velocity, overlooking the acute cognitive panic first-generation digital users feel when money is in transit.',
-    whatWorks: "Google Pay's explicit recipient confirmation card (high-contrast name, avatar, and linked bank signifier) creates immediate reassurance before PIN entry, directly combating the fear of 'pressing the wrong button' that affects 55.2% of users.",
-    whatIWouldChange: "Crisis state recovery. In failure states where funds are debited, PhonePe displays commercial loan ads while Google Pay spins ambiguously. 64.3% of vernacular users clutched to the irrelevant 'सुरक्षित' (Safe) badge out of panic. I would ship an in-situ 'Escrow Visualizer' with a guaranteed 48-hour refund countdown timer.",
+    id: 'teardown-adaptive-framework',
+    product: 'AI-Driven Adaptive UX Framework',
+    category: 'HCI · FinTech Systems & Patent IP',
+    title: 'The Static Interface Fallacy: Why High-Stakes FinTech Needs Adaptive UI',
+    observation: 'Traditional digital payment interfaces suffer from the "Static Interface Fallacy": they serve the exact same dense, text-query layout to a rural first-generation user as they do to an urban tech worker, ignoring cognitive load and operational anxiety.',
+    whatWorks: "Dual-Mode Architecture & Practice Sandboxing. By coupling a live production environment with a mirrored zero-risk sandbox (using simulated dummy balances), users build genuine muscle memory and explore multi-step workflows without the fear of irreversible financial loss.",
+    whatIWouldChange: "In-Situ Ergonomics over Static Chatbots. Isolated help chatbots and external FAQ pages break user context (only 16.7% of users leave the active screen). The adaptive framework replaces detached modals with localized 'Hold-to-Translate' micro-analogies and gesture-anchored 'Circle-to-Understand' inspection directly on the active canvas.",
     sohansNotes: {
-      incentive: "Zero merchant discount rate (MDR) on peer-to-peer UPI forces PhonePe to treat its home screen like Times Square ad space. But this ad density causes 71.4% of vernacular users—who actively avoid text search—to get lost in visual noise.",
-      mentalModel: "To an urban PM, a pending transaction is an asynchronous database state. To a rural or semi-urban user, it's physical cash that may have dropped out of their pocket into an abyss. Trust demands immediate tactile and visual finality.",
-      experiment: "A/B test an In-Situ Escrow Status Modal during bank server timeouts vs. standard generic error codes. Hypothesis: 40% reduction in panicked repetitive retries and inbound support tickets."
+      incentive: "Why have apps remained static? Because deploying a single one-size-fits-all client is 10x cheaper for engineering teams than maintaining an adaptive runtime engine. But this engineering shortcut directly creates digital exclusion for 71.4% of vernacular users who reject text search.",
+      mentalModel: "In financial interfaces, fear is the primary usability metric. Users do not abandon apps because of color schemes; they abandon because they fear pressing the wrong button will wipe out their bank balance. Interfaces must provide psychological safety before demanding transactional commitment.",
+      experiment: "Deploy a Dual-Mode Sandbox toggle for new account onboardings. Measure task completion without human assistance on utility bill payments across vernacular cohorts. Hypothesis: 45% increase in first-month unassisted completion rate and 60% reduction in panicked drop-offs."
     }
   },
   {
