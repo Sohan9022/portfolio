@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans bg-[#09090b] text-zinc-100 transition-colors duration-150 selection:bg-zinc-700 selection:text-zinc-100;
+  }
+}
+
+/* Minimal subtle borders and cards */
+.minimal-card {
+  background: #111115;
+  border: 1px solid #27272a;
+}
+
+.minimal-card:hover {
+  border-color: #3f3f46;
+}
+
+/* Clean scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
