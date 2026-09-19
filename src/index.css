@@ -4,32 +4,37 @@
 
 @layer base {
   body {
-    @apply font-sans bg-[#09090b] text-zinc-100 transition-colors duration-150 selection:bg-zinc-700 selection:text-zinc-100;
+    @apply font-sans bg-[#FBFBFA] text-[#121214] antialiased selection:bg-slate-900 selection:text-white;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
 }
 
-/* Minimal subtle borders and cards */
-.minimal-card {
-  background: #111115;
-  border: 1px solid #27272a;
+/* Subtle editorial paper styling */
+.editorial-card {
+  background: #FFFFFF;
+  border: 1px solid #EAEAE7;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.minimal-card:hover {
-  border-color: #3f3f46;
+.editorial-card:hover {
+  border-color: #D5D5CE;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
 }
 
-/* Clean scrollbar */
+/* Subtle custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #09090b;
+  background: #FBFBFA;
 }
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
+  background: #D8D8D3;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: #AFAFA7;
 }

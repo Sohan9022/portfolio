@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Copy, Check } from 'lucide-react';
+import { Mail, Copy, Check, Award, GraduationCap, Code2, Sparkles, Compass, Lightbulb, FileText, ArrowUpRight } from 'lucide-react';
 
 export default function AboutSection() {
   const [copied, setCopied] = useState(false);
@@ -11,70 +11,186 @@ export default function AboutSection() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const skills = [
-    { category: 'Product Strategy & Discovery', items: ['User Problem Discovery', 'PRD Writing', 'Jobs-to-be-Done (JTBD)', 'Trade-off Analysis', 'Feature Prioritization', 'North Star Metrics'] },
-    { category: 'Technical Foundations', items: ['DSA (400+ LeetCode, 210+ GFG)', 'Java', 'Spring Framework', 'Python', 'PostgreSQL / RPCs', 'System Design'] },
-    { category: 'AI Prototyping & Architecture', items: ['LangChain', 'Advanced RAG', 'n8n Workflows', 'Prompt Engineering', 'Lovable.dev MVPs', 'Supabase'] },
+  const toolkit = [
+    {
+      category: 'Product Sense & Strategy',
+      skills: [
+        'PRD Writing',
+        'Problem Framing',
+        'Jobs-to-be-Done (JTBD)',
+        'RICE Prioritization',
+        'Trade-off Analysis',
+        'North Star & Counter-Metrics',
+        'Go-to-Market (GTM)'
+      ]
+    },
+    {
+      category: 'Customer Discovery & Design',
+      skills: [
+        'User Interviews',
+        'Customer Journey Mapping',
+        'Figma Prototyping',
+        'Rapid Wireframing',
+        'Usability Testing',
+        'Behavioral Loops'
+      ]
+    },
+    {
+      category: 'Technical Fluency',
+      skills: [
+        'Java',
+        'Spring Framework',
+        'Python',
+        'SQL & PostgreSQL RPCs',
+        'REST APIs',
+        'System Architecture',
+        'DSA (400+ LeetCode, 210+ GFG)'
+      ]
+    },
+    {
+      category: 'AI Systems & Prototyping',
+      skills: [
+        'LLM Prompt Engineering',
+        'Advanced RAG Architectures',
+        'Multimodal Ingestion',
+        'AI Governance (SHRH)',
+        'Lovable.dev Rapid MVPs',
+        'Supabase / RLS'
+      ]
+    }
+  ];
+
+  const credentials = [
+    {
+      title: 'India Innovates Hackathon — Finalist',
+      issuer: 'National Hackathon',
+      date: 'Top ~1,000 of ~6,000+ teams nationwide (Top ~16%)',
+      badge: 'National Finalist',
+      badgeColor: 'bg-amber-50 text-amber-800 border-amber-200'
+    },
+    {
+      title: 'GHCI 25 Hackathon — Round 2 Qualifier',
+      issuer: 'AnitaB.org India & Backbase',
+      date: 'National GenAI Hackathon: Unbound with GenAI',
+      badge: 'Round 2 Qualifier',
+      badgeColor: 'bg-purple-50 text-purple-800 border-purple-200'
+    },
+    {
+      title: 'Patent Filed — Multimodal AI Lost & Found System',
+      issuer: 'South African Patent Office (2025)',
+      date: '5-factor matching algorithm (image, text, geo, timestamp, context)',
+      badge: 'Patent Filed',
+      badgeColor: 'bg-blue-50 text-blue-800 border-blue-200'
+    },
+    {
+      title: 'Product Management Masterclass Certified',
+      issuer: 'GeeksforGeeks',
+      date: 'Product lifecycle, discovery, roadmap prioritization, and PRD metrics',
+      badge: 'Certified',
+      badgeColor: 'bg-emerald-50 text-emerald-800 border-emerald-200'
+    }
   ];
 
   return (
-    <section id="about" className="py-20 border-b border-zinc-800/60">
-      <div className="max-w-4xl mx-auto px-6">
+    <section id="about" className="py-24 border-b border-[#EAEAE7] bg-[#FBFBFA]">
+      <div className="max-w-6xl mx-auto px-6 sm:px-8">
         
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
-          
-          {/* Bio */}
-          <div className="md:col-span-7 space-y-4">
-            <h2 className="text-2xl font-bold text-white tracking-tight">
-              About Me
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16 pb-6 border-b border-[#EAEAE7]">
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-xs font-mono tracking-wider uppercase text-blue-700 font-semibold bg-blue-50 border border-blue-200/60 px-2 py-0.5 rounded">
+                07 · ABOUT & TOOLKIT
+              </span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#121214]">
+              Engineer by training. Product thinker by curiosity.
             </h2>
+          </div>
+          <div className="flex items-center gap-2 text-xs font-mono text-[#666663]">
+            <span>Based in Pune, India</span>
+            <span>·</span>
+            <span className="text-[#121214] font-medium">B.Tech IT (2023–2027)</span>
+          </div>
+        </div>
 
-            <div className="space-y-3 text-sm text-zinc-300 leading-relaxed">
+        {/* 2-Column Editorial Grid: Narrative & Toolkit */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start mb-16">
+          
+          {/* Bio Story (Left 7 cols) */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="space-y-4 text-base text-[#4A4A46] leading-relaxed font-normal">
               <p>
-                I'm <strong>Sohan Gadewar</strong>, an Information Technology undergraduate at <strong>VIIT Pune</strong> (Current CGPA: 8.97 / 10.0) targeting <strong>Associate Product Manager (APM)</strong> roles.
+                I'm <strong>Sohan Gadewar</strong>. I study Information Technology at <strong>VIIT Pune</strong> (CGPA: 8.97 / 10.0), but my center of gravity is Product Management.
               </p>
               <p>
-                With strong computer science fundamentals (400+ LeetCode, 210+ GeeksforGeeks, Java/Spring, and Python), I understand engineering trade-offs and backend realities. But my real passion is product sense: observing how workflows break down in the wild, identifying non-obvious root causes, and designing systems that solve them with clear constraints.
+                My technical foundations—solving 400+ LeetCode problems, building backend systems with Java and Spring, and exploring vector search—give me strong architectural empathy. I know what engineering trade-offs feel like because I've written the code.
               </p>
               <p>
-                I move quickly from problem formulation to comprehensive PRDs and functional, clickable prototypes — testing assumptions early with real software rather than staying trapped in theoretical slide decks.
+                However, I discovered early on that writing code is only half the battle. The harder and more exhilarating challenge is deciding <em>what</em> to build, <em>why</em> to build it, and <em>what to leave out</em> to protect user attention.
+              </p>
+              <p>
+                I thrive in 0-to-1 ambiguity: identifying where existing tools frustrate users, synthesizing qualitative insights into actionable PRDs, and using modern AI tooling to ship functional, testable prototypes in days rather than waiting quarters.
               </p>
             </div>
 
-            <div className="pt-3">
-              <div className="inline-flex items-center gap-2 p-1.5 pr-3 rounded-lg bg-zinc-900 border border-zinc-800 text-xs font-mono text-zinc-300">
-                <span className="px-2 py-1 rounded bg-zinc-800 text-zinc-200">Email</span>
+            {/* Quick Education Callout */}
+            <div className="p-5 rounded-xl bg-white border border-[#EAEAE7] space-y-2">
+              <div className="flex items-center justify-between text-xs">
+                <div className="flex items-center gap-2 font-semibold text-[#121214]">
+                  <GraduationCap className="w-4 h-4 text-blue-600" />
+                  <span>Vishwakarma Institute of Information Technology (VIIT), Pune</span>
+                </div>
+                <span className="font-mono text-[11px] text-[#666663]">2023 – 2027</span>
+              </div>
+              <div className="text-xs text-[#666663]">
+                Bachelor of Technology in Information Technology · <strong className="text-[#121214]">CGPA: 8.97 / 10.0</strong>
+              </div>
+              <div className="text-[11px] text-[#9E9E96] pt-1 border-t border-[#F0F0EC]">
+                Coursework: Data Structures & Algorithms, DBMS, Operating Systems, Computer Networks, System Design
+              </div>
+            </div>
+
+            {/* Contact widget */}
+            <div className="flex items-center gap-3 pt-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white border border-[#EAEAE7] text-xs font-mono text-[#121214]">
                 <span>{email}</span>
                 <button
                   onClick={handleCopyEmail}
-                  className="p-1 text-zinc-400 hover:text-white transition-colors"
-                  title="Copy email"
+                  className="p-1 hover:text-black transition-colors"
+                  title="Copy email to clipboard"
                 >
-                  {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-zinc-500" />}
+                  {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 text-[#9E9E96]" />}
                 </button>
               </div>
+              <a
+                href={`mailto:${email}`}
+                className="px-3.5 py-1.5 rounded-lg bg-[#121214] text-white text-xs font-medium hover:bg-black transition-all"
+              >
+                Send Email
+              </a>
             </div>
           </div>
 
-          {/* Skills */}
-          <div className="md:col-span-5 p-6 rounded-xl bg-[#111115] border border-zinc-800 space-y-4">
-            <h3 className="text-xs font-mono uppercase text-zinc-400 font-semibold tracking-wider">
-              Core Competencies
-            </h3>
+          {/* Product Toolkit Pills (Right 5 cols) */}
+          <div className="lg:col-span-5 space-y-4 p-6 sm:p-7 rounded-2xl bg-white border border-[#EAEAE7] shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+            <span className="font-mono text-xs uppercase tracking-wider text-[#121214] font-bold block pb-3 border-b border-[#F0F0EC]">
+              Product Manager Toolkit
+            </span>
 
-            <div className="space-y-4 text-xs">
-              {skills.map((group, idx) => (
-                <div key={idx} className="space-y-1.5">
-                  <span className="text-zinc-300 font-medium block">
-                    {group.category}
+            <div className="space-y-5 text-xs">
+              {toolkit.map((cat, idx) => (
+                <div key={idx} className="space-y-2">
+                  <span className="font-semibold text-[#121214] block">
+                    {cat.category}
                   </span>
                   <div className="flex flex-wrap gap-1.5">
-                    {group.items.map((item, i) => (
+                    {cat.skills.map((skill, sIdx) => (
                       <span
-                        key={i}
-                        className="px-2 py-0.5 rounded bg-zinc-900 text-zinc-300 border border-zinc-800 text-[11px] font-mono"
+                        key={sIdx}
+                        className="px-2.5 py-1 rounded-md bg-[#F6F6F3] text-[#4A4A46] border border-[#EAEAE7] text-[11px] font-medium"
                       >
-                        {item}
+                        {skill}
                       </span>
                     ))}
                   </div>
@@ -85,67 +201,34 @@ export default function AboutSection() {
 
         </div>
 
-        {/* Credentials & Recognition */}
-        <div className="mt-14 pt-10 border-t border-zinc-800/60">
-          <h3 className="text-xs font-mono uppercase text-zinc-400 font-semibold tracking-wider mb-6">
-            Honors & Certifications
+        {/* Credentials & Honors Grid */}
+        <div className="pt-10 border-t border-[#EAEAE7]">
+          <h3 className="text-xs font-mono uppercase tracking-wider text-[#666663] font-semibold mb-6">
+            Honors, Recognitions & Certifications
           </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-
-            {/* India Innovates Hackathon — Finalist */}
-            <div className="flex items-start gap-4 p-4 rounded-xl bg-[#111115] border border-zinc-700 hover:border-zinc-600 transition-colors">
-              <div className="mt-0.5 w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0 text-base">🏅</div>
-              <div>
-                <div className="text-sm font-semibold text-white">India Innovates Hackathon — Finalist</div>
-                <div className="text-xs text-zinc-400 mt-0.5">Top ~1,000 teams selected nationwide out of ~6,000+ participating teams</div>
-                <div className="flex items-center gap-2 mt-2">
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-500/10 text-amber-300 border border-amber-500/20">National Finalist</span>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-zinc-800 text-zinc-400 border border-zinc-700">Top ~16%</span>
-                </div>
-              </div>
-            </div>
-
-            {/* GHCI 25 — Round 2 */}
-            <div className="flex items-start gap-4 p-4 rounded-xl bg-[#111115] border border-zinc-700 hover:border-zinc-600 transition-colors">
-              <div className="mt-0.5 w-8 h-8 rounded-lg bg-violet-500/10 border border-violet-500/20 flex items-center justify-center shrink-0 text-base">🏆</div>
-              <div>
-                <div className="text-sm font-semibold text-white">GHCI 25 Hackathon — Round 2 Qualifier</div>
-                <div className="text-xs text-zinc-400 mt-0.5">Unbound with GenAI: Breaking Barriers, Creating Impact</div>
-                <div className="flex items-center gap-2 mt-2">
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-violet-500/10 text-violet-300 border border-violet-500/20">AnitaB.org India</span>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-zinc-800 text-zinc-400 border border-zinc-700">Backbase</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Patent */}
-            <div className="sm:col-span-2 flex items-start gap-4 p-4 rounded-xl bg-[#111115] border border-zinc-800 hover:border-zinc-700 transition-colors">
-              <div className="mt-0.5 w-8 h-8 rounded-lg bg-teal-500/10 border border-teal-500/20 flex items-center justify-center shrink-0 text-base">💡</div>
-              <div>
-                <div className="text-sm font-medium text-zinc-200">Patent Filed — Multimodal AI Lost & Found Matching System</div>
-                <div className="text-xs text-zinc-400 mt-0.5">Design-thinking based privacy-first matching architecture utilizing 5-factor scoring (image, text, location, timestamp, context) · South African Patent Filing</div>
-              </div>
-            </div>
-
-            {[
-              { icon: '🎯', title: 'Product Management Masterclass', issuer: 'GeeksforGeeks', date: 'Certified' },
-              { icon: '🤖', title: 'AI Agents & Automation using n8n', issuer: 'CampusX', date: 'Dec 2025' },
-              { icon: '🧠', title: 'Advanced RAG Systems Architecture', issuer: 'CampusX', date: 'In Progress' },
-              { icon: '✍️', title: 'Prompt Engineering & Docker for ML', issuer: 'CampusX', date: 'Jun 2026' },
-            ].map((cert, i) => (
-              <div key={i} className="flex items-start gap-3 p-3.5 rounded-xl bg-[#111115] border border-zinc-800 hover:border-zinc-700 transition-colors">
-                <div className="mt-0.5 w-7 h-7 rounded-lg bg-zinc-800 border border-zinc-700 flex items-center justify-center shrink-0 text-sm">{cert.icon}</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {credentials.map((c, i) => (
+              <div
+                key={i}
+                className="p-4 rounded-xl bg-white border border-[#EAEAE7] space-y-2 flex flex-col justify-between hover:border-[#D5D5CE] transition-all"
+              >
                 <div>
-                  <div className="text-xs font-medium text-zinc-200">{cert.title}</div>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-zinc-800 text-zinc-400 border border-zinc-700">{cert.issuer}</span>
-                    <span className="text-[10px] text-zinc-500">{cert.date}</span>
+                  <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-mono font-semibold border ${c.badgeColor} mb-2`}>
+                    {c.badge}
+                  </span>
+                  <h4 className="text-xs font-bold text-[#121214] leading-snug">
+                    {c.title}
+                  </h4>
+                  <div className="text-[11px] text-[#666663] mt-1">
+                    {c.issuer}
                   </div>
+                </div>
+                <div className="text-[10px] text-[#9E9E96] pt-2 border-t border-[#F0F0EC]">
+                  {c.date}
                 </div>
               </div>
             ))}
-
           </div>
         </div>
 
