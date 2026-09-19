@@ -5,9 +5,9 @@ import { Check, AlertCircle, ChevronDown, ChevronUp, Lightbulb, Target, Compass,
 export default function ProductTeardowns() {
   // Allow toggling open Sohan's notes on each teardown card
   const [expandedNotes, setExpandedNotes] = useState({
-    'teardown-adaptive-framework': true, // open first one by default for instant signal
-    'teardown-generative-prototyping': false,
-    'teardown-feed-context-collapse': false
+    'teardown-expressive-voice': true, // open first one by default for instant signal
+    'teardown-adaptive-framework': false,
+    'teardown-generative-prototyping': false
   });
 
   const toggleNote = (id) => {

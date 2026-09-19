@@ -12,7 +12,9 @@ import {
   HelpCircle,
   ExternalLink,
   BookOpen,
-  Cpu
+  Cpu,
+  Eye,
+  Sparkles
 } from 'lucide-react';
 
 export default function ResearchSpotlight() {
@@ -29,7 +31,7 @@ export default function ResearchSpotlight() {
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-2">
               <span className="text-xs font-mono tracking-wider uppercase text-blue-700 font-semibold bg-blue-50 border border-blue-200/60 px-2 py-0.5 rounded">
-                06 · EMPIRICAL USER RESEARCH & PATENT
+                06 · USER RESEARCH & PATENT CONCEPT
               </span>
               <span className="text-xs font-mono text-[#666663] bg-[#F4F4F0] px-2 py-0.5 rounded border border-[#EAEAE7]">
                 {data.institution}
@@ -45,43 +47,48 @@ export default function ResearchSpotlight() {
               {data.publicationStatus}
             </span>
             <span className="text-[11px] font-mono text-[#9E9E96]">
-              {data.sampleSize}
+              {data.lab}
             </span>
           </div>
         </div>
 
         {/* Narrative & Context Card */}
-        <div className="rounded-2xl bg-[#FBFBFA] border border-[#EAEAE7] p-6 sm:p-8 mb-8 space-y-4">
+        <div className="rounded-2xl bg-[#FBFBFA] border border-[#EAEAE7] p-6 sm:p-8 mb-8 space-y-5">
           <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
             <div className="space-y-2 max-w-3xl">
               <span className="text-[11px] font-mono uppercase tracking-wider text-slate-500 font-bold">
-                The Problem Space & Attitudinal-Behavioral Gap
+                The Problem Space & Field Observations
               </span>
               <p className="text-sm sm:text-base text-[#121214] leading-relaxed">
                 {data.context}
               </p>
             </div>
             <div className="p-4 rounded-xl bg-white border border-[#EAEAE7] shrink-0 text-xs font-mono space-y-1.5 min-w-[240px]">
-              <span className="text-[10px] uppercase text-[#9E9E96] font-bold block">Methodological Design</span>
-              <div className="text-[#121214] font-medium">Macro Baseline: N = 66</div>
-              <div className="text-[#121214] font-medium">Screen Diagnostics: N = 37</div>
+              <span className="text-[10px] uppercase text-[#9E9E96] font-bold block">Methodological Focus</span>
+              <div className="text-[#121214] font-medium">Qualitative Usability Diagnostics</div>
+              <div className="text-[#121214] font-medium">Vernacular & Low-Literacy Cohorts</div>
               <div className="text-blue-700 font-semibold pt-1 border-t border-[#F0F0EC]">
-                Triangulation Model
+                Human-Centered Discovery
               </div>
             </div>
           </div>
 
-          {/* 4 Quantitative Anchor Metrics */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-[#EAEAE7]">
-            {data.keyMetrics.map((m, idx) => (
-              <div key={idx} className="p-3.5 rounded-xl bg-white border border-[#EAEAE7] space-y-1">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-[#9E9E96] font-semibold block">
-                  {m.label}
-                </span>
-                <div className="text-2xl font-bold font-mono text-[#121214] tracking-tight">
-                  {m.stat}
+          {/* 4 Qualitative Insight Cards (No Biased Numbers) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-[#EAEAE7]">
+            {data.qualitativeInsights.map((m, idx) => (
+              <div key={idx} className="p-4 rounded-xl bg-white border border-[#EAEAE7] space-y-2 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between gap-1 mb-1">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-blue-700 font-bold">
+                      {m.label}
+                    </span>
+                    <span className="text-[10px] font-mono text-[#9E9E96]">0{idx + 1}</span>
+                  </div>
+                  <div className="text-sm font-bold text-[#121214] tracking-tight">
+                    {m.headline}
+                  </div>
                 </div>
-                <p className="text-[11px] text-[#666663] leading-snug">
+                <p className="text-xs text-[#555552] leading-relaxed">
                   {m.detail}
                 </p>
               </div>
@@ -99,7 +106,7 @@ export default function ResearchSpotlight() {
                 : 'text-[#666663] hover:text-[#121214] hover:bg-[#F4F4F0]'
             }`}
           >
-            5 Empirical Triangulation Pillars
+            5 Core Usability Pillars
           </button>
           <button
             onClick={() => setActiveTab('patent')}
@@ -109,7 +116,7 @@ export default function ResearchSpotlight() {
                 : 'text-[#666663] hover:text-[#121214] hover:bg-[#F4F4F0]'
             }`}
           >
-            Patent Architecture & Sandbox
+            Patent Concept & Sandbox
           </button>
           <button
             onClick={() => setActiveTab('figures')}
@@ -119,11 +126,11 @@ export default function ResearchSpotlight() {
                 : 'text-[#666663] hover:text-[#121214] hover:bg-[#F4F4F0]'
             }`}
           >
-            Field Figures & Artifacts ({data.figures.length})
+            System Blueprints & Diagrams ({data.figures.length})
           </button>
         </div>
 
-        {/* TAB 1: 5 TRIANGULATION PILLARS */}
+        {/* TAB 1: 5 CORE USABILITY PILLARS */}
         {activeTab === 'pillars' && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 animate-in fade-in duration-200">
             {data.fivePillars.map((p, idx) => (
@@ -137,7 +144,7 @@ export default function ResearchSpotlight() {
                   <div className="flex items-center justify-between gap-2 text-xs font-mono text-[#9E9E96]">
                     <span>PILLAR 0{p.number}</span>
                     <span className="text-blue-700 font-semibold text-[10px] bg-blue-50 px-2 py-0.5 rounded border border-blue-200/60">
-                      Empirically Verified
+                      Behavioral Insight
                     </span>
                   </div>
 
@@ -147,7 +154,7 @@ export default function ResearchSpotlight() {
 
                   <div className="space-y-1 text-xs">
                     <span className="font-mono text-[10px] uppercase text-[#666663] font-bold block">
-                      Screen-Level Usability Finding
+                      Screen-Level Observation
                     </span>
                     <p className="text-[#4A4A46] leading-relaxed">
                       {p.finding}
@@ -158,7 +165,7 @@ export default function ResearchSpotlight() {
                 <div className="pt-3 border-t border-[#F0F0EC] space-y-1">
                   <span className="font-mono text-[10px] uppercase text-emerald-800 font-bold block flex items-center gap-1">
                     <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-                    Product & System Intervention
+                    Human-Centered Intervention
                   </span>
                   <p className="text-xs text-[#2A2A28] font-medium leading-relaxed">
                     {p.designImpact}
@@ -169,21 +176,21 @@ export default function ResearchSpotlight() {
           </div>
         )}
 
-        {/* TAB 2: PATENT ARCHITECTURE & SANDBOX */}
+        {/* TAB 2: PATENT CONCEPT & SANDBOX */}
         {activeTab === 'patent' && (
           <div className="space-y-6 animate-in fade-in duration-200">
             <div className="p-6 rounded-2xl bg-[#FBFBFA] border border-[#EAEAE7] space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-[#EAEAE7]">
                 <div>
                   <span className="text-[11px] font-mono text-blue-700 font-bold uppercase tracking-wider block mb-1">
-                    Invention Disclosure & Patent Specification
+                    Invention Concept & Patent Specification
                   </span>
                   <h3 className="text-lg font-bold text-[#121214]">
                     {data.patentArchitecture.title}
                   </h3>
                 </div>
                 <span className="text-xs font-mono text-[#666663] bg-white border border-[#EAEAE7] px-3 py-1.5 rounded-lg shrink-0">
-                  Ref: VIT UX IP / 2026
+                  Ref: VIT UX IP / Concept Report
                 </span>
               </div>
 
@@ -213,7 +220,7 @@ export default function ResearchSpotlight() {
                   className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-300 cursor-pointer"
                   onClick={() => {
                     setActiveTab('figures');
-                    setSelectedFigure(2);
+                    setSelectedFigure(0);
                   }}
                 />
               </div>
@@ -225,12 +232,12 @@ export default function ResearchSpotlight() {
                   Zero-Risk Financial Practice Sandbox
                 </h4>
                 <p className="text-xs text-[#666663] leading-relaxed">
-                  The primary driver of the 4.33 anxiety threshold is that mistakes in production UPI apps carry irreversible monetary loss. By mirroring the live interface with simulated dummy balances, users build tactile muscle memory with zero financial risk before committing real transactions.
+                  The primary driver of digital hesitation is that mistakes in live financial applications carry irreversible monetary loss. By mirroring the live interface with simulated dummy balances, users build tactile muscle memory with zero financial risk before committing real transactions.
                 </p>
                 <button
                   onClick={() => {
                     setActiveTab('figures');
-                    setSelectedFigure(2);
+                    setSelectedFigure(0);
                   }}
                   className="inline-flex items-center gap-1.5 text-xs font-mono text-blue-700 font-semibold hover:underline pt-2"
                 >
@@ -242,7 +249,7 @@ export default function ResearchSpotlight() {
           </div>
         )}
 
-        {/* TAB 3: FIELD FIGURES & EMPIRICAL ARTIFACTS */}
+        {/* TAB 3: SYSTEM BLUEPRINTS & DIAGRAMS */}
         {activeTab === 'figures' && (
           <div className="space-y-6 animate-in fade-in duration-200">
             
@@ -270,7 +277,7 @@ export default function ResearchSpotlight() {
                   {data.figures[selectedFigure].title}
                 </h3>
                 <span className="text-[11px] font-mono text-[#9E9E96]">
-                  Empirical Lab Asset · VIT Pune
+                  Conceptual Research Asset · VIT Pune
                 </span>
               </div>
 
@@ -296,7 +303,7 @@ export default function ResearchSpotlight() {
           <div className="flex items-center gap-2 text-[#666663]">
             <BookOpen className="w-4 h-4 text-blue-700 shrink-0" />
             <span>
-              Academic Supervised Study: Triangulated Survey 1 (Macro, N=66) & Survey 2 (Diagnostics, N=37)
+              Academic UX Research & Patent Concept: Human-Centered Design for Vernacular Inclusivity & Adaptive HCI
             </span>
           </div>
           <div className="shrink-0 text-blue-700 bg-white px-3 py-1 rounded border border-[#EAEAE7] font-semibold">

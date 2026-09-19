@@ -231,45 +231,45 @@ export const DECISION_LOG = [
 
 export const PRODUCT_TEARDOWNS = [
   {
+    id: 'teardown-expressive-voice',
+    product: 'Expressive Voice AI (Concept)',
+    category: 'Multimodal AI · Conversational HCI',
+    title: 'Cross-Dialect Voice Twin: Preserving Human Warmth Across Languages',
+    observation: 'Standard speech translation converts spoken words into robotic text-to-speech, stripping away the speaker’s vocal timbre, humor, and emotional inflection. In client or business conversations, emotional warmth and cadence build 80% of rapport—not just literal vocabulary.',
+    whatWorks: "Expressive Vocal Cloning in Stream: The speaker talks naturally in their local dialect. The AI recognizes speech, captures vocal timbre, pitch, and emotional cadence, and streams the message into the recipient’s target dialect using the speaker’s own cloned voice and expressions.",
+    whatIWouldChange: "Conversational Turn-Taking Latency. Human conversation breaks down when translation delay exceeds 300ms. I would prioritize streaming chunked audio synthesis over full-sentence buffering to preserve natural dialogue cadence and prevent awkward speaker collisions.",
+    sohansNotes: {
+      incentive: "Legacy translation pipelines decouple speech-to-text, LLM translation, and TTS into separate sequential steps. This architectural separation flattens emotional prosody and introduces fatal latency in live calls.",
+      mentalModel: "Communication with a client or partner is not a data packet transfer—it is an emotional connection. When a client hears their own regional dialect spoken in your authentic warm voice, linguistic hesitation disappears.",
+      experiment: "Pilot on cross-regional client negotiations. Measure conversational flow, subjective trust ratings, and deal turnaround time versus standard robotic translation bots."
+    }
+  },
+  {
     id: 'teardown-adaptive-framework',
     product: 'AI-Driven Adaptive UX Framework',
-    category: 'HCI · FinTech Systems & Patent IP',
+    category: 'HCI Systems · Patent Concept',
     title: 'The Static Interface Fallacy: Why High-Stakes FinTech Needs Adaptive UI',
-    observation: 'Traditional digital payment interfaces suffer from the "Static Interface Fallacy": they serve the exact same dense, text-query layout to a rural first-generation user as they do to an urban tech worker, ignoring cognitive load and operational anxiety.',
-    whatWorks: "Dual-Mode Architecture & Practice Sandboxing. By coupling a live production environment with a mirrored zero-risk sandbox (using simulated dummy balances), users build genuine muscle memory and explore multi-step workflows without the fear of irreversible financial loss.",
-    whatIWouldChange: "In-Situ Ergonomics over Static Chatbots. Isolated help chatbots and external FAQ pages break user context (only 16.7% of users leave the active screen). The adaptive framework replaces detached modals with localized 'Hold-to-Translate' micro-analogies and gesture-anchored 'Circle-to-Understand' inspection directly on the active canvas.",
+    observation: 'Digital payment apps enforce a single, rigid interface layout regardless of user comfort. Serving the same dense, text-query interface to first-time vernacular users creates severe operational apprehension and feature abandonment.',
+    whatWorks: "Dual-Mode Sandbox Architecture: Coupling the live transactional environment with an exact mirrored practice sandbox using simulated balances. Users build tactile muscle memory and explore workflows without fear of irreversible financial loss.",
+    whatIWouldChange: "In-Situ Micro-Guidance: External chatbots and FAQ links break user focus. Assistance must be embedded in-situ via gesture-anchored explanations and touch-based micro-translations directly on the active canvas.",
     sohansNotes: {
-      incentive: "Why have apps remained static? Because deploying a single one-size-fits-all client is 10x cheaper for engineering teams than maintaining an adaptive runtime engine. But this engineering shortcut directly creates digital exclusion for 71.4% of vernacular users who reject text search.",
-      mentalModel: "In financial interfaces, fear is the primary usability metric. Users do not abandon apps because of color schemes; they abandon because they fear pressing the wrong button will wipe out their bank balance. Interfaces must provide psychological safety before demanding transactional commitment.",
-      experiment: "Deploy a Dual-Mode Sandbox toggle for new account onboardings. Measure task completion without human assistance on utility bill payments across vernacular cohorts. Hypothesis: 45% increase in first-month unassisted completion rate and 60% reduction in panicked drop-offs."
+      incentive: "Apps remain static because maintaining a single one-size-fits-all client is easier for engineering teams, shifting the entire cognitive burden onto users with lower digital literacy.",
+      mentalModel: "In digital finance, fear is the primary usability blocker. Users do not abandon apps due to aesthetics; they abandon because they worry a single mistaken tap will deduct their hard-earned money.",
+      experiment: "Enable a Practice Sandbox toggle during onboarding. Observe whether users who practice transfers with dummy balances complete live utility payments with less hesitation."
     }
   },
   {
     id: 'teardown-generative-prototyping',
-    product: 'Lovable & AI Prototyping',
-    category: 'Product Process · Generative Dev Engines',
+    product: 'Lovable & Generative Dev Tools',
+    category: 'Product Process · Rapid Validation',
     title: 'The Death of the Static PRD: Prototyping as Product Discovery',
-    observation: 'Generative AI tools invert the PM development lifecycle. Writing speculative 20-page Jira PRDs in isolation is dying; building clickable, stateful MVPs in 2 hours is the new prerequisite for product validation.',
-    whatWorks: "Instant ergonomics testing. Having personally built and shipped 5 functional MVPs on Lovable, I uncovered button latency limits, unhandled edge cases, and confusing visual hierarchies in 5 minutes of real interaction that weeks of static Figma reviews would have missed.",
-    whatIWouldChange: "The 'UI Illusion' trap. Generative frontends make non-technical stakeholders believe the distributed systems engineering (auth, database locking, rate limits) is solved. I would implement automated PRD-to-Contract checks that flag unhandled asynchronous race conditions early.",
+    observation: 'Writing speculative, text-heavy PRDs in isolation delays learning. Building clickable, stateful prototypes within hours is becoming the fastest way to discover edge cases and validate interaction ergonomics.',
+    whatWorks: "Tactile Ergonomics Validation: Interacting with a working prototype immediately exposes confusing hierarchies, latency frustrations, and unexpected edge cases that static wireframes consistently hide.",
+    whatIWouldChange: "The UI Illusion Trap: High-fidelity prototypes can trick non-technical stakeholders into assuming backend complexities (concurrency, distributed locks, security) are solved. Clear system boundary specs must accompany every prototype.",
     sohansNotes: {
-      incentive: "Traditional PMs spend 4 weeks writing PRDs because engineering time was the scarcest resource. Generative AI makes UI generation cheap, shifting the PM bottleneck from writing specifications to defining system constraints and user ergonomics.",
-      mentalModel: "Users and stakeholders can't evaluate abstract requirements documents. A live interactive URL (e.g., Lovable) elicits visceral, actionable critique; a 15-page Notion document gets polite nods and unread browser tabs.",
-      experiment: "Measure time-to-discovery: compare 2-week static PRD cycles against 48-hour clickable prototype cycles across 3 sprint teams. Hypothesis: 50% decrease in mid-sprint scope changes and rework."
-    }
-  },
-  {
-    id: 'teardown-feed-context-collapse',
-    product: 'Modern Recommendation Engines',
-    category: 'Social Systems · Recommendation Architecture',
-    title: 'The Single-Persona Fallacy: Why Modern Recommendation Feeds Degrade',
-    observation: 'Platforms like YouTube and Twitter assume a single monolithic user identity, conflating a Friday night casual entertainment binge with Monday morning professional research.',
-    whatWorks: "Short-term reinforcement loops. Blending all watch history into a single vector maximizes immediate 30-minute session duration by relentlessly feeding recent high-dopamine clicks.",
-    whatIWouldChange: "Long-term feed corruption. Watching 2 technical machine learning lectures builds a productive feed; clicking 1 gaming video pollutes the homepage for weeks, forcing power users into incognito tabs or burner accounts. This friction inspired my architecture for Spaces: isolated contextual vector stores within a single master identity.",
-    sohansNotes: {
-      incentive: "Ad-driven platforms optimize for global session minutes and immediate click-through, prioritizing short-term algorithmic momentum over long-term cognitive utility.",
-      mentalModel: "Human beings are multi-contextual creatures. We are one person at 10 AM on Monday (focused engineer) and another at 10 PM on Saturday (casual consumer). Forcing all behaviors into one vector creates cognitive dissonance.",
-      experiment: "Introduce opt-in 'Contextual Focus Spaces' with strict telemetry firewalls. Metric: 25% increase in 90-day retention and day-time professional session quality among knowledge workers."
+      incentive: "Traditional PMs wrote lengthy requirement documents because developer time was the primary bottleneck. Generative dev tools invert this by making UI scaffolding instant, moving the PM focus toward system constraints and user ergonomics.",
+      mentalModel: "Stakeholders and users cannot evaluate abstract bullet points. A live, clickable interface invites genuine, visceral critique, whereas written documents receive passive nods.",
+      experiment: "Run parallel feature discovery: Compare feedback quality and engineering rework between a static specification sprint and a 48-hour interactive prototype sprint."
     }
   }
 ];
@@ -277,67 +277,81 @@ export const PRODUCT_TEARDOWNS = [
 export const RESEARCH_SPOTLIGHT = {
   institution: 'Vishwakarma Institute of Technology (VIT), Pune',
   lab: 'Department of Computer Engineering / UX Research Lab',
-  publicationStatus: 'IEEE Research Paper Draft & Patent Application Draft',
+  publicationStatus: 'Patent Application Draft & Academic Concept Report',
   patentTitle: 'AI-Driven Multilingual Adaptive User Interface System & Risk-Free Financial Sandbox',
-  title: 'Empirical Cross-Analysis & Synthesis of UPI Usability',
-  tagline: 'Triangulating Macro Attitudinal Baselines (N = 66) with Micro Usability Diagnostics (N = 37) to Solve Digital Financial Exclusion',
-  sampleSize: 'N = 103 Total (66 Macro Baseline + 37 Screen Diagnostics across English & Marathi Cohorts)',
-  context: 'While India processes over 13 billion UPI transactions monthly, millions of first-generation and vernacular users experience acute transactional anxiety, high error rates, and digital exclusion. At the VIT UX Research Lab, we executed an empirical triangulation study comparing Google Pay, PhonePe, and Paytm across demographic and linguistic cohorts to uncover screen-level failure states and design human-centered interventions.',
+  title: 'Human-Centered UX for Vernacular Digital Inclusivity',
+  tagline: 'Identifying Cognitive Friction, Code-Mixing Barriers, and Operational Apprehension in Digital Financial Applications',
+  context: 'While digital payment systems continue rapid national expansion, millions of first-generation and vernacular users experience acute apprehension during everyday transactions. In our UX research work at VIT, we analyzed user behavior across demographic and linguistic cohorts to uncover screen-level cognitive barriers and design patent-pending human-centered interventions.',
   
-  keyMetrics: [
-    { label: 'Search Bar Aversion', stat: '71.4%', detail: 'of vernacular users reject text search, relying solely on visual browsing (p = 0.0324, Odds Ratio = 9.00).' },
-    { label: 'Wrong-Button Fear', stat: '55.2%', detail: 'of users fear pressing the wrong button and losing money (Attitudinal Mean: 3.34 / 5.00).' },
-    { label: 'Crisis Clutching', stat: '64.3%', detail: 'of Marathi users latched onto irrelevant "Safe/Secure" badges in error states seeking psychological solace.' },
-    { label: 'Panic Threshold', stat: '4.33', detail: 'out of 5.00 anxiety score triggers complete workflow abandonment and surrender of user agency.' }
+  qualitativeInsights: [
+    { 
+      label: 'Search Bar Avoidance', 
+      headline: 'Visual Over Query', 
+      detail: 'Vernacular users naturally gravitate toward visual icon recognition and category browsing, actively avoiding text search boxes due to keyboard language barriers.' 
+    },
+    { 
+      label: 'Fear of Monetary Loss', 
+      headline: 'Accidental Tap Anxiety', 
+      detail: 'Users experience intense hesitation around unfamiliar buttons, fearing that an unintended screen tap will commit an irreversible financial debit.' 
+    },
+    { 
+      label: 'Code-Mixing Confusion', 
+      headline: 'Jargon Disconnect', 
+      detail: 'Translating generic navigation while leaving regulatory terms (e.g., Mandate, Beneficiary) in English triggers immediate comprehension breakdown.' 
+    },
+    { 
+      label: 'In-Situ Guidance Need', 
+      headline: 'Screen Continuity', 
+      detail: 'Stuck users resist leaving the active screen for external help articles, fearing that switching apps will abort or corrupt their ongoing transaction.' 
+    }
   ],
 
   fivePillars: [
     {
       number: '01',
-      pillar: 'Visual Icon Preference vs. Search Aversion',
-      finding: 'Visual recognition scored 3.73/5.00 (#1 preference in the entire study). Vernacular users avoid search bars because non-native keyboard typing incurs high motor and cognitive effort. 60.0% of English users searched, while 71.4% of Marathi users manually browsed.',
+      pillar: 'Visual Recognition vs. Text Recall',
+      finding: 'Visual recognition offers lower cognitive friction than text queries. Users browsing in regional languages rely on distinct pictorial icons and category cues rather than typing search keywords.',
       designImpact: 'Dual-layer adaptive interface replacing text-heavy search queries with high-contrast, category-anchored pictorial navigation.'
     },
     {
       number: '02',
-      pillar: 'Fear of Monetary Loss vs. Crisis Recovery Paralysis',
-      finding: '55.2% fear wrong button taps. In debit failure states, 64.3% clicked irrelevant safety badges rather than troubleshooting. Current error flows provide zero psychological de-escalation.',
-      designImpact: 'Plain-language escrow status visualizer with refund countdown guarantee, eliminating the terrifying "pending" black hole.'
+      pillar: 'Fear of Monetary Loss vs. Crisis Recovery',
+      finding: 'In transaction delay or failure states, users experience severe disorientation. Generic error codes and technical alerts amplify panic rather than offering clear next steps.',
+      designImpact: 'Plain-language escrow status tracking with transparent refund timelines, eliminating ambiguity when money is in transit.'
     },
     {
       number: '03',
-      pillar: 'Financial Jargon & Incomplete Code-Mixing',
-      finding: 'Superficial localization translates basic buttons but leaves technical terms in English ("Mandate", "Beneficiary", "Processing Fee"), confusing 28.6% and causing hesitation for 35.7% of vernacular users.',
+      pillar: 'Financial Jargon & Incomplete Localization',
+      finding: 'Superficial localization translates basic button labels but leaves financial loanwords in English, leaving users unsure of legal commitments or fee structures.',
       designImpact: 'In-situ "Hold-to-Translate" micro-definitions providing localized real-world analogies without leaving the active screen.'
     },
     {
       number: '04',
       pillar: 'Environmental Anxiety vs. In-Situ Guidance',
-      finding: '58.2% fear network drops mid-transaction. Only 16.7% are willing to leave the app for help; 50.0% demand explainer tooltips directly on the active screen canvas.',
+      finding: 'Users fear intermittent network drops mid-transaction and refuse to navigate away to external browsers or secondary help centers for guidance.',
       designImpact: 'In-situ contextual tooltips and gesture-anchored guides ("Circle-to-Understand") that never navigate away from the payment flow.'
     },
     {
       number: '05',
-      pillar: 'Peak Anxiety Abandonment & Surrender of Agency',
-      finding: 'Users crossing the 4.33 anxiety threshold abandon self-service entirely, either tapping irrelevant commercial links (35.7%) or surrendering phone control to third parties.',
-      designImpact: 'Risk-Free Financial Practice Sandbox: a mirrored clone with dummy bank balances allowing users to practice transfers with zero financial risk.'
+      pillar: 'Self-Service Confidence & Risk-Free Practice',
+      finding: 'When digital anxiety peaks, users abandon self-service entirely and surrender device control to third parties because live mistakes carry real financial penalties.',
+      designImpact: 'Risk-Free Financial Practice Sandbox: a mirrored application replica with simulated balances, enabling stress-free muscle memory building.'
     }
   ],
 
   patentArchitecture: {
-    title: 'Patent-Pending Architecture: AI-Driven Adaptive UX Framework & Sandbox',
+    title: 'Patent Concept: AI-Driven Adaptive UX Framework & Sandbox',
     components: [
-      { name: 'Dual-Mode Environment Controller', desc: 'Dynamically toggles between Live Production and a Mirrored Sandbox Replica populated with simulated bank balances and dummy billers.' },
-      { name: 'Risk-Free Practice Sandbox', desc: 'Allows users to build muscle memory scanning QR codes and sending payments with zero financial liability, eliminating the 4.33 anxiety panic threshold.' },
+      { name: 'Dual-Mode Environment Controller', desc: 'Dynamically toggles between Live Production and a Mirrored Sandbox Replica populated with simulated balances and dummy billers.' },
+      { name: 'Risk-Free Practice Sandbox', desc: 'Allows users to build tactile muscle memory scanning QR codes and sending payments with zero financial liability, eliminating transactional fear.' },
       { name: 'In-Situ Micro-Translation ("Hold-to-Translate")', desc: 'Injects contextual vernacular explanations for loanwords (e.g. Mandate, Autopay) on touch without app switching or screen reloads.' },
-      { name: 'Gesture-Anchored Visual Inspection ("Circle-to-Understand")', desc: 'Attaches contextual conversational explanations directly to confusing screen icons or UI elements.' }
+      { name: 'Gesture-Anchored Visual Inspection ("Circle-to-Understand")', desc: 'Attaches contextual conversational explanations directly to unfamiliar screen icons or UI elements.' }
     ]
   },
 
   figures: [
-    { title: 'Cross-Triangulation Framework', image: '/research/fig16_cross_triangulation_framework.png', caption: 'Synthesizing Macro Baselines (N=66) with Micro Diagnostics (N=37) to bridge the Attitudinal-Behavioral Gap' },
-    { title: 'App Usability Scorecard', image: '/research/fig8_app_comparison_scorecard.png', caption: 'Empirical comparison of Google Pay, PhonePe, and Paytm across task completion, error recovery, and vernacular cognitive load' },
-    { title: 'Patent Architecture Blueprint', image: '/research/fig17_solution_architecture_patent.png', caption: 'Full technical system diagram for the AI-Driven Adaptive UX Framework and Risk-Free Financial Sandbox' }
+    { title: 'Patent Architecture Blueprint', image: '/research/fig17_solution_architecture_patent.png', caption: 'Full technical system diagram for the AI-Driven Adaptive UX Framework and Risk-Free Financial Sandbox' },
+    { title: 'Cross-Disciplinary UX Framework', image: '/research/fig16_cross_triangulation_framework.png', caption: 'Synthesizing qualitative user attitudes with screen-level interaction friction to guide adaptive interface design' }
   ]
 };
 
