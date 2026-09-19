@@ -7,7 +7,7 @@ export default function ProductTeardowns() {
   const [expandedNotes, setExpandedNotes] = useState({
     'teardown-expressive-voice': true, // open first one by default for instant signal
     'teardown-adaptive-framework': false,
-    'teardown-generative-prototyping': false
+    'teardown-asana-analyst': false
   });
 
   const toggleNote = (id) => {

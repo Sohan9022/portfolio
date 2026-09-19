@@ -259,17 +259,17 @@ export const PRODUCT_TEARDOWNS = [
     }
   },
   {
-    id: 'teardown-generative-prototyping',
-    product: 'Lovable & Generative Dev Tools',
-    category: 'Product Process · Rapid Validation',
-    title: 'The Death of the Static PRD: Prototyping as Product Discovery',
-    observation: 'Writing speculative, text-heavy PRDs in isolation delays learning. Building clickable, stateful prototypes within hours is becoming the fastest way to discover edge cases and validate interaction ergonomics.',
-    whatWorks: "Tactile Ergonomics Validation: Interacting with a working prototype immediately exposes confusing hierarchies, latency frustrations, and unexpected edge cases that static wireframes consistently hide.",
-    whatIWouldChange: "The UI Illusion Trap: High-fidelity prototypes can trick non-technical stakeholders into assuming backend complexities (concurrency, distributed locks, security) are solved. Clear system boundary specs must accompany every prototype.",
+    id: 'teardown-asana-analyst',
+    product: 'AI Asana Analyst (Full PRD & System Architecture)',
+    category: 'Computer Vision · Edge AI Systems',
+    title: 'Edge Computer Vision vs. Asynchronous GenAI: Real-Time Posture Feedback',
+    observation: 'In real-time computer vision applications (25 FPS live yoga pose evaluation), coupling cloud LLM generation directly into the per-frame processing loop destroys the 40ms frame budget. A robust product architecture must strictly isolate real-time heuristic angle evaluation from asynchronous background GenAI synthesis.',
+    whatWorks: "Two-Stage Decoupled Pipeline: MediaPipe BlazePose extracts 33 3D skeletal landmarks while NumPy computes joint arctangents against a deterministic PoseRules constraint table locally on CPU (<40ms). Offline audio alerts (pyttsx3) deliver instant spoken corrections with a 3-second cooldown to preserve practitioner flow.",
+    whatIWouldChange: "Non-Blocking Background Threading for GenAI: On detected violations, a background worker formats violation payloads for post-session PDF diagnostic reports with silent fallback to rule-based strings if cloud APIs time out (>5s), ensuring the live camera feed is never blocked.",
     sohansNotes: {
-      incentive: "Traditional PMs wrote lengthy requirement documents because developer time was the primary bottleneck. Generative dev tools invert this by making UI scaffolding instant, moving the PM focus toward system constraints and user ergonomics.",
-      mentalModel: "Stakeholders and users cannot evaluate abstract bullet points. A live, clickable interface invites genuine, visceral critique, whereas written documents receive passive nods.",
-      experiment: "Run parallel feature discovery: Compare feedback quality and engineering rework between a static specification sprint and a 48-hour interactive prototype sprint."
+      incentive: "Why not pass webcam video directly to multimodal LLMs? Cloud vision inference introduces 800ms–2000ms latency and high recurring API costs. Running edge geometry handles 25 FPS at zero compute cost, reserving GenAI solely for reflective post-session narrative advice.",
+      mentalModel: "A yoga practitioner holding Warrior II cannot read fine text on a laptop screen 6 feet away. Real-time feedback must be ambient and minimal: high-contrast limb color overlays (green/red) and concise spoken audio cues ('Bend knee deeper') with a cooldown to prevent cognitive overload.",
+      experiment: "Evaluate audio-visual cooldown intervals (3s vs. continuous) on live practitioners. Measure pose correction speed, session completion rate, and subjective user fatigue."
     }
   }
 ];
@@ -279,68 +279,45 @@ export const RESEARCH_SPOTLIGHT = {
   lab: 'Department of Computer Engineering / UX Research Lab',
   publicationStatus: 'Patent Application Draft & Academic Concept Report',
   patentTitle: 'AI-Driven Multilingual Adaptive User Interface System & Risk-Free Financial Sandbox',
-  title: 'Human-Centered UX for Vernacular Digital Inclusivity',
-  tagline: 'Identifying Cognitive Friction, Code-Mixing Barriers, and Operational Apprehension in Digital Financial Applications',
-  context: 'While digital payment systems continue rapid national expansion, millions of first-generation and vernacular users experience acute apprehension during everyday transactions. In our UX research work at VIT, we analyzed user behavior across demographic and linguistic cohorts to uncover screen-level cognitive barriers and design patent-pending human-centered interventions.',
+  title: 'AI-Driven Adaptive UX Framework for High-Stakes FinTech',
+  tagline: 'Why We Proposed an Adaptive Interface & Zero-Risk Practice Sandbox to Eliminate Operational Anxiety in Financial Systems',
+  context: 'Digital payment applications enforce a rigid, one-size-fits-all interface across all demographics. In high-stakes financial applications where any mistake incurs irreversible monetary loss, low-literacy and vernacular users experience acute operational apprehension, search hesitation, and crisis paralysis. In our UX research work at VIT Pune, we designed a patent-pending AI-driven adaptive framework where the interface dynamically simplifies and protects the user rather than forcing the user to adapt to the machine.',
   
-  qualitativeInsights: [
+  whyWeSuggested: [
     { 
-      label: 'Search Bar Avoidance', 
-      headline: 'Visual Over Query', 
-      detail: 'Vernacular users naturally gravitate toward visual icon recognition and category browsing, actively avoiding text search boxes due to keyboard language barriers.' 
-    },
-    { 
-      label: 'Fear of Monetary Loss', 
-      headline: 'Accidental Tap Anxiety', 
-      detail: 'Users experience intense hesitation around unfamiliar buttons, fearing that an unintended screen tap will commit an irreversible financial debit.' 
+      label: 'Zero-Risk Practice Sandbox', 
+      headline: 'Eliminating the Fear of Monetary Loss', 
+      friction: 'First-time users are paralyzed by the fear that pressing an unfamiliar button will immediately deduct real money from their bank balance.',
+      whySuggested: 'We proposed an exact mirrored application replica populated with simulated dummy balances and dummy billers. Users build tactile muscle memory and confidence by scanning dummy QR codes and practicing transfers with zero financial liability before committing real funds.'
     },
     { 
-      label: 'Code-Mixing Confusion', 
-      headline: 'Jargon Disconnect', 
-      detail: 'Translating generic navigation while leaving regulatory terms (e.g., Mandate, Beneficiary) in English triggers immediate comprehension breakdown.' 
+      label: 'Dynamic Visual Layer over Text Search', 
+      headline: 'Recognition Over Query Recall', 
+      friction: 'Conventional apps rely on text-input search boxes requiring English keywords, which vernacular users actively avoid due to non-native keyboard fatigue.',
+      whySuggested: 'The adaptive system dynamically replaces query-dependent text inputs with high-contrast, category-anchored pictorial navigation, shifting user cognitive effort from textual recall to visual recognition.'
     },
     { 
-      label: 'In-Situ Guidance Need', 
-      headline: 'Screen Continuity', 
-      detail: 'Stuck users resist leaving the active screen for external help articles, fearing that switching apps will abort or corrupt their ongoing transaction.' 
-    }
-  ],
-
-  fivePillars: [
-    {
-      number: '01',
-      pillar: 'Visual Recognition vs. Text Recall',
-      finding: 'Visual recognition offers lower cognitive friction than text queries. Users browsing in regional languages rely on distinct pictorial icons and category cues rather than typing search keywords.',
-      designImpact: 'Dual-layer adaptive interface replacing text-heavy search queries with high-contrast, category-anchored pictorial navigation.'
+      label: 'In-Situ "Hold-to-Translate" Micro-Analogies', 
+      headline: 'Overcoming Superficial Code-Mixing', 
+      friction: 'Apps translate simple button labels but leave regulatory loanwords ("Mandate", "Beneficiary", "Autopay") in English, causing users to suspect hidden debt contracts.',
+      whySuggested: 'A touch-activated micro-translation layer that dynamically injects plain-language vernacular definitions and real-world analogies directly over confusing jargon without page reloads.'
     },
-    {
-      number: '02',
-      pillar: 'Fear of Monetary Loss vs. Crisis Recovery',
-      finding: 'In transaction delay or failure states, users experience severe disorientation. Generic error codes and technical alerts amplify panic rather than offering clear next steps.',
-      designImpact: 'Plain-language escrow status tracking with transparent refund timelines, eliminating ambiguity when money is in transit.'
+    { 
+      label: 'Gesture-Anchored "Circle-to-Understand"', 
+      headline: 'Screen Continuity & In-Context Guidance', 
+      friction: 'When stuck on unfamiliar icons, users refuse to leave the active screen for external help centers because they fear the active payment session will drop or disconnect.',
+      whySuggested: 'Allows users to draw a circle or touch any confusing graphic element to summon contextual, conversational assistance anchored directly to that active UI component.'
     },
-    {
-      number: '03',
-      pillar: 'Financial Jargon & Incomplete Localization',
-      finding: 'Superficial localization translates basic button labels but leaves financial loanwords in English, leaving users unsure of legal commitments or fee structures.',
-      designImpact: 'In-situ "Hold-to-Translate" micro-definitions providing localized real-world analogies without leaving the active screen.'
-    },
-    {
-      number: '04',
-      pillar: 'Environmental Anxiety vs. In-Situ Guidance',
-      finding: 'Users fear intermittent network drops mid-transaction and refuse to navigate away to external browsers or secondary help centers for guidance.',
-      designImpact: 'In-situ contextual tooltips and gesture-anchored guides ("Circle-to-Understand") that never navigate away from the payment flow.'
-    },
-    {
-      number: '05',
-      pillar: 'Self-Service Confidence & Risk-Free Practice',
-      finding: 'When digital anxiety peaks, users abandon self-service entirely and surrender device control to third parties because live mistakes carry real financial penalties.',
-      designImpact: 'Risk-Free Financial Practice Sandbox: a mirrored application replica with simulated balances, enabling stress-free muscle memory building.'
+    { 
+      label: 'Crisis De-escalation & Escrow Visualizer', 
+      headline: 'Transparency in Transaction Limbo', 
+      friction: 'In failure or bank-timeout states, apps show cryptic technical error codes and commercial ads, triggering acute panic and repetitive, erroneous tapping.',
+      whySuggested: 'Suppresses commercial clutter and presents a transparent escrow status visualizer with plain-language explanations and a guaranteed refund countdown timeline.'
     }
   ],
 
   patentArchitecture: {
-    title: 'Patent Concept: AI-Driven Adaptive UX Framework & Sandbox',
+    title: 'Patent System Architecture: The Adaptive UX Framework Modules',
     components: [
       { name: 'Dual-Mode Environment Controller', desc: 'Dynamically toggles between Live Production and a Mirrored Sandbox Replica populated with simulated balances and dummy billers.' },
       { name: 'Risk-Free Practice Sandbox', desc: 'Allows users to build tactile muscle memory scanning QR codes and sending payments with zero financial liability, eliminating transactional fear.' },
@@ -351,7 +328,7 @@ export const RESEARCH_SPOTLIGHT = {
 
   figures: [
     { title: 'Patent Architecture Blueprint', image: '/research/fig17_solution_architecture_patent.png', caption: 'Full technical system diagram for the AI-Driven Adaptive UX Framework and Risk-Free Financial Sandbox' },
-    { title: 'Cross-Disciplinary UX Framework', image: '/research/fig16_cross_triangulation_framework.png', caption: 'Synthesizing qualitative user attitudes with screen-level interaction friction to guide adaptive interface design' }
+    { title: 'System Triangulation Architecture', image: '/research/fig16_cross_triangulation_framework.png', caption: 'Synthesizing qualitative user attitudes with screen-level interaction friction to guide adaptive interface design' }
   ]
 };
 

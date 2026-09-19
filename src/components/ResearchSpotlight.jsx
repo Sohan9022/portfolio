@@ -14,12 +14,13 @@ import {
   BookOpen,
   Cpu,
   Eye,
-  Sparkles
+  Sparkles,
+  Lightbulb
 } from 'lucide-react';
 
 export default function ResearchSpotlight() {
   const data = RESEARCH_SPOTLIGHT;
-  const [activeTab, setActiveTab] = useState('pillars'); // 'pillars' | 'patent' | 'figures'
+  const [activeTab, setActiveTab] = useState('why-suggested'); // 'why-suggested' | 'patent' | 'figures'
   const [selectedFigure, setSelectedFigure] = useState(0);
 
   return (
@@ -56,57 +57,64 @@ export default function ResearchSpotlight() {
         <div className="rounded-2xl bg-[#FBFBFA] border border-[#EAEAE7] p-6 sm:p-8 mb-8 space-y-5">
           <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
             <div className="space-y-2 max-w-3xl">
-              <span className="text-[11px] font-mono uppercase tracking-wider text-slate-500 font-bold">
-                The Problem Space & Field Observations
+              <span className="text-[11px] font-mono uppercase tracking-wider text-slate-500 font-bold flex items-center gap-1.5">
+                <Compass className="w-3.5 h-3.5 text-blue-600" />
+                Problem Thesis & Motivation
               </span>
               <p className="text-sm sm:text-base text-[#121214] leading-relaxed">
                 {data.context}
               </p>
             </div>
             <div className="p-4 rounded-xl bg-white border border-[#EAEAE7] shrink-0 text-xs font-mono space-y-1.5 min-w-[240px]">
-              <span className="text-[10px] uppercase text-[#9E9E96] font-bold block">Methodological Focus</span>
-              <div className="text-[#121214] font-medium">Qualitative Usability Diagnostics</div>
-              <div className="text-[#121214] font-medium">Vernacular & Low-Literacy Cohorts</div>
+              <span className="text-[10px] uppercase text-[#9E9E96] font-bold block">Proposed Direction</span>
+              <div className="text-[#121214] font-medium">Adaptive Interface Runtime</div>
+              <div className="text-[#121214] font-medium">Zero-Risk Practice Sandbox</div>
               <div className="text-blue-700 font-semibold pt-1 border-t border-[#F0F0EC]">
-                Human-Centered Discovery
+                User-Centric Architecture
               </div>
             </div>
           </div>
 
-          {/* 4 Qualitative Insight Cards (No Biased Numbers) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-[#EAEAE7]">
-            {data.qualitativeInsights.map((m, idx) => (
-              <div key={idx} className="p-4 rounded-xl bg-white border border-[#EAEAE7] space-y-2 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center justify-between gap-1 mb-1">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-blue-700 font-bold">
-                      {m.label}
-                    </span>
-                    <span className="text-[10px] font-mono text-[#9E9E96]">0{idx + 1}</span>
-                  </div>
-                  <div className="text-sm font-bold text-[#121214] tracking-tight">
-                    {m.headline}
-                  </div>
-                </div>
-                <p className="text-xs text-[#555552] leading-relaxed">
-                  {m.detail}
-                </p>
-              </div>
-            ))}
+          {/* 3 Core Philosophical Principles */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-[#EAEAE7]">
+            <div className="p-3.5 rounded-xl bg-white border border-[#EAEAE7] space-y-1">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-blue-700 font-bold block">
+                01 · Practice Over Live Risk
+              </span>
+              <p className="text-xs text-[#555552] leading-snug">
+                Users need a zero-liability sandbox to build tactile muscle memory before committing real money.
+              </p>
+            </div>
+            <div className="p-3.5 rounded-xl bg-white border border-[#EAEAE7] space-y-1">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-blue-700 font-bold block">
+                02 · Recognition Over Recall
+              </span>
+              <p className="text-xs text-[#555552] leading-snug">
+                Dynamic visual iconography replaces search boxes that demand non-native keyword recall.
+              </p>
+            </div>
+            <div className="p-3.5 rounded-xl bg-white border border-[#EAEAE7] space-y-1">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-blue-700 font-bold block">
+                03 · In-Situ Over External Help
+              </span>
+              <p className="text-xs text-[#555552] leading-snug">
+                Assistance and translation must live directly on the active canvas without page reloads.
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Interactive Deep-Dive View Tabs */}
+        {/* Interactive View Tabs */}
         <div className="flex items-center gap-2 border-b border-[#EAEAE7] pb-3 mb-8 text-xs font-mono">
           <button
-            onClick={() => setActiveTab('pillars')}
+            onClick={() => setActiveTab('why-suggested')}
             className={`px-3.5 py-1.5 rounded-lg transition-all font-semibold ${
-              activeTab === 'pillars'
+              activeTab === 'why-suggested'
                 ? 'bg-[#121214] text-white shadow-sm'
                 : 'text-[#666663] hover:text-[#121214] hover:bg-[#F4F4F0]'
             }`}
           >
-            5 Core Usability Pillars
+            Why We Suggested It (5 Interventions)
           </button>
           <button
             onClick={() => setActiveTab('patent')}
@@ -116,7 +124,7 @@ export default function ResearchSpotlight() {
                 : 'text-[#666663] hover:text-[#121214] hover:bg-[#F4F4F0]'
             }`}
           >
-            Patent Concept & Sandbox
+            Patent Architecture & Modules
           </button>
           <button
             onClick={() => setActiveTab('figures')}
@@ -130,45 +138,50 @@ export default function ResearchSpotlight() {
           </button>
         </div>
 
-        {/* TAB 1: 5 CORE USABILITY PILLARS */}
-        {activeTab === 'pillars' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 animate-in fade-in duration-200">
-            {data.fivePillars.map((p, idx) => (
+        {/* TAB 1: WHY WE SUGGESTED THE ADAPTIVE FRAMEWORK */}
+        {activeTab === 'why-suggested' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 animate-in fade-in duration-200">
+            {data.whyWeSuggested.map((item, idx) => (
               <div 
                 key={idx} 
-                className={`p-5 rounded-2xl border bg-white shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between space-y-4 ${
-                  idx === 4 ? 'md:col-span-2 lg:col-span-1 border-blue-200 bg-blue-50/20' : 'border-[#EAEAE7]'
+                className={`p-6 rounded-2xl border bg-white shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between space-y-4 ${
+                  idx === 0 ? 'md:col-span-2 border-blue-200 bg-blue-50/15' : 'border-[#EAEAE7]'
                 }`}
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between gap-2 text-xs font-mono text-[#9E9E96]">
-                    <span>PILLAR 0{p.number}</span>
-                    <span className="text-blue-700 font-semibold text-[10px] bg-blue-50 px-2 py-0.5 rounded border border-blue-200/60">
-                      Behavioral Insight
+                    <span className="text-blue-700 font-semibold uppercase tracking-wider">
+                      INTERVENTION 0{idx + 1}
+                    </span>
+                    <span className="text-[11px] font-mono text-[#666663] bg-white px-2 py-0.5 rounded border border-[#EAEAE7]">
+                      {item.label}
                     </span>
                   </div>
 
-                  <h3 className="text-sm font-bold text-[#121214] leading-snug">
-                    {p.pillar}
+                  <h3 className="text-base font-bold text-[#121214] leading-snug">
+                    {item.headline}
                   </h3>
 
-                  <div className="space-y-1 text-xs">
-                    <span className="font-mono text-[10px] uppercase text-[#666663] font-bold block">
-                      Screen-Level Observation
+                  {/* The Friction Observed */}
+                  <div className="p-3 rounded-xl bg-amber-50/50 border border-amber-200/60 space-y-1">
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-amber-900 font-bold flex items-center gap-1">
+                      <AlertTriangle className="w-3 h-3 text-amber-700" />
+                      The Friction in Current Apps
                     </span>
-                    <p className="text-[#4A4A46] leading-relaxed">
-                      {p.finding}
+                    <p className="text-xs text-[#555552] leading-relaxed">
+                      {item.friction}
                     </p>
                   </div>
                 </div>
 
+                {/* Why We Suggested It */}
                 <div className="pt-3 border-t border-[#F0F0EC] space-y-1">
-                  <span className="font-mono text-[10px] uppercase text-emerald-800 font-bold block flex items-center gap-1">
+                  <span className="font-mono text-[10px] uppercase text-emerald-800 font-bold flex items-center gap-1">
                     <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-                    Human-Centered Intervention
+                    Why We Suggested This Solution
                   </span>
                   <p className="text-xs text-[#2A2A28] font-medium leading-relaxed">
-                    {p.designImpact}
+                    {item.whySuggested}
                   </p>
                 </div>
               </div>
@@ -176,7 +189,7 @@ export default function ResearchSpotlight() {
           </div>
         )}
 
-        {/* TAB 2: PATENT CONCEPT & SANDBOX */}
+        {/* TAB 2: PATENT ARCHITECTURE & MODULES */}
         {activeTab === 'patent' && (
           <div className="space-y-6 animate-in fade-in duration-200">
             <div className="p-6 rounded-2xl bg-[#FBFBFA] border border-[#EAEAE7] space-y-4">
