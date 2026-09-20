@@ -232,16 +232,16 @@ export const DECISION_LOG = [
 export const PRODUCT_TEARDOWNS = [
   {
     id: 'teardown-expressive-voice',
-    product: 'Expressive Voice AI (Concept)',
-    category: 'Multimodal AI · Conversational HCI',
-    title: 'Cross-Dialect Voice Twin: Preserving Human Warmth Across Languages',
-    observation: 'Standard speech translation converts spoken words into robotic text-to-speech, stripping away the speaker’s vocal timbre, humor, and emotional inflection. In client or business conversations, emotional warmth and cadence build 80% of rapport—not just literal vocabulary.',
-    whatWorks: "Expressive Vocal Cloning in Stream: The speaker talks naturally in their local dialect. The AI recognizes speech, captures vocal timbre, pitch, and emotional cadence, and streams the message into the recipient’s target dialect using the speaker’s own cloned voice and expressions.",
-    whatIWouldChange: "Conversational Turn-Taking Latency. Human conversation breaks down when translation delay exceeds 300ms. I would prioritize streaming chunked audio synthesis over full-sentence buffering to preserve natural dialogue cadence and prevent awkward speaker collisions.",
+    product: 'ElevenLabs & Conversational Voice AI',
+    category: 'Multimodal Audio · Conversational HCI',
+    title: 'ElevenLabs: Why Asynchronous Dubbing Fails in Live Conversational Turn-Taking',
+    observation: 'ElevenLabs set the gold standard for expressive voice cloning in asynchronous media (podcasts, video dubbing), but applying horizontal audio infrastructure to live 1-on-1 client conversations exposes severe architectural and latency trade-offs.',
+    whatWorks: "Acoustic Fidelity & Voice Cloning in Batch: Industry-leading preservation of vocal timbre, cross-lingual identity retention, and emotional prosody when processing pre-recorded audio where multi-second generation buffers are acceptable.",
+    whatIWouldChange: "Three Real-Time Conversational Bottlenecks: (1) Latency Budget: Full-sentence buffering introduces a 1.5–3.0s delay, collapsing natural dialogue into awkward walkie-talkie pauses. (2) Standardized Diction: Models default to formal textbook grammar, missing the colloquial regional dialects, idioms, and informal rapport necessary for client negotiation. (3) Full-Duplex Interruption: Lack of sub-second streaming tokenization leads to 'ghost-speaking' when a listener interjects mid-sentence.",
     sohansNotes: {
-      incentive: "Legacy translation pipelines decouple speech-to-text, LLM translation, and TTS into separate sequential steps. This architectural separation flattens emotional prosody and introduces fatal latency in live calls.",
-      mentalModel: "Communication with a client or partner is not a data packet transfer—it is an emotional connection. When a client hears their own regional dialect spoken in your authentic warm voice, linguistic hesitation disappears.",
-      experiment: "Pilot on cross-regional client negotiations. Measure conversational flow, subjective trust ratings, and deal turnaround time versus standard robotic translation bots."
+      incentive: "ElevenLabs is horizontally positioned as an infrastructure API for content creators and developer platforms, optimizing for acoustic fidelity and actor licensing rather than the sub-300ms latency and packet ergonomics required for live enterprise sales calls.",
+      mentalModel: "Human trust in high-stakes negotiations is 80% about timing, mutual interjections, and dialect empathy. A textbook-perfect accent with a 2-second delay feels robotic and suspicious compared to instant, culturally resonant speech.",
+      experiment: "Deploy a chunked streaming speech-to-speech pipeline with speculative token prediction on live cross-regional sales calls. Measure conversational turn-taking latency, natural interjection recovery, and perceived speaker warmth versus standard ElevenLabs batch dubbing."
     }
   },
   {
