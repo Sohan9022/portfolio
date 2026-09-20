@@ -127,16 +127,23 @@ export default function CaseStudyDeepDive() {
               <button
                 key={s.step}
                 onClick={() => setActiveStepIndex(idx)}
-                className={`p-2 sm:p-2.5 rounded-lg text-center transition-all ${
+                className={`relative p-2 sm:p-2.5 rounded-lg text-center transition-colors ${
                   isActive
-                    ? 'bg-white border border-[#D5D5CE] shadow-sm text-[#121214]'
-                    : 'text-[#666663] hover:text-[#121214] hover:bg-white/50'
+                    ? 'text-[#121214] font-semibold'
+                    : 'text-[#666663] hover:text-[#121214]'
                 }`}
               >
-                <span className="font-mono text-[10px] block text-[#9E9E96]">
+                {isActive && (
+                  <motion.div
+                    layoutId="activeSentinelStep"
+                    className="absolute inset-0 bg-white rounded-lg shadow-sm border border-[#D5D5CE]"
+                    transition={{ type: 'spring', stiffness: 450, damping: 35 }}
+                  />
+                )}
+                <span className="relative z-10 font-mono text-[10px] block text-[#9E9E96]">
                   {s.step}
                 </span>
-                <span className="text-[11px] font-semibold hidden md:inline truncate">
+                <span className="relative z-10 text-[11px] font-semibold hidden md:inline truncate">
                   {s.badge}
                 </span>
               </button>
@@ -181,20 +188,24 @@ export default function CaseStudyDeepDive() {
 
                 {/* Step Controls */}
                 <div className="pt-4 flex items-center gap-3 text-xs">
-                  <button
+                  <motion.button
+                    whileHover={{ y: -1 }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => setActiveStepIndex(Math.max(0, activeStepIndex - 1))}
                     disabled={activeStepIndex === 0}
-                    className="px-3 py-1.5 rounded bg-white border border-[#EAEAE7] text-[#4A4A46] disabled:opacity-40 hover:bg-[#F6F6F3]"
+                    className="px-3 py-1.5 rounded bg-white border border-[#EAEAE7] text-[#4A4A46] disabled:opacity-40 hover:bg-[#F6F6F3] shadow-sm transition-all"
                   >
                     ← Previous Step
-                  </button>
-                  <button
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ y: -1 }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => setActiveStepIndex(Math.min(SENTINEL_STEPS.length - 1, activeStepIndex + 1))}
                     disabled={activeStepIndex === SENTINEL_STEPS.length - 1}
-                    className="px-3 py-1.5 rounded bg-[#121214] text-white disabled:opacity-40 hover:bg-black font-medium"
+                    className="px-3 py-1.5 rounded bg-[#121214] text-white disabled:opacity-40 hover:bg-black font-medium shadow-sm transition-all"
                   >
                     Next Step →
-                  </button>
+                  </motion.button>
                 </div>
               </div>
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Mail, Copy, Check, Award, GraduationCap, Code2, Sparkles, Compass, Lightbulb, FileText, ArrowUpRight } from 'lucide-react';
 
 export default function AboutSection() {
@@ -155,20 +156,23 @@ export default function AboutSection() {
             <div className="flex items-center gap-3 pt-2">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white border border-[#EAEAE7] text-xs font-mono text-[#121214]">
                 <span>{email}</span>
-                <button
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
                   onClick={handleCopyEmail}
                   className="p-1 hover:text-black transition-colors"
                   title="Copy email to clipboard"
                 >
                   {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 text-[#9E9E96]" />}
-                </button>
+                </motion.button>
               </div>
-              <a
+              <motion.a
+                whileHover={{ y: -1 }}
+                whileTap={{ scale: 0.98 }}
                 href={`mailto:${email}`}
-                className="px-3.5 py-1.5 rounded-lg bg-[#121214] text-white text-xs font-medium hover:bg-black transition-all"
+                className="px-3.5 py-1.5 rounded-lg bg-[#121214] text-white text-xs font-medium hover:bg-black transition-all shadow-sm"
               >
                 Send Email
-              </a>
+              </motion.a>
             </div>
           </div>
 
@@ -186,12 +190,14 @@ export default function AboutSection() {
                   </span>
                   <div className="flex flex-wrap gap-1.5">
                     {cat.skills.map((skill, sIdx) => (
-                      <span
+                      <motion.span
                         key={sIdx}
-                        className="px-2.5 py-1 rounded-md bg-[#F6F6F3] text-[#4A4A46] border border-[#EAEAE7] text-[11px] font-medium"
+                        whileHover={{ y: -1.5, scale: 1.04 }}
+                        transition={{ duration: 0.15 }}
+                        className="cursor-default px-2.5 py-1 rounded-md bg-[#F6F6F3] hover:bg-white hover:border-[#D5D5CE] hover:shadow-xs text-[#4A4A46] hover:text-[#121214] border border-[#EAEAE7] text-[11px] font-medium transition-colors inline-block"
                       >
                         {skill}
-                      </span>
+                      </motion.span>
                     ))}
                   </div>
                 </div>
@@ -209,9 +215,11 @@ export default function AboutSection() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {credentials.map((c, i) => (
-              <div
+              <motion.div
                 key={i}
-                className="p-4 rounded-xl bg-white border border-[#EAEAE7] space-y-2 flex flex-col justify-between hover:border-[#D5D5CE] transition-all"
+                whileHover={{ y: -3 }}
+                transition={{ duration: 0.2 }}
+                className="p-4 rounded-xl bg-white border border-[#EAEAE7] hover:border-[#D5D5CE] hover:shadow-[0_4px_16px_rgba(0,0,0,0.03)] space-y-2 flex flex-col justify-between transition-all"
               >
                 <div>
                   <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-mono font-semibold border ${c.badgeColor} mb-2`}>
@@ -227,7 +235,7 @@ export default function AboutSection() {
                 <div className="text-[10px] text-[#9E9E96] pt-2 border-t border-[#F0F0EC]">
                   {c.date}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

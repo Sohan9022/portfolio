@@ -92,35 +92,41 @@ export default function HeroSection() {
           transition={{ duration: 0.4, delay: 0.14 }}
           className="flex flex-wrap items-center gap-3 mb-14"
         >
-          <a
+          <motion.a
             href="#work"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold bg-[#121214] text-white hover:bg-black shadow-sm transition-all active:scale-95"
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold bg-[#121214] text-white hover:bg-black shadow-sm transition-all"
           >
             <span>Explore Selected Work</span>
             <ArrowDown className="w-4 h-4" />
-          </a>
+          </motion.a>
 
-          <a
+          <motion.a
             href="/Sohan_Gadewar_Resume.docx"
             download
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium text-[#121214] bg-white border border-[#EAEAE7] hover:border-[#D5D5CE] shadow-sm transition-all active:scale-95"
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium text-[#121214] bg-white border border-[#EAEAE7] hover:border-[#D5D5CE] shadow-sm transition-all"
           >
             <FileText className="w-4 h-4 text-slate-500" />
             <span>Download Resume (.docx)</span>
-          </a>
+          </motion.a>
 
-          <a
+          <motion.a
             href="#thinking"
+            whileHover={{ x: 2 }}
             className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium text-[#666663] hover:text-[#121214] hover:bg-[#F1F1EE] transition-colors"
           >
             <span>How I Think</span>
             <ArrowRight className="w-4 h-4 text-[#9E9E96]" />
-          </a>
+          </motion.a>
         </motion.div>
 
         {/* Currently Exploring Indicator */}
         <div className="py-3 px-4 rounded-lg bg-[#FFFFFF] border border-[#EAEAE7] mb-12 flex items-start sm:items-center gap-3 text-xs text-[#666663]">
-          <span className="font-mono text-[10px] font-semibold tracking-wider uppercase text-blue-700 bg-blue-50 border border-blue-200/60 px-2 py-0.5 rounded">
+          <span className="font-mono text-[10px] font-semibold tracking-wider uppercase text-blue-700 bg-blue-50 border border-blue-200/60 px-2 py-0.5 rounded flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
             CURRENT FOCUS
           </span>
           <span className="text-[#4A4A46] font-medium">
@@ -142,7 +148,7 @@ export default function HeroSection() {
             </span>
           </div>
 
-          {/* Stepper Pipeline */}
+          {/* Stepper Pipeline with Spring Layout Pill */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 mb-5">
             {PM_STAGES.map((stage) => {
               const isActive = activeStage.id === stage.id;
@@ -151,18 +157,27 @@ export default function HeroSection() {
                   key={stage.id}
                   onClick={() => setActiveStage(stage)}
                   onMouseEnter={() => setActiveStage(stage)}
-                  className={`relative text-left p-3 rounded-lg border transition-all ${
+                  className={`relative text-left p-3 rounded-lg border transition-colors ${
                     isActive
-                      ? 'bg-[#FBFBFA] border-[#121214] shadow-sm'
-                      : 'bg-white border-[#EAEAE7] hover:border-[#D5D5CE]'
+                      ? 'border-[#121214] shadow-sm'
+                      : 'border-[#EAEAE7] hover:border-[#D5D5CE]'
                   }`}
                 >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeStageHighlight"
+                      className="absolute inset-0 bg-[#F6F6F3] rounded-lg -z-10"
+                      transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                    />
+                  )}
                   <div className="flex items-center justify-between mb-1">
                     <span className="font-mono text-[10px] text-[#9E9E96]">
                       {stage.short}
                     </span>
-                    {isActive && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+                    {isActive ? (
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
+                    ) : (
+                      <span className="w-1.5 h-1.5 rounded-full bg-transparent"></span>
                     )}
                   </div>
                   <div className={`text-xs font-semibold ${isActive ? 'text-[#121214]' : 'text-[#666663]'}`}>

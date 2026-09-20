@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll } from 'framer-motion';
 import { ArrowUpRight, Menu, X, FileText, Mail, Check, Copy } from 'lucide-react';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const { scrollYProgress } = useScroll();
   const email = 'sohangadewar9022@gmail.com';
 
   useEffect(() => {
@@ -32,13 +33,20 @@ export default function Navbar() {
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
-        isScrolled
-          ? 'bg-[#FBFBFA]/90 backdrop-blur-md border-b border-[#EAEAE7] py-3 shadow-[0_1px_3px_rgba(0,0,0,0.02)]'
-          : 'bg-transparent py-5'
-      }`}
-    >
+    <>
+      {/* Editorial Reading Scroll Progress Bar */}
+      <motion.div 
+        className="fixed top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-400 z-[100] origin-left pointer-events-none"
+        style={{ scaleX: scrollYProgress }}
+      />
+
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
+          isScrolled
+            ? 'bg-[#FBFBFA]/90 backdrop-blur-md border-b border-[#EAEAE7] py-3 shadow-[0_1px_3px_rgba(0,0,0,0.02)]'
+            : 'bg-transparent py-5'
+        }`}
+      >
       <div className="max-w-6xl mx-auto px-6 sm:px-8 flex items-center justify-between">
         
         {/* Brand & Status */}
@@ -148,5 +156,22 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </header>
+
+    {/* Floating Animated Toast for Email Copy */}
+    <AnimatePresence>
+      {copied && (
+        <motion.div
+          initial={{ opacity: 0, y: 16, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 10, scale: 0.96 }}
+          transition={{ duration: 0.2 }}
+          className="fixed bottom-6 right-6 z-50 bg-[#121214] text-white px-4 py-2.5 rounded-xl shadow-2xl flex items-center gap-2.5 text-xs font-mono border border-slate-700"
+        >
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Copied to clipboard: {email}</span>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  </>
   );
 }

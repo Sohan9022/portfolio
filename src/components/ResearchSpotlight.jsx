@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { RESEARCH_SPOTLIGHT } from '../data/projectsData';
 import { 
   Compass, 
@@ -105,47 +106,44 @@ export default function ResearchSpotlight() {
         </div>
 
         {/* Interactive View Tabs */}
-        <div className="flex items-center gap-2 border-b border-[#EAEAE7] pb-3 mb-8 text-xs font-mono">
-          <button
-            onClick={() => setActiveTab('why-suggested')}
-            className={`px-3.5 py-1.5 rounded-lg transition-all font-semibold ${
-              activeTab === 'why-suggested'
-                ? 'bg-[#121214] text-white shadow-sm'
-                : 'text-[#666663] hover:text-[#121214] hover:bg-[#F4F4F0]'
-            }`}
-          >
-            Why We Suggested It (5 Interventions)
-          </button>
-          <button
-            onClick={() => setActiveTab('patent')}
-            className={`px-3.5 py-1.5 rounded-lg transition-all font-semibold ${
-              activeTab === 'patent'
-                ? 'bg-[#121214] text-white shadow-sm'
-                : 'text-[#666663] hover:text-[#121214] hover:bg-[#F4F4F0]'
-            }`}
-          >
-            Patent Architecture & Modules
-          </button>
-          <button
-            onClick={() => setActiveTab('figures')}
-            className={`px-3.5 py-1.5 rounded-lg transition-all font-semibold ${
-              activeTab === 'figures'
-                ? 'bg-[#121214] text-white shadow-sm'
-                : 'text-[#666663] hover:text-[#121214] hover:bg-[#F4F4F0]'
-            }`}
-          >
-            System Blueprints & Diagrams ({data.figures.length})
-          </button>
+        <div className="flex flex-wrap items-center gap-2 border-b border-[#EAEAE7] pb-3 mb-8 text-xs font-mono">
+          {[
+            { id: 'why-suggested', label: 'Why We Suggested It (5 Interventions)' },
+            { id: 'patent', label: 'Patent Architecture & Modules' },
+            { id: 'figures', label: `System Blueprints & Diagrams (${data.figures.length})` },
+          ].map((tab) => {
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`relative px-3.5 py-1.5 rounded-lg transition-colors font-semibold ${
+                  isActive ? 'text-white' : 'text-[#666663] hover:text-[#121214]'
+                }`}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="activeResearchTabPill"
+                    className="absolute inset-0 bg-[#121214] rounded-lg shadow-sm"
+                    transition={{ type: 'spring', stiffness: 450, damping: 35 }}
+                  />
+                )}
+                <span className="relative z-10">{tab.label}</span>
+              </button>
+            );
+          })}
         </div>
 
         {/* TAB 1: WHY WE SUGGESTED THE ADAPTIVE FRAMEWORK */}
         {activeTab === 'why-suggested' && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 animate-in fade-in duration-200">
             {data.whyWeSuggested.map((item, idx) => (
-              <div 
+              <motion.div 
                 key={idx} 
-                className={`p-6 rounded-2xl border bg-white shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between space-y-4 ${
-                  idx === 0 ? 'md:col-span-2 border-blue-200 bg-blue-50/15' : 'border-[#EAEAE7]'
+                whileHover={{ y: -3 }}
+                transition={{ duration: 0.2 }}
+                className={`p-6 rounded-2xl border bg-white shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.04)] flex flex-col justify-between space-y-4 transition-all ${
+                  idx === 0 ? 'md:col-span-2 border-blue-200 bg-blue-50/15' : 'border-[#EAEAE7] hover:border-[#D5D5CE]'
                 }`}
               >
                 <div className="space-y-3">
@@ -184,7 +182,7 @@ export default function ResearchSpotlight() {
                     {item.whySuggested}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         )}
@@ -268,45 +266,64 @@ export default function ResearchSpotlight() {
             
             {/* Figure Selection Tabs */}
             <div className="flex flex-wrap gap-2">
-              {data.figures.map((fig, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setSelectedFigure(idx)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all ${
-                    selectedFigure === idx
-                      ? 'bg-blue-50 text-blue-800 font-bold border border-blue-300'
-                      : 'bg-white text-[#666663] border border-[#EAEAE7] hover:bg-[#F8F8F6]'
-                  }`}
-                >
-                  Fig 0{idx + 1}: {fig.title}
-                </button>
-              ))}
+              {data.figures.map((fig, idx) => {
+                const isFigActive = selectedFigure === idx;
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => setSelectedFigure(idx)}
+                    className={`relative px-3 py-1.5 rounded-lg text-xs font-mono transition-colors ${
+                      isFigActive
+                        ? 'text-blue-900 font-bold'
+                        : 'text-[#666663] hover:text-[#121214] bg-white border border-[#EAEAE7] hover:bg-[#F8F8F6]'
+                    }`}
+                  >
+                    {isFigActive && (
+                      <motion.div
+                        layoutId="activeFigureTabPill"
+                        className="absolute inset-0 bg-blue-50 border border-blue-300 rounded-lg shadow-sm"
+                        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">Fig 0{idx + 1}: {fig.title}</span>
+                  </button>
+                );
+              })}
             </div>
 
-            {/* Active Figure Display */}
-            <div className="rounded-2xl border border-[#EAEAE7] bg-white p-4 sm:p-6 space-y-4">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#F0F0EC]">
-                <h3 className="text-sm font-bold text-[#121214] font-mono">
-                  {data.figures[selectedFigure].title}
-                </h3>
-                <span className="text-[11px] font-mono text-[#9E9E96]">
-                  Conceptual Research Asset · VIT Pune
-                </span>
-              </div>
+            {/* Active Figure Display with AnimatePresence */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={selectedFigure}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.2 }}
+                className="rounded-2xl border border-[#EAEAE7] bg-white p-4 sm:p-6 space-y-4"
+              >
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#F0F0EC]">
+                  <h3 className="text-sm font-bold text-[#121214] font-mono">
+                    {data.figures[selectedFigure].title}
+                  </h3>
+                  <span className="text-[11px] font-mono text-[#9E9E96]">
+                    Conceptual Research Asset · VIT Pune
+                  </span>
+                </div>
 
-              <div className="rounded-xl overflow-hidden border border-[#EAEAE7] bg-[#FBFBFA] flex items-center justify-center p-2 max-h-[540px]">
-                <img 
-                  src={data.figures[selectedFigure].image} 
-                  alt={data.figures[selectedFigure].title} 
-                  className="max-h-[500px] w-auto max-w-full object-contain rounded-lg shadow-sm"
-                />
-              </div>
+                <div className="rounded-xl overflow-hidden border border-[#EAEAE7] bg-[#FBFBFA] flex items-center justify-center p-2 max-h-[540px]">
+                  <img 
+                    src={data.figures[selectedFigure].image} 
+                    alt={data.figures[selectedFigure].title} 
+                    className="max-h-[500px] w-auto max-w-full object-contain rounded-lg shadow-sm transition-transform duration-200 hover:scale-[1.01]"
+                  />
+                </div>
 
-              <p className="text-xs text-[#666663] font-mono leading-relaxed pt-1">
-                <span className="font-semibold text-[#121214]">Description: </span>
-                {data.figures[selectedFigure].caption}
-              </p>
-            </div>
+                <p className="text-xs text-[#666663] font-mono leading-relaxed pt-1">
+                  <span className="font-semibold text-[#121214]">Description: </span>
+                  {data.figures[selectedFigure].caption}
+                </p>
+              </motion.div>
+            </AnimatePresence>
 
           </div>
         )}

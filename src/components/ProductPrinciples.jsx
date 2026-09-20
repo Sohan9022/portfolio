@@ -32,23 +32,33 @@ export default function ProductPrinciples() {
           {HOW_I_THINK.map((item, idx) => {
             const isSelected = idx === selectedIdx;
             return (
-              <div
+              <motion.div
                 key={item.number}
                 onClick={() => setSelectedIdx(idx)}
                 onMouseEnter={() => setSelectedIdx(idx)}
-                className={`cursor-pointer p-5 rounded-xl border transition-all duration-200 flex flex-col justify-between ${
+                whileHover={{ y: -2 }}
+                className={`relative cursor-pointer p-5 rounded-xl border transition-colors flex flex-col justify-between ${
                   isSelected
-                    ? 'bg-white border-[#121214] shadow-sm ring-1 ring-[#121214]'
-                    : 'bg-white/80 border-[#EAEAE7] hover:border-[#D5D5CE]'
+                    ? 'border-[#121214] shadow-sm'
+                    : 'border-[#EAEAE7] hover:border-[#D5D5CE]'
                 }`}
               >
+                {isSelected && (
+                  <motion.div
+                    layoutId="activePrincipleHighlight"
+                    className="absolute inset-0 bg-white rounded-xl shadow-sm border border-[#121214] -z-10"
+                    transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                  />
+                )}
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <span className="font-mono text-xs font-bold text-[#9E9E96]">
                       {item.number}
                     </span>
-                    {isSelected && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+                    {isSelected ? (
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
+                    ) : (
+                      <span className="w-1.5 h-1.5 rounded-full bg-transparent"></span>
                     )}
                   </div>
                   <h3 className="text-xs sm:text-sm font-bold text-[#121214] tracking-tight leading-snug mb-2">
@@ -58,7 +68,7 @@ export default function ProductPrinciples() {
                 <p className="text-[11px] text-[#666663] line-clamp-2 mt-2">
                   {item.principle}
                 </p>
-              </div>
+              </motion.div>
             );
           })}
         </div>

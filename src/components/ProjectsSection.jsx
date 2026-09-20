@@ -12,19 +12,35 @@ const iconMap = {
   shrh: ShieldCheck,
 };
 
+const FILTERS = [
+  { id: 'all', label: 'All Projects (5)' },
+  { id: 'governance', label: 'AI Governance (SHRH, Sentinel)' },
+  { id: 'hci', label: 'Contextual HCI (Spaces, GiftVerse)' },
+  { id: 'fintech', label: 'FinTech Systems (FinMate)' }
+];
+
 export default function ProjectsSection() {
-  const [expandedIds, setExpandedIds] = useState({ 'giftverse': true, 'sentinel': true });
+  const [activeFilter, setActiveFilter] = useState('all');
+  const [expandedIds, setExpandedIds] = useState({ 'giftverse': true, 'sentinel': true, 'shrh': true });
 
   const toggleExpand = (id) => {
     setExpandedIds(prev => ({ ...prev, [id]: !prev[id] }));
   };
+
+  const filteredProjects = PROJECTS.filter(project => {
+    if (activeFilter === 'all') return true;
+    if (activeFilter === 'governance') return project.id === 'shrh' || project.id === 'sentinel';
+    if (activeFilter === 'hci') return project.id === 'spaces' || project.id === 'giftverse';
+    if (activeFilter === 'fintech') return project.id === 'finmate';
+    return true;
+  });
 
   return (
     <section id="work" className="py-24 border-b border-[#EAEAE7] bg-[#FBFBFA]">
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16 pb-6 border-b border-[#EAEAE7]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 pb-6 border-b border-[#EAEAE7]">
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="text-xs font-mono tracking-wider uppercase text-blue-700 font-semibold bg-blue-50 border border-blue-200/60 px-2 py-0.5 rounded">
@@ -40,16 +56,46 @@ export default function ProjectsSection() {
           </p>
         </div>
 
+        {/* Tactile Category Filter with Spring Layout Pill */}
+        <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-[#F0F0EC]/80 border border-[#EAEAE7] max-w-fit mb-12">
+          {FILTERS.map(f => {
+            const isSelected = activeFilter === f.id;
+            return (
+              <button
+                key={f.id}
+                onClick={() => setActiveFilter(f.id)}
+                className={`relative px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors ${
+                  isSelected ? 'text-[#121214]' : 'text-[#666663] hover:text-[#121214]'
+                }`}
+              >
+                {isSelected && (
+                  <motion.div
+                    layoutId="activeFilterPill"
+                    className="absolute inset-0 bg-white border border-[#D5D5CE] shadow-sm rounded-lg -z-10"
+                    transition={{ type: 'spring', stiffness: 450, damping: 35 }}
+                  />
+                )}
+                {f.label}
+              </button>
+            );
+          })}
+        </div>
+
         {/* Project Cards List */}
-        <div className="space-y-12">
-          {PROJECTS.map((project) => {
+        <motion.div layout className="space-y-12">
+          {filteredProjects.map((project) => {
             const isExpanded = !!expandedIds[project.id];
             const IconComponent = iconMap[project.id] || Sparkles;
 
             return (
-              <article
+              <motion.article
+                layout
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.3 }}
                 key={project.id}
-                className="rounded-2xl bg-white border border-[#EAEAE7] hover:border-[#D5D5CE] shadow-[0_2px_8px_rgba(0,0,0,0.02)] transition-all overflow-hidden"
+                className="rounded-2xl bg-white border border-[#EAEAE7] hover:border-[#CFCFC7] shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.04)] transition-all overflow-hidden"
               >
                 <div className="p-6 sm:p-9 space-y-6">
                   
@@ -204,10 +250,10 @@ export default function ProjectsSection() {
                   </div>
 
                 </div>
-              </article>
+              </motion.article>
             );
           })}
-        </div>
+        </motion.div>
 
       </div>
     </section>

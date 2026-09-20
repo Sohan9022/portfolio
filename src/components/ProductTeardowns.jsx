@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { PRODUCT_TEARDOWNS } from '../data/projectsData';
 import { Check, AlertCircle, ChevronDown, ChevronUp, Lightbulb, Target, Compass, Sparkles } from 'lucide-react';
 
@@ -44,9 +45,11 @@ export default function ProductTeardowns() {
             const isExpanded = !!expandedNotes[item.id];
 
             return (
-              <article
+              <motion.article
                 key={item.id}
-                className="rounded-2xl bg-white border border-[#EAEAE7] hover:border-[#D5D5CE] p-6 sm:p-7 shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between transition-all"
+                whileHover={{ y: -3 }}
+                transition={{ duration: 0.2 }}
+                className="rounded-2xl bg-white border border-[#EAEAE7] hover:border-[#D5D5CE] hover:shadow-[0_8px_24px_rgba(0,0,0,0.04)] p-6 sm:p-7 shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between transition-all"
               >
                 <div className="space-y-4">
                   
@@ -96,7 +99,7 @@ export default function ProductTeardowns() {
                     <div className="pt-2">
                       <button
                         onClick={() => toggleNote(item.id)}
-                        className="w-full flex items-center justify-between py-2 px-3 rounded-lg bg-blue-50/70 hover:bg-blue-100/70 border border-blue-200/60 text-xs font-mono text-blue-900 transition-colors"
+                        className="w-full flex items-center justify-between py-2 px-3 rounded-lg bg-blue-50/70 hover:bg-blue-100/70 border border-blue-200/60 text-xs font-mono text-blue-900 transition-colors active:scale-[0.99]"
                       >
                         <span className="flex items-center gap-1.5 font-semibold">
                           <Lightbulb className="w-3.5 h-3.5 text-blue-600" />
@@ -109,44 +112,54 @@ export default function ProductTeardowns() {
                         )}
                       </button>
 
-                      {isExpanded && (
-                        <div className="mt-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-3 text-xs animate-in fade-in duration-200">
-                          
-                          {/* Business / Technical Incentive */}
-                          <div className="space-y-1">
-                            <span className="font-mono text-[10px] uppercase tracking-wider text-slate-500 font-bold flex items-center gap-1">
-                              <Compass className="w-3 h-3 text-slate-600" />
-                              Underlying Business / Architectural Incentive
-                            </span>
-                            <p className="text-[#333330] leading-relaxed pl-4">
-                              {item.sohansNotes.incentive}
-                            </p>
-                          </div>
+                      <AnimatePresence>
+                        {isExpanded && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.22, ease: 'easeInOut' }}
+                            className="overflow-hidden"
+                          >
+                            <div className="mt-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-3 text-xs">
+                              
+                              {/* Business / Technical Incentive */}
+                              <div className="space-y-1">
+                                <span className="font-mono text-[10px] uppercase tracking-wider text-slate-500 font-bold flex items-center gap-1">
+                                  <Compass className="w-3 h-3 text-slate-600" />
+                                  Underlying Business / Architectural Incentive
+                                </span>
+                                <p className="text-[#333330] leading-relaxed pl-4">
+                                  {item.sohansNotes.incentive}
+                                </p>
+                              </div>
 
-                          {/* Psychological Reality */}
-                          <div className="space-y-1">
-                            <span className="font-mono text-[10px] uppercase tracking-wider text-slate-500 font-bold flex items-center gap-1">
-                              <Sparkles className="w-3 h-3 text-slate-600" />
-                              User Mental Model & Emotional Truth
-                            </span>
-                            <p className="text-[#333330] leading-relaxed pl-4">
-                              {item.sohansNotes.mentalModel}
-                            </p>
-                          </div>
+                              {/* Psychological Reality */}
+                              <div className="space-y-1">
+                                <span className="font-mono text-[10px] uppercase tracking-wider text-slate-500 font-bold flex items-center gap-1">
+                                  <Sparkles className="w-3 h-3 text-slate-600" />
+                                  User Mental Model & Emotional Truth
+                                </span>
+                                <p className="text-[#333330] leading-relaxed pl-4">
+                                  {item.sohansNotes.mentalModel}
+                                </p>
+                              </div>
 
-                          {/* Day-1 APM Experiment */}
-                          <div className="space-y-1 pt-1 border-t border-slate-200">
-                            <span className="font-mono text-[10px] uppercase tracking-wider text-blue-700 font-bold flex items-center gap-1">
-                              <Target className="w-3 h-3 text-blue-600" />
-                              Day-1 APM Experiment & North Star Metric
-                            </span>
-                            <p className="text-[#121214] font-medium leading-relaxed pl-4">
-                              {item.sohansNotes.experiment}
-                            </p>
-                          </div>
+                              {/* Day-1 APM Experiment */}
+                              <div className="space-y-1 pt-1 border-t border-slate-200">
+                                <span className="font-mono text-[10px] uppercase tracking-wider text-blue-700 font-bold flex items-center gap-1">
+                                  <Target className="w-3 h-3 text-blue-600" />
+                                  Day-1 APM Experiment & North Star Metric
+                                </span>
+                                <p className="text-[#121214] font-medium leading-relaxed pl-4">
+                                  {item.sohansNotes.experiment}
+                                </p>
+                              </div>
 
-                        </div>
-                      )}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   )}
 
@@ -156,7 +169,7 @@ export default function ProductTeardowns() {
                   <span>ANALYSIS 0{idx + 1}</span>
                   <span className="text-blue-700 font-medium">Defensible Product Sense</span>
                 </div>
-              </article>
+              </motion.article>
             );
           })}
         </div>
