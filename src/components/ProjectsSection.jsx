@@ -135,37 +135,53 @@ export default function ProjectsSection() {
                     </div>
                   </div>
 
-                  {/* Core Thesis Statement */}
-                  <div className="text-sm sm:text-base text-[#121214] font-medium leading-relaxed">
+                  {/* Core Product Mission Callout */}
+                  <div className="p-3.5 rounded-xl bg-[#F8F8F6] border border-[#EAEAE7] text-sm text-[#121214] font-medium leading-relaxed">
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-blue-700 font-bold block mb-0.5">
+                      Product Mission & Core Hypothesis
+                    </span>
                     {project.thesis}
                   </div>
 
-                  {/* Problem vs Insight (2-Column Editorial Grid) */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-                    {/* The Problem */}
-                    <div className="p-4 rounded-xl bg-[#FBFBFA] border border-[#EAEAE7] space-y-1.5">
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-rose-700 font-semibold flex items-center gap-1.5">
+                  {/* 3-Column Bento Grid: Friction (Before) vs Insight (After) vs Guardrail */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
+                    
+                    {/* Bento 1: Friction */}
+                    <div className="p-4 rounded-xl bg-white border border-[#EAEAE7] hover:border-rose-200 transition-colors space-y-2">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-rose-700 font-bold flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
-                        The Friction Observed
+                        01 · Friction Observed
                       </span>
                       <p className="text-xs text-[#4A4A46] leading-relaxed">
                         {project.problem}
                       </p>
                     </div>
 
-                    {/* The Insight */}
-                    <div className="p-4 rounded-xl bg-[#FBFBFA] border border-[#EAEAE7] space-y-1.5">
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-blue-700 font-semibold flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                        The Behavioral Insight
+                    {/* Bento 2: Breakthrough */}
+                    <div className="p-4 rounded-xl bg-blue-50/20 border border-blue-200/80 hover:border-blue-300 transition-colors space-y-2">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-blue-700 font-bold flex items-center gap-1.5">
+                        <Sparkles className="w-3 h-3 text-blue-600" />
+                        02 · Behavioral Insight
                       </span>
-                      <p className="text-xs text-[#4A4A46] leading-relaxed">
+                      <p className="text-xs text-[#2A2A28] leading-relaxed font-medium">
                         {project.insight}
                       </p>
                     </div>
+
+                    {/* Bento 3: PM Guardrail */}
+                    <div className="p-4 rounded-xl bg-[#FBFBFA] border border-[#EAEAE7] space-y-2">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-[#666663] font-bold flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                        03 · Key Trade-off
+                      </span>
+                      <p className="text-xs text-[#4A4A46] leading-relaxed">
+                        {project.tradeoffs}
+                      </p>
+                    </div>
+
                   </div>
 
-                  {/* Abstract System UI Diagram */}
+                  {/* Visual System Interaction Canvas */}
                   <div className="pt-2">
                     <SystemDiagram projectId={project.id} />
                   </div>

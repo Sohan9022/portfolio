@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
+import InteractiveShowcase from './components/InteractiveShowcase';
 import ProjectsSection from './components/ProjectsSection';
 import CaseStudyDeepDive from './components/CaseStudyDeepDive';
 import ProductPrinciples from './components/ProductPrinciples';
@@ -16,6 +17,7 @@ export default function App() {
       <Navbar />
       <main>
         <HeroSection />
+        <InteractiveShowcase />
         <ProjectsSection />
         <CaseStudyDeepDive />
         <ProductPrinciples />

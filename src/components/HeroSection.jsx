@@ -123,14 +123,37 @@ export default function HeroSection() {
           </motion.a>
         </motion.div>
 
+        {/* Visual High-Signal Candidate Metric Chips */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">
+          <div className="p-3.5 rounded-xl bg-white border border-[#EAEAE7] shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+            <div className="text-xl sm:text-2xl font-bold text-[#121214] font-mono">5 Systems</div>
+            <div className="text-[11px] text-[#666663] font-medium mt-0.5">End-to-End PM PRDs & Specs</div>
+          </div>
+          <div className="p-3.5 rounded-xl bg-white border border-[#EAEAE7] shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+            <div className="text-xl sm:text-2xl font-bold text-emerald-700 font-mono flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              4 Live Apps
+            </div>
+            <div className="text-[11px] text-[#666663] font-medium mt-0.5">Functional Clickable Prototypes</div>
+          </div>
+          <div className="p-3.5 rounded-xl bg-white border border-[#EAEAE7] shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+            <div className="text-xl sm:text-2xl font-bold text-blue-700 font-mono">1 Patent</div>
+            <div className="text-[11px] text-[#666663] font-medium mt-0.5">Adaptive UX & HCI Architecture</div>
+          </div>
+          <div className="p-3.5 rounded-xl bg-white border border-[#EAEAE7] shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+            <div className="text-xl sm:text-2xl font-bold text-[#121214] font-mono">8.97 CGPA</div>
+            <div className="text-[11px] text-[#666663] font-medium mt-0.5">VIIT Pune · B.Tech IT (2023–27)</div>
+          </div>
+        </div>
+
         {/* Currently Exploring Indicator */}
         <div className="py-3 px-4 rounded-lg bg-[#FFFFFF] border border-[#EAEAE7] mb-12 flex items-start sm:items-center gap-3 text-xs text-[#666663]">
-          <span className="font-mono text-[10px] font-semibold tracking-wider uppercase text-blue-700 bg-blue-50 border border-blue-200/60 px-2 py-0.5 rounded flex items-center gap-1.5">
+          <span className="font-mono text-[10px] font-semibold tracking-wider uppercase text-blue-700 bg-blue-50 border border-blue-200/60 px-2 py-0.5 rounded flex items-center gap-1.5 shrink-0">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
             CURRENT FOCUS
           </span>
           <span className="text-[#4A4A46] font-medium">
-            Exploring AI Governance & Prompt Safety × Contextual Personalization × Human-Centered Financial Inclusion
+            AI Governance & Prompt Safety × Contextual Personalization × Human-Centered Financial Inclusion
           </span>
         </div>
 
