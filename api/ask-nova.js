@@ -11,7 +11,7 @@ Your mission is to warmly welcome recruiters, engineering leaders, and hiring ma
 - ABSOLUTE PROHIBITION: NEVER refer to "Sohan" in the third person. Do NOT say "Sohan did", "Sohan built", "Sohan is", "Sohan's approach".
 - ALWAYS USE FIRST PERSON: "When I built Project Sentinel...", "My goal with FinMate AI was...", "In our research on high-stakes FinTech...", "My architectural trade-offs were...", "I deliberately chose not to build...".
 - If asked "Who are you?", answer: "I'm Nova, an interactive AI portfolio companion speaking directly from my design logs, PRD specifications, and architecture decisions. You can ask me about any of the systems I've designed and shipped, my engineering trade-offs, or my APM candidacy!"
-- If asked "Tell me about yourself / Sohan" or "What is your background?", answer: "I'm an Associate Product Manager candidate and builder studying Information Technology at VIIT Pune (8.97 CGPA). I've architected and shipped 5 production systems—most notably Project Sentinel (enterprise silent-by-default decision memory) and FinMate AI (multimodal capture paired with deterministic SQL accounting). Which of my systems would you like to explore?"
+- If asked "Tell me about yourself / Sohan" or "What is your background?", answer: "I'm an Associate Product Manager candidate and builder studying Information Technology at VIIT Pune (8.97 CGPA). I've architected and shipped 6 production systems—most notably Project Sentinel (enterprise silent-by-default decision memory), FinMate AI (multimodal capture paired with deterministic SQL accounting), SHRH (autonomous prompt change governance with sub-millisecond triage), and Dynamic Forms (adaptive narrative form experiences). Which of my systems would you like to explore?"
 - PRODUCT FLUENCY: Speak with authentic Product Manager depth (Jobs-to-be-Done, deliberate non-goals, friction points, counter-metrics, deterministic guardrails, proof-of-work).
 - DEEP PRD RECALL: You are grounded with the complete verbatim Notion PRDs, database schemas, state transition matrices, and edge-case mitigations for all my systems. When asked granular questions (e.g. database schema columns, error handling, formulas, constraint tables, non-goals), quote and explain them with exact technical fidelity.
 - ADAPTIVE EXPLANATION DEPTH: If a user asks for a simple explanation ("in simple words", "simply", "ELI5", "plain English", "break it down simply", "can you explain this project simply"):
@@ -50,7 +50,11 @@ Your mission is to warmly welcome recruiters, engineering leaders, and hiring ma
 
 7. **SHRH in Simple Words:**
    "A safety checker for AI prompts. Just like a spell-checker, it automatically warns developers if a change to an AI prompt accidentally breaks a rule (like allowing users to exceed spending limits) before the code goes live."
-   - [Notion PRD](https://app.notion.com/p/SHRH-3d553f22e2b08035b164f88ad01b17b2?source=copy_link)
+   - [Live Working Console](https://sem-hash.vercel.app) · [Notion PRD](https://app.notion.com/p/SHRH-3d553f22e2b08035b164f88ad01b17b2?source=copy_link)
+
+8. **Dynamic Forms in Simple Words:**
+   "Most online forms feel like doing taxes: sterile questionnaires that never react to you. Dynamic Forms turns answering questions into a responsive story game (like designing your dream trip to Japan). When you choose 'adventure', the whole screen theme, colors, and follow-up prompts dynamically transform around you in real time."
+   - [Live Prototype](https://dynamic-narrative-forms.lovable.app) · [Notion PRD](https://app.notion.com/p/DYNAMIC-FORMS-3d053f22e2b080ee849ce455ae22c3a8?source=copy_link)
 
 Formatting instructions:
 - Use clean Markdown with bolding, lists, and clickable links for prototypes ([Live Prototype](url)) and PRDs ([Notion PRD](url)).
@@ -108,9 +112,21 @@ Most AI summarizers suffer steep uninstall rates because unprompted pings disrup
 3. **Spaces:** I enforced zero cross-space behavioral bleed to protect mathematical context purity in recommendation feeds.
 4. **SHRH:** I banned recursive LLM auto-fixing to avoid infinite hallucination loops in CI/CD prompt governance.
 5. **GiftVerse:** I cut physical vendor logistics in V1 to focus 100% on the 30–60s micro-suspense digital reveal journey.
-6. **AI Asana Analyst:** I rejected sending live webcam frames to cloud multimodal LLMs to protect the 40ms frame budget.
+6. **Dynamic Forms:** I rejected multi-second cinematic animations to protect completion speed (Qualified Completion Rate).
+7. **AI Asana Analyst:** I rejected sending live webcam frames to cloud multimodal LLMs to protect the 40ms frame budget.
 
 *Follow-up question:* Which of these trade-offs would you like to drill into further?`;
+      } else if (lower.includes('shrh') || lower.includes('hash') || lower.includes('triage') || lower.includes('deontic') || lower.includes('sem-hash')) {
+        fallbackText = `In **SHRH (Semantic Human-Readable Hashing)**, I solved the "Neural Blind Spot" in CI/CD prompt governance where dense embeddings fail to catch critical operational policy relaxations (e.g. changing \`MUST\` to \`MAY\`).
+
+**My 2D Triage Architecture:**
+1. **Cryptographic Bitwise Channel:** Fast SHA-256 preimage anchor for byte-exact verification.
+2. **Deterministic Constraint Extractor:** Evaluates numerical limits, RFC-2119 deontic modals, and permissions in sub-millisecond CPU execution (0.65ms).
+3. **4-Quadrant Policy Matrix:** Auto-merges safe cosmetic edits while quarantining operational policy downgrades without recursive LLM hallucination loops.
+
+- 🔗 **Explore:** [Live Working Console](https://sem-hash.vercel.app) · [Notion PRD](https://app.notion.com/p/SHRH-3d553f22e2b08035b164f88ad01b17b2?source=copy_link)
+
+*Follow-up question:* Would you like to know how I slashed critical safety escapes from 73.4% down to 5.4% across 2,744 labeled revision pairs?`;
       } else if (lower.includes('asana') || lower.includes('yoga') || lower.includes('posture') || lower.includes('vision') || lower.includes('mediapipe')) {
         fallbackText = `In **AI Asana Analyst**, I designed a real-time computer vision yoga analytics system solving a critical edge AI bottleneck: **protecting the 40ms per-frame budget**.
 
@@ -151,14 +167,25 @@ Most AI summarizers suffer steep uninstall rates because unprompted pings disrup
    - [Interactive Figma Prototype](https://www.figma.com/make/PWbUyJaOpqKLsqVlDpJOdG/Refine-UPI-app-frontend?t=aZVJGio9dMWpELlU-1)
 
 Which of these would you like to explore in more detail?`;
+      } else if (lower.includes('form') || lower.includes('dynamic form') || lower.includes('japan')) {
+        fallbackText = `In **Dynamic Forms**, I tackled the structural flaw of conventional survey tools: **Forms collect answers, but they rarely react to them**.
+
+**My "Experience Layer vs. Data Layer" Thesis:**
+Traditional forms follow a sterile "Question -> Input -> Next -> Submit" loop, making respondents feel like they are doing unpaid administrative work. Dynamic Forms turns questionnaires into responsive visual narrative worlds (demonstrated in our "Design Your Dream Japan Trip" MVP) where selecting "adventure" instantly shifts the visual ambiance, theme colors, and follow-up prompts into an alpine snow expedition in real time.
+
+- **Proof of Work:** Shipped interactive Lovable MVP, AI Experience Director builder, and comprehensive Notion PRD.
+- 🔗 **Explore:** [Live Prototype](https://dynamic-narrative-forms.lovable.app) · [Notion PRD](https://app.notion.com/p/DYNAMIC-FORMS-3d053f22e2b080ee849ce455ae22c3a8?source=copy_link)
+
+*Follow-up question:* Would you like to know how I engineered our Qualified Completion Rate metric or how our sub-400ms animation guardrail prevents user fatigue?`;
       } else {
-        fallbackText = `Hi! I'm **Nova**, your interactive portfolio AI companion. I'm grounded in my complete Notion PRDs, design logs, system architectures, and decision matrices across all 6 shipped systems (**Sentinel**, **FinMate**, **Spaces**, **SHRH**, **GiftVerse**, **AI Asana Analyst**), my empirical HCI research on **Adaptive FinTech UX**, and my APM qualifications.
+        fallbackText = `Hi! I'm **Nova**, your interactive portfolio AI companion. I'm grounded in my complete Notion PRDs, design logs, system architectures, and decision matrices across all 6 shipped systems (**Sentinel**, **FinMate**, **Spaces**, **SHRH**, **GiftVerse**, **Dynamic Forms**), my **AI Asana Analyst** PRD, my empirical HCI research on **Adaptive FinTech UX**, and my APM qualifications.
 
 What would you like to explore first?
 - **Project Sentinel:** Why I chose a "Silent-by-Default" query model & append-only PostgreSQL log
 - **FinMate AI:** How I eliminated LLM math hallucinations via deterministic SQL RPCs
+- **SHRH:** Live CI/CD 4-quadrant triage console & sub-millisecond deontic drift detection
+- **Dynamic Forms:** Adaptive narrative form worlds ("Design Your Dream Japan Trip")
 - **AI Asana Analyst:** Real-time edge CV (<40ms) decoupled from asynchronous GenAI
-- **SHRH:** The 4-quadrant triage matrix & RFC-2119 deontic parsing in CI/CD
 - **Adaptive UX Framework:** Exploring the interactive Figma practice sandbox`;
       }
 

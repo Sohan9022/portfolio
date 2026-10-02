@@ -26,6 +26,7 @@ const iconMap = {
   spaces: Layers,
   giftverse: Play,
   shrh: ShieldCheck,
+  'dynamic-forms': Sparkles,
 };
 
 export default function InteractiveShowcase() {
@@ -48,6 +49,9 @@ export default function InteractiveShowcase() {
 
   // SHRH State
   const [shrhDiff, setShrhDiff] = useState('benign'); // 'benign' | 'regression'
+
+  // Dynamic Forms State
+  const [formVibe, setFormVibe] = useState('adventure'); // 'adventure' | 'zen' | 'cyber'
 
   return (
     <section className="py-12 border-b border-[#EAEAE7] bg-[#FFFFFF]">
@@ -545,6 +549,120 @@ export default function InteractiveShowcase() {
                         )}
                         <div className="text-[10px] text-[#666663] pt-1">
                           Note: Traditional SHA-256 would sound the exact same binary alarm for both diffs.
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* SIMULATOR: Dynamic Forms */}
+                  {project.id === 'dynamic-forms' && (
+                    <div className="space-y-3 font-sans">
+                      <div className="flex items-center justify-between pb-2 border-b border-[#F0F0EC] text-xs font-mono">
+                        <span className="text-[#666663]">Experience Layer vs. Data Layer</span>
+                        <span className="text-purple-700 font-semibold bg-purple-50 px-2 py-0.5 rounded border border-purple-200">
+                          Live Ambiance & State Mutator
+                        </span>
+                      </div>
+
+                      {/* Travel Preference Picker */}
+                      <div>
+                        <div className="text-xs text-[#121214] font-medium mb-1.5 flex items-center justify-between">
+                          <span>Respondent Selection: "What is your dream Japan vibe?"</span>
+                          <span className="text-[10px] font-mono text-[#666663]">Mutates Form World</span>
+                        </div>
+                        <div className="grid grid-cols-3 gap-2 text-xs font-mono">
+                          {[
+                            { id: 'adventure', label: '🏔️ Powder & Peaks', desc: 'Hokkaido Adventure', color: 'sky' },
+                            { id: 'zen', label: '⛩️ Bamboo & Zen', desc: 'Kyoto Heritage', color: 'amber' },
+                            { id: 'cyber', label: '⚡ Neon & Arcades', desc: 'Tokyo Cyberpunk', color: 'violet' }
+                          ].map((item) => (
+                            <button
+                              key={item.id}
+                              onClick={() => setFormVibe(item.id)}
+                              className={`p-2 rounded-lg border text-left transition-all ${
+                                formVibe === item.id
+                                  ? item.id === 'adventure'
+                                    ? 'bg-sky-50 border-sky-300 text-sky-950 font-semibold shadow-2xs'
+                                    : item.id === 'zen'
+                                    ? 'bg-amber-50 border-amber-300 text-amber-950 font-semibold shadow-2xs'
+                                    : 'bg-purple-50 border-purple-300 text-purple-950 font-semibold shadow-2xs'
+                                  : 'bg-white border-[#EAEAE7] text-[#666663] hover:bg-[#F8F8F6]'
+                              }`}
+                            >
+                              <div className="font-bold text-xs">{item.label}</div>
+                              <div className="text-[10px] opacity-75">{item.desc}</div>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Dynamically Mutated UI State Canvas */}
+                      <div
+                        className={`p-3.5 rounded-xl border transition-all duration-300 ${
+                          formVibe === 'adventure'
+                            ? 'bg-gradient-to-br from-sky-50 to-blue-50/40 border-sky-200 text-sky-950'
+                            : formVibe === 'zen'
+                            ? 'bg-gradient-to-br from-amber-50/80 to-stone-50 border-amber-200 text-amber-950'
+                            : 'bg-gradient-to-br from-purple-50 to-slate-900/5 border-purple-200 text-purple-950'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between text-[11px] font-mono mb-2">
+                          <span className="font-bold uppercase tracking-wider">
+                            {formVibe === 'adventure' && 'Active World: Alpine Snow & Thermal Onsen'}
+                            {formVibe === 'zen' && 'Active World: Kyoto Traditional Sukiya & Gardens'}
+                            {formVibe === 'cyber' && 'Active World: Akihabara Nightfall & Synth Ambiance'}
+                          </span>
+                          <span className="text-[10px] px-1.5 py-0.5 rounded bg-white/80 border border-current">
+                            State Shift &lt;12ms
+                          </span>
+                        </div>
+
+                        <div className="bg-white/90 backdrop-blur-xs rounded-lg p-3 border border-white/60 space-y-2 text-xs">
+                          <div className="flex items-center justify-between">
+                            <span className="font-semibold text-[#121214]">
+                              {formVibe === 'adventure' && 'Question 2: "Select your preferred mountain activity:"'}
+                              {formVibe === 'zen' && 'Question 2: "Which morning ritual appeals most?"'}
+                              {formVibe === 'cyber' && 'Question 2: "Pick your evening subculture destination:"'}
+                            </span>
+                          </div>
+
+                          <div className="grid grid-cols-2 gap-2 text-[11px] pt-1">
+                            {formVibe === 'adventure' && (
+                              <>
+                                <div className="p-2 rounded bg-sky-50/60 border border-sky-200/80 text-sky-900 font-medium">
+                                  🎿 Deep Backcountry Skiing (Niseko)
+                                </div>
+                                <div className="p-2 rounded bg-sky-50/60 border border-sky-200/80 text-sky-900 font-medium">
+                                  ♨️ Outdoor Forest Onsen in Snow
+                                </div>
+                              </>
+                            )}
+                            {formVibe === 'zen' && (
+                              <>
+                                <div className="p-2 rounded bg-amber-50/60 border border-amber-200/80 text-amber-900 font-medium">
+                                  🍵 Private Tea Ceremony with Master
+                                </div>
+                                <div className="p-2 rounded bg-amber-50/60 border border-amber-200/80 text-amber-900 font-medium">
+                                  🎋 Morning Meditation at Daitoku-ji
+                                </div>
+                              </>
+                            )}
+                            {formVibe === 'cyber' && (
+                              <>
+                                <div className="p-2 rounded bg-purple-50/60 border border-purple-200/80 text-purple-900 font-medium">
+                                  🕹️ Multi-Level Retro Arcade Crawl
+                                </div>
+                                <div className="p-2 rounded bg-purple-50/60 border border-purple-200/80 text-purple-900 font-medium">
+                                  🍸 Rooftop Speakeasy in Shibuya Sky
+                                </div>
+                              </>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="mt-2 text-[10px] text-[#666663] flex items-center justify-between font-mono">
+                          <span>Structured JSON output remains canonical</span>
+                          <span className="text-emerald-700 font-bold">Zero User Form Abandonment</span>
                         </div>
                       </div>
                     </div>

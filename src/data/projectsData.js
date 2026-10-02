@@ -129,10 +129,10 @@ export const PROJECTS = [
     title: 'SHRH',
     subtitle: 'Semantic Human-Readable Hashing',
     category: 'AI Governance · Developer Tools',
-    badges: ['Google APM PRD Spec'],
-    status: 'PRD & Architecture Spec',
-    hasLiveDemo: false,
-    liveUrl: null,
+    badges: ['Live Working App', 'Google APM PRD Spec'],
+    status: 'Live Working App',
+    hasLiveDemo: true,
+    liveUrl: 'https://sem-hash.vercel.app',
     notionUrl: 'https://app.notion.com/p/SHRH-3d553f22e2b08035b164f88ad01b17b2?source=copy_link',
     summary: 'Autonomous change governance for production AI prompts, decoupling cosmetic formatting from critical policy regressions.',
     thesis: 'Cryptographic SHA-256 hashes treat harmless indentation edits and critical policy regressions as identical binary alarms. Enterprises need orthogonal 2D risk evaluation in CI/CD.',
@@ -152,6 +152,38 @@ export const PROJECTS = [
         { q: 'Quadrant B', action: 'Quarantine', rule: 'Operational Constraint Downgrade' },
         { q: 'Quadrant C', action: 'Triage Review', rule: 'Topical Semantic Shift' },
         { q: 'Quadrant D', action: 'Quarantine', rule: 'High Drift + Constraint Shift' }
+      ]
+    }
+  },
+  {
+    id: 'dynamic-forms',
+    number: '06',
+    title: 'Dynamic Forms',
+    subtitle: 'Adaptive Narrative Form Experiences',
+    category: 'Consumer AI · Interactive HCI',
+    badges: ['Live Prototype', 'Notion PRD'],
+    status: 'Live Working App',
+    hasLiveDemo: true,
+    liveUrl: 'https://dynamic-narrative-forms.lovable.app',
+    notionUrl: 'https://app.notion.com/p/DYNAMIC-FORMS-3d053f22e2b080ee849ce455ae22c3a8?source=copy_link',
+    summary: 'Turns static questionnaires into responsive visual narrative worlds where respondent answers dynamically mutate UI styling, background ambiance, and personalized outcomes.',
+    thesis: 'Traditional forms optimize solely for data collection, treating conditional logic merely as "which question appears next." Decoupling the data layer from an adaptive experience layer reduces psychological completion friction and yields richer, higher-quality responses.',
+    problem: 'Static forms follow a sterile "Question -> Input -> Next -> Submit" loop. Respondents feel like they are doing unpaid administrative work, causing high drop-off and superficial 1-word answers.',
+    insight: 'Data Layer != Experience Layer. The same structured response schema can drive an interactive narrative world—selecting "adventure" instantly shifts the visual ambiance, soundscape, and follow-up prompts into a mountain trek theme.',
+    architecture: [
+      'AI Experience Director: Generates multi-step narrative worlds, contextual themes, and interaction rules from a single creator prompt',
+      'State Transition Engine: Dynamically mutates form UI, ambient backgrounds, and branching narrative paths based on respondent sentiment and choices',
+      'Multimodal Capture: Seamless integration of voice recording, image choice, emotion pickers, and text inputs with zero client-side latency',
+    ],
+    tradeoffs: 'Enforced the Critical Guardrail: Dynamic flair must never increase completion friction faster than it increases engagement. Limited story-mode animations to sub-400ms CSS transforms.',
+    specDetails: 'Production-ready Lovable MVP with "Design Your Dream Japan Trip" interactive experience, AI creator dashboard, and full Notion PRD.',
+    diagramType: 'reveal-flow',
+    diagramData: {
+      steps: [
+        { label: 'Prompt / Input', desc: 'Text / Choice / Voice' },
+        { label: 'Sentiment AI', desc: 'Context & Theme Shift' },
+        { label: 'UI Mutation', desc: 'Adaptive Visual World' },
+        { label: 'Custom Outcome', desc: 'Qualified Completion' }
       ]
     }
   }
@@ -226,6 +258,15 @@ export const DECISION_LOG = [
     context: 'When a pull request introduces an operational constraint regression (e.g., "$500" changing to "$5,000"), should an AI agent attempt to automatically rewrite the prompt to match policy?',
     tradeoff: 'Deliberately rejected automated self-healing prompts in V1. Chose a deterministic quarantine gate that halts CI and assigns review to the prompt owner.',
     rationale: 'Recursive LLM auto-fixing introduces unpredictable secondary regressions. In enterprise governance, deterministic safety and clear human accountability always trump automated convenience.'
+  },
+  {
+    id: 'decision-dynamic-forms',
+    project: 'Dynamic Forms',
+    tag: 'Interactive HCI & Experience Design',
+    decision: 'Adaptive Experience Layer vs. Traditional Static Form Logic',
+    context: 'Traditional forms treat personalization merely as showing or hiding question fields, leaving respondents feeling like they are doing unpaid administrative work.',
+    tradeoff: 'Enforced the Critical Guardrail: limited story-mode animations to sub-400ms CSS transforms and rejected multi-second cinematic animations to protect completion speed.',
+    rationale: 'A visually impressive form that takes twice as long to complete is a worse product. By decoupling the data layer from the experience layer, we dramatically improved qualitative response depth without increasing respondent cognitive load.'
   }
 ];
 
