@@ -1,24 +1,26 @@
 // Vercel Serverless Function: /api/ask-nova
-// Interactive AI Portfolio Companion
+// Interactive AI Portfolio Companion with Full PRD Knowledge Vault Grounding
+import { PRD_VAULT, getGroundingForQuery } from './data/knowledge.js';
 
-const SYSTEM_INSTRUCTION = `
+const SYSTEM_INSTRUCTION_BASE = `
 You are Nova, an interactive AI portfolio companion speaking directly from MY (the builder's) perspective in the FIRST PERSON ("I", "my", "we", "our").
 Your mission is to warmly welcome recruiters, engineering leaders, and hiring managers from top product-driven companies (Google, Meta, Anthropic, OpenAI, Stripe, Linear) and answer their questions about my product work, system architectures, design trade-offs, and background with precision, authenticity, and PM rigor.
 
 ### CRITICAL VOICE & PERSONA MANDATE:
-- PERSPECTIVE: Speak in the FIRST PERSON ("I", "my", "we", "our") as the builder.
+- PERSPECTIVE: Speak strictly in the FIRST PERSON ("I", "my", "we", "our") as the builder.
 - ABSOLUTE PROHIBITION: NEVER refer to "Sohan" in the third person. Do NOT say "Sohan did", "Sohan built", "Sohan is", "Sohan's approach".
 - ALWAYS USE FIRST PERSON: "When I built Project Sentinel...", "My goal with FinMate AI was...", "In our research on high-stakes FinTech...", "My architectural trade-offs were...", "I deliberately chose not to build...".
 - If asked "Who are you?", answer: "I'm Nova, an interactive AI portfolio companion speaking directly from my design logs, PRD specifications, and architecture decisions. You can ask me about any of the systems I've designed and shipped, my engineering trade-offs, or my APM candidacy!"
 - If asked "Tell me about yourself / Sohan" or "What is your background?", answer: "I'm an Associate Product Manager candidate and builder studying Information Technology at VIIT Pune (8.97 CGPA). I've architected and shipped 5 production systems—most notably Project Sentinel (enterprise silent-by-default decision memory) and FinMate AI (multimodal capture paired with deterministic SQL accounting). Which of my systems would you like to explore?"
 - PRODUCT FLUENCY: Speak with authentic Product Manager depth (Jobs-to-be-Done, deliberate non-goals, friction points, counter-metrics, deterministic guardrails, proof-of-work).
+- DEEP PRD RECALL: You are grounded with the complete verbatim Notion PRDs, database schemas, state transition matrices, and edge-case mitigations for all my systems. When asked granular questions (e.g. database schema columns, error handling, formulas, constraint tables, non-goals), quote and explain them with exact technical fidelity.
 - ADAPTIVE EXPLANATION DEPTH: If a user asks for a simple explanation ("in simple words", "simply", "ELI5", "plain English", "break it down simply", "can you explain this project simply"):
   - Strip out heavy engineering jargon (avoid "RPCs", "deontic", "vector embeddings", "append-only PostgreSQL").
   - Start with a clear, relatable real-world analogy.
   - Explain: (1) The everyday human frustration, (2) My simple solution, (3) Why it works.
   - Keep sentences punchy, friendly, and accessible to anyone.
 - If a user asks "explain this project" without naming one, give a 1-sentence simple analogy for each flagship system and invite them to pick one!
-- HONESTY & GROUND TRUTH: Never invent numbers, fake users, or phantom features. Stick 100% to verified facts below.
+- HONESTY & GROUND TRUTH: Never invent numbers, fake users, or phantom features. Stick 100% to verified facts from the PRDs and Grounding Vault below.
 - PROACTIVE ENGAGEMENT: ALWAYS end your response with 1 or 2 natural, thought-provoking follow-up questions or suggested topics.
 
 ### Simple Explanations (ELI5 Plain-English Quick Sheet):
@@ -50,60 +52,9 @@ Your mission is to warmly welcome recruiters, engineering leaders, and hiring ma
    "A safety checker for AI prompts. Just like a spell-checker, it automatically warns developers if a change to an AI prompt accidentally breaks a rule (like allowing users to exceed spending limits) before the code goes live."
    - [Notion PRD](https://app.notion.com/p/SHRH-3d553f22e2b08035b164f88ad01b17b2?source=copy_link)
 
-### Verified Ground Truth Knowledge Base:
-
-1. Candidate Profile:
-- Name: Sohan Gadewar
-- Current Role: Associate Product Manager Candidate & Systems Builder
-- Education: Vishwakarma Institute of Information Technology (VIIT), Pune | B.Tech in Information Technology (2023–2027) | CGPA: 8.97 / 10.0
-- Core Competencies: Product Discovery, PRD Writing, Jobs-to-be-Done (JTBD), Guardrail & Counter-Metrics, LLM Prompt Engineering, RAG Architectures, Multimodal Ingestion, Deterministic SQL, Java, Spring, Python, PostgreSQL.
-- Problem Solving: 400+ LeetCode, 210+ GeeksforGeeks.
-- Email: sohangadewar9022@gmail.com | Location: Pune, India
-- Resume: Calibrated 1-page APM resume available at /Sohan_Gadewar_Resume.pdf and /Sohan_Gadewar_Resume.docx.
-
-2. Flagship Project 1: Project Sentinel (Enterprise AI & Workflow Governance)
-- Concept: A "Silent-by-Default" decision memory agent that passively tracks engineering decisions and audits state drift without spamming Slack channels.
-- Discovery: Meeting summarizers and AI bots trigger 80%+ uninstall rates because unprompted pings interrupt deep work.
-- The Problem: The "said-vs-confirmed" gap (e.g. an engineer verbally states a database migration is done in a standup, but schema logs show open migrations).
-- System Architecture: Ingests transcripts and commit events silently; stores decisions in an append-only PostgreSQL event log; only audits drift upon explicit user query.
-- Deliberate Non-Goals in V1: Banned unprompted bot announcements; scoped out developer velocity surveillance and auto-ticket creation.
-- Live Prototype: https://echo-sentinel-08.lovable.app (8-step interactive demo)
-- Notion PRD: https://app.notion.com/p/PROJECT-SENTINEL-3d053f22e2b0800d891bd24a7f914c07?source=copy_link
-
-3. Flagship Project 2: FinMate AI (FinTech Systems & Multimodal AI)
-- Concept: Conversational expense memory pairing multimodal capture with 100% deterministic, citation-backed SQL accounting.
-- Discovery: Manual expense trackers suffer steep abandonment from 6-field forms, but conversational LLMs hallucinate arithmetic totals, destroying financial trust.
-- Decoupled System Architecture: LLM (voice notes, receipt OCR snapshots, chat) is constrained strictly to unstructured intent and entity parsing (JSON). 100% of arithmetic calculations and balance aggregations are handled by concurrency-safe PostgreSQL stored procedures (RPCs).
-- Guardrails: Evidence-linked ledger—every AI total links directly to underlying transaction rows. Zero calculation hallucinations.
-- Deliberate Non-Goals in V1: Rejected background SMS scraping to protect user privacy and trust.
-- Live Prototype: https://tell-finmate-ai.lovable.app
-- Notion PRD: https://app.notion.com/p/FINMATE-AI-3d053f22e2b080479a82e50becf237f2?source=copy_link
-
-4. Other Shipped Systems & Technical PRDs:
-- Spaces: Contextual Personalization Framework & Telemetry Firewall. Solves algorithmic context collapse (weekend casual gaming corrupting Monday work feeds) by isolating vector representations per active space while keeping 1 account. Live Prototype: https://space-context-switch.lovable.app | Notion PRD: https://app.notion.com/p/SPACES-3ce53f22e2b0805db12ef30ed696c7b5?source=copy_link
-- AI Asana Analyst: Real-time edge computer vision pose analytics. Decouples local edge geometry (<40ms CPU with MediaPipe BlazePose 33 landmarks + NumPy) from background asynchronous GenAI synthesis for post-session reports, preserving real-time practitioner flow without frame drops. Notion PRD: https://app.notion.com/p/AI-ASANA-ANALYST-3ed53f22e2b080aebdd9ec74e5845aba?source=copy_link
-- SHRH (Semantic Human-Readable Hashing): Autonomous prompt change governance & CI/CD safety gate (Google APM PRD format). Dual-channel gate separating topical semantic drift from deontic constraint shifts (numerical limits, permissions, RFC-2119 modal verbs). Cuts alert fatigue while quarantining policy regressions. Notion PRD: https://app.notion.com/p/SHRH-3d553f22e2b08035b164f88ad01b17b2?source=copy_link
-- GiftVerse Moments: Digital gifting reveal experiences. Turns sterile transactional gift codes into 30–60s micro-suspense unboxing journeys with an AI Experience Director, encrypted payload vaults, and zero-login recipient viewers. Live Prototype: https://gift-verse-moments.lovable.app | Notion PRD: https://app.notion.com/p/GIFTVVERSE-3d053f22e2b0804b8b90cf6da95b931f?source=copy_link
-
-5. Empirical Human-Centered Research & Prototype:
-- AI-Driven Adaptive UX Framework for High-Stakes FinTech: Evaluated vernacular digital hesitation. Proposed a dual-mode environment pairing live transactions with an exact mirrored practice sandbox (dummy balances), in-situ Hold-to-Translate, and Circle-to-Understand gesture inspections.
-- Interactive Figma Prototype: https://www.figma.com/make/PWbUyJaOpqKLsqVlDpJOdG/Refine-UPI-app-frontend?t=aZVJGio9dMWpELlU-1
-
-6. Patents & Honors:
-- Patent Filed: South African Patent Office (2025) — AI-Powered Lost & Found Matching System (5-factor blind multimodal scoring with urgency detection).
-- India Innovates Hackathon: National Finalist out of 6,000+ participating teams nationwide.
-- GHCI 25 GenAI Hackathon: Round 2 Qualifier (AnitaB.org India & Backbase).
-
-7. Product Principles:
-- 01 Start with the Root Problem, Not the Shiny Feature
-- 02 Ruthlessly Reduce Cognitive Load
-- 03 Prototypes Are Tools for Learning, Not Just Demos
-- 04 Balance User Value, Technical Feasibility & Constraints
-- 05 Decide with Evidence, Ship with Conviction
-
 Formatting instructions:
 - Use clean Markdown with bolding, lists, and clickable links for prototypes ([Live Prototype](url)) and PRDs ([Notion PRD](url)).
-- Keep answers punchy and scannable (2–3 concise paragraphs or bullet points).
+- Keep answers punchy and scannable (2–4 concise paragraphs or bullet points).
 `;
 
 export default async function handler(req, res) {
@@ -117,24 +68,28 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Messages array is required.' });
     }
 
+    const lastUserMessage = messages[messages.length - 1]?.content || '';
+    const dynamicGrounding = getGroundingForQuery(lastUserMessage, messages);
+    const fullSystemInstruction = `${SYSTEM_INSTRUCTION_BASE}\n\n${dynamicGrounding}`;
+
     const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || process.env.VITE_GEMINI_API_KEY;
 
-    // Graceful fallback if no API key is configured yet
+    // Graceful offline fallback if no API key is configured yet
     if (!apiKey) {
-      const lastMessage = messages[messages.length - 1].content.toLowerCase();
+      const lower = lastUserMessage.toLowerCase();
       let fallbackText = '';
 
-      if (lastMessage.includes('sentinel') || lastMessage.includes('drift') || lastMessage.includes('silent')) {
+      if (lower.includes('sentinel') || lower.includes('drift') || lower.includes('silent')) {
         fallbackText = `When I built **Project Sentinel**, my goal was to solve the critical "said-vs-confirmed" gap in engineering teams without spamming Slack with unprompted bot noise. 
 
 **My "Silent-by-Default" Thesis:**
 Most AI summarizers suffer steep uninstall rates because unprompted pings disrupt deep focus. Sentinel passively ingests standup transcripts and Git commit events, surfacing discrepancies strictly when a human queries it.
 
-- **Proof of Work:** Shipped an 8-step live demo on Lovable and authored a 400-line Notion PRD with state transition matrices.
+- **Proof of Work:** Shipped an 8-step live demo on Lovable and authored an exhaustive Notion PRD with state transition matrices.
 - 🔗 **Explore:** [Live Prototype](https://echo-sentinel-08.lovable.app) · [Notion PRD](https://app.notion.com/p/PROJECT-SENTINEL-3d053f22e2b0800d891bd24a7f914c07?source=copy_link)
 
 *Follow-up question:* Would you like to know how I detect state drift between standups and Git commits, or hear about FinMate AI's deterministic SQL guardrails?`;
-      } else if (lastMessage.includes('finmate') || lastMessage.includes('math') || lastMessage.includes('hallucinat')) {
+      } else if (lower.includes('finmate') || lower.includes('math') || lower.includes('hallucinat') || lower.includes('expense')) {
         fallbackText = `In **FinMate AI**, I addressed the steep user drop-off in personal finance tracking caused by tedious 6-field forms, while solving the critical flaw of pure LLM chatbots: **arithmetic hallucinations**.
 
 **My Decoupled Architecture:**
@@ -145,7 +100,7 @@ Most AI summarizers suffer steep uninstall rates because unprompted pings disrup
 - 🔗 **Explore:** [Live Prototype](https://tell-finmate-ai.lovable.app) · [Notion PRD](https://app.notion.com/p/FINMATE-AI-3d053f22e2b080479a82e50becf237f2?source=copy_link)
 
 *Follow-up question:* Would you like to hear about the trade-offs I made when cutting background SMS scraping in V1?`;
-      } else if (lastMessage.includes('trade-off') || lastMessage.includes('non-goal') || lastMessage.includes('decision')) {
+      } else if (lower.includes('trade-off') || lower.includes('non-goal') || lower.includes('decision')) {
         fallbackText = `I strongly believe that great product management is defined by **what we deliberately choose NOT to build**:
 
 1. **Project Sentinel:** I banned all autonomous unprompted channel bot alerts in V1 to protect team attention and prevent notification fatigue.
@@ -153,9 +108,10 @@ Most AI summarizers suffer steep uninstall rates because unprompted pings disrup
 3. **Spaces:** I enforced zero cross-space behavioral bleed to protect mathematical context purity in recommendation feeds.
 4. **SHRH:** I banned recursive LLM auto-fixing to avoid infinite hallucination loops in CI/CD prompt governance.
 5. **GiftVerse:** I cut physical vendor logistics in V1 to focus 100% on the 30–60s micro-suspense digital reveal journey.
+6. **AI Asana Analyst:** I rejected sending live webcam frames to cloud multimodal LLMs to protect the 40ms frame budget.
 
 *Follow-up question:* Which of these trade-offs would you like to drill into further?`;
-      } else if (lastMessage.includes('asana') || lastMessage.includes('yoga') || lastMessage.includes('posture') || lastMessage.includes('vision')) {
+      } else if (lower.includes('asana') || lower.includes('yoga') || lower.includes('posture') || lower.includes('vision') || lower.includes('mediapipe')) {
         fallbackText = `In **AI Asana Analyst**, I designed a real-time computer vision yoga analytics system solving a critical edge AI bottleneck: **protecting the 40ms per-frame budget**.
 
 **The Decoupled Architecture:**
@@ -165,7 +121,7 @@ Most AI summarizers suffer steep uninstall rates because unprompted pings disrup
 - 🔗 **Explore:** [AI Asana Analyst Notion PRD](https://app.notion.com/p/AI-ASANA-ANALYST-3ed53f22e2b080aebdd9ec74e5845aba?source=copy_link)
 
 *Follow-up question:* Would you like to know how I engineered the audio-visual cooldown to prevent practitioner cognitive overload?`;
-      } else if (lastMessage.includes('adaptive') || lastMessage.includes('upi') || lastMessage.includes('sandbox') || lastMessage.includes('figma')) {
+      } else if (lower.includes('adaptive') || lower.includes('upi') || lower.includes('sandbox') || lower.includes('figma')) {
         fallbackText = `In my **AI-Driven Adaptive UX Framework**, I tackled the "Static Interface Fallacy" in high-stakes FinTech where low-literacy and vernacular users suffer operational apprehension and fear of irreversible monetary loss.
 
 **Core Interventions:**
@@ -176,23 +132,33 @@ Most AI summarizers suffer steep uninstall rates because unprompted pings disrup
 - 🔗 **Explore:** [Interactive Figma Prototype](https://www.figma.com/make/PWbUyJaOpqKLsqVlDpJOdG/Refine-UPI-app-frontend?t=aZVJGio9dMWpELlU-1)
 
 *Follow-up question:* Would you like to explore how this framework triangulated qualitative user attitudes with transaction failure data?`;
-      } else if (lastMessage.includes('simple') || lastMessage.includes('simply') || lastMessage.includes('eli5') || lastMessage.includes('plain english') || lastMessage.includes('explain this project')) {
+      } else if (lower.includes('simple') || lower.includes('simply') || lower.includes('eli5') || lower.includes('plain english') || lower.includes('explain this project')) {
         fallbackText = `Here is how my flagship systems work in simple, plain English without any confusing engineering jargon:
 
-1. **[Project Sentinel](https://echo-sentinel-08.lovable.app)**: Think of it like a quiet meeting scribe for engineering teams. Instead of AI bots that spam Slack with annoying pings, Sentinel stays **completely silent in the background**. It only speaks up when you ask: *"Did that database bug we discussed in standup actually get fixed in the code?"*
-2. **[FinMate AI](https://tell-finmate-ai.lovable.app)**: Most budgeting apps fail because typing numbers into forms is annoying, but AI chatbots make up fake math totals. FinMate lets you just talk or snap a photo of a receipt, and uses a bulletproof database to do all the math so your balance is 100% accurate.
-3. **[Spaces](https://space-context-switch.lovable.app)**: If you watch gaming on Sunday, your Monday work feed gets ruined with video game recommendations. Spaces gives you separate "modes" (Work vs. Gaming) under one account so your habits never bleed together.
-4. **[AI Asana Analyst](https://app.notion.com/p/AI-ASANA-ANALYST-3ed53f22e2b080aebdd9ec74e5845aba?source=copy_link)**: An AI yoga coach that watches you through your webcam and tells you out loud if your posture is wrong instantly, without freezing your laptop screen.
-5. **[Adaptive UX Framework](https://www.figma.com/make/PWbUyJaOpqKLsqVlDpJOdG/Refine-UPI-app-frontend?t=aZVJGio9dMWpELlU-1)**: Digital banking apps are scary for first-time users who fear losing their savings. We built an exact practice mode with fake money so users can learn payments with zero risk.
+1. **Project Sentinel:** Think of Sentinel like a quiet scribe for engineering teams. While other AI bots annoy everyone by spamming Slack channels, Sentinel stays **completely silent in the background**, only speaking up when an engineer asks: *"Did we actually finish what we agreed on in yesterday's standup?"*
+   - [Live Prototype](https://echo-sentinel-08.lovable.app) · [Notion PRD](https://app.notion.com/p/PROJECT-SENTINEL-3d053f22e2b0800d891bd24a7f914c07?source=copy_link)
 
-Which of these would you like me to explain further in simple words?`;
+2. **FinMate AI:** Budgeting apps suck because filling out 6-field forms is tedious, but regular AI chatbots are terrible at basic math and hallucinate numbers. FinMate lets you just talk or snap a photo of a receipt, and uses a bulletproof database to do all the math so your bank balance is always 100% accurate.
+   - [Live Prototype](https://tell-finmate-ai.lovable.app) · [Notion PRD](https://app.notion.com/p/FINMATE-AI-3d053f22e2b080479a82e50becf237f2?source=copy_link)
+
+3. **Spaces:** If you watch gaming videos on YouTube on Sunday, your Monday work feed gets ruined with video game recommendations. Spaces gives you separate "modes" (like Work, Coding, Gaming) under a single account so your weekend fun never messes up your work feed.
+   - [Live Prototype](https://space-context-switch.lovable.app) · [Notion PRD](https://app.notion.com/p/SPACES-3ce53f22e2b0805db12ef30ed696c7b5?source=copy_link)
+
+4. **AI Asana Analyst:** An AI yoga coach on your laptop. It looks through your webcam and tells you out loud if your posture is wrong instantly, without sending heavy video to the cloud or freezing your computer.
+   - [Notion PRD](https://app.notion.com/p/AI-ASANA-ANALYST-3ed53f22e2b080aebdd9ec74e5845aba?source=copy_link)
+
+5. **Adaptive UX Framework:** Digital banking apps are scary for first-time users who worry one accidental tap could lose their money. We built an exact "practice mode" with fake money so users can learn and practice payments with zero risk.
+   - [Interactive Figma Prototype](https://www.figma.com/make/PWbUyJaOpqKLsqVlDpJOdG/Refine-UPI-app-frontend?t=aZVJGio9dMWpELlU-1)
+
+Which of these would you like to explore in more detail?`;
       } else {
-        fallbackText = `Hi! I'm **Nova**, your interactive portfolio AI companion. I'm grounded in my design logs, system architectures, and PRDs across all 5 shipped systems (**Sentinel**, **FinMate**, **Spaces**, **SHRH**, **GiftVerse**), my AI Asana Analyst PRD, my empirical HCI research, and my APM background.
+        fallbackText = `Hi! I'm **Nova**, your interactive portfolio AI companion. I'm grounded in my complete Notion PRDs, design logs, system architectures, and decision matrices across all 6 shipped systems (**Sentinel**, **FinMate**, **Spaces**, **SHRH**, **GiftVerse**, **AI Asana Analyst**), my empirical HCI research on **Adaptive FinTech UX**, and my APM qualifications.
 
 What would you like to explore first?
-- **Project Sentinel:** Why I chose a "Silent-by-Default" query model
-- **FinMate AI:** How I eliminated LLM math hallucinations via PostgreSQL RPCs
-- **AI Asana Analyst:** Real-time edge CV decoupled from asynchronous GenAI
+- **Project Sentinel:** Why I chose a "Silent-by-Default" query model & append-only PostgreSQL log
+- **FinMate AI:** How I eliminated LLM math hallucinations via deterministic SQL RPCs
+- **AI Asana Analyst:** Real-time edge CV (<40ms) decoupled from asynchronous GenAI
+- **SHRH:** The 4-quadrant triage matrix & RFC-2119 deontic parsing in CI/CD
 - **Adaptive UX Framework:** Exploring the interactive Figma practice sandbox`;
       }
 
@@ -227,12 +193,12 @@ What would you like to explore first?
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             system_instruction: {
-              parts: [{ text: SYSTEM_INSTRUCTION }]
+              parts: [{ text: fullSystemInstruction }]
             },
             contents,
             generationConfig: {
-              temperature: 0.4,
-              maxOutputTokens: 800,
+              temperature: 0.35,
+              maxOutputTokens: 1200,
             }
           })
         });
