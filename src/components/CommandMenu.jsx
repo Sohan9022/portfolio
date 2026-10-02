@@ -51,11 +51,11 @@ export default function CommandMenu({ isOpen, onClose, onOpenNova }) {
 
   const actions = [
     {
-      group: 'AI Portfolio Concierge',
+      group: 'Interactive AI Companion',
       items: [
         { 
-          label: 'Ask Nova (AI Concierge)', 
-          desc: 'Chat with Nova about Sohan\'s 5 systems, trade-offs, and APM candidacy', 
+          label: 'Ask Nova (BETA)', 
+          desc: 'Chat with Nova about my 5 systems, architectural trade-offs, and APM candidacy', 
           action: () => {
             onClose(false);
             if (onOpenNova) onOpenNova();

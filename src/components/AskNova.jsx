@@ -28,12 +28,12 @@ const STARTER_PROMPTS = [
   },
   {
     icon: Compass,
-    text: "What trade-offs did Sohan make across his projects?",
+    text: "What trade-offs did you make across your systems?",
     category: "Product Strategy"
   },
   {
     icon: ShieldCheck,
-    text: "Summarize Sohan's engineering background & hackathons",
+    text: "Summarize your engineering background & hackathons",
     category: "Candidate Deep-Dive"
   }
 ];
@@ -43,14 +43,18 @@ export default function AskNova({ externalOpen, onExternalClose }) {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: `Hi! I'm **Nova**, Sohan's Portfolio AI Concierge. ✦\n\nI'm grounded in all of Sohan's product work, engineering architectures, and PRD specifications. Ask me anything about his 5 systems (**Sentinel**, **FinMate**, **Spaces**, **SHRH**, **GiftVerse**), his design trade-offs, or his APM candidacy!`,
+      content: `Hi! I'm **Nova**, your interactive AI portfolio companion. ✦\n\nI'm grounded in my design logs, system architectures, and PRD specifications. Ask me anything about the 5 systems I've designed and shipped (**Sentinel**, **FinMate**, **Spaces**, **SHRH**, **GiftVerse**), my engineering trade-offs, or my APM background!`,
       timestamp: new Date()
     }
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [streamingMessageIndex, setStreamingMessageIndex] = useState(null);
+  const [streamedText, setStreamedText] = useState('');
+
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
+  const streamTimerRef = useRef(null);
 
   // Sync external open triggers (e.g. from CommandMenu or Navbar)
   useEffect(() => {
@@ -74,7 +78,7 @@ export default function AskNova({ externalOpen, onExternalClose }) {
       scrollToBottom();
       setTimeout(() => inputRef.current?.focus(), 150);
     }
-  }, [isOpen, messages, isLoading]);
+  }, [isOpen, messages, isLoading, streamedText]);
 
   // Global keyboard shortcut: Press Option+N or Alt+N to toggle Nova
   useEffect(() => {
@@ -88,9 +92,53 @@ export default function AskNova({ externalOpen, onExternalClose }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  // Cleanup stream interval on unmount
+  useEffect(() => {
+    return () => {
+      if (streamTimerRef.current) clearInterval(streamTimerRef.current);
+    };
+  }, []);
+
+  // Fluid typewriter streaming function
+  const streamResponse = (fullText, targetIndex) => {
+    if (!fullText) return;
+
+    // Split text into small word tokens to simulate natural LLM token stream
+    const words = fullText.split(' ');
+    let currentIndex = 0;
+    setStreamingMessageIndex(targetIndex);
+    setStreamedText('');
+
+    if (streamTimerRef.current) clearInterval(streamTimerRef.current);
+
+    streamTimerRef.current = setInterval(() => {
+      if (currentIndex < words.length) {
+        // Take 1 to 2 words per tick for snappy, natural pacing
+        const nextChunkSize = (currentIndex % 3 === 0) ? 2 : 1;
+        const nextIndex = Math.min(currentIndex + nextChunkSize, words.length);
+        const currentSlice = words.slice(0, nextIndex).join(' ');
+        setStreamedText(currentSlice);
+        currentIndex = nextIndex;
+      } else {
+        clearInterval(streamTimerRef.current);
+        streamTimerRef.current = null;
+        setStreamingMessageIndex(null);
+        setStreamedText('');
+      }
+    }, 18);
+  };
+
   const handleSendMessage = async (textToSend) => {
     const query = (textToSend || inputValue).trim();
     if (!query || isLoading) return;
+
+    // If currently streaming, finish immediately before next message
+    if (streamTimerRef.current) {
+      clearInterval(streamTimerRef.current);
+      streamTimerRef.current = null;
+      setStreamingMessageIndex(null);
+      setStreamedText('');
+    }
 
     const userMessage = {
       role: 'user',
@@ -117,41 +165,54 @@ export default function AskNova({ externalOpen, onExternalClose }) {
       }
 
       const data = await response.json();
+      const replyContent = data.content || "I couldn't process that response. Please try asking again!";
+      
+      const newAssistantIndex = newMessages.length;
       setMessages(prev => [
         ...prev,
         {
           role: 'assistant',
-          content: data.content || "I couldn't process that response. Please try asking again!",
+          content: replyContent,
           timestamp: new Date()
         }
       ]);
+      setIsLoading(false);
+
+      // Trigger fluid real-time streaming effect
+      streamResponse(replyContent, newAssistantIndex);
     } catch (err) {
       console.error('Nova Query Error:', err);
+      const fallbackError = "I ran into a temporary connection issue. Please check your network or try asking again in a moment!";
       setMessages(prev => [
         ...prev,
         {
           role: 'assistant',
-          content: `I ran into a temporary connection issue. Please check your network or try asking again in a moment!`,
+          content: fallbackError,
           timestamp: new Date()
         }
       ]);
-    } finally {
       setIsLoading(false);
     }
   };
 
   const handleClearChat = () => {
+    if (streamTimerRef.current) {
+      clearInterval(streamTimerRef.current);
+      streamTimerRef.current = null;
+    }
+    setStreamingMessageIndex(null);
+    setStreamedText('');
     setMessages([
       {
         role: 'assistant',
-        content: `Conversation refreshed! What else would you like to explore regarding Sohan's product systems or architecture?`,
+        content: `Conversation refreshed! What else would you like to explore regarding my product systems or architecture?`,
         timestamp: new Date()
       }
     ]);
   };
 
   // Helper to format text with clickable markdown links
-  const renderFormattedContent = (content) => {
+  const renderFormattedContent = (content, isStreamingNow = false) => {
     // Regex to detect [label](url)
     const linkRegex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
     const parts = [];
@@ -181,28 +242,34 @@ export default function AskNova({ externalOpen, onExternalClose }) {
       parts.push(content.substring(lastIndex));
     }
 
-    return parts.map((part, i) => {
-      if (typeof part === 'string') {
-        // Simple paragraph split
-        return part.split('\n\n').map((paragraph, pIdx) => (
-          <p key={pIdx} className="mb-2.5 last:mb-0 leading-relaxed">
-            {paragraph.split('\n').map((line, lIdx) => (
-              <React.Fragment key={lIdx}>
-                {line.startsWith('- ') ? (
-                  <span className="block pl-3 relative before:content-['•'] before:absolute before:left-0 before:text-blue-600">
-                    {formatBold(line.substring(2))}
-                  </span>
-                ) : (
-                  formatBold(line)
-                )}
-                {lIdx < line.length - 1 && <br />}
-              </React.Fragment>
-            ))}
-          </p>
-        ));
-      }
-      return <React.Fragment key={i}>{part}</React.Fragment>;
-    });
+    return (
+      <>
+        {parts.map((part, i) => {
+          if (typeof part === 'string') {
+            return part.split('\n\n').map((paragraph, pIdx) => (
+              <p key={pIdx} className="mb-2.5 last:mb-0 leading-relaxed">
+                {paragraph.split('\n').map((line, lIdx) => (
+                  <React.Fragment key={lIdx}>
+                    {line.startsWith('- ') ? (
+                      <span className="block pl-3 relative before:content-['•'] before:absolute before:left-0 before:text-blue-600">
+                        {formatBold(line.substring(2))}
+                      </span>
+                    ) : (
+                      formatBold(line)
+                    )}
+                    {lIdx < line.length - 1 && <br />}
+                  </React.Fragment>
+                ))}
+              </p>
+            ));
+          }
+          return <React.Fragment key={i}>{part}</React.Fragment>;
+        })}
+        {isStreamingNow && (
+          <span className="inline-block w-1.5 h-3.5 bg-blue-600 ml-1 translate-y-0.5 animate-pulse rounded-xs" />
+        )}
+      </>
+    );
   };
 
   const formatBold = (text) => {
@@ -227,36 +294,36 @@ export default function AskNova({ externalOpen, onExternalClose }) {
             whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.96 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 pl-2.5 pr-4 py-2.5 rounded-full bg-[#121214] hover:bg-black text-white shadow-[0_8px_30px_rgba(0,0,0,0.24)] border border-slate-700/80 transition-all group"
-            title="Ask Nova · AI Portfolio Concierge (Alt+N)"
-            aria-label="Ask Nova AI Portfolio Concierge"
+            className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 pl-2 pr-4 py-2 rounded-full bg-[#121214] hover:bg-black text-white shadow-[0_8px_30px_rgba(0,0,0,0.28)] border border-slate-700/80 transition-all group"
+            title="Ask Nova · Interactive AI Companion (Alt+N)"
+            aria-label="Ask Nova Interactive AI Companion"
           >
-            {/* Custom Nova Glowing Avatar */}
-            <div className="relative w-7 h-7 rounded-full overflow-hidden border border-blue-400/40 shrink-0 shadow-xs">
+            {/* Holographic Glowing Companion Avatar */}
+            <div className="relative w-8 h-8 rounded-full overflow-hidden ring-2 ring-cyan-500/40 shadow-[0_0_12px_rgba(6,182,212,0.35)] shrink-0">
               <img 
                 src="/nova-avatar.jpg" 
                 alt="Nova AI Avatar" 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-300"
                 onError={(e) => {
                   e.target.style.display = 'none';
                   e.target.nextSibling.style.display = 'flex';
                 }}
               />
-              <div className="hidden w-full h-full bg-gradient-to-tr from-blue-600 to-indigo-500 items-center justify-center text-[10px] font-bold text-white">
+              <div className="hidden w-full h-full bg-gradient-to-tr from-cyan-600 to-indigo-600 items-center justify-center text-[10px] font-bold text-white">
                 N
               </div>
-              <span className="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-emerald-400 border border-[#121214] animate-pulse"></span>
+              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-[#121214] animate-pulse"></span>
             </div>
 
             <div className="flex flex-col text-left">
               <div className="flex items-center gap-1.5">
                 <span className="text-xs font-semibold tracking-tight text-white">Ask Nova</span>
-                <span className="px-1.5 py-0.2 rounded text-[9px] font-mono font-bold bg-blue-500/20 text-blue-300 border border-blue-400/30">
-                  AI
+                <span className="px-1.5 py-0.2 rounded text-[9px] font-mono font-bold bg-amber-400/20 text-amber-300 border border-amber-400/30 uppercase tracking-wide">
+                  BETA
                 </span>
               </div>
               <span className="text-[10px] text-slate-400 font-mono hidden sm:inline">
-                Portfolio Concierge
+                Interactive Companion
               </span>
             </div>
           </motion.button>
@@ -285,9 +352,9 @@ export default function AskNova({ externalOpen, onExternalClose }) {
               className="fixed bottom-4 sm:bottom-6 right-3 sm:right-6 z-50 w-[calc(100vw-24px)] sm:w-[440px] h-[82vh] sm:h-[620px] max-h-[720px] rounded-2xl bg-[#FFFFFF] border border-[#EAEAE7] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.22)] flex flex-col overflow-hidden font-sans"
             >
               {/* Header */}
-              <div className="px-4 py-3.5 border-b border-[#EAEAE7] bg-[#FBFBFA]/95 flex items-center justify-between shrink-0">
+              <div className="px-4 py-3 border-b border-[#EAEAE7] bg-[#FBFBFA]/95 flex items-center justify-between shrink-0">
                 <div className="flex items-center gap-2.5">
-                  <div className="relative w-8 h-8 rounded-full overflow-hidden border border-blue-400/50 shadow-xs">
+                  <div className="relative w-8 h-8 rounded-full overflow-hidden ring-2 ring-cyan-500/30 shadow-[0_0_10px_rgba(6,182,212,0.25)] shrink-0">
                     <img 
                       src="/nova-avatar.jpg" 
                       alt="Nova" 
@@ -297,21 +364,21 @@ export default function AskNova({ externalOpen, onExternalClose }) {
                         e.target.nextSibling.style.display = 'flex';
                       }}
                     />
-                    <div className="hidden w-full h-full bg-gradient-to-tr from-blue-600 to-indigo-500 items-center justify-center text-xs font-bold text-white">
+                    <div className="hidden w-full h-full bg-gradient-to-tr from-cyan-600 to-indigo-600 items-center justify-center text-xs font-bold text-white">
                       N
                     </div>
-                    <span className="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-emerald-500 border border-white"></span>
+                    <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white"></span>
                   </div>
 
                   <div>
                     <div className="flex items-center gap-1.5">
                       <h4 className="text-sm font-bold text-[#121214]">Nova</h4>
-                      <span className="text-[10px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-medium">
-                        Gemini 3.5 Flash Lite
+                      <span className="text-[9px] font-mono font-bold text-amber-800 bg-amber-50 border border-amber-200/80 px-1.5 py-0.5 rounded uppercase tracking-wider">
+                        BETA
                       </span>
                     </div>
                     <p className="text-[11px] text-[#666663] font-mono">
-                      Sohan's Portfolio AI Concierge
+                      Interactive Portfolio Companion
                     </p>
                   </div>
                 </div>
@@ -338,6 +405,9 @@ export default function AskNova({ externalOpen, onExternalClose }) {
               <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3.5 bg-[#FFFFFF]">
                 {messages.map((msg, index) => {
                   const isUser = msg.role === 'user';
+                  const isStreaming = streamingMessageIndex === index;
+                  const textToDisplay = isStreaming ? streamedText : msg.content;
+
                   return (
                     <motion.div
                       key={index}
@@ -346,7 +416,7 @@ export default function AskNova({ externalOpen, onExternalClose }) {
                       className={`flex gap-2.5 ${isUser ? 'justify-end' : 'justify-start'}`}
                     >
                       {!isUser && (
-                        <div className="w-6 h-6 rounded-full overflow-hidden border border-blue-200 shrink-0 mt-0.5">
+                        <div className="w-6 h-6 rounded-full overflow-hidden ring-1 ring-cyan-500/30 shrink-0 mt-0.5 shadow-2xs">
                           <img src="/nova-avatar.jpg" alt="Nova" className="w-full h-full object-cover" />
                         </div>
                       )}
@@ -362,7 +432,7 @@ export default function AskNova({ externalOpen, onExternalClose }) {
                           <p className="leading-relaxed whitespace-pre-wrap">{msg.content}</p>
                         ) : (
                           <div className="prose-xs text-[#2A2A28]">
-                            {renderFormattedContent(msg.content)}
+                            {renderFormattedContent(textToDisplay, isStreaming)}
                           </div>
                         )}
                       </div>
@@ -370,19 +440,19 @@ export default function AskNova({ externalOpen, onExternalClose }) {
                   );
                 })}
 
-                {/* Loading / Thinking Indicator */}
+                {/* Thinking Indicator */}
                 {isLoading && (
                   <motion.div
                     initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="flex gap-2.5 justify-start"
                   >
-                    <div className="w-6 h-6 rounded-full overflow-hidden border border-blue-200 shrink-0 mt-0.5">
+                    <div className="w-6 h-6 rounded-full overflow-hidden ring-1 ring-cyan-500/30 shrink-0 mt-0.5">
                       <img src="/nova-avatar.jpg" alt="Nova" className="w-full h-full object-cover" />
                     </div>
                     <div className="p-3 rounded-2xl rounded-tl-xs bg-[#F8F8F6] border border-[#EAEAE7] flex items-center gap-2 text-xs font-mono text-[#666663]">
                       <Sparkles className="w-3.5 h-3.5 text-blue-600 animate-spin" />
-                      <span>Nova is thinking...</span>
+                      <span>Thinking...</span>
                     </div>
                   </motion.div>
                 )}
@@ -427,7 +497,7 @@ export default function AskNova({ externalOpen, onExternalClose }) {
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Ask Nova about Sentinel, FinMate, trade-offs..."
+                    placeholder="Ask about Sentinel, FinMate, architecture trade-offs..."
                     disabled={isLoading}
                     className="flex-1 bg-white border border-[#D5D5CE] focus:border-[#121214] focus:ring-1 focus:ring-[#121214] rounded-xl px-3.5 py-2 text-xs text-[#121214] placeholder-[#9E9E96] outline-none transition-all disabled:opacity-50"
                   />
@@ -445,7 +515,7 @@ export default function AskNova({ externalOpen, onExternalClose }) {
                   <span>Press Enter to send</span>
                   <span className="flex items-center gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                    <span>Grounded in portfolio work</span>
+                    <span>Trained on live PRDs & design logs</span>
                   </span>
                 </div>
               </div>

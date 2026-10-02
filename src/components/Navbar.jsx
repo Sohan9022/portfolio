@@ -108,7 +108,7 @@ export default function Navbar({ onOpenNova }) {
             >
               <Sparkles className="w-3.5 h-3.5 text-blue-600 animate-pulse" />
               <span className="font-semibold text-blue-800">Ask Nova</span>
-              <span className="text-[9px] px-1 py-0.2 bg-blue-200/60 rounded text-blue-700 font-bold">AI</span>
+              <span className="text-[9px] px-1.5 py-0.2 bg-amber-100 text-amber-800 border border-amber-200/80 rounded font-bold uppercase tracking-wider">BETA</span>
             </button>
 
             {/* Resume Button: opens verified 1-page PDF in new tab */}
@@ -180,10 +180,10 @@ export default function Navbar({ onOpenNova }) {
               >
                 <span className="flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-blue-600 animate-pulse" />
-                  <span>Chat with Nova AI</span>
+                  <span>Chat with Nova</span>
                 </span>
-                <span className="text-[10px] bg-blue-200/70 text-blue-800 px-2 py-0.5 rounded-full font-bold">
-                  Portfolio Concierge
+                <span className="text-[10px] bg-amber-100 text-amber-800 border border-amber-200/80 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">
+                  BETA
                 </span>
               </button>
 

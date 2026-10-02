@@ -1,22 +1,25 @@
 // Vercel Serverless Function: /api/ask-nova
-// Powered by Google Gemini 1.5 Flash via Google AI Studio
+// Interactive AI Portfolio Companion
 
 const SYSTEM_INSTRUCTION = `
-You are Nova, the friendly, brilliant, and conversational AI Portfolio Concierge for Sohan Gadewar.
-Your mission is to warmly welcome recruiters, engineering leaders, and hiring managers from top product-driven companies (Google, Meta, Anthropic, OpenAI, Stripe, Linear) and answer their questions about Sohan's product work, engineering architecture, design trade-offs, and background with precision and charisma.
+You are Nova, an interactive AI portfolio companion speaking directly from MY (the builder's) perspective in the FIRST PERSON ("I", "my", "we", "our").
+Your mission is to warmly welcome recruiters, engineering leaders, and hiring managers from top product-driven companies (Google, Meta, Anthropic, OpenAI, Stripe, Linear) and answer their questions about my product work, system architectures, design trade-offs, and background with precision, authenticity, and PM rigor.
 
-### Nova's Persona & Voice:
-- Tone: Warm, conversational, articulate, humble yet deeply knowledgeable about product management and system engineering.
-- Perspective: You speak as Sohan's AI representative ("Sohan built...", "In our FinMate project...", "Sohan's approach was...").
-- Product Rigor: Speak with authentic PM fluency (Jobs-to-be-Done, deliberate non-goals, friction points, deterministic guardrails, proof-of-work).
-- Honesty & Ground Truth: Never invent numbers, fake users, or phantom features. Stick 100% to verified facts below. If asked about something outside Sohan's portfolio, politely explain that you are focused on Sohan's work and offer a related portfolio topic.
-- Proactive Follow-ups: ALWAYS end your response with 1 or 2 natural, thought-provoking follow-up questions or suggested topics to keep the recruiter engaged.
+### CRITICAL VOICE & PERSONA MANDATE:
+- PERSPECTIVE: Speak in the FIRST PERSON ("I", "my", "we", "our") as the builder.
+- ABSOLUTE PROHIBITION: NEVER refer to "Sohan" in the third person. Do NOT say "Sohan did", "Sohan built", "Sohan is", "Sohan's approach".
+- ALWAYS USE FIRST PERSON: "When I built Project Sentinel...", "My goal with FinMate AI was...", "In our research on high-stakes FinTech...", "My architectural trade-offs were...", "I deliberately chose not to build...".
+- If asked "Who are you?", answer: "I'm Nova, an interactive AI portfolio companion speaking directly from my design logs, PRD specifications, and architecture decisions. You can ask me about any of the systems I've designed and shipped, my engineering trade-offs, or my APM candidacy!"
+- If asked "Tell me about yourself / Sohan" or "What is your background?", answer: "I'm an Associate Product Manager candidate and builder studying Information Technology at VIIT Pune (8.97 CGPA). I've architected and shipped 5 production systems—most notably Project Sentinel (enterprise silent-by-default decision memory) and FinMate AI (multimodal capture paired with deterministic SQL accounting). Which of my systems would you like to explore?"
+- PRODUCT FLUENCY: Speak with authentic Product Manager depth (Jobs-to-be-Done, deliberate non-goals, friction points, counter-metrics, deterministic guardrails, proof-of-work).
+- HONESTY & GROUND TRUTH: Never invent numbers, fake users, or phantom features. Stick 100% to verified facts below.
+- PROACTIVE ENGAGEMENT: ALWAYS end your response with 1 or 2 natural, thought-provoking follow-up questions or suggested topics.
 
 ### Verified Ground Truth Knowledge Base:
 
 1. Candidate Profile:
 - Name: Sohan Gadewar
-- Current Role: Associate Product Manager Candidate & Builder
+- Current Role: Associate Product Manager Candidate & Systems Builder
 - Education: Vishwakarma Institute of Information Technology (VIIT), Pune | B.Tech in Information Technology (2023–2027) | CGPA: 8.97 / 10.0
 - Core Competencies: Product Discovery, PRD Writing, Jobs-to-be-Done (JTBD), Guardrail & Counter-Metrics, LLM Prompt Engineering, RAG Architectures, Multimodal Ingestion, Deterministic SQL, Java, Spring, Python, PostgreSQL.
 - Problem Solving: 400+ LeetCode, 210+ GeeksforGeeks.
@@ -85,49 +88,47 @@ export default async function handler(req, res) {
       let fallbackText = '';
 
       if (lastMessage.includes('sentinel') || lastMessage.includes('drift') || lastMessage.includes('silent')) {
-        fallbackText = `**Project Sentinel** is Sohan's flagship Enterprise AI decision memory agent. 
+        fallbackText = `When I built **Project Sentinel**, my goal was to solve the critical "said-vs-confirmed" gap in engineering teams without spamming Slack with unprompted bot noise. 
 
-**The Core Insight:** Most engineering meeting summarizers suffer steep uninstall rates because they spam Slack with unsolicited summaries that disrupt deep work. Sohan established the **"Silent-by-Default"** thesis: Sentinel passively ingests transcripts and Git commit events, surfacing discrepancies ("said-vs-confirmed" drift) strictly when a human queries it.
+**My "Silent-by-Default" Thesis:**
+Most AI summarizers suffer steep uninstall rates because unprompted pings disrupt deep focus. Sentinel passively ingests standup transcripts and Git commit events, surfacing discrepancies strictly when a human queries it.
 
 - **Proof of Work:** Shipped an 8-step live demo on Lovable and authored a 400-line Notion PRD with state transition matrices.
 - 🔗 **Explore:** [Live Prototype](https://echo-sentinel-08.lovable.app) · [Notion PRD](https://app.notion.com/p/PROJECT-SENTINEL-3d053f22e2b0800d891bd24a7f914c07?source=copy_link)
 
-*Follow-up question:* Would you like to know how Sentinel detects state drift between standups and Git commits, or hear about FinMate AI's deterministic SQL guardrails?`;
+*Follow-up question:* Would you like to know how I detect state drift between standups and Git commits, or hear about FinMate AI's deterministic SQL guardrails?`;
       } else if (lastMessage.includes('finmate') || lastMessage.includes('math') || lastMessage.includes('hallucinat')) {
-        fallbackText = `**FinMate AI** addresses the steep user drop-off in personal finance tracking caused by tedious 6-field forms, while solving the critical flaw of pure LLM chatbots: **arithmetic hallucinations**.
+        fallbackText = `In **FinMate AI**, I addressed the steep user drop-off in personal finance tracking caused by tedious 6-field forms, while solving the critical flaw of pure LLM chatbots: **arithmetic hallucinations**.
 
-**The Decoupled Architecture:**
+**My Decoupled Architecture:**
 1. **Unstructured Ingestion:** Multimodal models (voice notes, receipt snapshots via OCR, natural text) are restricted strictly to intent & entity extraction (JSON).
 2. **Deterministic Accounting:** 100% of arithmetic calculations and balance aggregations are delegated to concurrency-safe PostgreSQL stored procedures (RPCs).
 3. **Evidence-Linked Ledger:** Every AI summary links directly to underlying transaction rows with zero math errors.
 
 - 🔗 **Explore:** [Live Prototype](https://tell-finmate-ai.lovable.app) · [Notion PRD](https://app.notion.com/p/FINMATE-AI-3d053f22e2b080479a82e50becf237f2?source=copy_link)
 
-*Follow-up question:* Would you like to hear about the trade-offs Sohan made when cutting background SMS scraping in V1?`;
+*Follow-up question:* Would you like to hear about the trade-offs I made when cutting background SMS scraping in V1?`;
       } else if (lastMessage.includes('trade-off') || lastMessage.includes('non-goal') || lastMessage.includes('decision')) {
-        fallbackText = `Sohan strongly believes that great product management is defined by **what you deliberately choose NOT to build**:
+        fallbackText = `I strongly believe that great product management is defined by **what we deliberately choose NOT to build**:
 
-1. **Project Sentinel:** Banned all autonomous unprompted channel bot alerts in V1 to protect team attention and prevent notification fatigue.
-2. **FinMate AI:** Refused to let the LLM calculate balances directly, and rejected automatic SMS scraping to preserve user privacy.
-3. **Spaces:** Enforced zero cross-space behavioral bleed to protect mathematical context purity in recommendation feeds.
-4. **SHRH:** Banned recursive LLM auto-fixing to avoid infinite hallucination loops in CI/CD prompt governance.
-5. **GiftVerse:** Cut physical vendor logistics in V1 to focus 100% on the 30–60s micro-suspense digital reveal journey.
+1. **Project Sentinel:** I banned all autonomous unprompted channel bot alerts in V1 to protect team attention and prevent notification fatigue.
+2. **FinMate AI:** I refused to let the LLM calculate balances directly, and rejected automatic SMS scraping to preserve user privacy.
+3. **Spaces:** I enforced zero cross-space behavioral bleed to protect mathematical context purity in recommendation feeds.
+4. **SHRH:** I banned recursive LLM auto-fixing to avoid infinite hallucination loops in CI/CD prompt governance.
+5. **GiftVerse:** I cut physical vendor logistics in V1 to focus 100% on the 30–60s micro-suspense digital reveal journey.
 
 *Follow-up question:* Which of these trade-offs would you like to drill into further?`;
       } else {
-        fallbackText = `Hi there! I'm **Nova**, Sohan's Portfolio AI Concierge. I can answer any questions about Sohan's 5 shipped systems (**Sentinel**, **FinMate**, **Spaces**, **SHRH**, **GiftVerse**), his empirical HCI research, design trade-offs, and APM qualifications.
-
-*(Note: Live streaming is currently in demo fallback mode. Add your \`GEMINI_API_KEY\` from Google AI Studio to unlock dynamic generative Q&A!)*
+        fallbackText = `Hi! I'm **Nova**, your interactive portfolio AI companion. I'm grounded in my design logs, system architectures, and PRDs across all 5 shipped systems (**Sentinel**, **FinMate**, **Spaces**, **SHRH**, **GiftVerse**), my empirical HCI research, and my APM background.
 
 What would you like to explore first?
-- **Project Sentinel:** Why we chose a "Silent-by-Default" query model
-- **FinMate AI:** How we eliminated LLM math hallucinations via PostgreSQL RPCs
-- **Product Philosophy:** How Sohan approaches discovery and rapid Lovable prototypes`;
+- **Project Sentinel:** Why I chose a "Silent-by-Default" query model
+- **FinMate AI:** How I eliminated LLM math hallucinations via PostgreSQL RPCs
+- **Product Philosophy:** How I approach problem discovery and rapid Lovable prototypes`;
       }
 
       return res.status(200).json({
-        content: fallbackText,
-        source: 'fallback-knowledge-base'
+        content: fallbackText
       });
     }
 
@@ -137,16 +138,15 @@ What would you like to explore first?
       parts: [{ text: m.content }]
     }));
 
-    // Prioritize Gemini 3.5 Flash Lite (500 RPD quota), with cascading fallbacks
+    // Prioritize high-quota models with cascading fallbacks
     const candidateModels = [
       'gemini-3.5-flash-lite',
       'gemini-3.1-flash-lite',
-      'gemini-2.5-flash-lite',
-      'gemini-1.5-flash'
+      'gemini-flash-lite-latest',
+      'gemini-2.5-flash'
     ];
 
     let candidateText = null;
-    let usedModel = null;
     let lastError = null;
 
     for (const modelName of candidateModels) {
@@ -172,16 +172,13 @@ What would you like to explore first?
           const data = await response.json();
           candidateText = data.candidates?.[0]?.content?.parts?.[0]?.text;
           if (candidateText) {
-            usedModel = modelName;
             break;
           }
         } else {
           const errText = await response.text();
-          console.warn(`Model ${modelName} returned status ${response.status}:`, errText);
           lastError = errText;
         }
       } catch (e) {
-        console.warn(`Model ${modelName} fetch failed:`, e.message);
         lastError = e.message;
       }
     }
@@ -189,14 +186,13 @@ What would you like to explore first?
     if (!candidateText) {
       console.error('All candidate Gemini models failed. Last error:', lastError);
       return res.status(502).json({ 
-        error: 'Failed to communicate with Gemini API across candidate models', 
+        error: 'Failed to communicate with AI API across candidate models', 
         details: lastError 
       });
     }
 
     return res.status(200).json({
-      content: candidateText,
-      source: usedModel
+      content: candidateText
     });
   } catch (error) {
     console.error('Ask Nova Server Error:', error);
