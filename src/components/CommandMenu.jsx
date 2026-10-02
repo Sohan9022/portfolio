@@ -65,9 +65,10 @@ export default function CommandMenu({ isOpen, onClose, onOpenNova }) {
       ]
     },
     {
-      group: 'Live Interactive Prototypes (Lovable MVPs)',
+      group: 'Live Interactive Prototypes & MVPs',
       items: [
         { label: 'GiftVerse Moments', desc: 'Interactive 30-60s suspense unboxing engine', url: 'https://gift-verse-moments.lovable.app', icon: Play, isExternal: true },
+        { label: 'Adaptive UX Framework Prototype', desc: 'Refine UPI app frontend interactive Figma sandbox', url: 'https://www.figma.com/make/PWbUyJaOpqKLsqVlDpJOdG/Refine-UPI-app-frontend?t=aZVJGio9dMWpELlU-1', icon: Play, isExternal: true },
         { label: 'Spaces Context Switch', desc: 'Contextual telemetry firewall & isolated vector spaces', url: 'https://space-context-switch.lovable.app', icon: Layers, isExternal: true },
         { label: 'FinMate AI Voice Memory', desc: 'Multimodal capture + deterministic SQL stored procedures', url: 'https://tell-finmate-ai.lovable.app', icon: Database, isExternal: true },
         { label: 'Project Sentinel', desc: 'Silent-by-default decision & drift detection agent', url: 'https://echo-sentinel-08.lovable.app', icon: Terminal, isExternal: true }
@@ -77,6 +78,7 @@ export default function CommandMenu({ isOpen, onClose, onOpenNova }) {
       group: 'Notion PRDs & Specifications',
       items: [
         { label: 'Project Sentinel PRD', desc: 'Full Product Requirements & Decision Log', url: 'https://app.notion.com/p/PROJECT-SENTINEL-3d053f22e2b0800d891bd24a7f914c07?source=copy_link', icon: FileText, isExternal: true },
+        { label: 'AI Asana Analyst PRD', desc: 'Edge CV vs. Asynchronous GenAI for posture analytics', url: 'https://app.notion.com/p/AI-ASANA-ANALYST-3ed53f22e2b080aebdd9ec74e5845aba?source=copy_link', icon: FileText, isExternal: true },
         { label: 'GiftVerse PRD', desc: 'Experience Director & Encrypted Payload Spec', url: 'https://app.notion.com/p/GIFTVVERSE-3d053f22e2b0804b8b90cf6da95b931f?source=copy_link', icon: FileText, isExternal: true },
         { label: 'FinMate AI PRD', desc: 'Multimodal Parser & Deterministic SQL Architecture', url: 'https://app.notion.com/p/FINMATE-AI-3d053f22e2b080479a82e50becf237f2?source=copy_link', icon: FileText, isExternal: true },
         { label: 'Spaces PRD', desc: 'Vector Context Separation & Middleware SDK', url: 'https://app.notion.com/p/SPACES-3ce53f22e2b0805db12ef30ed696c7b5?source=copy_link', icon: FileText, isExternal: true }

@@ -44,13 +44,15 @@ Your mission is to warmly welcome recruiters, engineering leaders, and hiring ma
 - Live Prototype: https://tell-finmate-ai.lovable.app
 - Notion PRD: https://app.notion.com/p/FINMATE-AI-3d053f22e2b080479a82e50becf237f2?source=copy_link
 
-4. Other Shipped Systems on the Portfolio:
+4. Other Shipped Systems & Technical PRDs:
 - Spaces: Contextual Personalization Framework & Telemetry Firewall. Solves algorithmic context collapse (weekend casual gaming corrupting Monday work feeds) by isolating vector representations per active space while keeping 1 account. Live Prototype: https://space-context-switch.lovable.app | Notion PRD: https://app.notion.com/p/SPACES-3ce53f22e2b0805db12ef30ed696c7b5?source=copy_link
+- AI Asana Analyst: Real-time edge computer vision pose analytics. Decouples local edge geometry (<40ms CPU with MediaPipe BlazePose 33 landmarks + NumPy) from background asynchronous GenAI synthesis for post-session reports, preserving real-time practitioner flow without frame drops. Notion PRD: https://app.notion.com/p/AI-ASANA-ANALYST-3ed53f22e2b080aebdd9ec74e5845aba?source=copy_link
 - SHRH (Semantic Human-Readable Hashing): Autonomous prompt change governance & CI/CD safety gate (Google APM PRD format). Dual-channel gate separating topical semantic drift from deontic constraint shifts (numerical limits, permissions, RFC-2119 modal verbs). Cuts alert fatigue while quarantining policy regressions. Notion PRD: https://app.notion.com/p/SHRH-3d553f22e2b08035b164f88ad01b17b2?source=copy_link
 - GiftVerse Moments: Digital gifting reveal experiences. Turns sterile transactional gift codes into 30–60s micro-suspense unboxing journeys with an AI Experience Director, encrypted payload vaults, and zero-login recipient viewers. Live Prototype: https://gift-verse-moments.lovable.app | Notion PRD: https://app.notion.com/p/GIFTVVERSE-3d053f22e2b0804b8b90cf6da95b931f?source=copy_link
 
-5. Empirical Human-Centered Research:
+5. Empirical Human-Centered Research & Prototype:
 - AI-Driven Adaptive UX Framework for High-Stakes FinTech: Evaluated vernacular digital hesitation. Proposed a dual-mode environment pairing live transactions with an exact mirrored practice sandbox (dummy balances), in-situ Hold-to-Translate, and Circle-to-Understand gesture inspections.
+- Interactive Figma Prototype: https://www.figma.com/make/PWbUyJaOpqKLsqVlDpJOdG/Refine-UPI-app-frontend?t=aZVJGio9dMWpELlU-1
 
 6. Patents & Honors:
 - Patent Filed: South African Patent Office (2025) — AI-Powered Lost & Found Matching System (5-factor blind multimodal scoring with urgency detection).
@@ -118,13 +120,35 @@ Most AI summarizers suffer steep uninstall rates because unprompted pings disrup
 5. **GiftVerse:** I cut physical vendor logistics in V1 to focus 100% on the 30–60s micro-suspense digital reveal journey.
 
 *Follow-up question:* Which of these trade-offs would you like to drill into further?`;
+      } else if (lastMessage.includes('asana') || lastMessage.includes('yoga') || lastMessage.includes('posture') || lastMessage.includes('vision')) {
+        fallbackText = `In **AI Asana Analyst**, I designed a real-time computer vision yoga analytics system solving a critical edge AI bottleneck: **protecting the 40ms per-frame budget**.
+
+**The Decoupled Architecture:**
+1. **Edge Geometry (<40ms CPU):** MediaPipe BlazePose extracts 33 3D skeletal landmarks while NumPy computes joint angles against a deterministic PoseRules table locally, triggering offline audio alerts (pyttsx3) with a 3s cooldown.
+2. **Asynchronous GenAI Synthesis:** On detected violations, a background thread formats violation payloads for post-session reflective PDF reports with silent fallback to rule-based strings if cloud APIs time out (>5s), guaranteeing the live 25 FPS camera feed is never blocked.
+
+- 🔗 **Explore:** [AI Asana Analyst Notion PRD](https://app.notion.com/p/AI-ASANA-ANALYST-3ed53f22e2b080aebdd9ec74e5845aba?source=copy_link)
+
+*Follow-up question:* Would you like to know how I engineered the audio-visual cooldown to prevent practitioner cognitive overload?`;
+      } else if (lastMessage.includes('adaptive') || lastMessage.includes('upi') || lastMessage.includes('sandbox') || lastMessage.includes('figma')) {
+        fallbackText = `In my **AI-Driven Adaptive UX Framework**, I tackled the "Static Interface Fallacy" in high-stakes FinTech where low-literacy and vernacular users suffer operational apprehension and fear of irreversible monetary loss.
+
+**Core Interventions:**
+1. **Zero-Risk Practice Sandbox:** An exact mirrored application replica populated with simulated dummy balances and billers so users build tactile muscle memory before committing real funds.
+2. **In-Situ "Hold-to-Translate":** Contextual vernacular translations for regulatory loanwords (e.g. Mandate, Autopay) on touch without leaving the screen.
+3. **"Circle-to-Understand":** Gesture-anchored conversational guidance directly on active UI components.
+
+- 🔗 **Explore:** [Interactive Figma Prototype](https://www.figma.com/make/PWbUyJaOpqKLsqVlDpJOdG/Refine-UPI-app-frontend?t=aZVJGio9dMWpELlU-1)
+
+*Follow-up question:* Would you like to explore how this framework triangulated qualitative user attitudes with transaction failure data?`;
       } else {
-        fallbackText = `Hi! I'm **Nova**, your interactive portfolio AI companion. I'm grounded in my design logs, system architectures, and PRDs across all 5 shipped systems (**Sentinel**, **FinMate**, **Spaces**, **SHRH**, **GiftVerse**), my empirical HCI research, and my APM background.
+        fallbackText = `Hi! I'm **Nova**, your interactive portfolio AI companion. I'm grounded in my design logs, system architectures, and PRDs across all 5 shipped systems (**Sentinel**, **FinMate**, **Spaces**, **SHRH**, **GiftVerse**), my AI Asana Analyst PRD, my empirical HCI research, and my APM background.
 
 What would you like to explore first?
 - **Project Sentinel:** Why I chose a "Silent-by-Default" query model
 - **FinMate AI:** How I eliminated LLM math hallucinations via PostgreSQL RPCs
-- **Product Philosophy:** How I approach problem discovery and rapid Lovable prototypes`;
+- **AI Asana Analyst:** Real-time edge CV decoupled from asynchronous GenAI
+- **Adaptive UX Framework:** Exploring the interactive Figma practice sandbox`;
       }
 
       return res.status(200).json({

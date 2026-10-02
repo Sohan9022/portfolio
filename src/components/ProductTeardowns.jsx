@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PRODUCT_TEARDOWNS } from '../data/projectsData';
-import { Check, AlertCircle, ChevronDown, ChevronUp, Lightbulb, Target, Compass, Sparkles } from 'lucide-react';
+import { Check, AlertCircle, ChevronDown, ChevronUp, Lightbulb, Target, Compass, Sparkles, ArrowUpRight, FileText, Play } from 'lucide-react';
 
 export default function ProductTeardowns() {
   // Allow toggling open Sohan's notes on each teardown card
@@ -160,6 +160,38 @@ export default function ProductTeardowns() {
                           </motion.div>
                         )}
                       </AnimatePresence>
+                    </div>
+                  )}
+
+                  {/* External Artifact Links: Notion PRD or Figma Prototype */}
+                  {(item.notionUrl || item.figmaUrl) && (
+                    <div className="pt-3 border-t border-[#F0F0EC] flex flex-wrap gap-2">
+                      {item.notionUrl && (
+                        <a
+                          href={item.notionUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#121214] text-white hover:bg-black text-xs font-mono font-medium transition-all group shadow-2xs active:scale-95"
+                          title="Read full AI Asana Analyst PRD in Notion"
+                        >
+                          <FileText className="w-3.5 h-3.5 text-blue-400" />
+                          <span>Notion PRD Spec</span>
+                          <ArrowUpRight className="w-3 h-3 text-slate-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                        </a>
+                      )}
+                      {item.figmaUrl && (
+                        <a
+                          href={item.figmaUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-900 border border-blue-200/80 text-xs font-mono font-semibold transition-all group shadow-2xs active:scale-95"
+                          title="Open interactive Figma prototype in a new tab"
+                        >
+                          <Play className="w-3.5 h-3.5 text-blue-600 fill-current" />
+                          <span>Figma Prototype</span>
+                          <ArrowUpRight className="w-3 h-3 text-blue-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                        </a>
+                      )}
                     </div>
                   )}
 

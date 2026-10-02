@@ -16,7 +16,9 @@ import {
   Cpu,
   Eye,
   Sparkles,
-  Lightbulb
+  Lightbulb,
+  Play,
+  ArrowUpRight
 } from 'lucide-react';
 
 export default function ResearchSpotlight() {
@@ -43,11 +45,26 @@ export default function ResearchSpotlight() {
               {data.title}
             </h2>
           </div>
-          <div className="flex flex-col sm:items-end gap-1">
-            <span className="text-xs font-mono font-medium text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 rounded inline-flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              {data.publicationStatus}
-            </span>
+          <div className="flex flex-col sm:items-end gap-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-xs font-mono font-medium text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 rounded inline-flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                {data.publicationStatus}
+              </span>
+              {data.figmaUrl && (
+                <a
+                  href={data.figmaUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#121214] hover:bg-black text-white text-xs font-mono font-semibold transition-all group shadow-2xs active:scale-95"
+                  title="Open live interactive Figma prototype"
+                >
+                  <Play className="w-3 h-3 text-blue-400 fill-current" />
+                  <span>Figma Prototype</span>
+                  <ArrowUpRight className="w-3 h-3 text-slate-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </a>
+              )}
+            </div>
             <span className="text-[11px] font-mono text-[#9E9E96]">
               {data.lab}
             </span>
@@ -66,10 +83,22 @@ export default function ResearchSpotlight() {
                 "{data.context}"
               </p>
             </div>
-            <div className="p-4 rounded-xl bg-white border border-[#EAEAE7] shrink-0 text-xs font-mono space-y-1.5 min-w-[240px]">
+            <div className="p-4 rounded-xl bg-white border border-[#EAEAE7] shrink-0 text-xs font-mono space-y-2 min-w-[240px]">
               <span className="text-[10px] uppercase text-[#9E9E96] font-bold block">Proposed Direction</span>
               <div className="text-[#121214] font-medium">Adaptive Interface Runtime</div>
               <div className="text-[#121214] font-medium">Zero-Risk Practice Sandbox</div>
+              {data.figmaUrl && (
+                <a
+                  href={data.figmaUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-flex items-center justify-center gap-1.5 w-full py-2 px-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-sans font-semibold transition-all group shadow-xs active:scale-95"
+                >
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                  <span>Explore Figma Prototype</span>
+                  <ExternalLink className="w-3 h-3 text-blue-200" />
+                </a>
+              )}
               <div className="text-blue-700 font-semibold pt-1 border-t border-[#F0F0EC]">
                 User-Centric Architecture
               </div>
@@ -336,8 +365,23 @@ export default function ResearchSpotlight() {
               Empirical UX Research & Adaptive Interface Design: Human-Centered HCI for Vernacular Inclusivity
             </span>
           </div>
-          <div className="shrink-0 text-blue-700 bg-white px-3 py-1 rounded border border-[#EAEAE7] font-semibold">
-            Ready for APM Technical Review
+          <div className="flex items-center gap-2">
+            {data.figmaUrl && (
+              <a
+                href={data.figmaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 text-blue-700 hover:text-blue-900 bg-white hover:bg-blue-50/50 px-3 py-1.5 rounded-lg border border-[#EAEAE7] hover:border-blue-300 font-semibold flex items-center gap-1.5 transition-all shadow-2xs"
+                title="Open interactive Figma prototype"
+              >
+                <Play className="w-3.5 h-3.5 text-blue-600 fill-current" />
+                <span>Interactive Figma Prototype</span>
+                <ArrowUpRight className="w-3 h-3 text-blue-500" />
+              </a>
+            )}
+            <div className="shrink-0 text-[#121214] bg-white px-3 py-1.5 rounded-lg border border-[#EAEAE7] font-semibold">
+              Ready for APM Technical Review
+            </div>
           </div>
         </div>
 
