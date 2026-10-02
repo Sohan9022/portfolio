@@ -298,21 +298,21 @@ export default function AskNova({ externalOpen, onExternalClose }) {
             title="Ask Nova · Interactive AI Companion (Alt+N)"
             aria-label="Ask Nova Interactive AI Companion"
           >
-            {/* Holographic Glowing Companion Avatar */}
-            <div className="relative w-8 h-8 rounded-full overflow-hidden ring-2 ring-cyan-500/40 shadow-[0_0_12px_rgba(6,182,212,0.35)] shrink-0">
+            {/* Cute Notion-Style Avatar */}
+            <div className="relative w-8 h-8 rounded-full overflow-hidden border border-slate-600/80 bg-[#E0F2FE] shadow-xs shrink-0 group-hover:scale-105 transition-transform duration-200">
               <img 
-                src="/nova-avatar.jpg" 
+                src="/nova-avatar.png" 
                 alt="Nova AI Avatar" 
-                className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-300"
+                className="w-full h-full object-cover"
                 onError={(e) => {
                   e.target.style.display = 'none';
                   e.target.nextSibling.style.display = 'flex';
                 }}
               />
-              <div className="hidden w-full h-full bg-gradient-to-tr from-cyan-600 to-indigo-600 items-center justify-center text-[10px] font-bold text-white">
+              <div className="hidden w-full h-full bg-blue-600 items-center justify-center text-[10px] font-bold text-white">
                 N
               </div>
-              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-[#121214] animate-pulse"></span>
+              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-[#121214]"></span>
             </div>
 
             <div className="flex flex-col text-left">
@@ -354,9 +354,9 @@ export default function AskNova({ externalOpen, onExternalClose }) {
               {/* Header */}
               <div className="px-4 py-3 border-b border-[#EAEAE7] bg-[#FBFBFA]/95 flex items-center justify-between shrink-0">
                 <div className="flex items-center gap-2.5">
-                  <div className="relative w-8 h-8 rounded-full overflow-hidden ring-2 ring-cyan-500/30 shadow-[0_0_10px_rgba(6,182,212,0.25)] shrink-0">
+                  <div className="relative w-8 h-8 rounded-full overflow-hidden border border-[#D5D5CE] shadow-xs bg-[#E0F2FE] shrink-0">
                     <img 
-                      src="/nova-avatar.jpg" 
+                      src="/nova-avatar.png" 
                       alt="Nova" 
                       className="w-full h-full object-cover" 
                       onError={(e) => {
@@ -364,7 +364,7 @@ export default function AskNova({ externalOpen, onExternalClose }) {
                         e.target.nextSibling.style.display = 'flex';
                       }}
                     />
-                    <div className="hidden w-full h-full bg-gradient-to-tr from-cyan-600 to-indigo-600 items-center justify-center text-xs font-bold text-white">
+                    <div className="hidden w-full h-full bg-blue-600 items-center justify-center text-xs font-bold text-white">
                       N
                     </div>
                     <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white"></span>
@@ -416,8 +416,8 @@ export default function AskNova({ externalOpen, onExternalClose }) {
                       className={`flex gap-2.5 ${isUser ? 'justify-end' : 'justify-start'}`}
                     >
                       {!isUser && (
-                        <div className="w-6 h-6 rounded-full overflow-hidden ring-1 ring-cyan-500/30 shrink-0 mt-0.5 shadow-2xs">
-                          <img src="/nova-avatar.jpg" alt="Nova" className="w-full h-full object-cover" />
+                        <div className="w-6 h-6 rounded-full overflow-hidden border border-[#D5D5CE] bg-[#E0F2FE] shrink-0 mt-0.5 shadow-2xs">
+                          <img src="/nova-avatar.png" alt="Nova" className="w-full h-full object-cover" />
                         </div>
                       )}
 
@@ -447,8 +447,8 @@ export default function AskNova({ externalOpen, onExternalClose }) {
                     animate={{ opacity: 1, y: 0 }}
                     className="flex gap-2.5 justify-start"
                   >
-                    <div className="w-6 h-6 rounded-full overflow-hidden ring-1 ring-cyan-500/30 shrink-0 mt-0.5">
-                      <img src="/nova-avatar.jpg" alt="Nova" className="w-full h-full object-cover" />
+                    <div className="w-6 h-6 rounded-full overflow-hidden border border-[#D5D5CE] bg-[#E0F2FE] shrink-0 mt-0.5">
+                      <img src="/nova-avatar.png" alt="Nova" className="w-full h-full object-cover" />
                     </div>
                     <div className="p-3 rounded-2xl rounded-tl-xs bg-[#F8F8F6] border border-[#EAEAE7] flex items-center gap-2 text-xs font-mono text-[#666663]">
                       <Sparkles className="w-3.5 h-3.5 text-blue-600 animate-spin" />
