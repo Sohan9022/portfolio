@@ -141,16 +141,16 @@ export const PROJECTS = [
     architecture: [
       'Dual-Channel Gate: SHA-256 cryptographic bitwise authority + Semantic Triage Channel',
       'Constraint Parser: Evaluates numerical limits, permissions, negations, and RFC-2119 modal verbs',
-      '4-Quadrant Autonomous Gate: Auto-merges ~70% of safe PRs while quarantining policy regressions in CI/CD',
+      '4-Quadrant Autonomous Gate: Auto-merges safe PRs while quarantining policy regressions in CI/CD',
     ],
     tradeoffs: 'Excluded automated LLM self-fixing in V1 to eliminate recursive hallucination loops; kept human review on flagged policy diffs.',
-    specDetails: '500-line comprehensive PRD formatted for Google APM standards, benchmarked across 2,744 revision pairs with 92.6% defect escape reduction.',
+    specDetails: 'Comprehensive PRD formatted for Google APM standards, specifying dual-channel triage gate, state machines, and CI/CD policy quarantine workflows.',
     diagramType: 'triage-matrix',
     diagramData: {
       quadrants: [
-        { q: 'Quadrant A', action: 'Auto-Approve', rule: 'Low Drift · No Constraint Shift (~70%)' },
-        { q: 'Quadrant B', action: 'Quarantine', rule: 'Operational Constraint Downgrade (~5%)' },
-        { q: 'Quadrant C', action: 'Triage Review', rule: 'High Topical Semantic Shift (~25%)' },
+        { q: 'Quadrant A', action: 'Auto-Approve', rule: 'Low Drift · No Constraint Shift' },
+        { q: 'Quadrant B', action: 'Quarantine', rule: 'Operational Constraint Downgrade' },
+        { q: 'Quadrant C', action: 'Triage Review', rule: 'Topical Semantic Shift' },
         { q: 'Quadrant D', action: 'Quarantine', rule: 'High Drift + Constraint Shift' }
       ]
     }
@@ -180,13 +180,13 @@ export const HOW_I_THINK = [
     number: '04',
     title: 'Balance User Value, Technical Feasibility & Constraints',
     principle: 'Great PMs define what not to build and set clear system boundaries.',
-    detail: 'In FinMate, I restricted the LLM solely to intent parsing, routing all math to deterministic PostgreSQL RPCs. In SHRH, I chose local CPU inference over cloud LLMs to eliminate $15k/mo cost and privacy egress.'
+    detail: 'In FinMate, I restricted the LLM solely to intent parsing, routing all math to deterministic PostgreSQL RPCs. In SHRH, I chose local CPU inference over cloud LLMs to eliminate recurring cloud compute costs and privacy data egress.'
   },
   {
     number: '05',
     title: 'Decide with Evidence, Ship with Conviction',
     principle: 'Measure the North Star, but protect user trust with guardrail counter-metrics.',
-    detail: 'In SHRH, the North Star was 70% Autonomous Safe Triage Rate (ASTR), paired with a zero-tolerance counter-metric: 0.0% false alarms on benign diffs to prevent developer distrust.'
+    detail: 'In SHRH, the North Star was Autonomous Safe Triage Rate (ASTR), paired with a zero-tolerance counter-metric: zero false alarms on benign diffs to prevent developer distrust.'
   }
 ];
 

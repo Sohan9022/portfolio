@@ -24,7 +24,7 @@ def build_top_tier_resume():
         return p
 
     def add_heading(title):
-        p = add_p(space_before=4, space_after=1.5)
+        p = add_p(space_before=3.5, space_after=1.5)
         run = p.add_run(title)
         run.font.name = 'Calibri'
         run.font.size = Pt(9.5)
@@ -107,7 +107,7 @@ def build_top_tier_resume():
     add_heading('SELECTED PRODUCT SYSTEMS & VALIDATED PROTOTYPES')
 
     # Project 1: Project Sentinel
-    p = add_p(space_before=1.5, space_after=0.5)
+    p = add_p(space_before=1.2, space_after=0.5)
     r = p.add_run('Project Sentinel — AI Decision Memory & State-Drift Agent  |  Enterprise AI  |  Live MVP: ')
     r.font.name = 'Calibri'; r.font.size = Pt(9); r.font.bold = True
     add_hyperlink(p, 'https://echo-sentinel-08.lovable.app', 'echo-sentinel-08.lovable.app', font_size_pt=9, bold=True)
@@ -116,19 +116,15 @@ def build_top_tier_resume():
     add_hyperlink(p, 'https://app.notion.com/p/PROJECT-SENTINEL-3d053f22e2b0800d891bd24a7f914c07?source=copy_link', 'Notion PRD', font_size_pt=9, bold=True)
 
     p = add_p(space_before=0, space_after=0.5)
-    r = p.add_run('• Discovery & Problem Framing: Identified critical engineering context loss across daily standups and Slack threads; observed that existing summary bots suffer 80%+ uninstall rates due to unsolicited channel interruptions that break deep work.')
+    r = p.add_run('• Discovery & Problem Framing: Identified critical engineering context loss across daily standups and Slack threads; recognized that existing summary bots suffer steep uninstall rates due to unsolicited channel pings that interrupt deep work.')
     r.font.name = 'Calibri'; r.font.size = Pt(8.5)
 
-    p = add_p(space_before=0, space_after=0.5)
-    r = p.add_run('• Product Strategy & Scoping: Established the "Silent-by-Default" thesis—ingests audio transcripts and Git/Jira streams passively, surfacing drift only when queried; defined explicit V1 non-goals (no automated ticket spam, zero velocity surveillance).')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5)
-
-    p = add_p(space_before=0, space_after=1.5)
-    r = p.add_run('• Execution & Validation: Shipped interactive 8-step clickable MVP on Lovable with append-only PostgreSQL event schema mapping detected drift to immutable transcript IDs; authored 400-line Notion PRD with state machines and query syntax.')
+    p = add_p(space_before=0, space_after=1.2)
+    r = p.add_run('• Silent-by-Default Architecture & Prototype: Established "Silent-by-Default" principle—ingests transcripts and Git/Jira streams passively, auditing "said vs confirmed" drift only on explicit human query; shipped 8-step live Lovable MVP backed by append-only PostgreSQL event logs; authored full Notion PRD.')
     r.font.name = 'Calibri'; r.font.size = Pt(8.5)
 
     # Project 2: FinMate AI
-    p = add_p(space_before=1.5, space_after=0.5)
+    p = add_p(space_before=1.2, space_after=0.5)
     r = p.add_run('FinMate AI — Conversational Expense Memory & Deterministic Accounting  |  FinTech Systems  |  Live MVP: ')
     r.font.name = 'Calibri'; r.font.size = Pt(9); r.font.bold = True
     add_hyperlink(p, 'https://tell-finmate-ai.lovable.app', 'tell-finmate-ai.lovable.app', font_size_pt=9, bold=True)
@@ -137,19 +133,15 @@ def build_top_tier_resume():
     add_hyperlink(p, 'https://app.notion.com/p/FINMATE-AI-3d053f22e2b080479a82e50becf237f2?source=copy_link', 'Notion PRD', font_size_pt=9, bold=True)
 
     p = add_p(space_before=0, space_after=0.5)
-    r = p.add_run('• User Friction & Insight: Addressed high user abandonment in personal finance caused by 6-field manual logging forms, while identifying that pure conversational LLMs hallucinate calculations, making them untrustworthy for financial balances.')
+    r = p.add_run('• User Friction & System Guardrails: Addressed steep user abandonment in personal finance caused by tedious 6-field forms, while identifying that conversational LLMs hallucinate arithmetic, making them untrustworthy for real financial balances.')
     r.font.name = 'Calibri'; r.font.size = Pt(8.5)
 
-    p = add_p(space_before=0, space_after=0.5)
-    r = p.add_run('• System Guardrails & Architecture: Decoupled unstructured capture from arithmetic—restricted multimodal models (voice notes, receipt OCR, natural chat) strictly to intent parsing, delegating 100% of calculations to concurrency-safe PostgreSQL stored procedures.')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5)
-
-    p = add_p(space_before=0, space_after=1.5)
-    r = p.add_run('• Validation & Prototype: Shipped live Lovable MVP featuring voice transcription, debt reconciliation, and 100% citation-backed balance summaries tied to underlying ledger rows with zero math hallucinations; authored complete Notion PRD.')
+    p = add_p(space_before=0, space_after=1.2)
+    r = p.add_run('• Decoupled Architecture & Prototype: Decoupled unstructured capture from arithmetic—restricted multimodal models (voice notes, receipt OCR, natural chat) strictly to intent parsing, delegating 100% of calculations to deterministic PostgreSQL RPCs; shipped live Lovable MVP with citation-backed ledger rows; authored Notion PRD.')
     r.font.name = 'Calibri'; r.font.size = Pt(8.5)
 
     # Project 3: Spaces
-    p = add_p(space_before=1.5, space_after=0.5)
+    p = add_p(space_before=1.2, space_after=0.5)
     r = p.add_run('Spaces — Contextual Personalization Framework & Telemetry Firewall  |  AI Personalization  |  Live MVP: ')
     r.font.name = 'Calibri'; r.font.size = Pt(9); r.font.bold = True
     add_hyperlink(p, 'https://space-context-switch.lovable.app', 'space-context-switch.lovable.app', font_size_pt=9, bold=True)
@@ -158,37 +150,42 @@ def build_top_tier_resume():
     add_hyperlink(p, 'https://app.notion.com/p/SPACES-3ce53f22e2b0805db12ef30ed696c7b5?source=copy_link', 'Notion PRD', font_size_pt=9, bold=True)
 
     p = add_p(space_before=0, space_after=0.5)
-    r = p.add_run('• Problem & Context Collapse: Tackled algorithmic context collapse in feed recommendation systems where casual weekend browsing pollutes professional machine learning feeds, forcing users into multi-account friction.')
+    r = p.add_run('• Problem & Context Collapse: Solved algorithmic context collapse in feed recommendation systems where casual entertainment browsing corrupts professional engineering feeds, forcing users to juggle multiple friction-heavy burner accounts.')
     r.font.name = 'Calibri'; r.font.size = Pt(8.5)
 
-    p = add_p(space_before=0, space_after=1.5)
-    r = p.add_run('• Architecture & Outcome: Designed a "Context Firewall" middleware isolating behavioral telemetry and vector embedding stores per active space while keeping authentication, identity, and billing consolidated under 1 account; shipped live Lovable MVP with 4 isolated spaces; authored Notion PRD.')
+    p = add_p(space_before=0, space_after=1.2)
+    r = p.add_run('• Context Firewall & Prototype: Designed middleware isolating behavioral telemetry and vector embedding stores per active space while keeping identity and billing consolidated under a single account; shipped live Lovable MVP with 4 isolated spaces; authored full Notion PRD.')
     r.font.name = 'Calibri'; r.font.size = Pt(8.5)
 
     # Project 4: SHRH
-    p = add_p(space_before=1.5, space_after=0.5)
-    r = p.add_run('SHRH — Semantic Human-Readable Hashing  |  AI Governance & Developer Tools  |  Google APM PRD Specification')
+    p = add_p(space_before=1.2, space_after=0.5)
+    r = p.add_run('SHRH — Semantic Human-Readable Hashing  |  AI Governance & CI/CD Safety  |  ')
     r.font.name = 'Calibri'; r.font.size = Pt(9); r.font.bold = True
+    add_hyperlink(p, 'https://app.notion.com/p/SHRH-3d553f22e2b08035b164f88ad01b17b2?source=copy_link', 'Notion PRD', font_size_pt=9, bold=True)
 
     p = add_p(space_before=0, space_after=0.5)
-    r = p.add_run('• Problem & Metric Design: Addressed developer alert fatigue where standard SHA-256 hashes treat harmless formatting typo edits identically to critical security regressions (\'MUST enforce MFA\' → \'MAY enforce MFA\').')
+    r = p.add_run('• Discovery & Problem Framing: Identified developer alert fatigue in CI/CD pipelines where binary SHA-256 hashes treat cosmetic formatting fixes identically to dangerous operational policy regressions (\'MUST enforce MFA\' → \'MAY enforce MFA\'); recognized that cosine similarity fails to catch discrete deontic rule inversions.')
     r.font.name = 'Calibri'; r.font.size = Pt(8.5)
 
-    p = add_p(space_before=0, space_after=1.5)
-    r = p.add_run('• Triage Engine & Benchmark: Architected dual-channel gate separating topical semantic drift from deontic constraint shifts; saved $15k/mo in cloud LLM costs via local execution; benchmarked on 2,744 revisions (slashed defect escapes by 92.6% with 0.0% false alarms on benign edits); authored Google APM PRD spec (Maya Lin ICP, Autonomous Safe Triage Rate metric).')
+    p = add_p(space_before=0, space_after=1.2)
+    r = p.add_run('• Architecture & Governance Gate: Designed orthogonal dual-channel gate separating topical semantic drift from deontic constraint shifts (numerical limits, permissions, RFC-2119 modal verbs); auto-merges safe PRs while quarantining policy regressions; eliminated recursive LLM self-fixing in V1 to prevent hallucination loops; authored Google APM PRD spec.')
     r.font.name = 'Calibri'; r.font.size = Pt(8.5)
 
     # Project 5: GiftVerse Moments
-    p = add_p(space_before=1.5, space_after=0.5)
-    r = p.add_run('GiftVerse Moments — Digital Gifting Reveal Experiences  |  Consumer AI  |  Live MVP: ')
+    p = add_p(space_before=1.2, space_after=0.5)
+    r = p.add_run('GiftVerse Moments — Digital Gifting Reveal Experiences  |  Consumer AI & Interactive UX  |  Live MVP: ')
     r.font.name = 'Calibri'; r.font.size = Pt(9); r.font.bold = True
     add_hyperlink(p, 'https://gift-verse-moments.lovable.app', 'gift-verse-moments.lovable.app', font_size_pt=9, bold=True)
     r = p.add_run('  |  ')
     r.font.name = 'Calibri'; r.font.size = Pt(9); r.font.bold = True
     add_hyperlink(p, 'https://app.notion.com/p/GIFTVVERSE-3d053f22e2b0804b8b90cf6da95b931f?source=copy_link', 'Notion PRD', font_size_pt=9, bold=True)
 
-    p = add_p(space_before=0, space_after=1.5)
-    r = p.add_run('• Product Discovery & MVP: Identified that digital gift cards feel sterile and transactional; designed an AI Experience Director choreographing 30–60s micro-suspense reveal journeys with encrypted payload isolation; shipped live Lovable MVP; authored Notion PRD.')
+    p = add_p(space_before=0, space_after=0.5)
+    r = p.add_run('• User Friction & Scoping: Identified that digital gift cards are frictionless to send but sterile to receive, delivering alphanumeric codes that strip away the emotional anticipation of physical unboxing; deliberately cut third-party vendor checkouts in V1 to focus entirely on the micro-suspense reveal experience.')
+    r.font.name = 'Calibri'; r.font.size = Pt(8.5)
+
+    p = add_p(space_before=0, space_after=1.2)
+    r = p.add_run('• Micro-Suspense Engine & Prototype: Designed AI Experience Director choreographing 30–60s interactive reveal journeys with personalized contextual clues and encrypted payload vaults decrypted at climax; shipped live Lovable MVP with zero-friction recipient mobile viewer (no login required); authored full Notion PRD.')
     r.font.name = 'Calibri'; r.font.size = Pt(8.5)
 
     # 4. PATENTS & HUMAN-CENTERED RESEARCH
@@ -204,7 +201,7 @@ def build_top_tier_resume():
     # 5. HONORS & ACHIEVEMENTS
     add_heading('HONORS & COMPETITIONS')
     p = add_p(space_before=1, space_after=0.5)
-    r = p.add_run('• India Innovates Hackathon — National Finalist: Selected in top ~1,000 teams nationwide out of 6,000+ participating teams (Top ~16%)')
+    r = p.add_run('• India Innovates Hackathon — National Finalist: Selected among top finalist teams nationwide out of 6,000+ participating teams')
     r.font.name = 'Calibri'; r.font.size = Pt(8.5)
 
     p = add_p(space_before=0, space_after=2)

@@ -487,7 +487,7 @@ export default function InteractiveShowcase() {
                       <div className="flex items-center justify-between pb-2 border-b border-[#F0F0EC] text-xs font-mono">
                         <span className="text-[#666663]">2D CI/CD Risk Evaluation Gate</span>
                         <span className="text-blue-700 font-semibold bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
-                          92.6% Defect Escape Reduction
+                          Dual-Channel Deontic Triage
                         </span>
                       </div>
 

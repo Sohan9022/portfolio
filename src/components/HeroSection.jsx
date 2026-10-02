@@ -53,7 +53,7 @@ const PM_STAGES = [
     name: 'Test',
     short: '05',
     mindset: 'Evaluate with objective evidence against a defined North Star and guardrail counter-metrics.',
-    example: 'Benchmarked SHRH on 2,744 pairs: achieved 70% auto-triage with 0.0% false alarms on benign edits.'
+    example: 'Evaluated SHRH CI/CD gate: autonomous triage separating safe prompt edits from critical operational regressions.'
   },
   {
     id: 'iterate',

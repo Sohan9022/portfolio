@@ -273,7 +273,7 @@ export default function SystemDiagram({ projectId }) {
               GOVERNANCE ENGINE: 4-QUADRANT TRIAGE GATE
             </span>
             <span className="text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200/60">
-              92.6% Defect Escape Reduction
+              Autonomous CI/CD Safety Gate
             </span>
           </div>
 
@@ -287,7 +287,7 @@ export default function SystemDiagram({ projectId }) {
                 <Check className="w-3 h-3 text-emerald-600" />
               </div>
               <div className="text-[11px] font-semibold text-emerald-950 mt-0.5">Auto-Approve</div>
-              <div className="text-[9px] text-emerald-700 mt-1">~70% safe PRs (zero human review latency)</div>
+              <div className="text-[9px] text-emerald-700 mt-1">Benign formatting & typos (zero review latency)</div>
             </motion.div>
 
             <motion.div 
@@ -299,7 +299,7 @@ export default function SystemDiagram({ projectId }) {
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
               </div>
               <div className="text-[11px] font-semibold text-amber-950 mt-0.5">Triage Review</div>
-              <div className="text-[9px] text-amber-700 mt-1">~25% topical drift (assign to prompt owner)</div>
+              <div className="text-[9px] text-amber-700 mt-1">Topical semantic drift (prompt owner review)</div>
             </motion.div>
 
             <motion.div 
