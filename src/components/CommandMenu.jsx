@@ -81,6 +81,7 @@ export default function CommandMenu({ isOpen, onClose }) {
     {
       group: 'Candidate Actions',
       items: [
+        { label: 'View / Download Resume (PDF)', desc: 'Calibrated 1-page APM resume (PDF format)', url: '/Sohan_Gadewar_Resume.pdf', icon: FileText, isExternal: true },
         { label: 'Download Resume (.docx)', desc: 'Calibrated 1-page APM resume (Word format)', url: '/Sohan_Gadewar_Resume.docx', icon: FileText, isDownload: true },
         { label: 'Copy Direct Email', desc: email, action: handleCopyEmail, icon: copied ? Check : Mail }
       ]

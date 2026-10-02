@@ -49,12 +49,12 @@ export default function Footer() {
               <motion.a
                 whileHover={{ y: -1 }}
                 whileTap={{ scale: 0.98 }}
-                href="/Sohan_Gadewar_Resume.docx"
+                href="/Sohan_Gadewar_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-sm font-medium text-[#121214] bg-[#F6F6F3] hover:bg-[#EAEAE7] border border-[#EAEAE7] transition-colors"
               >
-                <span>View Online</span>
+                <span>View Online (PDF)</span>
                 <ArrowUpRight className="w-3.5 h-3.5 text-[#666663]" />
               </motion.a>
             </div>
