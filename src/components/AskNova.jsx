@@ -17,6 +17,11 @@ import {
 
 const STARTER_PROMPTS = [
   {
+    icon: Sparkles,
+    text: "Explain your projects in simple words",
+    category: "Simple Overview"
+  },
+  {
     icon: Terminal,
     text: "Why is Sentinel 'Silent-by-Default'?",
     category: "Enterprise AI"
@@ -30,11 +35,6 @@ const STARTER_PROMPTS = [
     icon: Compass,
     text: "What trade-offs did you make across your systems?",
     category: "Product Strategy"
-  },
-  {
-    icon: ShieldCheck,
-    text: "Summarize your engineering background & hackathons",
-    category: "Candidate Deep-Dive"
   }
 ];
 
