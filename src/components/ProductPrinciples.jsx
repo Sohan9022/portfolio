@@ -81,15 +81,22 @@ export default function ProductPrinciples() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.18 }}
-            className="rounded-2xl bg-white border border-[#EAEAE7] p-6 sm:p-8 shadow-[0_2px_8px_rgba(0,0,0,0.02)]"
+            className="rounded-2xl bg-white border border-[#E2E2DC] p-6 sm:p-9 shadow-[0_4px_20px_rgba(0,0,0,0.02)]"
           >
-            <div className="flex items-center gap-2 font-mono text-xs text-blue-700 font-bold mb-2">
-              <span>Principle {HOW_I_THINK[selectedIdx].number} in Detail</span>
+            <div className="flex items-center justify-between pb-3 border-b border-[#F0F0EC] mb-4 text-xs font-mono">
+              <span className="text-blue-700 font-bold uppercase tracking-wider">
+                Principle {HOW_I_THINK[selectedIdx].number} · Product Operating System
+              </span>
+              <span className="text-[#9E9E96]">
+                PM Mental Framework
+              </span>
             </div>
-            <h4 className="text-xl sm:text-2xl font-bold text-[#121214] mb-3">
+            
+            <h4 className="font-editorial italic text-2xl sm:text-3xl font-normal text-[#121214] mb-4 leading-snug">
               "{HOW_I_THINK[selectedIdx].principle}"
             </h4>
-            <p className="text-sm text-[#4A4A46] leading-relaxed max-w-3xl">
+            
+            <p className="text-sm sm:text-base text-[#4A4A46] leading-relaxed max-w-3xl font-normal">
               {HOW_I_THINK[selectedIdx].detail}
             </p>
           </motion.div>

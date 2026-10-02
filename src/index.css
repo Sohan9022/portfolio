@@ -4,23 +4,44 @@
 
 @layer base {
   body {
-    @apply font-sans bg-[#FBFBFA] text-[#121214] antialiased selection:bg-slate-900 selection:text-white;
+    @apply font-sans bg-[#FBFBFA] text-[#121214] antialiased selection:bg-[#121214] selection:text-white;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    background-image: 
+      radial-gradient(rgba(18, 18, 20, 0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-attachment: fixed;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.025em;
+  }
+}
+
+/* Bespoke Editorial Typography & Aesthetics */
+.font-editorial {
+  font-family: 'Newsreader', Georgia, serif;
 }
 
 /* Subtle editorial paper styling */
 .editorial-card {
   background: #FFFFFF;
   border: 1px solid #EAEAE7;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 8px 24px -6px rgba(0, 0, 0, 0.03);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .editorial-card:hover {
   border-color: #D5D5CE;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 16px 32px -8px rgba(0, 0, 0, 0.05);
+}
+
+/* Studio Canvas Container */
+.studio-canvas {
+  background-image: 
+    linear-gradient(to right, rgba(234, 234, 231, 0.4) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(234, 234, 231, 0.4) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 /* Subtle custom scrollbar */
@@ -33,8 +54,16 @@
 }
 ::-webkit-scrollbar-thumb {
   background: #D8D8D3;
-  border-radius: 3px;
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #AFAFA7;
+}
+
+/* Glassmorphism panel */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(234, 234, 231, 0.85);
 }

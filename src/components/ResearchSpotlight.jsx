@@ -62,8 +62,8 @@ export default function ResearchSpotlight() {
                 <Compass className="w-3.5 h-3.5 text-blue-600" />
                 Problem Thesis & Motivation
               </span>
-              <p className="text-sm sm:text-base text-[#121214] leading-relaxed">
-                {data.context}
+              <p className="font-editorial italic text-base sm:text-lg text-[#121214] leading-relaxed">
+                "{data.context}"
               </p>
             </div>
             <div className="p-4 rounded-xl bg-white border border-[#EAEAE7] shrink-0 text-xs font-mono space-y-1.5 min-w-[240px]">

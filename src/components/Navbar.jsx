@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll } from 'framer-motion';
-import { ArrowUpRight, Menu, X, FileText, Mail, Check, Copy } from 'lucide-react';
+import { ArrowUpRight, Menu, X, FileText, Mail, Check, Copy, Search, Command } from 'lucide-react';
+import CommandMenu from './CommandMenu';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [commandMenuOpen, setCommandMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const { scrollYProgress } = useScroll();
   const email = 'sohangadewar9022@gmail.com';
@@ -77,12 +79,24 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Actions (Resume & CTA) */}
-        <div className="hidden sm:flex items-center gap-3">
+        {/* Actions (Search, Resume & CTA) */}
+        <div className="hidden sm:flex items-center gap-2.5">
+          <button
+            onClick={() => setCommandMenuOpen(true)}
+            className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-mono text-[#666663] bg-[#F1F1EE] hover:bg-[#EAEAE7] hover:text-[#121214] border border-[#E5E5E0] transition-colors"
+            title="Search & Quick Jump (⌘K)"
+          >
+            <Search className="w-3.5 h-3.5 text-[#9E9E96]" />
+            <span className="text-[11px]">Jump</span>
+            <kbd className="px-1 py-0.5 rounded bg-white text-[10px] text-[#4A4A46] border border-[#D5D5CE] font-sans">
+              ⌘K
+            </kbd>
+          </button>
+
           <a
             href="/Sohan_Gadewar_Resume.docx"
             download
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium text-[#4A4A46] hover:text-[#121214] bg-[#FFFFFF] border border-[#EAEAE7] hover:border-[#D5D5CE] shadow-sm transition-all active:scale-95"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-[#4A4A46] hover:text-[#121214] bg-[#FFFFFF] border border-[#EAEAE7] hover:border-[#D5D5CE] shadow-sm transition-all active:scale-95"
             title="Download calibrated 1-page APM resume"
           >
             <FileText className="w-3.5 h-3.5 text-slate-500" />
@@ -92,7 +106,7 @@ export default function Navbar() {
 
           <a
             href="#contact"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md text-xs font-semibold bg-[#121214] text-white hover:bg-black shadow-sm transition-all active:scale-95"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#121214] text-white hover:bg-black shadow-sm transition-all active:scale-95"
           >
             <span>Let's Talk</span>
           </a>
@@ -172,6 +186,9 @@ export default function Navbar() {
         </motion.div>
       )}
     </AnimatePresence>
+
+    {/* Command Menu Modal */}
+    <CommandMenu isOpen={commandMenuOpen} onClose={setCommandMenuOpen} />
   </>
   );
 }

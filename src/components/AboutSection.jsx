@@ -127,9 +127,9 @@ export default function AboutSection() {
               <p>
                 My technical foundations—solving 400+ LeetCode problems, building backend systems with Java and Spring, and exploring vector search—give me strong architectural empathy. I know what engineering trade-offs feel like because I've written the code.
               </p>
-              <p>
-                However, I discovered early on that writing code is only half the battle. The harder and more exhilarating challenge is deciding <em>what</em> to build, <em>why</em> to build it, and <em>what to leave out</em> to protect user attention.
-              </p>
+              <div className="font-editorial italic text-lg sm:text-xl text-slate-900 border-l-2 border-slate-900 pl-4 py-1.5 my-3 bg-slate-50/70 rounded-r-lg">
+                "Writing code is only half the battle. The harder and more exhilarating challenge is deciding <em>what</em> to build, <em>why</em> to build it, and <em>what to leave out</em> to protect user attention."
+              </div>
               <p>
                 I thrive in 0-to-1 ambiguity: identifying where existing tools frustrate users, synthesizing qualitative insights into actionable PRDs, and using modern AI tooling to ship functional, testable prototypes in days rather than waiting quarters.
               </p>

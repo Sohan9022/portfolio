@@ -1,6 +1,23 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowDown, ArrowRight, FileText, Sparkles, Compass, CheckCircle2 } from 'lucide-react';
+import { 
+  ArrowDown, 
+  ArrowRight, 
+  FileText, 
+  Sparkles, 
+  Compass, 
+  CheckCircle2, 
+  Play, 
+  Layers, 
+  Database, 
+  Terminal, 
+  ShieldCheck, 
+  ExternalLink,
+  ArrowUpRight,
+  Activity,
+  Code2,
+  Award
+} from 'lucide-react';
 
 const PM_STAGES = [
   {
@@ -8,7 +25,7 @@ const PM_STAGES = [
     name: 'Problem',
     short: '01',
     mindset: 'Observe friction where people stop trying. Ask "What job is the user trying to hire this product to do?"',
-    example: 'Identified that git hashes treat typo fixes and security breaches as identical alarms.'
+    example: 'Identified that git hashes treat typo fixes and security breaches as identical alarms, inducing alert fatigue.'
   },
   {
     id: 'insight',
@@ -22,7 +39,7 @@ const PM_STAGES = [
     name: 'Constraints',
     short: '03',
     mindset: 'Establish mathematical boundaries, trade-offs, and what we explicitly choose NOT to build.',
-    example: 'In FinMate, restricted LLMs strictly to intent parsing; delegated all math to deterministic SQL.'
+    example: 'In FinMate, restricted LLMs strictly to intent parsing; delegated all arithmetic to deterministic PostgreSQL stored procedures.'
   },
   {
     id: 'prototype',
@@ -47,126 +64,280 @@ const PM_STAGES = [
   }
 ];
 
+const PROTOTYPE_PREVIEWS = [
+  {
+    id: 'sentinel',
+    title: 'Project Sentinel',
+    subtitle: 'Silent-by-Default Decision Agent',
+    domain: 'Enterprise AI · Governance',
+    url: 'https://echo-sentinel-08.lovable.app',
+    icon: Terminal,
+    status: 'Live on Lovable',
+    metric: 'Zero Unprompted Interruptions'
+  },
+  {
+    id: 'finmate',
+    title: 'FinMate AI',
+    subtitle: 'Multimodal Expense Memory',
+    domain: 'FinTech · Deterministic SQL',
+    url: 'https://tell-finmate-ai.lovable.app',
+    icon: Database,
+    status: 'Live on Lovable',
+    metric: '100% Citation-Backed Math'
+  },
+  {
+    id: 'spaces',
+    title: 'Spaces',
+    subtitle: 'Contextual Personalization Firewall',
+    domain: 'Social Systems · Recommendation',
+    url: 'https://space-context-switch.lovable.app',
+    icon: Layers,
+    status: 'Live on Lovable',
+    metric: 'Isolated Vector Stores'
+  },
+  {
+    id: 'giftverse',
+    title: 'GiftVerse Moments',
+    subtitle: 'Suspense Reveal Engine',
+    domain: 'Consumer AI · Interactive UX',
+    url: 'https://gift-verse-moments.lovable.app',
+    icon: Play,
+    status: 'Live on Lovable',
+    metric: '30–60s Emotional Payoff'
+  }
+];
+
 export default function HeroSection() {
   const [activeStage, setActiveStage] = useState(PM_STAGES[0]);
+  const [selectedPreview, setSelectedPreview] = useState(PROTOTYPE_PREVIEWS[0]);
 
   return (
-    <section className="pt-32 pb-20 md:pt-40 md:pb-28 border-b border-[#EAEAE7] bg-[#FBFBFA]">
+    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 border-b border-[#EAEAE7] bg-[#FBFBFA] overflow-hidden">
+      
+      {/* Subtle ambient light accents */}
+      <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-gradient-to-b from-blue-50/50 via-slate-50/20 to-transparent blur-3xl pointer-events-none -z-10" />
+
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
         
-        {/* Eyebrow & Status */}
-        <div className="flex flex-wrap items-center gap-3 mb-6">
-          <span className="text-[11px] font-mono tracking-wider uppercase text-[#666663] font-semibold bg-[#F1F1EE] border border-[#E5E5E0] px-2.5 py-1 rounded-md">
-            Product Manager · Builder · Systems Thinker
-          </span>
-          <div className="inline-flex items-center gap-2 text-xs text-[#666663]">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-            <span>VIIT Pune · B.Tech IT (CGPA: 8.97)</span>
-          </div>
-        </div>
-
-        {/* Big Editorial Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#121214] leading-[1.08] mb-6 max-w-4xl"
-        >
-          Building products around real human problems.
-        </motion.h1>
-
-        {/* Supporting Bio Statement */}
-        <motion.p
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.08 }}
-          className="text-lg sm:text-xl text-[#4A4A46] leading-relaxed max-w-3xl mb-8 font-normal"
-        >
-          I'm Sohan — an engineering student who turns ambiguous problems into thoughtful, validated product experiences through customer discovery, constraint mapping, design, and technology.
-        </motion.p>
-
-        {/* Action Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.14 }}
-          className="flex flex-wrap items-center gap-3 mb-14"
-        >
-          <motion.a
-            href="#work"
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold bg-[#121214] text-white hover:bg-black shadow-sm transition-all"
-          >
-            <span>Explore Selected Work</span>
-            <ArrowDown className="w-4 h-4" />
-          </motion.a>
-
-          <motion.a
-            href="/Sohan_Gadewar_Resume.docx"
-            download
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium text-[#121214] bg-white border border-[#EAEAE7] hover:border-[#D5D5CE] shadow-sm transition-all"
-          >
-            <FileText className="w-4 h-4 text-slate-500" />
-            <span>Download Resume (.docx)</span>
-          </motion.a>
-
-          <motion.a
-            href="#thinking"
-            whileHover={{ x: 2 }}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium text-[#666663] hover:text-[#121214] hover:bg-[#F1F1EE] transition-colors"
-          >
-            <span>How I Think</span>
-            <ArrowRight className="w-4 h-4 text-[#9E9E96]" />
-          </motion.a>
-        </motion.div>
-
-        {/* Visual High-Signal Candidate Metric Chips */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">
-          <div className="p-3.5 rounded-xl bg-white border border-[#EAEAE7] shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
-            <div className="text-xl sm:text-2xl font-bold text-[#121214] font-mono">5 Systems</div>
-            <div className="text-[11px] text-[#666663] font-medium mt-0.5">End-to-End PM PRDs & Specs</div>
-          </div>
-          <div className="p-3.5 rounded-xl bg-white border border-[#EAEAE7] shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
-            <div className="text-xl sm:text-2xl font-bold text-emerald-700 font-mono flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              4 Live Apps
+        {/* Top 2-Column Hero Structure */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start mb-16">
+          
+          {/* Left Column: Narrative, Positioning & CTAs */}
+          <div className="lg:col-span-7 space-y-6">
+            
+            {/* Eyebrow & Status */}
+            <div className="flex flex-wrap items-center gap-2.5">
+              <span className="text-[11px] font-mono tracking-wider uppercase text-[#121214] font-semibold bg-white border border-[#E0E0DB] px-3 py-1 rounded-full shadow-xs">
+                Product Manager · Builder · Systems Thinker
+              </span>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-mono text-emerald-800 bg-emerald-50 border border-emerald-200/70">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Open for APM Roles 2026–2027</span>
+              </div>
             </div>
-            <div className="text-[11px] text-[#666663] font-medium mt-0.5">Functional Clickable Prototypes</div>
-          </div>
-          <div className="p-3.5 rounded-xl bg-white border border-[#EAEAE7] shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
-            <div className="text-xl sm:text-2xl font-bold text-blue-700 font-mono">1 Patent</div>
-            <div className="text-[11px] text-[#666663] font-medium mt-0.5">Adaptive UX & HCI Architecture</div>
-          </div>
-          <div className="p-3.5 rounded-xl bg-white border border-[#EAEAE7] shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
-            <div className="text-xl sm:text-2xl font-bold text-[#121214] font-mono">8.97 CGPA</div>
-            <div className="text-[11px] text-[#666663] font-medium mt-0.5">VIIT Pune · B.Tech IT (2023–27)</div>
-          </div>
-        </div>
 
-        {/* Currently Exploring Indicator */}
-        <div className="py-3 px-4 rounded-lg bg-[#FFFFFF] border border-[#EAEAE7] mb-12 flex items-start sm:items-center gap-3 text-xs text-[#666663]">
-          <span className="font-mono text-[10px] font-semibold tracking-wider uppercase text-blue-700 bg-blue-50 border border-blue-200/60 px-2 py-0.5 rounded flex items-center gap-1.5 shrink-0">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
-            CURRENT FOCUS
-          </span>
-          <span className="text-[#4A4A46] font-medium">
-            AI Governance & Prompt Safety × Contextual Personalization × Human-Centered Financial Inclusion
-          </span>
+            {/* Big Editorial Headline with Italic Serif Accent */}
+            <motion.h1
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="text-4xl sm:text-6xl md:text-[68px] font-bold tracking-[-0.035em] text-[#121214] leading-[1.05]"
+            >
+              Building products around <span className="font-editorial italic font-normal text-slate-700">real human problems.</span>
+            </motion.h1>
+
+            {/* Supporting Bio Statement */}
+            <motion.p
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.08 }}
+              className="text-base sm:text-lg text-[#4A4A46] leading-relaxed max-w-xl font-normal"
+            >
+              I'm <strong className="text-[#121214] font-semibold">Sohan Gadewar</strong> — an engineering student at <strong className="text-[#121214]">VIIT Pune (CGPA: 8.97)</strong> who turns ambiguous friction into thoughtful, validated software experiences through customer discovery, constraint mapping, and rapid functional prototyping.
+            </motion.p>
+
+            {/* Action Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.14 }}
+              className="flex flex-wrap items-center gap-3 pt-2"
+            >
+              <motion.a
+                href="#work"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold bg-[#121214] text-white hover:bg-black shadow-sm transition-all"
+              >
+                <span>Explore Selected Work</span>
+                <ArrowDown className="w-3.5 h-3.5" />
+              </motion.a>
+
+              <motion.a
+                href="/Sohan_Gadewar_Resume.docx"
+                download
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-medium text-[#121214] bg-white border border-[#EAEAE7] hover:border-[#D5D5CE] shadow-sm transition-all"
+              >
+                <FileText className="w-3.5 h-3.5 text-slate-500" />
+                <span>Download Resume (.docx)</span>
+              </motion.a>
+
+              <motion.a
+                href="#case-study"
+                whileHover={{ x: 2 }}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs font-medium text-[#666663] hover:text-[#121214] hover:bg-white/80 transition-colors"
+              >
+                <span>Read Sentinel Case Study</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[#9E9E96]" />
+              </motion.a>
+            </motion.div>
+
+            {/* Quick Candidate Signal Pills */}
+            <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono text-[#666663]">
+              <span className="flex items-center gap-1.5">
+                <Code2 className="w-3.5 h-3.5 text-blue-600" />
+                <span>400+ LeetCode · Java/Spring/SQL</span>
+              </span>
+              <span className="text-[#D0D0CB]">·</span>
+              <span className="flex items-center gap-1.5">
+                <Award className="w-3.5 h-3.5 text-amber-600" />
+                <span>India Innovates Finalist (Top 16%)</span>
+              </span>
+            </div>
+
+          </div>
+
+          {/* Right Column: Interactive APM Signal Dashboard */}
+          <div className="lg:col-span-5">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.1 }}
+              className="rounded-2xl bg-white border border-[#E2E2DC] p-5 sm:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] space-y-5 relative"
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between pb-3.5 border-b border-[#F0F0EC]">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+                  <span className="font-mono text-xs font-bold text-[#121214] uppercase tracking-wider">
+                    APM Signal Dashboard
+                  </span>
+                </div>
+                <span className="font-mono text-[10px] text-[#9E9E96] bg-[#F6F6F3] px-2 py-0.5 rounded border border-[#EAEAE7]">
+                  V1 Clickable MVPs
+                </span>
+              </div>
+
+              {/* 4 Clickable Prototype Previews */}
+              <div className="space-y-2">
+                <div className="text-[11px] font-mono text-[#666663] uppercase tracking-wider flex items-center justify-between">
+                  <span>Interactive Shipped Systems</span>
+                  <span className="text-[10px] text-blue-700">Select to inspect</span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2">
+                  {PROTOTYPE_PREVIEWS.map((proto) => {
+                    const isSelected = selectedPreview.id === proto.id;
+                    const Icon = proto.icon;
+                    return (
+                      <button
+                        key={proto.id}
+                        onClick={() => setSelectedPreview(proto)}
+                        className={`text-left p-3 rounded-xl border transition-all ${
+                          isSelected
+                            ? 'bg-[#FBFBFA] border-[#121214] shadow-xs'
+                            : 'bg-white border-[#EAEAE7] hover:border-[#D5D5CE]'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between mb-1.5">
+                          <Icon className={`w-3.5 h-3.5 ${isSelected ? 'text-blue-700' : 'text-[#666663]'}`} />
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                        </div>
+                        <div className="text-xs font-bold text-[#121214] truncate">
+                          {proto.title}
+                        </div>
+                        <div className="text-[10px] text-[#666663] truncate">
+                          {proto.domain}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Selected Prototype Detail Box */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={selectedPreview.id}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.16 }}
+                  className="p-4 rounded-xl bg-[#F8F8F6] border border-[#EAEAE7] space-y-3"
+                >
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-semibold text-[#121214]">
+                      {selectedPreview.subtitle}
+                    </span>
+                    <span className="font-mono text-[10px] text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                      {selectedPreview.metric}
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-[#4A4A46] leading-relaxed">
+                    Tested as a functional MVP on Lovable with live telemetry to validate user assumptions and friction before production engineering.
+                  </p>
+
+                  <div className="pt-2 border-t border-[#EAEAE7] flex items-center justify-between">
+                    <span className="font-mono text-[11px] text-[#666663]">
+                      Status: <strong className="text-emerald-700">{selectedPreview.status}</strong>
+                    </span>
+                    <a
+                      href={selectedPreview.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#121214] text-white text-xs font-semibold hover:bg-black transition-colors shadow-xs"
+                    >
+                      <span>Launch App</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 text-zinc-300" />
+                    </a>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* 3 Metric Counts */}
+              <div className="grid grid-cols-3 gap-2 pt-2 border-t border-[#F0F0EC] text-center font-mono">
+                <div className="p-2 rounded-lg bg-[#FBFBFA] border border-[#EAEAE7]">
+                  <div className="text-base font-bold text-[#121214]">5</div>
+                  <div className="text-[10px] text-[#666663] uppercase">Systems</div>
+                </div>
+                <div className="p-2 rounded-lg bg-[#FBFBFA] border border-[#EAEAE7]">
+                  <div className="text-base font-bold text-[#121214]">4</div>
+                  <div className="text-[10px] text-[#666663] uppercase">Notion PRDs</div>
+                </div>
+                <div className="p-2 rounded-lg bg-[#FBFBFA] border border-[#EAEAE7]">
+                  <div className="text-base font-bold text-[#121214]">8.97</div>
+                  <div className="text-[10px] text-[#666663] uppercase">CGPA (IT)</div>
+                </div>
+              </div>
+
+            </motion.div>
+          </div>
+
         </div>
 
         {/* Hero Interactive PM Pipeline: Problem → Insight → Constraints → Prototype → Test → Iterate */}
-        <div className="rounded-xl bg-[#FFFFFF] border border-[#EAEAE7] p-5 sm:p-7 shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+        <div className="rounded-2xl bg-white border border-[#E2E2DC] p-5 sm:p-7 shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-3 border-b border-[#F0F0EC]">
             <div className="flex items-center gap-2">
-              <Compass className="w-4 h-4 text-blue-600" />
-              <span className="text-xs font-mono uppercase tracking-wider text-[#121214] font-semibold">
+              <Compass className="w-4 h-4 text-blue-700" />
+              <span className="text-xs font-mono uppercase tracking-wider text-[#121214] font-bold">
                 The Product Thinking Loop
               </span>
             </div>
-            <span className="text-xs text-[#666663]">
+            <span className="text-xs text-[#666663] font-mono">
               Hover or click a stage to inspect the PM mindset
             </span>
           </div>
@@ -180,16 +351,16 @@ export default function HeroSection() {
                   key={stage.id}
                   onClick={() => setActiveStage(stage)}
                   onMouseEnter={() => setActiveStage(stage)}
-                  className={`relative text-left p-3 rounded-lg border transition-colors ${
+                  className={`relative text-left p-3 rounded-xl border transition-all ${
                     isActive
-                      ? 'border-[#121214] shadow-sm'
-                      : 'border-[#EAEAE7] hover:border-[#D5D5CE]'
+                      ? 'border-[#121214] shadow-xs'
+                      : 'border-[#EAEAE7] hover:border-[#D5D5CE] bg-[#FBFBFA]'
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeStageHighlight"
-                      className="absolute inset-0 bg-[#F6F6F3] rounded-lg -z-10"
+                      className="absolute inset-0 bg-white rounded-xl -z-10 shadow-xs border border-[#121214]"
                       transition={{ type: 'spring', stiffness: 400, damping: 32 }}
                     />
                   )}
@@ -198,12 +369,12 @@ export default function HeroSection() {
                       {stage.short}
                     </span>
                     {isActive ? (
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
                     ) : (
-                      <span className="w-1.5 h-1.5 rounded-full bg-transparent"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-transparent" />
                     )}
                   </div>
-                  <div className={`text-xs font-semibold ${isActive ? 'text-[#121214]' : 'text-[#666663]'}`}>
+                  <div className={`text-xs font-bold ${isActive ? 'text-[#121214]' : 'text-[#666663]'}`}>
                     {stage.name}
                   </div>
                 </button>
@@ -219,17 +390,17 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -4 }}
               transition={{ duration: 0.18 }}
-              className="p-4 rounded-lg bg-[#F8F8F6] border border-[#EAEAE7] text-xs space-y-2"
+              className="p-4 rounded-xl bg-[#F8F8F6] border border-[#EAEAE7] text-xs space-y-2"
             >
               <div className="flex items-center gap-2 font-mono text-[11px] text-blue-700 font-semibold">
                 <span>Stage {activeStage.short} Mindset:</span>
                 <span className="text-[#121214] font-bold">{activeStage.name}</span>
               </div>
-              <p className="text-sm text-[#121214] leading-relaxed font-medium">
+              <p className="font-editorial italic text-base sm:text-lg text-[#121214] leading-relaxed font-normal">
                 "{activeStage.mindset}"
               </p>
               <div className="pt-2 border-t border-[#EAEAE7] text-[#666663] text-[11px] flex items-start gap-1.5">
-                <strong className="text-[#4A4A46] font-semibold shrink-0">In my work:</strong>
+                <strong className="text-[#4A4A46] font-semibold shrink-0 font-mono">In my work:</strong>
                 <span>{activeStage.example}</span>
               </div>
             </motion.div>
