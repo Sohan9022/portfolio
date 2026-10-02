@@ -9,14 +9,14 @@ import pypdf
 def build_top_tier_resume():
     doc = docx.Document()
     
-    # Precise margins for strictly 1-page fit
+    # Elegant margins for comfortable 1-page layout with depth
     for section in doc.sections:
-        section.top_margin = Inches(0.28)
-        section.bottom_margin = Inches(0.28)
-        section.left_margin = Inches(0.36)
-        section.right_margin = Inches(0.36)
+        section.top_margin = Inches(0.38)
+        section.bottom_margin = Inches(0.38)
+        section.left_margin = Inches(0.45)
+        section.right_margin = Inches(0.45)
         
-    def add_p(space_before=0, space_after=1.2, line_spacing=1.02):
+    def add_p(space_before=0, space_after=1.8, line_spacing=1.06):
         p = doc.add_paragraph()
         p.paragraph_format.space_before = Pt(space_before)
         p.paragraph_format.space_after = Pt(space_after)
@@ -24,10 +24,10 @@ def build_top_tier_resume():
         return p
 
     def add_heading(title):
-        p = add_p(space_before=3.5, space_after=1.5)
+        p = add_p(space_before=5, space_after=2)
         run = p.add_run(title)
         run.font.name = 'Calibri'
-        run.font.size = Pt(9.5)
+        run.font.size = Pt(10)
         run.font.bold = True
         run.font.color.rgb = RGBColor(18, 18, 20)
         pPr = p._p.get_or_add_pPr()
@@ -35,7 +35,7 @@ def build_top_tier_resume():
         pPr.append(pBdr)
         return p
 
-    def add_hyperlink(paragraph, url, text, color_hex="1D4ED8", underline=True, font_size_pt=8.5, bold=False):
+    def add_hyperlink(paragraph, url, text, color_hex="1D4ED8", underline=True, font_size_pt=9.0, bold=False):
         part = paragraph.part
         r_id = part.relate_to(url, docx.opc.constants.RELATIONSHIP_TYPE.HYPERLINK, is_external=True)
         u_tag = '<w:u w:val="single"/>' if underline else ''
@@ -56,177 +56,175 @@ def build_top_tier_resume():
         paragraph._p.append(parse_xml(xml_str))
 
     # 1. HEADER
-    p_name = add_p(space_before=0, space_after=0.5)
+    p_name = add_p(space_before=0, space_after=1)
     p_name.alignment = WD_ALIGN_PARAGRAPH.CENTER
     r_name = p_name.add_run('SOHAN GADEWAR')
     r_name.font.name = 'Calibri'
-    r_name.font.size = Pt(15.5)
+    r_name.font.size = Pt(16)
     r_name.font.bold = True
     r_name.font.color.rgb = RGBColor(18, 18, 20)
 
-    p_sub = add_p(space_before=0, space_after=1)
+    p_sub = add_p(space_before=0, space_after=1.5)
     p_sub.alignment = WD_ALIGN_PARAGRAPH.CENTER
     r_sub = p_sub.add_run('Associate Product Manager Candidate  |  B.Tech IT, VIIT Pune (CGPA: 8.97 / 10.0)')
     r_sub.font.name = 'Calibri'
-    r_sub.font.size = Pt(9)
+    r_sub.font.size = Pt(9.5)
     r_sub.font.bold = True
     r_sub.font.color.rgb = RGBColor(30, 30, 35)
 
-    p_contact = add_p(space_before=0, space_after=2)
+    p_contact = add_p(space_before=0, space_after=3)
     p_contact.alignment = WD_ALIGN_PARAGRAPH.CENTER
     r = p_contact.add_run('+91 9022778561  •  ')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5); r.font.color.rgb = RGBColor(80, 80, 85)
-    add_hyperlink(p_contact, 'mailto:sohangadewar9022@gmail.com', 'sohangadewar9022@gmail.com', underline=False)
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0); r.font.color.rgb = RGBColor(80, 80, 85)
+    add_hyperlink(p_contact, 'mailto:sohangadewar9022@gmail.com', 'sohangadewar9022@gmail.com', underline=False, font_size_pt=9.0)
     r = p_contact.add_run('  •  Portfolio: ')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5); r.font.color.rgb = RGBColor(80, 80, 85)
-    add_hyperlink(p_contact, 'https://portfolio-sohan9022.vercel.app', 'portfolio-sohan9022.vercel.app', underline=True)
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0); r.font.color.rgb = RGBColor(80, 80, 85)
+    add_hyperlink(p_contact, 'https://portfolio-sohan9022.vercel.app', 'portfolio-sohan9022.vercel.app', underline=True, font_size_pt=9.0)
     r = p_contact.add_run('  •  ')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5); r.font.color.rgb = RGBColor(80, 80, 85)
-    add_hyperlink(p_contact, 'https://linkedin.com', 'LinkedIn', underline=True)
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0); r.font.color.rgb = RGBColor(80, 80, 85)
+    add_hyperlink(p_contact, 'https://linkedin.com', 'LinkedIn', underline=True, font_size_pt=9.0)
     r = p_contact.add_run('  •  ')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5); r.font.color.rgb = RGBColor(80, 80, 85)
-    add_hyperlink(p_contact, 'https://github.com/Sohan9022', 'GitHub', underline=True)
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0); r.font.color.rgb = RGBColor(80, 80, 85)
+    add_hyperlink(p_contact, 'https://github.com/Sohan9022', 'GitHub', underline=True, font_size_pt=9.0)
     r = p_contact.add_run('  •  Pune, India')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5); r.font.color.rgb = RGBColor(80, 80, 85)
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0); r.font.color.rgb = RGBColor(80, 80, 85)
 
     # 2. EDUCATION
     add_heading('EDUCATION')
     p_edu1 = add_p(space_before=1, space_after=0.5)
     r = p_edu1.add_run('Vishwakarma Institute of Information Technology (VIIT), Pune')
-    r.font.name = 'Calibri'; r.font.size = Pt(9); r.font.bold = True
+    r.font.name = 'Calibri'; r.font.size = Pt(9.5); r.font.bold = True
     r = p_edu1.add_run('  |  Bachelor of Technology in Information Technology')
-    r.font.name = 'Calibri'; r.font.size = Pt(9)
+    r.font.name = 'Calibri'; r.font.size = Pt(9.5)
     r = p_edu1.add_run('  |  2023 – 2027  |  CGPA: 8.97 / 10.0')
-    r.font.name = 'Calibri'; r.font.size = Pt(9); r.font.bold = True
+    r.font.name = 'Calibri'; r.font.size = Pt(9.5); r.font.bold = True
 
-    p_edu2 = add_p(space_before=0, space_after=2)
+    p_edu2 = add_p(space_before=0, space_after=3)
     r = p_edu2.add_run('Relevant Coursework: Data Structures & Algorithms, DBMS, Operating Systems, Computer Networks, System Design  •  Problem Solving: 400+ LeetCode, 210+ GeeksforGeeks')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5); r.font.color.rgb = RGBColor(60, 60, 65)
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0); r.font.color.rgb = RGBColor(60, 60, 65)
 
-    # 3. SELECTED PRODUCT SYSTEMS & LIVE PROTOTYPES (ONLY LIVE WORK FROM PORTFOLIO)
+    # 3. SELECTED PRODUCT SYSTEMS (ONLY THE 2 TOP FLAGSHIP SYSTEMS)
     add_heading('SELECTED PRODUCT SYSTEMS & VALIDATED PROTOTYPES')
 
-    # Project 1: Project Sentinel
-    p = add_p(space_before=1.2, space_after=0.5)
+    # Flagship 1: Project Sentinel
+    p = add_p(space_before=2, space_after=0.8)
     r = p.add_run('Project Sentinel — AI Decision Memory & State-Drift Agent  |  Enterprise AI  |  Live MVP: ')
-    r.font.name = 'Calibri'; r.font.size = Pt(9); r.font.bold = True
-    add_hyperlink(p, 'https://echo-sentinel-08.lovable.app', 'echo-sentinel-08.lovable.app', font_size_pt=9, bold=True)
+    r.font.name = 'Calibri'; r.font.size = Pt(9.5); r.font.bold = True
+    add_hyperlink(p, 'https://echo-sentinel-08.lovable.app', 'echo-sentinel-08.lovable.app', font_size_pt=9.5, bold=True)
     r = p.add_run('  |  ')
-    r.font.name = 'Calibri'; r.font.size = Pt(9); r.font.bold = True
-    add_hyperlink(p, 'https://app.notion.com/p/PROJECT-SENTINEL-3d053f22e2b0800d891bd24a7f914c07?source=copy_link', 'Notion PRD', font_size_pt=9, bold=True)
+    r.font.name = 'Calibri'; r.font.size = Pt(9.5); r.font.bold = True
+    add_hyperlink(p, 'https://app.notion.com/p/PROJECT-SENTINEL-3d053f22e2b0800d891bd24a7f914c07?source=copy_link', 'Notion PRD', font_size_pt=9.5, bold=True)
 
-    p = add_p(space_before=0, space_after=0.5)
-    r = p.add_run('• Discovery & Problem Framing: Identified critical engineering context loss across daily standups and Slack threads; recognized that existing summary bots suffer steep uninstall rates due to unsolicited channel pings that interrupt deep work.')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5)
+    p = add_p(space_before=0, space_after=0.8)
+    r = p.add_run('• Discovery & Problem Framing: ')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0); r.font.bold = True
+    r = p.add_run('Identified critical engineering context loss across daily standups, Slack threads, and Jira; observed that incumbent meeting summarizers trigger high uninstall rates by blasting unsolicited channel notifications that disrupt deep work.')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0)
 
-    p = add_p(space_before=0, space_after=1.2)
-    r = p.add_run('• Silent-by-Default Architecture & Prototype: Established "Silent-by-Default" principle—ingests transcripts and Git/Jira streams passively, auditing "said vs confirmed" drift only on explicit human query; shipped 8-step live Lovable MVP backed by append-only PostgreSQL event logs; authored full Notion PRD.')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5)
+    p = add_p(space_before=0, space_after=0.8)
+    r = p.add_run('• Product Strategy & "Silent-by-Default" Thesis: ')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0); r.font.bold = True
+    r = p.add_run('Formulated the "Silent-by-Default" product thesis—ingests audio transcripts and Git commit streams passively without interrupting channels; scoped out automated ticket creation and developer velocity surveillance in V1 to protect team psychological safety.')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0)
 
-    # Project 2: FinMate AI
-    p = add_p(space_before=1.2, space_after=0.5)
+    p = add_p(space_before=0, space_after=0.8)
+    r = p.add_run('• State-Drift Detection & Architecture: ')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0); r.font.bold = True
+    r = p.add_run('Architected deterministic audit engine surfacing discrepancies between spoken commitments and recorded codebase state (the "said-vs-confirmed" gap) strictly upon explicit user query; designed append-only PostgreSQL event schema mapping detected drift to immutable transcript timestamps.')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0)
+
+    p = add_p(space_before=0, space_after=2.5)
+    r = p.add_run('• Execution & Shipped Validation: ')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0); r.font.bold = True
+    r = p.add_run('Shipped interactive 8-step clickable MVP on Lovable with live state drift queries; authored comprehensive 400-line Notion PRD detailing state transition matrices, query grammar, failure recovery states, and phased enterprise GTM rollout.')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0)
+
+    # Flagship 2: FinMate AI
+    p = add_p(space_before=2, space_after=0.8)
     r = p.add_run('FinMate AI — Conversational Expense Memory & Deterministic Accounting  |  FinTech Systems  |  Live MVP: ')
-    r.font.name = 'Calibri'; r.font.size = Pt(9); r.font.bold = True
-    add_hyperlink(p, 'https://tell-finmate-ai.lovable.app', 'tell-finmate-ai.lovable.app', font_size_pt=9, bold=True)
+    r.font.name = 'Calibri'; r.font.size = Pt(9.5); r.font.bold = True
+    add_hyperlink(p, 'https://tell-finmate-ai.lovable.app', 'tell-finmate-ai.lovable.app', font_size_pt=9.5, bold=True)
     r = p.add_run('  |  ')
-    r.font.name = 'Calibri'; r.font.size = Pt(9); r.font.bold = True
-    add_hyperlink(p, 'https://app.notion.com/p/FINMATE-AI-3d053f22e2b080479a82e50becf237f2?source=copy_link', 'Notion PRD', font_size_pt=9, bold=True)
+    r.font.name = 'Calibri'; r.font.size = Pt(9.5); r.font.bold = True
+    add_hyperlink(p, 'https://app.notion.com/p/FINMATE-AI-3d053f22e2b080479a82e50becf237f2?source=copy_link', 'Notion PRD', font_size_pt=9.5, bold=True)
 
-    p = add_p(space_before=0, space_after=0.5)
-    r = p.add_run('• User Friction & System Guardrails: Addressed steep user abandonment in personal finance caused by tedious 6-field forms, while identifying that conversational LLMs hallucinate arithmetic, making them untrustworthy for real financial balances.')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5)
+    p = add_p(space_before=0, space_after=0.8)
+    r = p.add_run('• User Friction & Market Insight: ')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0); r.font.bold = True
+    r = p.add_run('Addressed the steep user abandonment rate in personal finance tracking caused by tedious 6-field manual entry forms, while uncovering that pure conversational LLM finance bots routinely hallucinate arithmetic totals, rendering them untrustworthy for real financial accounting.')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0)
 
-    p = add_p(space_before=0, space_after=1.2)
-    r = p.add_run('• Decoupled Architecture & Prototype: Decoupled unstructured capture from arithmetic—restricted multimodal models (voice notes, receipt OCR, natural chat) strictly to intent parsing, delegating 100% of calculations to deterministic PostgreSQL RPCs; shipped live Lovable MVP with citation-backed ledger rows; authored Notion PRD.')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5)
+    p = add_p(space_before=0, space_after=0.8)
+    r = p.add_run('• Decoupled System Architecture: ')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0); r.font.bold = True
+    r = p.add_run('Established two-stage decoupled architecture: constrained multimodal LLMs (voice notes, receipt snapshots via OCR, natural language chat) strictly to intent and entity parsing (JSON), while routing 100% of arithmetic calculations and balance aggregations to concurrency-safe PostgreSQL stored procedures (RPCs).')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0)
 
-    # Project 3: Spaces
-    p = add_p(space_before=1.2, space_after=0.5)
-    r = p.add_run('Spaces — Contextual Personalization Framework & Telemetry Firewall  |  AI Personalization  |  Live MVP: ')
-    r.font.name = 'Calibri'; r.font.size = Pt(9); r.font.bold = True
-    add_hyperlink(p, 'https://space-context-switch.lovable.app', 'space-context-switch.lovable.app', font_size_pt=9, bold=True)
-    r = p.add_run('  |  ')
-    r.font.name = 'Calibri'; r.font.size = Pt(9); r.font.bold = True
-    add_hyperlink(p, 'https://app.notion.com/p/SPACES-3ce53f22e2b0805db12ef30ed696c7b5?source=copy_link', 'Notion PRD', font_size_pt=9, bold=True)
+    p = add_p(space_before=0, space_after=0.8)
+    r = p.add_run('• Auditability & Zero-Hallucination Evidence: ')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0); r.font.bold = True
+    r = p.add_run('Enforced complete financial transparency through evidence-linked ledger rows—guaranteeing that every AI response provides clickable citations directly to underlying transaction records, eliminating calculation discrepancies entirely.')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0)
 
-    p = add_p(space_before=0, space_after=0.5)
-    r = p.add_run('• Problem & Context Collapse: Solved algorithmic context collapse in feed recommendation systems where casual entertainment browsing corrupts professional engineering feeds, forcing users to juggle multiple friction-heavy burner accounts.')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5)
-
-    p = add_p(space_before=0, space_after=1.2)
-    r = p.add_run('• Context Firewall & Prototype: Designed middleware isolating behavioral telemetry and vector embedding stores per active space while keeping identity and billing consolidated under a single account; shipped live Lovable MVP with 4 isolated spaces; authored full Notion PRD.')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5)
-
-    # Project 4: SHRH
-    p = add_p(space_before=1.2, space_after=0.5)
-    r = p.add_run('SHRH — Semantic Human-Readable Hashing  |  AI Governance & CI/CD Safety  |  ')
-    r.font.name = 'Calibri'; r.font.size = Pt(9); r.font.bold = True
-    add_hyperlink(p, 'https://app.notion.com/p/SHRH-3d553f22e2b08035b164f88ad01b17b2?source=copy_link', 'Notion PRD', font_size_pt=9, bold=True)
-
-    p = add_p(space_before=0, space_after=0.5)
-    r = p.add_run('• Discovery & Problem Framing: Identified developer alert fatigue in CI/CD pipelines where binary SHA-256 hashes treat cosmetic formatting fixes identically to dangerous operational policy regressions (\'MUST enforce MFA\' → \'MAY enforce MFA\'); recognized that cosine similarity fails to catch discrete deontic rule inversions.')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5)
-
-    p = add_p(space_before=0, space_after=1.2)
-    r = p.add_run('• Architecture & Governance Gate: Designed orthogonal dual-channel gate separating topical semantic drift from deontic constraint shifts (numerical limits, permissions, RFC-2119 modal verbs); auto-merges safe PRs while quarantining policy regressions; eliminated recursive LLM self-fixing in V1 to prevent hallucination loops; authored Google APM PRD spec.')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5)
-
-    # Project 5: GiftVerse Moments
-    p = add_p(space_before=1.2, space_after=0.5)
-    r = p.add_run('GiftVerse Moments — Digital Gifting Reveal Experiences  |  Consumer AI & Interactive UX  |  Live MVP: ')
-    r.font.name = 'Calibri'; r.font.size = Pt(9); r.font.bold = True
-    add_hyperlink(p, 'https://gift-verse-moments.lovable.app', 'gift-verse-moments.lovable.app', font_size_pt=9, bold=True)
-    r = p.add_run('  |  ')
-    r.font.name = 'Calibri'; r.font.size = Pt(9); r.font.bold = True
-    add_hyperlink(p, 'https://app.notion.com/p/GIFTVVERSE-3d053f22e2b0804b8b90cf6da95b931f?source=copy_link', 'Notion PRD', font_size_pt=9, bold=True)
-
-    p = add_p(space_before=0, space_after=0.5)
-    r = p.add_run('• User Friction & Scoping: Identified that digital gift cards are frictionless to send but sterile to receive, delivering alphanumeric codes that strip away the emotional anticipation of physical unboxing; deliberately cut third-party vendor checkouts in V1 to focus entirely on the micro-suspense reveal experience.')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5)
-
-    p = add_p(space_before=0, space_after=1.2)
-    r = p.add_run('• Micro-Suspense Engine & Prototype: Designed AI Experience Director choreographing 30–60s interactive reveal journeys with personalized contextual clues and encrypted payload vaults decrypted at climax; shipped live Lovable MVP with zero-friction recipient mobile viewer (no login required); authored full Notion PRD.')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5)
+    p = add_p(space_before=0, space_after=3)
+    r = p.add_run('• Execution & Shipped Validation: ')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0); r.font.bold = True
+    r = p.add_run('Shipped production-ready Lovable MVP featuring streaming voice transcription, receipt parsing, and informal loan tracking; authored complete Notion PRD covering database schemas, RLS security policies, and error handling states.')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0)
 
     # 4. PATENTS & HUMAN-CENTERED RESEARCH
     add_heading('PATENTS & USER RESEARCH')
-    p = add_p(space_before=1, space_after=0.5)
-    r = p.add_run('• Patent Application Draft (VIT Pune UX Lab): AI-Driven Multilingual Adaptive UI Framework & Zero-Risk Financial Sandbox — Designed dual-mode environment pairing live transactions with a simulated practice sandbox (dummy balances), in-situ Hold-to-Translate, and Circle-to-Understand gesture affordances to eliminate digital financial hesitation in emerging vernacular markets | 2026')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5)
+    p = add_p(space_before=1.5, space_after=0.8)
+    r = p.add_run('• Patent Application Draft (VIT Pune UX Lab): ')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0); r.font.bold = True
+    r = p.add_run('AI-Driven Multilingual Adaptive UI Framework & Zero-Risk Financial Sandbox — Designed dual-mode environment pairing live transactions with a simulated practice sandbox (dummy balances), in-situ Hold-to-Translate, and Circle-to-Understand gesture affordances to eliminate digital financial hesitation in emerging vernacular markets | 2026')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0)
 
-    p = add_p(space_before=0, space_after=2)
-    r = p.add_run('• Patent Filed (South African Patent Office): AI-Powered Lost & Found Matching System — Conceptualized a 5-factor blind multimodal scoring architecture (image embeddings, NLP text, geolocation, timestamp) with automated urgency detection | 2025')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5)
+    p = add_p(space_before=0, space_after=3)
+    r = p.add_run('• Patent Filed (South African Patent Office): ')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0); r.font.bold = True
+    r = p.add_run('AI-Powered Lost & Found Matching System — Conceptualized a 5-factor blind multimodal scoring architecture (image embeddings, NLP text, geolocation, timestamp) with automated urgency detection | 2025')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0)
 
     # 5. HONORS & ACHIEVEMENTS
     add_heading('HONORS & COMPETITIONS')
-    p = add_p(space_before=1, space_after=0.5)
-    r = p.add_run('• India Innovates Hackathon — National Finalist: Selected among top finalist teams nationwide out of 6,000+ participating teams')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5)
+    p = add_p(space_before=1.5, space_after=0.8)
+    r = p.add_run('• India Innovates Hackathon — National Finalist: ')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0); r.font.bold = True
+    r = p.add_run('Selected among top finalist teams nationwide out of 6,000+ participating teams')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0)
 
-    p = add_p(space_before=0, space_after=2)
-    r = p.add_run('• GHCI 25 Hackathon — Round 2 Qualifier: AnitaB.org India & Backbase | National GenAI Hackathon: \'Unbound with GenAI: Breaking Barriers, Creating Impact\'')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5)
+    p = add_p(space_before=0, space_after=3)
+    r = p.add_run('• GHCI 25 Hackathon — Round 2 Qualifier: ')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0); r.font.bold = True
+    r = p.add_run('AnitaB.org India & Backbase | National GenAI Hackathon: \'Unbound with GenAI: Breaking Barriers, Creating Impact\'')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0)
 
     # 6. PRODUCT & TECHNICAL SKILLS
     add_heading('PRODUCT MANAGEMENT & TECHNICAL SKILLS')
-    p = add_p(space_before=1, space_after=0.5)
-    r = p.add_run('• Product Management: Product Discovery, PRD Writing, Jobs-to-be-Done (JTBD), User Journey Mapping, RICE Prioritization, North Star & Counter-Metrics, Customer Interviews, Experimentation, GTM Strategy, Trade-off Analysis')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5)
+    p = add_p(space_before=1.5, space_after=0.8)
+    r = p.add_run('• Product Management: ')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0); r.font.bold = True
+    r = p.add_run('Product Discovery, PRD Writing, Jobs-to-be-Done (JTBD), User Journey Mapping, RICE Prioritization, North Star & Guardrail Metrics, Customer Interviews, Experimentation, GTM Strategy, Trade-off Analysis')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0)
 
-    p = add_p(space_before=0, space_after=0.5)
-    r = p.add_run('• AI & Systems: LLM Prompt Engineering, RAG Architectures, Multimodal Ingestion, Deterministic SQL, AI Governance, Lovable.dev (Rapid MVPs), Supabase (RLS), Vector Embeddings')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5)
+    p = add_p(space_before=0, space_after=0.8)
+    r = p.add_run('• AI & Systems: ')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0); r.font.bold = True
+    r = p.add_run('LLM Prompt Engineering, RAG Architectures, Multimodal Ingestion, Deterministic SQL, AI Governance, Lovable.dev (Rapid MVPs), Supabase (RLS), Vector Embeddings')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0)
 
-    p = add_p(space_before=0, space_after=2)
-    r = p.add_run('• Engineering & Problem Solving: Java, Spring Framework, Python, SQL/PostgreSQL, REST APIs, Git, System Architecture  •  Competitive Programming: 400+ LeetCode, 210+ GeeksforGeeks')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5)
+    p = add_p(space_before=0, space_after=3)
+    r = p.add_run('• Engineering & Problem Solving: ')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0); r.font.bold = True
+    r = p.add_run('Java, Spring Framework, Python, SQL/PostgreSQL, REST APIs, Git, System Architecture  •  Competitive Programming: 400+ LeetCode, 210+ GeeksforGeeks')
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0)
 
     # 7. CERTIFICATIONS
     add_heading('CERTIFICATIONS')
-    p = add_p(space_before=1, space_after=0)
+    p = add_p(space_before=1.5, space_after=0)
     r = p.add_run('Product Management Masterclass (GeeksforGeeks)  •  AI Agents & Automation (CampusX)  •  Advanced RAG Architecture (CampusX)  •  Prompt Engineering & Docker for ML (CampusX)  •  Postman API Student Expert')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.5)
+    r.font.name = 'Calibri'; r.font.size = Pt(9.0)
 
     # Target destinations
     dest_docx_1 = os.path.abspath('e:/pm_portfoli_new/Sohan_Gadewar_Google_APM_Resume.docx')
