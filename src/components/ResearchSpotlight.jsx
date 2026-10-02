@@ -33,7 +33,7 @@ export default function ResearchSpotlight() {
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-2">
               <span className="text-xs font-mono tracking-wider uppercase text-blue-700 font-semibold bg-blue-50 border border-blue-200/60 px-2 py-0.5 rounded">
-                06 · USER RESEARCH & PATENT CONCEPT
+                06 · USER RESEARCH & ADAPTIVE HCI FRAMEWORK
               </span>
               <span className="text-xs font-mono text-[#666663] bg-[#F4F4F0] px-2 py-0.5 rounded border border-[#EAEAE7]">
                 {data.institution}
@@ -109,7 +109,7 @@ export default function ResearchSpotlight() {
         <div className="flex flex-wrap items-center gap-2 border-b border-[#EAEAE7] pb-3 mb-8 text-xs font-mono">
           {[
             { id: 'why-suggested', label: 'Why We Suggested It (5 Interventions)' },
-            { id: 'patent', label: 'Patent Architecture & Modules' },
+            { id: 'patent', label: 'System Architecture & Modules' },
             { id: 'figures', label: `System Blueprints & Diagrams (${data.figures.length})` },
           ].map((tab) => {
             const isActive = activeTab === tab.id;
@@ -187,21 +187,21 @@ export default function ResearchSpotlight() {
           </div>
         )}
 
-        {/* TAB 2: PATENT ARCHITECTURE & MODULES */}
+        {/* TAB 2: SYSTEM ARCHITECTURE & MODULES */}
         {activeTab === 'patent' && (
           <div className="space-y-6 animate-in fade-in duration-200">
             <div className="p-6 rounded-2xl bg-[#FBFBFA] border border-[#EAEAE7] space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-[#EAEAE7]">
                 <div>
                   <span className="text-[11px] font-mono text-blue-700 font-bold uppercase tracking-wider block mb-1">
-                    Invention Concept & Patent Specification
+                    System Architecture & Framework Specification
                   </span>
                   <h3 className="text-lg font-bold text-[#121214]">
                     {data.patentArchitecture.title}
                   </h3>
                 </div>
                 <span className="text-xs font-mono text-[#666663] bg-white border border-[#EAEAE7] px-3 py-1.5 rounded-lg shrink-0">
-                  Ref: VIT UX IP / Concept Report
+                  Ref: Empirical UX Architecture Spec
                 </span>
               </div>
 
@@ -222,12 +222,12 @@ export default function ResearchSpotlight() {
               </div>
             </div>
 
-            {/* Patent Figure Visual Callout */}
+            {/* System Figure Visual Callout */}
             <div className="rounded-2xl border border-[#EAEAE7] bg-white p-6 flex flex-col md:flex-row items-center gap-6">
               <div className="w-full md:w-1/2 rounded-xl overflow-hidden border border-[#EAEAE7] bg-[#F8F8F6]">
                 <img 
                   src="/research/fig17_solution_architecture_patent.png" 
-                  alt="Patent Solution Architecture" 
+                  alt="Solution Architecture Blueprint" 
                   className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-300 cursor-pointer"
                   onClick={() => {
                     setActiveTab('figures');
@@ -306,7 +306,7 @@ export default function ResearchSpotlight() {
                     {data.figures[selectedFigure].title}
                   </h3>
                   <span className="text-[11px] font-mono text-[#9E9E96]">
-                    Conceptual Research Asset · VIT Pune
+                    Research Architecture Asset
                   </span>
                 </div>
 
@@ -333,7 +333,7 @@ export default function ResearchSpotlight() {
           <div className="flex items-center gap-2 text-[#666663]">
             <BookOpen className="w-4 h-4 text-blue-700 shrink-0" />
             <span>
-              Academic UX Research & Patent Concept: Human-Centered Design for Vernacular Inclusivity & Adaptive HCI
+              Empirical UX Research & Adaptive Interface Design: Human-Centered HCI for Vernacular Inclusivity
             </span>
           </div>
           <div className="shrink-0 text-blue-700 bg-white px-3 py-1 rounded border border-[#EAEAE7] font-semibold">

@@ -172,10 +172,10 @@ def build_top_tier_resume():
     r = p.add_run('Shipped production-ready Lovable MVP featuring streaming voice transcription, receipt parsing, and informal loan tracking; authored complete Notion PRD covering database schemas, RLS security policies, and error handling states.')
     r.font.name = 'Calibri'; r.font.size = Pt(9.0)
 
-    # 4. PATENTS & HUMAN-CENTERED RESEARCH
-    add_heading('PATENTS & USER RESEARCH')
+    # 4. RESEARCH & INTELLECTUAL PROPERTY
+    add_heading('RESEARCH & INTELLECTUAL PROPERTY')
     p = add_p(space_before=1.5, space_after=0.8)
-    r = p.add_run('• Patent Application Draft (VIT Pune UX Lab): ')
+    r = p.add_run('• Empirical HCI Research Study: ')
     r.font.name = 'Calibri'; r.font.size = Pt(9.0); r.font.bold = True
     r = p.add_run('AI-Driven Multilingual Adaptive UI Framework & Zero-Risk Financial Sandbox — Designed dual-mode environment pairing live transactions with a simulated practice sandbox (dummy balances), in-situ Hold-to-Translate, and Circle-to-Understand gesture affordances to eliminate digital financial hesitation in emerging vernacular markets | 2026')
     r.font.name = 'Calibri'; r.font.size = Pt(9.0)

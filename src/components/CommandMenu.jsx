@@ -73,7 +73,7 @@ export default function CommandMenu({ isOpen, onClose }) {
       items: [
         { label: 'Sentinel 8-Step PM Journey', desc: 'Step-by-step discovery to V1 execution breakdown', url: '#case-study', icon: Terminal, isExternal: false },
         { label: 'ElevenLabs Teardown', desc: 'Why async dubbing fails in conversational turn-taking', url: '#teardowns', icon: Sparkles, isExternal: false },
-        { label: 'Adaptive Vernacular HCI Patent', desc: 'Zero-risk practice sandbox & visual affordances (VIT Pune)', url: '#research', icon: BookOpen, isExternal: false },
+        { label: 'Adaptive UX Framework', desc: 'Zero-risk practice sandbox & vernacular visual affordances', url: '#research', icon: BookOpen, isExternal: false },
         { label: 'Decision Log & Trade-offs', desc: 'Why I chose what I chose across all products', url: '#decisions', icon: Scale, isExternal: false },
         { label: 'Product Thinking Principles', desc: '01 Problem to 05 Evidence-driven shipping', url: '#thinking', icon: Compass, isExternal: false }
       ]

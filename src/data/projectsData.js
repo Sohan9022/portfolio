@@ -247,7 +247,7 @@ export const PRODUCT_TEARDOWNS = [
   {
     id: 'teardown-adaptive-framework',
     product: 'AI-Driven Adaptive UX Framework',
-    category: 'HCI Systems · Patent Concept',
+    category: 'HCI Systems · Adaptive UX Framework',
     title: 'The Static Interface Fallacy: Why High-Stakes FinTech Needs Adaptive UI',
     observation: 'Digital payment apps enforce a single, rigid interface layout regardless of user comfort. Serving the same dense, text-query interface to first-time vernacular users creates severe operational apprehension and feature abandonment.',
     whatWorks: "Dual-Mode Sandbox Architecture: Coupling the live transactional environment with an exact mirrored practice sandbox using simulated balances. Users build tactile muscle memory and explore workflows without fear of irreversible financial loss.",
@@ -275,13 +275,12 @@ export const PRODUCT_TEARDOWNS = [
 ];
 
 export const RESEARCH_SPOTLIGHT = {
-  institution: 'Vishwakarma Institute of Technology (VIT), Pune',
-  lab: 'Department of Computer Engineering / UX Research Lab',
-  publicationStatus: 'Patent Application Draft & Academic Concept Report',
-  patentTitle: 'AI-Driven Multilingual Adaptive User Interface System & Risk-Free Financial Sandbox',
+  institution: 'Human-Computer Interaction (HCI) Systems Research',
+  lab: 'Empirical UX & Usability Engineering',
+  publicationStatus: 'Empirical Research Study & Systems Framework',
   title: 'AI-Driven Adaptive UX Framework for High-Stakes FinTech',
   tagline: 'Why We Proposed an Adaptive Interface & Zero-Risk Practice Sandbox to Eliminate Operational Anxiety in Financial Systems',
-  context: 'Digital payment applications enforce a rigid, one-size-fits-all interface across all demographics. In high-stakes financial applications where any mistake incurs irreversible monetary loss, low-literacy and vernacular users experience acute operational apprehension, search hesitation, and crisis paralysis. In our UX research work at VIT Pune, we designed a patent-pending AI-driven adaptive framework where the interface dynamically simplifies and protects the user rather than forcing the user to adapt to the machine.',
+  context: 'Digital payment applications enforce a rigid, one-size-fits-all interface across all demographics. In high-stakes financial applications where any mistake incurs irreversible monetary loss, low-literacy and vernacular users experience acute operational apprehension, search hesitation, and crisis paralysis. In our empirical UX research, we designed an AI-driven adaptive framework where the interface dynamically simplifies and protects the user rather than forcing the user to adapt to the machine.',
   
   whyWeSuggested: [
     { 
@@ -317,7 +316,7 @@ export const RESEARCH_SPOTLIGHT = {
   ],
 
   patentArchitecture: {
-    title: 'Patent System Architecture: The Adaptive UX Framework Modules',
+    title: 'System Architecture: The Adaptive UX Framework Modules',
     components: [
       { name: 'Dual-Mode Environment Controller', desc: 'Dynamically toggles between Live Production and a Mirrored Sandbox Replica populated with simulated balances and dummy billers.' },
       { name: 'Risk-Free Practice Sandbox', desc: 'Allows users to build tactile muscle memory scanning QR codes and sending payments with zero financial liability, eliminating transactional fear.' },
@@ -327,7 +326,7 @@ export const RESEARCH_SPOTLIGHT = {
   },
 
   figures: [
-    { title: 'Patent Architecture Blueprint', image: '/research/fig17_solution_architecture_patent.png', caption: 'Full technical system diagram for the AI-Driven Adaptive UX Framework and Risk-Free Financial Sandbox' },
+    { title: 'System Architecture Blueprint', image: '/research/fig17_solution_architecture_patent.png', caption: 'Full technical system diagram for the AI-Driven Adaptive UX Framework and Risk-Free Financial Sandbox' },
     { title: 'System Triangulation Architecture', image: '/research/fig16_cross_triangulation_framework.png', caption: 'Synthesizing qualitative user attitudes with screen-level interaction friction to guide adaptive interface design' }
   ]
 };
