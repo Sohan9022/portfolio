@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll } from 'framer-motion';
-import { ArrowUpRight, Menu, X, FileText, Download, Search } from 'lucide-react';
+import { ArrowUpRight, Menu, X, FileText, Download, Search, Sparkles } from 'lucide-react';
 import CommandMenu from './CommandMenu';
 
-export default function Navbar() {
+export default function Navbar({ onOpenNova }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [commandMenuOpen, setCommandMenuOpen] = useState(false);
@@ -100,6 +100,17 @@ export default function Navbar() {
               <Search className="w-4 h-4" />
             </button>
 
+            {/* Ask Nova AI Trigger */}
+            <button
+              onClick={() => onOpenNova && onOpenNova()}
+              className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-mono text-blue-700 bg-blue-50/80 hover:bg-blue-100/90 border border-blue-200/80 transition-colors shadow-2xs group"
+              title="Ask Nova · AI Portfolio Concierge (Alt+N)"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-blue-600 animate-pulse" />
+              <span className="font-semibold text-blue-800">Ask Nova</span>
+              <span className="text-[9px] px-1 py-0.2 bg-blue-200/60 rounded text-blue-700 font-bold">AI</span>
+            </button>
+
             {/* Resume Button: opens verified 1-page PDF in new tab */}
             <a
               href="/Sohan_Gadewar_Resume.pdf"
@@ -159,6 +170,23 @@ export default function Navbar() {
                 </button>
               </div>
 
+              {/* Quick AI Trigger inside Drawer */}
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  if (onOpenNova) onOpenNova();
+                }}
+                className="w-full flex items-center justify-between p-2.5 rounded-xl bg-blue-50/80 border border-blue-200 text-blue-900 text-xs font-mono font-semibold hover:bg-blue-100 transition-colors"
+              >
+                <span className="flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-blue-600 animate-pulse" />
+                  <span>Chat with Nova AI</span>
+                </span>
+                <span className="text-[10px] bg-blue-200/70 text-blue-800 px-2 py-0.5 rounded-full font-bold">
+                  Portfolio Concierge
+                </span>
+              </button>
+
               {/* Navigation Links */}
               <div className="flex flex-col space-y-1 text-sm text-[#4A4A46]">
                 {navLinks.map((item) => (
@@ -216,7 +244,7 @@ export default function Navbar() {
       </AnimatePresence>
 
       {/* Command Menu Modal */}
-      <CommandMenu isOpen={commandMenuOpen} onClose={setCommandMenuOpen} />
+      <CommandMenu isOpen={commandMenuOpen} onClose={setCommandMenuOpen} onOpenNova={onOpenNova} />
     </>
   );
 }

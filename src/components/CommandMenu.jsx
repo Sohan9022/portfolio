@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 import { PROJECTS } from '../data/projectsData';
 
-export default function CommandMenu({ isOpen, onClose }) {
+export default function CommandMenu({ isOpen, onClose, onOpenNova }) {
   const [query, setQuery] = useState('');
   const [copied, setCopied] = useState(false);
   const email = 'sohangadewar9022@gmail.com';
@@ -50,6 +50,20 @@ export default function CommandMenu({ isOpen, onClose }) {
   };
 
   const actions = [
+    {
+      group: 'AI Portfolio Concierge',
+      items: [
+        { 
+          label: 'Ask Nova (AI Concierge)', 
+          desc: 'Chat with Nova about Sohan\'s 5 systems, trade-offs, and APM candidacy', 
+          action: () => {
+            onClose(false);
+            if (onOpenNova) onOpenNova();
+          }, 
+          icon: Sparkles 
+        }
+      ]
+    },
     {
       group: 'Live Interactive Prototypes (Lovable MVPs)',
       items: [

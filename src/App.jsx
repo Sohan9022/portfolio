@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import ProjectsSection from './components/ProjectsSection';
@@ -9,11 +9,14 @@ import ProductTeardowns from './components/ProductTeardowns';
 import ResearchSpotlight from './components/ResearchSpotlight';
 import AboutSection from './components/AboutSection';
 import Footer from './components/Footer';
+import AskNova from './components/AskNova';
 
 export default function App() {
+  const [novaOpen, setNovaOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-[#FBFBFA] text-[#121214] font-sans antialiased selection:bg-slate-900 selection:text-white">
-      <Navbar />
+      <Navbar onOpenNova={() => setNovaOpen(true)} />
       <main>
         <HeroSection />
         <ProjectsSection />
@@ -25,6 +28,7 @@ export default function App() {
         <AboutSection />
       </main>
       <Footer />
+      <AskNova externalOpen={novaOpen} onExternalClose={() => setNovaOpen(false)} />
     </div>
   );
 }
