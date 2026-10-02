@@ -137,35 +137,66 @@ What would you like to explore first?
       parts: [{ text: m.content }]
     }));
 
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    // Prioritize Gemini 3.5 Flash Lite (500 RPD quota), with cascading fallbacks
+    const candidateModels = [
+      'gemini-3.5-flash-lite',
+      'gemini-3.1-flash-lite',
+      'gemini-2.5-flash-lite',
+      'gemini-1.5-flash'
+    ];
 
-    const response = await fetch(geminiUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        system_instruction: {
-          parts: [{ text: SYSTEM_INSTRUCTION }]
-        },
-        contents,
-        generationConfig: {
-          temperature: 0.4,
-          maxOutputTokens: 800,
+    let candidateText = null;
+    let usedModel = null;
+    let lastError = null;
+
+    for (const modelName of candidateModels) {
+      try {
+        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
+
+        const response = await fetch(geminiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            system_instruction: {
+              parts: [{ text: SYSTEM_INSTRUCTION }]
+            },
+            contents,
+            generationConfig: {
+              temperature: 0.4,
+              maxOutputTokens: 800,
+            }
+          })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          candidateText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (candidateText) {
+            usedModel = modelName;
+            break;
+          }
+        } else {
+          const errText = await response.text();
+          console.warn(`Model ${modelName} returned status ${response.status}:`, errText);
+          lastError = errText;
         }
-      })
-    });
-
-    if (!response.ok) {
-      const errText = await response.text();
-      console.error('Gemini API Error:', errText);
-      return res.status(response.status).json({ error: 'Failed to communicate with Gemini API', details: errText });
+      } catch (e) {
+        console.warn(`Model ${modelName} fetch failed:`, e.message);
+        lastError = e.message;
+      }
     }
 
-    const data = await response.json();
-    const candidateText = data.candidates?.[0]?.content?.parts?.[0]?.text || "I'm sorry, I couldn't generate a response right now. Please try asking again!";
+    if (!candidateText) {
+      console.error('All candidate Gemini models failed. Last error:', lastError);
+      return res.status(502).json({ 
+        error: 'Failed to communicate with Gemini API across candidate models', 
+        details: lastError 
+      });
+    }
 
     return res.status(200).json({
       content: candidateText,
-      source: 'gemini-1.5-flash'
+      source: usedModel
     });
   } catch (error) {
     console.error('Ask Nova Server Error:', error);

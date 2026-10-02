@@ -307,7 +307,7 @@ export default function AskNova({ externalOpen, onExternalClose }) {
                     <div className="flex items-center gap-1.5">
                       <h4 className="text-sm font-bold text-[#121214]">Nova</h4>
                       <span className="text-[10px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-medium">
-                        Gemini 1.5 Flash
+                        Gemini 3.5 Flash Lite
                       </span>
                     </div>
                     <p className="text-[11px] text-[#666663] font-mono">
