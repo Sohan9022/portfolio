@@ -18,6 +18,7 @@ import {
   Code2,
   Award
 } from 'lucide-react';
+import Logo from './Logo';
 
 const PM_STAGES = [
   {
@@ -137,8 +138,9 @@ export default function HeroSection() {
             
             {/* Eyebrow & Status */}
             <div className="flex flex-wrap items-center gap-2.5">
-              <span className="text-[11px] font-mono tracking-wider uppercase text-[#121214] font-semibold bg-white border border-[#E0E0DB] px-3 py-1 rounded-full shadow-xs">
-                Product Manager · Builder · Systems Thinker
+              <span className="inline-flex items-center gap-2 text-[11px] font-mono tracking-wider uppercase text-[#121214] font-semibold bg-white border border-[#E0E0DB] px-3 py-1 rounded-full shadow-xs">
+                <Logo size={18} />
+                <span>Product Manager · Builder · Systems Thinker</span>
               </span>
               <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-mono text-emerald-800 bg-emerald-50 border border-emerald-200/70">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />

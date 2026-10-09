@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Logo({ size = 26, className = "" }) {
+export default function Logo({ size = 40, className = "" }) {
   return (
     <div 
       className={`relative inline-flex items-center justify-center shrink-0 group ${className}`}
@@ -11,7 +11,7 @@ export default function Logo({ size = 26, className = "" }) {
         alt="Sohan Gadewar Logo"
         width={size}
         height={size}
-        className="w-full h-full object-contain transition-transform duration-300 ease-out group-hover:scale-110"
+        className="w-full h-full object-contain transition-transform duration-300 ease-out group-hover:scale-110 drop-shadow-xs"
       />
     </div>
   );

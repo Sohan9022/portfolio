@@ -50,10 +50,10 @@ export default function Navbar({ onOpenNova }) {
           <div className="flex items-center gap-3 shrink-0">
             <a
               href="#"
-              className="text-sm font-semibold tracking-tight text-[#121214] hover:text-black transition-colors flex items-center gap-2.5"
+              className="text-sm font-semibold tracking-tight text-[#121214] hover:text-black transition-colors flex items-center gap-3 group"
             >
-              <Logo size={24} />
-              <span className="font-bold tracking-tight">SOHAN GADEWAR</span>
+              <Logo size={40} className="w-9 h-9 sm:w-10 sm:h-10" />
+              <span className="font-bold tracking-tight text-sm sm:text-[15px]">SOHAN GADEWAR</span>
             </a>
             
             {/* Status badge: visible only on extra-large screens to prevent any mid-screen collision */}

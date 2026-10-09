@@ -170,7 +170,7 @@ export default function Footer() {
       <div className="py-8 bg-[#FBFBFA] text-xs text-[#666663]">
         <div className="max-w-6xl mx-auto px-6 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
-            <Logo size={18} />
+            <Logo size={24} />
             <span>© {new Date().getFullYear()} Sohan Gadewar</span>
             <span>·</span>
             <span>Designed with restraint & product intentionality.</span>
