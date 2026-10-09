@@ -46,21 +46,15 @@ export default function Navbar({ onOpenNova }) {
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3">
           
-          {/* Brand & Status */}
-          <div className="flex items-center gap-3 shrink-0">
+          {/* Brand */}
+          <div className="flex items-center shrink-0">
             <a
               href="#"
-              className="text-sm font-semibold tracking-tight text-[#121214] hover:text-black transition-colors flex items-center gap-3 group"
+              className="text-sm font-semibold tracking-tight text-[#121214] hover:text-black transition-colors flex items-center gap-2.5 sm:gap-3 group"
             >
-              <Logo size={40} className="w-9 h-9 sm:w-10 sm:h-10" />
+              <Logo size={36} className="w-8 h-8 sm:w-[38px] sm:h-[38px]" />
               <span className="font-bold tracking-tight text-sm sm:text-[15px]">SOHAN GADEWAR</span>
             </a>
-            
-            {/* Status badge: visible only on extra-large screens to prevent any mid-screen collision */}
-            <span className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-[#F1F1EE] text-[#666663] border border-[#E5E5E0]">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
-              <span>Available for Product Roles</span>
-            </span>
           </div>
 
           {/* Desktop Nav Links - Only displayed at lg (1024px+) to prevent tablet collision */}
