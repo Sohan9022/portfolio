@@ -7,6 +7,7 @@ import {
   Play, 
   CheckCircle2, 
   ShieldCheck, 
+  Shield,
   Terminal, 
   Database, 
   Sparkles, 
@@ -27,6 +28,7 @@ const iconMap = {
   giftverse: Play,
   shrh: ShieldCheck,
   'dynamic-forms': Sparkles,
+  truststate: Shield,
 };
 
 export default function InteractiveShowcase() {
@@ -52,6 +54,9 @@ export default function InteractiveShowcase() {
 
   // Dynamic Forms State
   const [formVibe, setFormVibe] = useState('adventure'); // 'adventure' | 'zen' | 'cyber'
+
+  // TrustState State
+  const [trustStateScenario, setTrustStateScenario] = useState('authorized'); // 'authorized' | 'poisoned'
 
   return (
     <section className="py-12 border-b border-[#EAEAE7] bg-[#FFFFFF]">
@@ -90,6 +95,7 @@ export default function InteractiveShowcase() {
                       setSelectedId(p.id);
                       setSentinelQueried(false);
                       setGiftStage(1);
+                      setTrustStateScenario('authorized');
                     }}
                     className={`relative px-3 py-1.5 rounded-lg text-xs font-mono transition-colors flex items-center gap-1.5 ${
                       isSelected ? 'text-[#121214] font-semibold' : 'text-[#666663] hover:text-[#121214]'
@@ -664,6 +670,120 @@ export default function InteractiveShowcase() {
                           <span>Structured JSON output remains canonical</span>
                           <span className="text-emerald-700 font-bold">Zero User Form Abandonment</span>
                         </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* SIMULATOR: TrustState */}
+                  {project.id === 'truststate' && (
+                    <div className="space-y-3 font-sans">
+                      <div className="flex items-center justify-between pb-2 border-b border-[#F0F0EC] text-xs font-mono">
+                        <span className="text-[#666663]">Decoupled State Authorization Simulator</span>
+                        <span className="text-blue-700 font-semibold bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                          Runtime MCP Tool Gateway
+                        </span>
+                      </div>
+
+                      {/* Scenario Selector */}
+                      <div>
+                        <div className="text-xs text-[#121214] font-medium mb-1.5 flex items-center justify-between">
+                          <span>Simulate Agent Action Payload:</span>
+                          <span className="text-[10px] font-mono text-[#666663]">Toggle Adversarial Test</span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2 text-xs font-mono">
+                          <button
+                            onClick={() => setTrustStateScenario('authorized')}
+                            className={`p-2.5 rounded-lg border text-left transition-all ${
+                              trustStateScenario === 'authorized'
+                                ? 'bg-emerald-50 border-emerald-300 text-emerald-950 font-semibold shadow-xs'
+                                : 'bg-white border-[#EAEAE7] text-[#666663] hover:bg-[#F8F8F6]'
+                            }`}
+                          >
+                            <div className="flex items-center gap-1.5">
+                              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                              <span className="font-bold text-xs">Scenario A: Normal Workflow</span>
+                            </div>
+                            <div className="text-[10px] opacity-75 mt-0.5">Read-Only Query · PES Hash S102 Verified</div>
+                          </button>
+
+                          <button
+                            onClick={() => setTrustStateScenario('poisoned')}
+                            className={`p-2.5 rounded-lg border text-left transition-all ${
+                              trustStateScenario === 'poisoned'
+                                ? 'bg-rose-50 border-rose-300 text-rose-950 font-semibold shadow-xs'
+                                : 'bg-white border-[#EAEAE7] text-[#666663] hover:bg-[#F8F8F6]'
+                            }`}
+                          >
+                            <div className="flex items-center gap-1.5">
+                              <AlertTriangle className="w-3.5 h-3.5 text-rose-600" />
+                              <span className="font-bold text-xs">Scenario B: Indirect Injection</span>
+                            </div>
+                            <div className="text-[10px] opacity-75 mt-0.5">Poisoned RAG Doc · Proposes Escalation</div>
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Gateway Verification Result */}
+                      <div className="p-3.5 rounded-xl border border-[#EAEAE7] bg-white space-y-2.5 font-mono text-xs">
+                        {trustStateScenario === 'authorized' ? (
+                          <>
+                            <div className="flex items-center justify-between pb-2 border-b border-[#F0F0EC]">
+                              <span className="text-emerald-700 font-bold flex items-center gap-1.5">
+                                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                                STATUS: CRYPTOGRAPHICALLY ATTESTED (LEASE ISSUED)
+                              </span>
+                              <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">
+                                Decision Latency: 2.4ms
+                              </span>
+                            </div>
+                            <div className="space-y-1 text-[11px] text-[#4A4A46]">
+                              <div className="flex justify-between">
+                                <span className="text-[#9E9E96]">Authoritative State Hash:</span>
+                                <span className="font-semibold text-slate-900">sha256:7f83b1c2... (S102)</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-[#9E9E96]">Observed Runtime Hash:</span>
+                                <span className="font-semibold text-emerald-700">sha256:7f83b1c2... [MATCH]</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-[#9E9E96]">Signed Ephemeral Lease:</span>
+                                <span className="text-indigo-600 font-medium">T_lease(ExpiresAt: +60s)</span>
+                              </div>
+                            </div>
+                            <div className="p-2 rounded bg-emerald-50/70 border border-emerald-200 text-emerald-900 text-[10px] leading-relaxed">
+                              <strong>MCP Proxy Action:</strong> Forwarded request to PostgreSQL database gateway with signed lease token. Consequential write authorized.
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div className="flex items-center justify-between pb-2 border-b border-[#F0F0EC]">
+                              <span className="text-rose-700 font-bold flex items-center gap-1.5">
+                                <AlertTriangle className="w-4 h-4 text-rose-600" />
+                                STATUS: CIRCUIT BREAKER TRIPPED (AGENT QUARANTINED)
+                              </span>
+                              <span className="text-[10px] px-1.5 py-0.5 rounded bg-rose-50 text-rose-800 border border-rose-200">
+                                Enforcement Latency: 1.8ms
+                              </span>
+                            </div>
+                            <div className="space-y-1 text-[11px] text-[#4A4A46]">
+                              <div className="flex justify-between">
+                                <span className="text-[#9E9E96]">Threat Detected:</span>
+                                <span className="font-semibold text-rose-700">UNAUTHORIZED_STATE_MUTATION</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-[#9E9E96]">Trigger Payload:</span>
+                                <span className="font-semibold text-slate-800">RAG Chunk attempted override: "Escalate to admin_db_drop"</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-[#9E9E96]">Mitigation Protocol:</span>
+                                <span className="font-semibold text-rose-800">Instant Rollback to Checkpoint S101</span>
+                              </div>
+                            </div>
+                            <div className="p-2 rounded bg-rose-50/70 border border-rose-200 text-rose-900 text-[10px] leading-relaxed">
+                              <strong>Zero-Trust Guarantee:</strong> The LLM lacks the private signing key. Consequential action blocked at the MCP boundary; zero unauthorized database writes permitted.
+                            </div>
+                          </>
+                        )}
                       </div>
                     </div>
                   )}

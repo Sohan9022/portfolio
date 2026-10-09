@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Copy, Check, FileText, ArrowUp, ArrowUpRight, ExternalLink } from 'lucide-react';
+import { Mail, Copy, Check, FileText, ArrowUp, ArrowUpRight, ExternalLink, Globe } from 'lucide-react';
 
 export default function Footer() {
   const [copied, setCopied] = useState(false);
@@ -122,6 +122,18 @@ export default function Footer() {
                 <motion.a
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.95 }}
+                  href="https://portfolio-sohan9022.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 rounded-lg border border-[#EAEAE7] hover:border-[#D5D5CE] bg-white text-[#4A4A46] hover:text-[#121214] transition-colors flex items-center justify-center"
+                  title="Portfolio Website"
+                >
+                  <Globe className="w-4 h-4 text-[#4A4A46] hover:text-[#121214]" />
+                </motion.a>
+
+                <motion.a
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.95 }}
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -136,7 +148,7 @@ export default function Footer() {
                 <motion.a
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  href="https://github.com"
+                  href="https://github.com/Sohan9022"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2.5 rounded-lg border border-[#EAEAE7] hover:border-[#D5D5CE] bg-white text-[#4A4A46] hover:text-[#121214] transition-colors flex items-center justify-center"

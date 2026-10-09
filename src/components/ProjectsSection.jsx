@@ -28,12 +28,14 @@ const iconMap = {
   finmate: Database,
   sentinel: Terminal,
   shrh: ShieldCheck,
+  'dynamic-forms': Sparkles,
+  truststate: ShieldCheck,
 };
 
 const FILTERS = [
-  { id: 'all', label: 'All Projects (5)' },
-  { id: 'governance', label: 'AI Governance (SHRH, Sentinel)' },
-  { id: 'hci', label: 'Contextual HCI (Spaces, GiftVerse)' },
+  { id: 'all', label: `All Projects (${PROJECTS.length})` },
+  { id: 'governance', label: 'AI Security & Governance (TrustState, SHRH, Sentinel)' },
+  { id: 'hci', label: 'Contextual HCI (Spaces, GiftVerse, Forms)' },
   { id: 'fintech', label: 'FinTech Systems (FinMate)' }
 ];
 
@@ -42,7 +44,15 @@ export default function ProjectsSection() {
   const [viewMode, setViewMode] = useState('studio'); // 'studio' | 'sequential'
   const [selectedProjectId, setSelectedProjectId] = useState(PROJECTS[0].id);
   const [activeSpecTab, setActiveSpecTab] = useState('architecture'); // 'architecture' | 'tradeoffs' | 'scope'
-  const [expandedIds, setExpandedIds] = useState({ 'giftverse': true, 'sentinel': true, 'shrh': true, 'finmate': true, 'spaces': true });
+  const [expandedIds, setExpandedIds] = useState({ 
+    giftverse: true, 
+    sentinel: true, 
+    shrh: true, 
+    finmate: true, 
+    spaces: true, 
+    'dynamic-forms': true, 
+    truststate: true 
+  });
 
   const toggleExpand = (id) => {
     setExpandedIds(prev => ({ ...prev, [id]: !prev[id] }));
@@ -50,8 +60,8 @@ export default function ProjectsSection() {
 
   const filteredProjects = PROJECTS.filter(project => {
     if (activeFilter === 'all') return true;
-    if (activeFilter === 'governance') return project.id === 'shrh' || project.id === 'sentinel';
-    if (activeFilter === 'hci') return project.id === 'spaces' || project.id === 'giftverse';
+    if (activeFilter === 'governance') return project.id === 'truststate' || project.id === 'shrh' || project.id === 'sentinel';
+    if (activeFilter === 'hci') return project.id === 'spaces' || project.id === 'giftverse' || project.id === 'dynamic-forms';
     if (activeFilter === 'fintech') return project.id === 'finmate';
     return true;
   });
@@ -120,8 +130,8 @@ export default function ProjectsSection() {
                   setActiveFilter(f.id);
                   const matching = PROJECTS.filter(project => {
                     if (f.id === 'all') return true;
-                    if (f.id === 'governance') return project.id === 'shrh' || project.id === 'sentinel';
-                    if (f.id === 'hci') return project.id === 'spaces' || project.id === 'giftverse';
+                    if (f.id === 'governance') return project.id === 'truststate' || project.id === 'shrh' || project.id === 'sentinel';
+                    if (f.id === 'hci') return project.id === 'spaces' || project.id === 'giftverse' || project.id === 'dynamic-forms';
                     if (f.id === 'fintech') return project.id === 'finmate';
                     return true;
                   });

@@ -329,6 +329,71 @@ export default function SystemDiagram({ projectId }) {
         </div>
       );
 
+    case 'truststate':
+      return (
+        <div className="rounded-xl bg-[#F8F8F6] border border-[#EAEAE7] p-4 text-xs font-mono">
+          <div className="flex items-center justify-between text-[11px] text-[#666663] mb-3 pb-2 border-b border-[#EAEAE7]">
+            <span className="flex items-center gap-1.5">
+              <Shield className="w-3 h-3 text-blue-600 animate-pulse" />
+              SYSTEM LOGIC: ZERO-TRUST RUNTIME CONTROL PLANE & LEASE GATEWAY
+            </span>
+            <span className="text-emerald-700 font-semibold flex items-center gap-1 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200/60">
+              <Lock className="w-3 h-3" /> &lt;25ms P95 SLA
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-2 relative">
+            <motion.div 
+              whileHover={{ y: -2 }}
+              className="p-2.5 rounded-lg bg-white border border-[#EAEAE7] transition-all"
+            >
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] text-[#9E9E96]">01. PROPOSAL</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-ping"></span>
+              </div>
+              <div className="text-[11px] font-semibold text-[#121214]">Agent Mutation</div>
+              <div className="text-[10px] text-[#666663] mt-0.5">S100 → S101 Sandbox</div>
+            </motion.div>
+
+            <motion.div 
+              whileHover={{ y: -2 }}
+              className="p-2.5 rounded-lg bg-white border border-[#EAEAE7] transition-all"
+            >
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] text-[#9E9E96]">02. INVARIANT GATE</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+              </div>
+              <div className="text-[11px] font-semibold text-[#121214]">RFC 8785 Normalizer</div>
+              <div className="text-[10px] text-[#666663] mt-0.5">SHA-256 Commit H101</div>
+            </motion.div>
+
+            <motion.div 
+              whileHover={{ y: -2 }}
+              className="p-2.5 rounded-lg bg-white border border-[#EAEAE7] transition-all"
+            >
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] text-[#9E9E96]">03. LEASE ISSUANCE</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+              </div>
+              <div className="text-[11px] font-semibold text-[#121214]">Signed Lease T_lease</div>
+              <div className="text-[10px] text-[#666663] mt-0.5">&lt;3ms Local Sidecar Cache</div>
+            </motion.div>
+
+            <motion.div 
+              whileHover={{ y: -2 }}
+              className="p-2.5 rounded-lg bg-emerald-50/60 border border-emerald-200 transition-all"
+            >
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] text-emerald-700 font-bold">04. MCP GATEWAY</span>
+                <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+              </div>
+              <div className="text-[11px] font-semibold text-emerald-950">Verified Tool Call</div>
+              <div className="text-[10px] text-emerald-700 mt-0.5">Circuit breaker on drift</div>
+            </motion.div>
+          </div>
+        </div>
+      );
+
     default:
       return null;
   }

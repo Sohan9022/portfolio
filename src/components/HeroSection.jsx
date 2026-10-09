@@ -104,6 +104,16 @@ const PROTOTYPE_PREVIEWS = [
     icon: Play,
     status: 'Live on Lovable',
     metric: '30–60s Emotional Payoff'
+  },
+  {
+    id: 'truststate',
+    title: 'TrustState',
+    subtitle: 'Zero-Trust Agent Runtime',
+    domain: 'AI Security · Control Plane',
+    url: 'https://trust-state-qnkc9zvwy-sun-6b0b.vercel.app',
+    icon: ShieldCheck,
+    status: 'Live on Vercel',
+    metric: '<25ms P95 Enforcement SLA'
   }
 ];
 

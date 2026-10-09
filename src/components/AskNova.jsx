@@ -43,7 +43,7 @@ export default function AskNova({ externalOpen, onExternalClose }) {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: `Hi! I'm **Nova**, your interactive AI portfolio companion. ✦\n\nI'm grounded in my design logs, system architectures, and PRD specifications. Ask me anything about the 5 systems I've designed and shipped (**Sentinel**, **FinMate**, **Spaces**, **SHRH**, **GiftVerse**), my engineering trade-offs, or my APM background!`,
+      content: `Hi! I'm **Nova**, your interactive AI portfolio companion. ✦\n\nI'm grounded in my design logs, system architectures, and PRD specifications. Ask me anything about the systems I've architected and shipped (**TrustState**, **Sentinel**, **FinMate**, **Spaces**, **SHRH**, **GiftVerse**, **Dynamic Forms**), my engineering trade-offs, or my APM background!`,
       timestamp: new Date()
     }
   ]);

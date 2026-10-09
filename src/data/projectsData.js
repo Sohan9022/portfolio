@@ -186,6 +186,38 @@ export const PROJECTS = [
         { label: 'Custom Outcome', desc: 'Qualified Completion' }
       ]
     }
+  },
+  {
+    id: 'truststate',
+    number: '07',
+    title: 'TrustState',
+    subtitle: 'Zero-Trust Runtime Integrity for AI Agents',
+    category: 'AI Security · Enterprise Control Plane',
+    badges: ['Live Working App', 'Enterprise PRD'],
+    status: 'Prototype / Working App',
+    hasLiveDemo: true,
+    liveUrl: 'https://trust-state-qnkc9zvwy-sun-6b0b.vercel.app',
+    notionUrl: 'https://app.notion.com/p/TrustState-3f253f22e2b0806b8cfbfa976db926d1?source=copy_link',
+    summary: 'A zero-trust runtime security control plane decoupling agent state proposal from privileged tool authorization via cryptographic leases and invariant checks.',
+    thesis: 'Autonomous agents cannot treat LLMs as trusted kernels. Decoupling state proposals from state commitments via ephemeral cryptographic leases prevents indirect prompt injection from triggering privileged execution.',
+    problem: 'Static API tokens and text guardrails fail when an agent ingest poisoned RAG context. An agent with database write access retains that permission even after its execution context is hijacked.',
+    insight: 'An agent can propose a state mutation, but it cannot make that state trusted. Decoupling ephemeral scratchpads from cryptographically committed Protected Execution States (PES) establishes verifiable trust boundaries.',
+    architecture: [
+      'Inline MCP Tool Proxy: Intercepts consequential actions and validates short-lived signed state lease tokens',
+      '3-Tier State Ledger: Cryptographically commits PES (SHA-256) while sandboxing long-term memory updates',
+      'Dual-Tier Latency Pipeline: Sub-3ms local cache validation backed by asynchronous audit persistence (<25ms P95 overhead)',
+    ],
+    tradeoffs: 'Sacrificed unconstrained autonomous self-modification to eliminate privilege escalation backdoors; quarantined all capability-expanding mutations to human-in-the-loop review.',
+    specDetails: 'Comprehensive enterprise PRD specifying multi-tier state taxonomy (PES/LTM), RFC 8785 canonicalization, inline MCP gateway, and SecOps quarantine recovery workflows.',
+    diagramType: 'control-plane',
+    diagramData: {
+      steps: [
+        { label: '01. State Proposal', desc: 'Agent Proposals S100 → S101' },
+        { label: '02. Invariant Gate', desc: 'RFC 8785 + SHA-256 Commit' },
+        { label: '03. Lease Token', desc: 'Sub-3ms Ephemeral Lease' },
+        { label: '04. MCP Gateway', desc: 'Privileged Execution / Quarantine' }
+      ]
+    }
   }
 ];
 
@@ -267,6 +299,15 @@ export const DECISION_LOG = [
     context: 'Traditional forms treat personalization merely as showing or hiding question fields, leaving respondents feeling like they are doing unpaid administrative work.',
     tradeoff: 'Enforced the Critical Guardrail: limited story-mode animations to sub-400ms CSS transforms and rejected multi-second cinematic animations to protect completion speed.',
     rationale: 'A visually impressive form that takes twice as long to complete is a worse product. By decoupling the data layer from the experience layer, we dramatically improved qualitative response depth without increasing respondent cognitive load.'
+  },
+  {
+    id: 'decision-truststate',
+    project: 'TrustState',
+    tag: 'AI Security & Runtime Architecture',
+    decision: 'Ephemeral Cryptographic Leases vs. Persistent IAM Tokens for Tool Access',
+    context: 'When an autonomous agent is granted database write access, standard API keys allow continuous access even if the agent’s working memory is hijacked via indirect prompt injection.',
+    tradeoff: 'Refused to grant persistent tool access. Enforced short-lived cryptographic leases (T_lease) minted per verified state commitment, adding <25ms P95 overhead via local sidecar cache.',
+    rationale: 'In autonomous AI systems, permission must be bound to verifiable execution state, not just identity. If state invariants drift or tamper occurs, the circuit breaker halts lease minting immediately.'
   }
 ];
 

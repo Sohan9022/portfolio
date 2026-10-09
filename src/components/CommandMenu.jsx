@@ -67,6 +67,7 @@ export default function CommandMenu({ isOpen, onClose, onOpenNova }) {
     {
       group: 'Live Interactive Prototypes & MVPs',
       items: [
+        { label: 'TrustState Control Plane', desc: 'Zero-trust runtime integrity & MCP lease gateway for AI agents', url: 'https://trust-state-qnkc9zvwy-sun-6b0b.vercel.app', icon: ShieldCheck, isExternal: true },
         { label: 'GiftVerse Moments', desc: 'Interactive 30-60s suspense unboxing engine', url: 'https://gift-verse-moments.lovable.app', icon: Play, isExternal: true },
         { label: 'Adaptive UX Framework Prototype', desc: 'Refine UPI app frontend interactive Figma sandbox', url: 'https://www.figma.com/make/PWbUyJaOpqKLsqVlDpJOdG/Refine-UPI-app-frontend?t=aZVJGio9dMWpELlU-1', icon: Play, isExternal: true },
         { label: 'Spaces Context Switch', desc: 'Contextual telemetry firewall & isolated vector spaces', url: 'https://space-context-switch.lovable.app', icon: Layers, isExternal: true },
@@ -77,6 +78,7 @@ export default function CommandMenu({ isOpen, onClose, onOpenNova }) {
     {
       group: 'Notion PRDs & Specifications',
       items: [
+        { label: 'TrustState PRD & Architecture', desc: 'Zero-trust runtime integrity for autonomous AI agents', url: 'https://app.notion.com/p/TrustState-3f253f22e2b0806b8cfbfa976db926d1?source=copy_link', icon: FileText, isExternal: true },
         { label: 'Project Sentinel PRD', desc: 'Full Product Requirements & Decision Log', url: 'https://app.notion.com/p/PROJECT-SENTINEL-3d053f22e2b0800d891bd24a7f914c07?source=copy_link', icon: FileText, isExternal: true },
         { label: 'AI Asana Analyst PRD', desc: 'Edge CV vs. Asynchronous GenAI for posture analytics', url: 'https://app.notion.com/p/AI-ASANA-ANALYST-3ed53f22e2b080aebdd9ec74e5845aba?source=copy_link', icon: FileText, isExternal: true },
         { label: 'GiftVerse PRD', desc: 'Experience Director & Encrypted Payload Spec', url: 'https://app.notion.com/p/GIFTVVERSE-3d053f22e2b0804b8b90cf6da95b931f?source=copy_link', icon: FileText, isExternal: true },
