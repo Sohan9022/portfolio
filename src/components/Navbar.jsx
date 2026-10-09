@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll } from 'framer-motion';
 import { ArrowUpRight, Menu, X, FileText, Download, Search, Sparkles } from 'lucide-react';
 import CommandMenu from './CommandMenu';
+import Logo from './Logo';
 
 export default function Navbar({ onOpenNova }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -49,9 +50,9 @@ export default function Navbar({ onOpenNova }) {
           <div className="flex items-center gap-3 shrink-0">
             <a
               href="#"
-              className="text-sm font-semibold tracking-tight text-[#121214] hover:text-black transition-colors flex items-center gap-2"
+              className="text-sm font-semibold tracking-tight text-[#121214] hover:text-black transition-colors flex items-center gap-2.5"
             >
-              <span className="w-2 h-2 rounded-full bg-blue-600 shrink-0"></span>
+              <Logo size={24} />
               <span className="font-bold tracking-tight">SOHAN GADEWAR</span>
             </a>
             

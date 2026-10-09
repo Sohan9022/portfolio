@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Copy, Check, FileText, ArrowUp, ArrowUpRight, ExternalLink, Globe } from 'lucide-react';
+import Logo from './Logo';
 
 export default function Footer() {
   const [copied, setCopied] = useState(false);
@@ -168,7 +169,8 @@ export default function Footer() {
       {/* Editorial Footer Bottom Bar */}
       <div className="py-8 bg-[#FBFBFA] text-xs text-[#666663]">
         <div className="max-w-6xl mx-auto px-6 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
+            <Logo size={18} />
             <span>© {new Date().getFullYear()} Sohan Gadewar</span>
             <span>·</span>
             <span>Designed with restraint & product intentionality.</span>
