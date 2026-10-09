@@ -59,7 +59,7 @@ export default function Navbar({ onOpenNova }) {
             {/* Status badge: visible only on extra-large screens to prevent any mid-screen collision */}
             <span className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-[#F1F1EE] text-[#666663] border border-[#E5E5E0]">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
-              <span>APM Candidate '26–'27</span>
+              <span>Available for Product Roles</span>
             </span>
           </div>
 
@@ -157,7 +157,7 @@ export default function Navbar({ onOpenNova }) {
               <div className="flex items-center justify-between pb-3 border-b border-[#F0F0EC]">
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-mono bg-[#F6F6F3] text-[#666663] border border-[#E5E5E0]">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                  <span>Exploring APM Roles · 2026–2027</span>
+                  <span>Available for Product Roles</span>
                 </div>
                 <button
                   onClick={() => {

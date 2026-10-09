@@ -144,7 +144,7 @@ export default function HeroSection() {
               </span>
               <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-mono text-emerald-800 bg-emerald-50 border border-emerald-200/70">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Open for APM Roles 2026–2027</span>
+                <span>Available for Product & APM Roles</span>
               </div>
             </div>
 

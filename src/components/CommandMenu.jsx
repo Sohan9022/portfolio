@@ -97,7 +97,7 @@ export default function CommandMenu({ isOpen, onClose, onOpenNova }) {
       ]
     },
     {
-      group: 'Candidate Actions',
+      group: 'Resume & Contact',
       items: [
         { label: 'View / Download Resume (PDF)', desc: 'Calibrated 1-page APM resume (PDF format)', url: '/Sohan_Gadewar_Resume.pdf', icon: FileText, isExternal: true },
         { label: 'Download Resume (.docx)', desc: 'Calibrated 1-page APM resume (Word format)', url: '/Sohan_Gadewar_Resume.docx', icon: FileText, isDownload: true },
@@ -248,7 +248,7 @@ export default function CommandMenu({ isOpen, onClose, onOpenNova }) {
 
           {/* Footer Bar */}
           <div className="px-5 py-2.5 bg-[#FBFBFA] border-t border-[#F0F0EC] flex items-center justify-between text-[11px] font-mono text-[#9E9E96]">
-            <span>Sohan Gadewar · APM Candidate Dossier</span>
+            <span>Sohan Gadewar · Product Dossier</span>
             <div className="flex items-center gap-3">
               <span>Press <kbd className="px-1 py-0.5 rounded bg-[#F1F1EE] border border-[#E5E5E0] text-[10px] text-[#666663]">⌘K</kbd> anywhere</span>
             </div>

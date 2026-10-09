@@ -26,7 +26,7 @@ export default function Footer() {
           <div className="rounded-2xl bg-white border border-[#EAEAE7] p-8 sm:p-12 shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="space-y-2 max-w-xl">
               <span className="font-mono text-xs uppercase tracking-wider text-blue-700 font-semibold block">
-                CANDIDATE DOSSIER
+                PRODUCT DOSSIER
               </span>
               <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#121214]">
                 Looking for the concise one-page overview?
