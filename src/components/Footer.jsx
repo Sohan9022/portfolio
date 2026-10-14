@@ -123,7 +123,7 @@ export default function Footer() {
                 <motion.a
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  href="https://portfolio-sohan9022.vercel.app"
+                  href="https://portfolio-ruby-mu-r5o6ica105.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2.5 rounded-lg border border-[#EAEAE7] hover:border-[#D5D5CE] bg-white text-[#4A4A46] hover:text-[#121214] transition-colors flex items-center justify-center"
@@ -135,7 +135,7 @@ export default function Footer() {
                 <motion.a
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/sohan-gadewar-9644a530b/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2.5 rounded-lg border border-[#EAEAE7] hover:border-[#D5D5CE] bg-white text-[#4A4A46] hover:text-[#121214] transition-colors flex items-center justify-center"

@@ -138,7 +138,7 @@ def build_top_tier_resume():
     r_sep2.font.name = 'Calibri'; r_sep2.font.size = Pt(8.4); r_sep2.font.color.rgb = RGBColor(148, 163, 184)
     
     # Portfolio with embedded link
-    add_logo_hyperlink(p_contact, 'https://vercel.com/sun-6b0b/portfolio', 'public/icons/resume/globe.png', 'Portfolio', color_hex="1D4ED8", font_size_pt=8.4)
+    add_logo_hyperlink(p_contact, 'https://portfolio-ruby-mu-r5o6ica105.vercel.app/', 'public/icons/resume/globe.png', 'Portfolio', color_hex="1D4ED8", font_size_pt=8.4)
     
     r_sep3 = p_contact.add_run('   •   ')
     r_sep3.font.name = 'Calibri'; r_sep3.font.size = Pt(8.4); r_sep3.font.color.rgb = RGBColor(148, 163, 184)
