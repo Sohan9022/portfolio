@@ -72,9 +72,11 @@ const PROTOTYPE_PREVIEWS = [
     subtitle: 'Silent-by-Default Decision Agent',
     domain: 'Enterprise AI · Governance',
     url: 'https://echo-sentinel-08.lovable.app',
+    prdUrl: 'https://app.notion.com/p/PROJECT-SENTINEL-3d053f22e2b0800d891bd24a7f914c07?source=copy_link',
     icon: Terminal,
     status: 'Live on Lovable',
-    metric: 'Zero Unprompted Interruptions'
+    metric: 'Zero Unprompted Alerts',
+    desc: 'Passively captures engineering decisions and catches said-vs-confirmed drift without noisy Slack notifications.'
   },
   {
     id: 'finmate',
@@ -82,9 +84,11 @@ const PROTOTYPE_PREVIEWS = [
     subtitle: 'Multimodal Expense Memory',
     domain: 'FinTech · Deterministic SQL',
     url: 'https://tell-finmate-ai.lovable.app',
+    prdUrl: 'https://app.notion.com/p/FINMATE-AI-3d053f22e2b080479a82e50becf237f2?source=copy_link',
     icon: Database,
     status: 'Live on Lovable',
-    metric: '100% Citation-Backed Math'
+    metric: '100% Citation-Backed Math',
+    desc: 'Pairs natural voice/receipt capture with deterministic PostgreSQL RPCs to eliminate arithmetic hallucinations.'
   },
   {
     id: 'spaces',
@@ -92,19 +96,23 @@ const PROTOTYPE_PREVIEWS = [
     subtitle: 'Contextual Personalization Firewall',
     domain: 'Social Systems · Recommendation',
     url: 'https://space-context-switch.lovable.app',
+    prdUrl: 'https://app.notion.com/p/SPACES-3ce53f22e2b0805db12ef30ed696c7b5?source=copy_link',
     icon: Layers,
     status: 'Live on Lovable',
-    metric: 'Isolated Vector Stores'
+    metric: 'Isolated Vector Stores',
+    desc: 'Eliminates algorithmic context collapse by isolating behavioral telemetry across distinct focus modes.'
   },
   {
     id: 'giftverse',
-    title: 'GiftVerse Moments',
+    title: 'GiftVerse AI',
     subtitle: 'Suspense Reveal Engine',
     domain: 'Consumer AI · Interactive UX',
     url: 'https://gift-verse-moments.lovable.app',
+    prdUrl: 'https://app.notion.com/p/GIFTVVERSE-3d053f22e2b0804b8b90cf6da95b931f?source=copy_link',
     icon: Play,
     status: 'Live on Lovable',
-    metric: '30–60s Emotional Payoff'
+    metric: '30–60s Emotional Payoff',
+    desc: 'Restores the delight of physical unboxing by turning transactional gift vouchers into 30–60s micro-suspense reveals.'
   },
   {
     id: 'truststate',
@@ -112,9 +120,35 @@ const PROTOTYPE_PREVIEWS = [
     subtitle: 'Zero-Trust Agent Runtime',
     domain: 'AI Security · Control Plane',
     url: 'https://trust-state-qnkc9zvwy-sun-6b0b.vercel.app',
+    prdUrl: 'https://app.notion.com/p/TrustState-3f253f22e2b0806b8cfbfa976db926d1?source=copy_link',
     icon: ShieldCheck,
     status: 'Live on Vercel',
-    metric: '<25ms P95 Enforcement SLA'
+    metric: '<25ms P95 Enforcement SLA',
+    desc: 'Decouples agent state proposals from privileged tool execution via short-lived signed cryptographic leases.'
+  },
+  {
+    id: 'shrh',
+    title: 'SHRH Triage Gate',
+    subtitle: 'Semantic Human-Readable Hashing',
+    domain: 'AI Governance · CI/CD Policy',
+    url: 'https://sem-hash.vercel.app',
+    prdUrl: 'https://app.notion.com/p/SHRH-3d553f22e2b08035b164f88ad01b17b2?source=copy_link',
+    icon: ShieldCheck,
+    status: 'Live on Vercel',
+    metric: 'Autonomous Safe Triage Gate',
+    desc: 'Autonomous change governance for production AI prompts, isolating semantic drift from operational policy downgrades.'
+  },
+  {
+    id: 'dynamic-forms',
+    title: 'Dynamic Forms',
+    subtitle: 'Adaptive Narrative Form Experiences',
+    domain: 'Consumer AI · Interactive HCI',
+    url: 'https://dynamic-narrative-forms.lovable.app',
+    prdUrl: 'https://app.notion.com/p/DYNAMIC-FORMS-3d053f22e2b080ee849ce455ae22c3a8?source=copy_link',
+    icon: Sparkles,
+    status: 'Live on Lovable',
+    metric: 'Sub-400ms UI Mutation',
+    desc: 'Turns static questionnaires into responsive visual narrative worlds that dynamically mutate styling based on user intent.'
   }
 ];
 
@@ -237,33 +271,34 @@ export default function HeroSection() {
                     APM Signal Dashboard
                   </span>
                 </div>
-                <span className="font-mono text-[10px] text-[#9E9E96] bg-[#F6F6F3] px-2 py-0.5 rounded border border-[#EAEAE7]">
-                  V1 Clickable MVPs
+                <span className="font-mono text-[10px] text-blue-700 bg-blue-50/80 px-2.5 py-0.5 rounded-full border border-blue-200/60 font-semibold">
+                  7 Clickable Systems
                 </span>
               </div>
 
-              {/* 4 Clickable Prototype Previews */}
+              {/* 7 Clickable Prototype Previews */}
               <div className="space-y-2">
                 <div className="text-[11px] font-mono text-[#666663] uppercase tracking-wider flex items-center justify-between">
                   <span>Interactive Shipped Systems</span>
-                  <span className="text-[10px] text-blue-700">Select to inspect</span>
+                  <span className="text-[10px] text-blue-700 font-semibold">Select to inspect</span>
                 </div>
 
                 <div className="grid grid-cols-2 gap-2">
-                  {PROTOTYPE_PREVIEWS.map((proto) => {
+                  {PROTOTYPE_PREVIEWS.map((proto, index) => {
                     const isSelected = selectedPreview.id === proto.id;
                     const Icon = proto.icon;
+                    const isLast = index === PROTOTYPE_PREVIEWS.length - 1;
                     return (
                       <button
                         key={proto.id}
                         onClick={() => setSelectedPreview(proto)}
-                        className={`text-left p-3 rounded-xl border transition-all ${
+                        className={`text-left p-2.5 rounded-xl border transition-all ${
                           isSelected
-                            ? 'bg-[#FBFBFA] border-[#121214] shadow-xs'
+                            ? 'bg-[#FBFBFA] border-[#121214] shadow-xs ring-1 ring-[#121214]/10'
                             : 'bg-white border-[#EAEAE7] hover:border-[#D5D5CE]'
-                        }`}
+                        } ${isLast ? 'col-span-2' : ''}`}
                       >
-                        <div className="flex items-center justify-between mb-1.5">
+                        <div className="flex items-center justify-between mb-1">
                           <Icon className={`w-3.5 h-3.5 ${isSelected ? 'text-blue-700' : 'text-[#666663]'}`} />
                           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                         </div>
@@ -287,34 +322,48 @@ export default function HeroSection() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -6 }}
                   transition={{ duration: 0.16 }}
-                  className="p-4 rounded-xl bg-[#F8F8F6] border border-[#EAEAE7] space-y-3"
+                  className="p-3.5 rounded-xl bg-[#F8F8F6] border border-[#EAEAE7] space-y-2.5"
                 >
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="font-semibold text-[#121214]">
+                  <div className="flex items-center justify-between text-xs gap-2">
+                    <span className="font-semibold text-[#121214] truncate">
                       {selectedPreview.subtitle}
                     </span>
-                    <span className="font-mono text-[10px] text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                    <span className="font-mono text-[10px] text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 shrink-0">
                       {selectedPreview.metric}
                     </span>
                   </div>
 
                   <p className="text-xs text-[#4A4A46] leading-relaxed">
-                    Tested as a functional MVP on Lovable with live telemetry to validate user assumptions and friction before production engineering.
+                    {selectedPreview.desc}
                   </p>
 
-                  <div className="pt-2 border-t border-[#EAEAE7] flex items-center justify-between">
+                  <div className="pt-2 border-t border-[#EAEAE7] flex items-center justify-between gap-2">
                     <span className="font-mono text-[11px] text-[#666663]">
                       Status: <strong className="text-emerald-700">{selectedPreview.status}</strong>
                     </span>
-                    <a
-                      href={selectedPreview.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#121214] text-white text-xs font-semibold hover:bg-black transition-colors shadow-xs"
-                    >
-                      <span>Launch App</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 text-zinc-300" />
-                    </a>
+                    <div className="flex items-center gap-1.5">
+                      {selectedPreview.prdUrl && (
+                        <a
+                          href={selectedPreview.prdUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-[#E0E0DB] text-[#121214] text-xs font-medium hover:bg-[#F0F0EC] transition-colors shadow-xs"
+                          title="Read Notion PRD Spec"
+                        >
+                          <FileText className="w-3.5 h-3.5 text-slate-600" />
+                          <span>PRD</span>
+                        </a>
+                      )}
+                      <a
+                        href={selectedPreview.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#121214] text-white text-xs font-semibold hover:bg-black transition-colors shadow-xs"
+                      >
+                        <span>Launch App</span>
+                        <ArrowUpRight className="w-3.5 h-3.5 text-zinc-300" />
+                      </a>
+                    </div>
                   </div>
                 </motion.div>
               </AnimatePresence>
@@ -322,16 +371,16 @@ export default function HeroSection() {
               {/* 3 Metric Counts */}
               <div className="grid grid-cols-3 gap-2 pt-2 border-t border-[#F0F0EC] text-center font-mono">
                 <div className="p-2 rounded-lg bg-[#FBFBFA] border border-[#EAEAE7]">
-                  <div className="text-base font-bold text-[#121214]">5</div>
-                  <div className="text-[10px] text-[#666663] uppercase">Systems</div>
+                  <div className="text-base font-bold text-[#121214]">7</div>
+                  <div className="text-[10px] text-[#666663] uppercase tracking-tight">Live Systems</div>
                 </div>
                 <div className="p-2 rounded-lg bg-[#FBFBFA] border border-[#EAEAE7]">
-                  <div className="text-base font-bold text-[#121214]">4</div>
-                  <div className="text-[10px] text-[#666663] uppercase">Notion PRDs</div>
+                  <div className="text-base font-bold text-[#121214]">8</div>
+                  <div className="text-[10px] text-[#666663] uppercase tracking-tight">Notion PRDs</div>
                 </div>
                 <div className="p-2 rounded-lg bg-[#FBFBFA] border border-[#EAEAE7]">
                   <div className="text-base font-bold text-[#121214]">8.97</div>
-                  <div className="text-[10px] text-[#666663] uppercase">CGPA (IT)</div>
+                  <div className="text-[10px] text-[#666663] uppercase tracking-tight">CGPA (IT)</div>
                 </div>
               </div>
 

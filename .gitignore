@@ -29,3 +29,7 @@ __pycache__/
 .env
 .env.*
 !.env.example
+
+# Scratch files
+all_notion_blocks.json
+notion_raw.json

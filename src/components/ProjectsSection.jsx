@@ -82,7 +82,7 @@ export default function ProjectsSection() {
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#121214]">
-              Five systems built to solve real friction.
+              Seven systems built to solve real friction.
             </h2>
           </div>
           
