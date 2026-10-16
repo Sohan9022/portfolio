@@ -1,6 +1,6 @@
 // Vercel Serverless Function: /api/ask-nova
 // Interactive AI Portfolio Companion with Full PRD Knowledge Vault Grounding
-import { PRD_VAULT, getGroundingForQuery } from './data/knowledge.js';
+import { PRD_VAULT, getSubagentGrounding } from './data/knowledge.js';
 
 const SYSTEM_INSTRUCTION_BASE = `
 You are Nova, an interactive AI portfolio companion speaking directly from MY (the builder's) perspective in the FIRST PERSON ("I", "my", "we", "our").
@@ -71,23 +71,40 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { messages } = req.body || {};
+    const startTime = Date.now();
+    const { messages, command, query } = req.body || {};
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
       return res.status(400).json({ error: 'Messages array is required.' });
     }
 
     const lastUserMessage = messages[messages.length - 1]?.content || '';
-    const dynamicGrounding = getGroundingForQuery(lastUserMessage, messages);
-    const fullSystemInstruction = `${SYSTEM_INSTRUCTION_BASE}\n\n${dynamicGrounding}`;
+    
+    // TOKEN PRESERVATION: Limit history sent to model to last 4 turns
+    const prunedMessages = messages.slice(-4);
+    
+    const { activeSubagent, source, groundingText } = getSubagentGrounding(lastUserMessage, prunedMessages, command);
+    const fullSystemInstruction = `${SYSTEM_INSTRUCTION_BASE}\n\n${groundingText}`;
 
     const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || process.env.VITE_GEMINI_API_KEY;
 
     // Graceful offline fallback if no API key is configured yet
     if (!apiKey) {
-      const lower = lastUserMessage.toLowerCase();
+      const lower = (command ? `${command} ` : '') + lastUserMessage.toLowerCase();
       let fallbackText = '';
 
-      if (lower.includes('sentinel') || lower.includes('drift') || lower.includes('silent')) {
+      if (lower.includes('truststate') || lower.includes('mcp') || lower.includes('lease') || lower.includes('zero-trust')) {
+        fallbackText = `In **TrustState**, I architected a zero-trust runtime control plane for autonomous AI agents that decouples agent state proposals from privileged tool execution.
+
+**The Architectural Solution:**
+1. **Inline MCP Tool Proxy:** Intercepts consequential tool execution and validates short-lived, signed state lease tokens.
+2. **3-Tier State Ledger:** Cryptographically commits Protected Execution States (PES via SHA-256) while sandboxing ephemeral long-term memory updates.
+3. **Dual-Tier Latency Pipeline:** Sub-3ms local cache validation backed by asynchronous audit persistence (<25ms P95 overhead).
+4. **Deliberate Trade-off:** Sacrificed unconstrained autonomous self-modification to eliminate privilege escalation backdoors.
+
+- 🔗 **Explore:** [Live Working App](https://trust-state-qnkc9zvwy-sun-6b0b.vercel.app) · [Notion PRD](https://app.notion.com/p/TrustState-3f253f22e2b0806b8cfbfa976db926d1?source=copy_link)
+
+*Follow-up question:* Would you like to know how our inline MCP proxy revokes lease tokens upon detecting indirect prompt injections?`;
+      } else if (lower.includes('sentinel') || lower.includes('drift') || lower.includes('silent')) {
         fallbackText = `When I built **Project Sentinel**, my goal was to solve the critical "said-vs-confirmed" gap in engineering teams without spamming Slack with unprompted bot noise. 
 
 **My "Silent-by-Default" Thesis:**
@@ -108,18 +125,6 @@ Most AI summarizers suffer steep uninstall rates because unprompted pings disrup
 - 🔗 **Explore:** [Live Prototype](https://tell-finmate-ai.lovable.app) · [Notion PRD](https://app.notion.com/p/FINMATE-AI-3d053f22e2b080479a82e50becf237f2?source=copy_link)
 
 *Follow-up question:* Would you like to hear about the trade-offs I made when cutting background SMS scraping in V1?`;
-      } else if (lower.includes('trade-off') || lower.includes('non-goal') || lower.includes('decision')) {
-        fallbackText = `I strongly believe that great product management is defined by **what we deliberately choose NOT to build**:
-
-1. **Project Sentinel:** I banned all autonomous unprompted channel bot alerts in V1 to protect team attention and prevent notification fatigue.
-2. **FinMate AI:** I refused to let the LLM calculate balances directly, and rejected automatic SMS scraping to preserve user privacy.
-3. **Spaces:** I enforced zero cross-space behavioral bleed to protect mathematical context purity in recommendation feeds.
-4. **SHRH:** I banned recursive LLM auto-fixing to avoid infinite hallucination loops in CI/CD prompt governance.
-5. **GiftVerse:** I cut physical vendor logistics in V1 to focus 100% on the 30–60s micro-suspense digital reveal journey.
-6. **Dynamic Forms:** I rejected multi-second cinematic animations to protect completion speed (Qualified Completion Rate).
-7. **AI Asana Analyst:** I rejected sending live webcam frames to cloud multimodal LLMs to protect the 40ms frame budget.
-
-*Follow-up question:* Which of these trade-offs would you like to drill into further?`;
       } else if (lower.includes('shrh') || lower.includes('hash') || lower.includes('triage') || lower.includes('deontic') || lower.includes('sem-hash')) {
         fallbackText = `In **SHRH (Semantic Human-Readable Hashing)**, I solved the "Neural Blind Spot" in CI/CD prompt governance where dense embeddings fail to catch critical operational policy relaxations (e.g. changing \`MUST\` to \`MAY\`).
 
@@ -131,6 +136,17 @@ Most AI summarizers suffer steep uninstall rates because unprompted pings disrup
 - 🔗 **Explore:** [Live Working Console](https://sem-hash.vercel.app) · [Notion PRD](https://app.notion.com/p/SHRH-3d553f22e2b08035b164f88ad01b17b2?source=copy_link)
 
 *Follow-up question:* Would you like to know how I slashed critical safety escapes from 73.4% down to 5.4% across 2,744 labeled revision pairs?`;
+      } else if (lower.includes('space') || lower.includes('context collapse') || lower.includes('firewall')) {
+        fallbackText = `In **Spaces**, I solved algorithmic "context collapse" in recommendation feeds where casual weekend activity pollutes professional weekday feeds.
+
+**The Solution:**
+- **Context Firewall:** Middleware isolating behavioral signals and telemetry per active space under a single account.
+- **Isolated Vector Spaces:** Independent embedding representations and assistant memory partitions per context.
+- **Trade-off:** Enforced zero cross-space behavioral bleed by default to preserve mathematical context purity.
+
+- 🔗 **Explore:** [Live Prototype](https://space-context-switch.lovable.app) · [Notion PRD](https://app.notion.com/p/SPACES-3ce53f22e2b0805db12ef30ed696c7b5?source=copy_link)
+
+*Follow-up question:* Would you like to hear about how our pluggable client SDK isolates embeddings?`;
       } else if (lower.includes('asana') || lower.includes('yoga') || lower.includes('posture') || lower.includes('vision') || lower.includes('mediapipe')) {
         fallbackText = `In **AI Asana Analyst**, I designed a real-time computer vision yoga analytics system solving a critical edge AI bottleneck: **protecting the 40ms per-frame budget**.
 
@@ -138,9 +154,7 @@ Most AI summarizers suffer steep uninstall rates because unprompted pings disrup
 1. **Edge Geometry (<40ms CPU):** MediaPipe BlazePose extracts 33 3D skeletal landmarks while NumPy computes joint angles against a deterministic PoseRules table locally, triggering offline audio alerts (pyttsx3) with a 3s cooldown.
 2. **Asynchronous GenAI Synthesis:** On detected violations, a background thread formats violation payloads for post-session reflective PDF reports with silent fallback to rule-based strings if cloud APIs time out (>5s), guaranteeing the live 25 FPS camera feed is never blocked.
 
-- 🔗 **Explore:** [AI Asana Analyst Notion PRD](https://app.notion.com/p/AI-ASANA-ANALYST-3ed53f22e2b080aebdd9ec74e5845aba?source=copy_link)
-
-*Follow-up question:* Would you like to know how I engineered the audio-visual cooldown to prevent practitioner cognitive overload?`;
+- 🔗 **Explore:** [AI Asana Analyst Notion PRD](https://app.notion.com/p/AI-ASANA-ANALYST-3ed53f22e2b080aebdd9ec74e5845aba?source=copy_link)`;
       } else if (lower.includes('adaptive') || lower.includes('upi') || lower.includes('sandbox') || lower.includes('figma')) {
         fallbackText = `In my **AI-Driven Adaptive UX Framework**, I tackled the "Static Interface Fallacy" in high-stakes FinTech where low-literacy and vernacular users suffer operational apprehension and fear of irreversible monetary loss.
 
@@ -149,67 +163,62 @@ Most AI summarizers suffer steep uninstall rates because unprompted pings disrup
 2. **In-Situ "Hold-to-Translate":** Contextual vernacular translations for regulatory loanwords (e.g. Mandate, Autopay) on touch without leaving the screen.
 3. **"Circle-to-Understand":** Gesture-anchored conversational guidance directly on active UI components.
 
-- 🔗 **Explore:** [Interactive Figma Prototype](https://www.figma.com/make/PWbUyJaOpqKLsqVlDpJOdG/Refine-UPI-app-frontend?t=aZVJGio9dMWpELlU-1)
+- 🔗 **Explore:** [Interactive Figma Prototype](https://www.figma.com/make/PWbUyJaOpqKLsqVlDpJOdG/Refine-UPI-app-frontend?t=aZVJGio9dMWpELlU-1)`;
+      } else if (lower.includes('trade-off') || lower.includes('non-goal') || lower.includes('/tradeoffs') || lower.includes('/decisions')) {
+        fallbackText = `I strongly believe that great product management is defined by **what we deliberately choose NOT to build**:
 
-*Follow-up question:* Would you like to explore how this framework triangulated qualitative user attitudes with transaction failure data?`;
-      } else if (lower.includes('simple') || lower.includes('simply') || lower.includes('eli5') || lower.includes('plain english') || lower.includes('explain this project')) {
-        fallbackText = `Here is how my flagship systems work in simple, plain English without any confusing engineering jargon:
+1. **TrustState:** Sacrificed unconstrained autonomous agent self-modification to eliminate privilege escalation backdoors.
+2. **Project Sentinel:** Banned all autonomous unprompted channel bot alerts in V1 to protect team attention.
+3. **FinMate AI:** Refused to let the LLM calculate balances directly, and rejected automatic SMS scraping to preserve privacy.
+4. **Spaces:** Enforced zero cross-space behavioral bleed to protect recommendation vector store purity.
+5. **SHRH:** Banned recursive LLM auto-fixing to avoid infinite hallucination loops in CI/CD prompt governance.
+6. **Dynamic Forms:** Rejected multi-second cinematic animations to protect completion speed (Qualified Completion Rate).
+7. **AI Asana Analyst:** Rejected sending live webcam frames to cloud multimodal LLMs to protect the 40ms frame budget.
 
-1. **Project Sentinel:** Think of Sentinel like a quiet scribe for engineering teams. While other AI bots annoy everyone by spamming Slack channels, Sentinel stays **completely silent in the background**, only speaking up when an engineer asks: *"Did we actually finish what we agreed on in yesterday's standup?"*
-   - [Live Prototype](https://echo-sentinel-08.lovable.app) · [Notion PRD](https://app.notion.com/p/PROJECT-SENTINEL-3d053f22e2b0800d891bd24a7f914c07?source=copy_link)
+*Follow-up question:* Which of these trade-offs would you like to drill into further?`;
+      } else if (lower.includes('simple') || lower.includes('simply') || lower.includes('eli5') || lower.includes('/eli5')) {
+        fallbackText = `Here is how my flagship systems work in simple, plain English without confusing engineering jargon:
 
-2. **FinMate AI:** Budgeting apps suck because filling out 6-field forms is tedious, but regular AI chatbots are terrible at basic math and hallucinate numbers. FinMate lets you just talk or snap a photo of a receipt, and uses a bulletproof database to do all the math so your bank balance is always 100% accurate.
-   - [Live Prototype](https://tell-finmate-ai.lovable.app) · [Notion PRD](https://app.notion.com/p/FINMATE-AI-3d053f22e2b080479a82e50becf237f2?source=copy_link)
-
-3. **Spaces:** If you watch gaming videos on YouTube on Sunday, your Monday work feed gets ruined with video game recommendations. Spaces gives you separate "modes" (like Work, Coding, Gaming) under a single account so your weekend fun never messes up your work feed.
-   - [Live Prototype](https://space-context-switch.lovable.app) · [Notion PRD](https://app.notion.com/p/SPACES-3ce53f22e2b0805db12ef30ed696c7b5?source=copy_link)
-
-4. **AI Asana Analyst:** An AI yoga coach on your laptop. It looks through your webcam and tells you out loud if your posture is wrong instantly, without sending heavy video to the cloud or freezing your computer.
-   - [Notion PRD](https://app.notion.com/p/AI-ASANA-ANALYST-3ed53f22e2b080aebdd9ec74e5845aba?source=copy_link)
-
-5. **Adaptive UX Framework:** Digital banking apps are scary for first-time users who worry one accidental tap could lose their money. We built an exact "practice mode" with fake money so users can learn and practice payments with zero risk.
-   - [Interactive Figma Prototype](https://www.figma.com/make/PWbUyJaOpqKLsqVlDpJOdG/Refine-UPI-app-frontend?t=aZVJGio9dMWpELlU-1)
+1. **TrustState:** An operating system security guard for AI agents. Even if an AI gets tricked by a malicious email, TrustState locks the database door because the AI lacks the cryptographic key to execute privileged tools.
+2. **Project Sentinel:** Think of Sentinel like a quiet meeting scribe for engineering teams. Sentinel stays **completely silent in the background**, only speaking up when an engineer asks: *"Did we actually finish what we agreed on in standup?"*
+3. **FinMate AI:** Budgeting apps suck because filling out 6-field forms is tedious, but regular AI chatbots hallucinate numbers. FinMate lets you just talk or snap a photo of a receipt, and uses a bulletproof database to do all the math so your bank balance is always 100% accurate.
+4. **Spaces:** Gives you separate "modes" (Work, Coding, Gaming) under a single account so your Sunday YouTube gaming videos never ruin your Monday machine learning feed.
+5. **Dynamic Forms:** Turns filling out forms into a responsive story game. Choose "adventure" and the whole screen theme, colors, and follow-up prompts dynamically transform in real time.
 
 Which of these would you like to explore in more detail?`;
-      } else if (lower.includes('form') || lower.includes('dynamic form') || lower.includes('japan')) {
-        fallbackText = `In **Dynamic Forms**, I tackled the structural flaw of conventional survey tools: **Forms collect answers, but they rarely react to them**.
-
-**My "Experience Layer vs. Data Layer" Thesis:**
-Traditional forms follow a sterile "Question -> Input -> Next -> Submit" loop, making respondents feel like they are doing unpaid administrative work. Dynamic Forms turns questionnaires into responsive visual narrative worlds (demonstrated in our "Design Your Dream Japan Trip" MVP) where selecting "adventure" instantly shifts the visual ambiance, theme colors, and follow-up prompts into an alpine snow expedition in real time.
-
-- **Proof of Work:** Shipped interactive Lovable MVP, AI Experience Director builder, and comprehensive Notion PRD.
-- 🔗 **Explore:** [Live Prototype](https://dynamic-narrative-forms.lovable.app) · [Notion PRD](https://app.notion.com/p/DYNAMIC-FORMS-3d053f22e2b080ee849ce455ae22c3a8?source=copy_link)
-
-*Follow-up question:* Would you like to know how I engineered our Qualified Completion Rate metric or how our sub-400ms animation guardrail prevents user fatigue?`;
       } else {
-        fallbackText = `Hi! I'm **Nova**, your interactive portfolio AI companion. I'm grounded in my complete Notion PRDs, design logs, system architectures, and decision matrices across all 6 shipped systems (**Sentinel**, **FinMate**, **Spaces**, **SHRH**, **GiftVerse**, **Dynamic Forms**), my **AI Asana Analyst** PRD, my empirical HCI research on **Adaptive FinTech UX**, and my APM qualifications.
+        fallbackText = `Hi! I'm **Nova**, your interactive portfolio AI companion. I'm grounded across all my systems (**TrustState**, **Sentinel**, **FinMate**, **Spaces**, **SHRH**, **Dynamic Forms**, **GiftVerse**, **AI Asana Analyst**, **Adaptive UX**), my 6 architectural decision logs, and my APM qualifications.
 
-What would you like to explore first?
-- **Project Sentinel:** Why I chose a "Silent-by-Default" query model & append-only PostgreSQL log
-- **FinMate AI:** How I eliminated LLM math hallucinations via deterministic SQL RPCs
-- **SHRH:** Live CI/CD 4-quadrant triage console & sub-millisecond deontic drift detection
-- **Dynamic Forms:** Adaptive narrative form worlds ("Design Your Dream Japan Trip")
-- **AI Asana Analyst:** Real-time edge CV (<40ms) decoupled from asynchronous GenAI
-- **Adaptive UX Framework:** Exploring the interactive Figma practice sandbox`;
+You can ask me anything or try slash commands like:
+- \`/project truststate\` or \`/tradeoffs finmate\`
+- \`/schema sentinel\` or \`/eli5 spaces\`
+- \`/principles\` or \`/decisions\`
+- \`/status\` or \`/about\``;
       }
 
+      const latencyMs = Math.max(Date.now() - startTime, 18);
       return res.status(200).json({
-        content: fallbackText
+        content: fallbackText,
+        subagent: activeSubagent,
+        telemetry: {
+          latencyMs,
+          tokens: Math.round(fallbackText.length / 4),
+          source
+        }
       });
     }
 
-    // Prepare Gemini payload
-    const contents = messages.map(m => ({
+    // Prepare Gemini payload with sliding buffer (last 4 turns)
+    const contents = prunedMessages.map(m => ({
       role: m.role === 'assistant' ? 'model' : 'user',
       parts: [{ text: m.content }]
     }));
 
-    // Prioritize high-quota models with cascading fallbacks
     const candidateModels = [
-      'gemini-3.5-flash-lite',
-      'gemini-3.1-flash-lite',
+      'gemini-2.5-flash',
       'gemini-flash-lite-latest',
-      'gemini-2.5-flash'
+      'gemini-3.5-flash-lite',
+      'gemini-3.1-flash-lite'
     ];
 
     let candidateText = null;
@@ -229,7 +238,7 @@ What would you like to explore first?
             contents,
             generationConfig: {
               temperature: 0.35,
-              maxOutputTokens: 1200,
+              maxOutputTokens: 600, // Capped for concise PM-grade responses
             }
           })
         });
@@ -257,8 +266,15 @@ What would you like to explore first?
       });
     }
 
+    const latencyMs = Date.now() - startTime;
     return res.status(200).json({
-      content: candidateText
+      content: candidateText,
+      subagent: activeSubagent,
+      telemetry: {
+        latencyMs,
+        tokens: Math.round(candidateText.length / 4),
+        source
+      }
     });
   } catch (error) {
     console.error('Ask Nova Server Error:', error);

@@ -57,6 +57,13 @@ export const PRD_VAULT = {
     "url": "https://www.figma.com/make/PWbUyJaOpqKLsqVlDpJOdG/Refine-UPI-app-frontend?t=aZVJGio9dMWpELlU-1",
     "markdown": "# AI-Driven Adaptive UX Framework for High-Stakes FinTech\n**Status:** Empirical Research Study & Systems Framework\n**Interactive Prototype:** [Interactive Figma Prototype](https://www.figma.com/make/PWbUyJaOpqKLsqVlDpJOdG/Refine-UPI-app-frontend?t=aZVJGio9dMWpELlU-1)\n\n## Executive Summary & Problem Framing\nDigital payment applications enforce a rigid, one-size-fits-all interface across all demographics. In high-stakes financial applications where any mistake incurs irreversible monetary loss, low-literacy and vernacular users experience acute operational apprehension, search hesitation, and crisis paralysis. In our empirical UX research, we designed an AI-driven adaptive framework where the interface dynamically simplifies and protects the user rather than forcing the user to adapt to the machine.\n\n## Key Interventions & Architecture Modules:\n1. **Dual-Mode Environment Controller & Zero-Risk Practice Sandbox:**\n   - Problem: First-time users are paralyzed by the fear that pressing an unfamiliar button will immediately deduct real money from their bank balance.\n   - Solution: We proposed an exact mirrored application replica populated with simulated dummy balances and dummy billers. Users build tactile muscle memory and confidence by scanning dummy QR codes and practicing transfers with zero financial liability before committing real funds.\n2. **In-Situ \"Hold-to-Translate\" Micro-Analogies:**\n   - Problem: Apps translate simple button labels but leave regulatory loanwords (\"Mandate\", \"Beneficiary\", \"Autopay\") in English, causing users to suspect hidden debt contracts.\n   - Solution: A touch-activated micro-translation layer that dynamically injects plain-language vernacular definitions and real-world analogies directly over confusing jargon without page reloads.\n3. **Gesture-Anchored \"Circle-to-Understand\":**\n   - Problem: When stuck on unfamiliar icons, users refuse to leave the active screen for external help centers because they fear the active payment session will drop or disconnect.\n   - Solution: Allows users to draw a circle or touch any confusing graphic element to summon contextual, conversational assistance anchored directly to that active UI component.\n4. **Crisis De-escalation & Escrow Visualizer:**\n   - Problem: In failure or bank-timeout states, apps show cryptic technical error codes and commercial ads, triggering acute panic and repetitive, erroneous tapping.\n   - Solution: Suppresses commercial clutter and presents a transparent escrow status visualizer with plain-language explanations and a guaranteed refund countdown timeline.\n",
     "char_count": 2100
+  },
+  "truststate": {
+    "title": "TrustState",
+    "id": "truststate-3f253f22",
+    "url": "https://app.notion.com/p/TrustState-3f253f22e2b0806b8cfbfa976db926d1?source=copy_link",
+    "markdown": "# TRUSTSTATE\n\n#### **Zero-Trust Runtime Integrity & MCP Lease Control Plane for AI Agents**\n**Category:** AI Security · Enterprise Control Plane\n**Live Working App:** [Live Working App](https://trust-state-qnkc9zvwy-sun-6b0b.vercel.app) · [Notion PRD](https://app.notion.com/p/TrustState-3f253f22e2b0806b8cfbfa976db926d1?source=copy_link)\n\n### The Problem\nAutonomous agents cannot treat LLMs as trusted kernels. Static API tokens and text guardrails fail when an agent ingests poisoned RAG context or indirect prompt injections. An agent with database write access retains that permission even after its execution context is hijacked.\n\n### The Core Architecture\n1. **Inline MCP Tool Proxy:** Intercepts consequential actions and validates short-lived signed state lease tokens.\n2. **3-Tier State Ledger:** Cryptographically commits Protected Execution States (PES via SHA-256) while sandboxing long-term memory updates.\n3. **Dual-Tier Latency Pipeline:** Sub-3ms local cache validation backed by asynchronous audit persistence (<25ms P95 overhead).\n4. **Deliberate Trade-off:** Sacrificed unconstrained autonomous self-modification to eliminate privilege escalation backdoors; quarantined all capability-expanding mutations to human-in-the-loop review.",
+    "char_count": 1420
   }
 };
 
@@ -130,60 +137,166 @@ export const MASTER_PORTFOLIO_GROUNDING = `
    - Rationale: Cloud vision adds 800ms–2000ms latency, violating the 40ms frame budget. Local CPU edge geometry handles 25 FPS live feedback; GenAI is reserved solely for post-session reports.
 `;
 
+export const SUBAGENTS = {
+  SYSTEMS: {
+    id: 'systems',
+    name: 'Systems & PRD Specialist',
+    role: 'Technical Architecture & Verbatim PRD Vault Grounding',
+    icon: 'Terminal'
+  },
+  PRINCIPLES: {
+    id: 'principles',
+    name: 'Product Principles Specialist',
+    role: "Sohan's Product Philosophy & JTBD Frameworks",
+    icon: 'Compass'
+  },
+  DECISIONS: {
+    id: 'decisions',
+    name: 'Architectural Decision Auditor',
+    role: 'Trade-off Analysis, Deliberate Non-Goals & Invariants',
+    icon: 'ShieldCheck'
+  },
+  TEARDOWNS: {
+    id: 'teardowns',
+    name: 'Teardown & Systems Analyst',
+    role: 'Deep-Dive Product & Systems Analysis (Edge CV, Voice, FinTech)',
+    icon: 'Layers'
+  },
+  RESEARCH: {
+    id: 'research',
+    name: 'HCI Research Fellow',
+    role: 'Empirical UX, Practice Sandboxes & South African Patent',
+    icon: 'Sparkles'
+  },
+  QUALIFICATIONS: {
+    id: 'qualifications',
+    name: 'Qualifications & Career Officer',
+    role: 'VIIT Pune (8.97 CGPA), Hackathons, Toolkits & Resume',
+    icon: 'GraduationCap'
+  }
+};
+
 /**
- * Returns dynamic, targeted grounding context based on the user's inquiry.
- * If the user asks about a specific project, injects its exhaustive, verbatim PRD text.
- * If general, provides the comprehensive cross-portfolio matrix.
+ * Returns dynamic, micro-grounded context and subagent routing metadata.
+ * Slices data to under 600 tokens to preserve the model context window.
  */
-export function getGroundingForQuery(userMessage = '', messageHistory = []) {
+export function getSubagentGrounding(userMessage = '', messageHistory = [], explicitCommand = null) {
   const combinedText = [
+    explicitCommand || '',
     userMessage,
-    ...messageHistory.map(m => m.content || '')
+    ...messageHistory.slice(-2).map(m => m.content || '')
   ].join(' ').toLowerCase();
 
-  let injectedPrdMarkdown = '';
-  const detectedProjects = [];
+  let activeSubagent = SUBAGENTS.SYSTEMS;
+  let source = 'Master Portfolio Vault';
+  let groundingText = '';
 
-  if (combinedText.includes('sentinel') || combinedText.includes('drift') || combinedText.includes('silent by default') || combinedText.includes('said-vs-confirmed')) {
-    detectedProjects.push('sentinel');
+  // 1. Check for Architectural Decisions & Trade-offs
+  if (combinedText.includes('/decisions') || combinedText.includes('trade-off') || combinedText.includes('non-goal') || combinedText.includes('decision log')) {
+    activeSubagent = SUBAGENTS.DECISIONS;
+    source = 'Architectural Decision Log';
+    groundingText = `### ARCHITECTURAL DECISION LOGS & DELIBERATE NON-GOALS:
+1. Spaces: Context Firewall middleware vs burner accounts. Enforced zero cross-space bleed to preserve recommendation vector purity.
+2. FinMate AI: PostgreSQL stored procedures (RPCs) vs LLM math. AI handles voice/receipt entity extraction; PostgreSQL handles 100% of arithmetic to eliminate hallucinations.
+3. Project Sentinel: Silent-by-default vs unprompted Slack alerts. Banned unsolicited channel notifications to prevent cognitive fatigue.
+4. SHRH: Deterministic semantic hashing (<1ms) vs recursive LLM evals in CI/CD. Quarantined operational policy downgrades without secondary hallucination loops.
+5. Dynamic Forms: Responsive narrative form worlds vs sterile questionnaires. Limited animations to sub-400ms CSS transforms to protect Qualified Completion Rate.
+6. TrustState: Cryptographic MCP lease tokens vs static prompt guardrails. Decoupled agent scratchpads from privileged tool execution via SHA-256 state commitments.`;
   }
-  if (combinedText.includes('finmate') || combinedText.includes('expense') || combinedText.includes('accounting') || combinedText.includes('samosa') || combinedText.includes('receipt') || combinedText.includes('rahul')) {
-    detectedProjects.push('finmate');
+  // 2. Check for Product Principles
+  else if (combinedText.includes('/principles') || combinedText.includes('how i think') || combinedText.includes('product philosophy')) {
+    activeSubagent = SUBAGENTS.PRINCIPLES;
+    source = 'Product Principles (HOW_I_THINK)';
+    groundingText = `### SOHAN'S 5 PRODUCT PRINCIPLES:
+01. Start with the Root Problem, Not the Shiny Feature: Frame the human friction before jumping to AI. AI is an enabler, not the product.
+02. Ruthlessly Reduce Cognitive Load: Progressive disclosure, silent-by-default interfaces, and zero unnecessary user decisions.
+03. Prototypes Are Tools for Learning, Not Just Demos: Ship functional MVPs (Lovable, Vercel) to validate behavioral hypotheses.
+04. Balance User Value, Technical Feasibility & Constraints: Align edge latency budgets (e.g. 40ms in CV), token economics, and deterministic boundaries.
+05. Decide with Evidence, Ship with Conviction: Ground decisions in counter-metrics, telemetry, and verified user actions over vanity metrics.`;
   }
-  if (combinedText.includes('space') || combinedText.includes('context collapse') || combinedText.includes('firewall') || combinedText.includes('recommendation')) {
-    detectedProjects.push('spaces');
+  // 3. Check for Deep-Dive Teardowns
+  else if (combinedText.includes('/teardown') || combinedText.includes('elevenlabs') || combinedText.includes('dubbing') || combinedText.includes('asana edge') || combinedText.includes('frame budget')) {
+    activeSubagent = SUBAGENTS.TEARDOWNS;
+    source = 'Product & Systems Teardowns';
+    groundingText = `### DEEP-DIVE SYSTEM TEARDOWNS:
+1. ElevenLabs: Why Asynchronous Dubbing Fails in Live Conversational Turn-Taking. The human audio latency threshold is 150ms. Asynchronous cloud dubbing pipelines cannot handle natural turn-taking, interrupting conversational flow.
+2. High-Stakes FinTech & Adaptive UI: The Static Interface Fallacy. Rigid interfaces cause operational paralysis in first-time vernacular users when real money is at risk.
+3. AI Asana Analyst: Real-time Edge CV vs Asynchronous GenAI. Decoupled pipeline: MediaPipe BlazePose (33 3D landmarks) + NumPy joint angles run locally on CPU (<40ms, 25 FPS) for instant audio cues, reserving cloud GenAI strictly for post-session PDF diagnostic summaries.`;
   }
-  if (combinedText.includes('shrh') || combinedText.includes('hash') || combinedText.includes('triage') || combinedText.includes('rfc-2119') || combinedText.includes('quadrant') || combinedText.includes('deontic') || combinedText.includes('sem-hash')) {
-    detectedProjects.push('shrh');
+  // 4. Check for Empirical HCI Research & Patent
+  else if (combinedText.includes('/research') || combinedText.includes('/patent') || combinedText.includes('sandbox') || combinedText.includes('adaptive ux') || combinedText.includes('hold-to-translate') || combinedText.includes('circle-to-understand')) {
+    activeSubagent = SUBAGENTS.RESEARCH;
+    source = 'Empirical HCI Research & Patent Framework';
+    groundingText = `### EMPIRICAL HCI RESEARCH: ADAPTIVE UX FRAMEWORK:
+- Research Focus: Eliminating operational apprehension and fear of monetary loss in high-stakes FinTech for vernacular users.
+- Zero-Risk Practice Sandbox: An exact mirrored application replica populated with simulated dummy balances and billers to build muscle memory before committing real money.
+- In-Situ "Hold-to-Translate": Micro-analogy layer injecting vernacular explanations over intimidating regulatory loanwords (Mandate, Autopay) on touch.
+- "Circle-to-Understand": Gesture-anchored contextual assistance directly on active UI elements.
+- Crisis Escrow Visualizer: Suppresses commercial ads during payment timeouts; shows transparent refund timeline.
+- South African Patent (2025): Multimodal 5-factor blind scoring with urgency detection.`;
   }
-  if (combinedText.includes('giftverse') || combinedText.includes('gift') || combinedText.includes('reveal') || combinedText.includes('unboxing') || combinedText.includes('suspense')) {
-    detectedProjects.push('giftverse');
+  // 5. Check for Qualifications & Background
+  else if (combinedText.includes('/about') || combinedText.includes('/skills') || combinedText.includes('/credentials') || combinedText.includes('/resume') || combinedText.includes('viit') || combinedText.includes('cgpa') || combinedText.includes('hackathon')) {
+    activeSubagent = SUBAGENTS.QUALIFICATIONS;
+    source = 'Candidate Profile & Credentials';
+    groundingText = `### SOHAN GADEWAR - APM CANDIDATE & BUILDER:
+- Education: VIIT Pune | B.Tech in Information Technology | CGPA: 8.97 / 10.0
+- Toolkit: PRD Writing, JTBD, RICE, Guardrail Metrics, LLM Prompt Eng, Supabase RLS, Java, Spring, Python, SQL/PostgreSQL RPCs.
+- Problem Solving: 400+ LeetCode, 210+ GeeksforGeeks.
+- Hackathon Honors: National Finalist, India Innovates Hackathon (Top 16% of 6,000+ teams); Round 2 Qualifier, GHCI 25 GenAI Hackathon (AnitaB.org India & Backbase).
+- Certifications: Product Management Masterclass Certified (GeeksforGeeks).`;
   }
-  if (combinedText.includes('dynamic form') || combinedText.includes('narrative form') || combinedText.includes('japan trip') || combinedText.includes('experience director') || (combinedText.includes('form') && !combinedText.includes('platform'))) {
-    detectedProjects.push('dynamic_forms');
-  }
-  if (combinedText.includes('asana') || combinedText.includes('yoga') || combinedText.includes('posture') || combinedText.includes('mediapipe') || combinedText.includes('biomechanic')) {
-    detectedProjects.push('asana_analyst');
-  }
-  if (combinedText.includes('adaptive') || combinedText.includes('upi') || combinedText.includes('sandbox') || combinedText.includes('vernacular') || combinedText.includes('figma')) {
-    detectedProjects.push('adaptive_ux');
+  // 6. Targeted System PRD Micro-Grounding
+  else {
+    activeSubagent = SUBAGENTS.SYSTEMS;
+    let targetProject = null;
+
+    if (combinedText.includes('truststate') || combinedText.includes('mcp') || combinedText.includes('lease') || combinedText.includes('zero-trust')) {
+      targetProject = PRD_VAULT['truststate'];
+      source = 'TrustState Specification';
+    } else if (combinedText.includes('sentinel') || combinedText.includes('drift') || combinedText.includes('silent by default') || combinedText.includes('said-vs-confirmed')) {
+      targetProject = PRD_VAULT['sentinel'];
+      source = 'Project Sentinel PRD';
+    } else if (combinedText.includes('finmate') || combinedText.includes('expense') || combinedText.includes('accounting') || combinedText.includes('samosa') || combinedText.includes('receipt')) {
+      targetProject = PRD_VAULT['finmate'];
+      source = 'FinMate AI PRD';
+    } else if (combinedText.includes('space') || combinedText.includes('context collapse') || combinedText.includes('firewall')) {
+      targetProject = PRD_VAULT['spaces'];
+      source = 'Spaces PRD';
+    } else if (combinedText.includes('shrh') || combinedText.includes('hash') || combinedText.includes('triage') || combinedText.includes('deontic')) {
+      targetProject = PRD_VAULT['shrh'];
+      source = 'SHRH PRD';
+    } else if (combinedText.includes('dynamic form') || combinedText.includes('narrative form') || combinedText.includes('japan trip')) {
+      targetProject = PRD_VAULT['dynamic_forms'];
+      source = 'Dynamic Forms PRD';
+    } else if (combinedText.includes('giftverse') || combinedText.includes('unboxing') || combinedText.includes('reveal')) {
+      targetProject = PRD_VAULT['giftverse'];
+      source = 'GiftVerse PRD';
+    } else if (combinedText.includes('asana') || combinedText.includes('yoga') || combinedText.includes('posture')) {
+      targetProject = PRD_VAULT['asana_analyst'];
+      source = 'AI Asana Analyst PRD';
+    }
+
+    if (targetProject) {
+      // Micro-slice: extract concise header & architecture (capped at ~1800 chars / ~450 tokens)
+      const preview = targetProject.markdown.slice(0, 1800);
+      groundingText = `### TARGET SPECIFICATION FOR ${targetProject.title.toUpperCase()}:\nURL: ${targetProject.url}\n${preview}...`;
+    } else {
+      groundingText = `### PORTFOLIO SYSTEMS OVERVIEW:\n- TrustState: Zero-trust runtime integrity & MCP lease control plane (Vercel)\n- Project Sentinel: Silent-by-default decision memory & drift agent (Lovable)\n- FinMate AI: Voice/receipt capture + deterministic SQL arithmetic (Lovable)\n- Spaces: Contextual telemetry firewall & isolated vector spaces (Lovable)\n- SHRH: CI/CD prompt change governance & triage gateway (Vercel)\n- Dynamic Forms: Responsive narrative form worlds (Lovable)\n- GiftVerse: 30-60s micro-suspense unboxing engine (Lovable)\n- AI Asana Analyst: Real-time edge CV posture coach (<40ms CPU)\n- Adaptive UX: Simulated practice sandbox for high-stakes FinTech (Figma)`;
+    }
   }
 
-  // If specific projects are detected, include their full verbatim PRDs
-  if (detectedProjects.length > 0) {
-    injectedPrdMarkdown = detectedProjects.map(projKey => {
-      const p = PRD_VAULT[projKey];
-      if (!p) return '';
-      return `\n\n### EXHAUSTIVE VERBATIM PRD SPECIFICATION FOR ${p.title.toUpperCase()} (Notion URL: ${p.url}):\n${p.markdown}`;
-    }).filter(Boolean).join('\n\n====================================\n\n');
-  } else {
-    // If no specific project is singled out, inject overview previews of all projects
-    injectedPrdMarkdown = Object.keys(PRD_VAULT).map(key => {
-      const p = PRD_VAULT[key];
-      const preview = p.markdown.slice(0, 1600);
-      return `\n\n### OVERVIEW SPECIFICATION: ${p.title} (URL: ${p.url})\n${preview}...`;
-    }).join('\n\n');
-  }
+  return {
+    activeSubagent,
+    source,
+    groundingText: `${MASTER_PORTFOLIO_GROUNDING}\n\n${groundingText}`
+  };
+}
 
-  return `${MASTER_PORTFOLIO_GROUNDING}\n\n${injectedPrdMarkdown}`;
+/**
+ * Backwards compatibility wrapper for legacy callers
+ */
+export function getGroundingForQuery(userMessage = '', messageHistory = []) {
+  const { groundingText } = getSubagentGrounding(userMessage, messageHistory);
+  return groundingText;
 }

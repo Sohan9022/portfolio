@@ -54,8 +54,8 @@ export default function CommandMenu({ isOpen, onClose, onOpenNova }) {
       group: 'Interactive AI Companion',
       items: [
         { 
-          label: 'Ask Nova (BETA)', 
-          desc: 'Chat with Nova about my 7 systems, architectural trade-offs, and APM candidacy', 
+          label: 'Ask Nova', 
+          desc: 'Interactive AI companion with slash commands (/) & 6 specialized subagents', 
           action: () => {
             onClose(false);
             if (onOpenNova) onOpenNova();
