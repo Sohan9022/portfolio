@@ -136,36 +136,33 @@
 \section{Projects}
     \resumeSubHeadingListStart
       \resumeProjectHeading
-          {\textbf{Project Sentinel: AI Decision Memory \& State-Drift Agent} $|$ \emph{Python, PostgreSQL, FastAPI, Lovable, Notion}}{Aug 2026 -- Sept 2026}
+          {\textbf{1. Project Sentinel: AI Decision Memory \& State-Drift Agent} $|$ \emph{Python, PostgreSQL, FastAPI, Lovable, Notion}}{Aug 2026 -- Sept 2026}
           \vspace{-2pt}
           \small{\textbf{Interactive Prototype:} \href{https://echo-sentinel-08.lovable.app}{echo-sentinel-08.lovable.app} \ $|$ \ \textbf{PRD Specification:} \href{https://app.notion.com/p/PROJECT-SENTINEL-3d053f22e2b0800d891bd24a7f914c07?source=copy_link}{Notion PRD Document}}
           \resumeItemListStart
-            \resumeItem{Spearheaded product discovery across engineering standups, Slack, and Jira, identifying critical context loss from unprompted bot summaries.}
-            \resumeItem{Formulated the \textbf{``Silent-by-Default''} product thesis, passively ingesting audio transcripts and commit streams without channel distraction.}
-            \resumeItem{Architected deterministic audit engine powered by \textbf{append-only PostgreSQL schemas}, surfacing discrepancies between commitments and codebase state.}
-            \resumeItem{Shipped clickable MVP on Lovable with live state-drift queries; authored comprehensive PRD detailing state transition matrices and query grammar.}
+            \resumeItem{Spearheaded product discovery across standups, Slack, and Jira, identifying critical context loss and formulating the \textbf{``Silent-by-Default''} thesis to eliminate unprompted bot summaries and protect developer attention.}
+            \resumeItem{Architected deterministic audit engine powered by \textbf{append-only PostgreSQL schemas}, surfacing discrepancies between spoken commitments and recorded codebase state strictly upon explicit user queries.}
+            \resumeItem{Shipped clickable Lovable MVP with live drift queries; authored comprehensive PRD detailing state transition matrices, query grammar, and phased rollout while scoping out employee surveillance features.}
           \resumeItemListEnd
 
       \resumeProjectHeading
-          {\textbf{CausalRetention: Prescriptive Uplift \& Retention Decision Engine} $|$ \emph{Python, XGBoost, Streamlit, Docker}}{Oct 2026}
+          {\textbf{2. CausalRetention: Prescriptive Uplift \& Retention Decision Engine} $|$ \emph{Python, XGBoost, Streamlit, Docker}}{Oct 2026}
           \vspace{-2pt}
           \small{\textbf{Live Decision Suite:} \href{https://github.com/Sohan9022/CausalRetention}{Live Demo \& Repository} \ $|$ \ \textbf{Technical Architecture:} \href{https://github.com/Sohan9022/CausalRetention}{CATE Uplift Spec}}
           \resumeItemListStart
-            \resumeItem{Uncovered key economic friction in retention marketing where conventional churn models incur a \textbf{-13.1\% net ROI} due to deadweight spend on non-responsive ``Lost Causes''.}
-            \resumeItem{Architected prescriptive AI decision engine using a \textbf{Two-Model (T-Learner) XGBoost pipeline} to calculate CATE, segmenting customer cohorts into 4 distinct quadrants.}
-            \resumeItem{Engineered a constrained \textbf{Knapsack financial budget optimizer} under a fixed \$15K constraint, capturing \textbf{+\$112.7K+ in net preserved revenue (+752\% campaign ROI)}.}
-            \resumeItem{Shipped containerized interactive Streamlit suite with Docker; validated incrementality via Qini curves and cumulative uplift against control baselines.}
+            \resumeItem{Uncovered key economic friction in retention marketing where conventional churn models incur a \textbf{-13.1\% net ROI} due to deadweight spend on non-responsive ``Lost Causes'' and churn acceleration from nudging dormant ``Sleeping Dogs''.}
+            \resumeItem{Architected prescriptive AI decision engine using a \textbf{Two-Model (T-Learner) XGBoost pipeline} to calculate Conditional Average Treatment Effect (CATE), segmenting customer cohorts into 4 distinct quadrants.}
+            \resumeItem{Engineered a constrained \textbf{Knapsack financial budget optimizer} under a fixed \$15K constraint, capturing \textbf{+\$112.7K+ in net preserved revenue (+752\% campaign ROI)}; validated incrementality via Qini curves in containerized Streamlit suite.}
           \resumeItemListEnd
 
       \resumeProjectHeading
-          {\textbf{FlashDrop: High-Concurrency Flash Release \& ACID Inventory Engine} $|$ \emph{Java, Spring Boot, MySQL}}{Oct 2026}
+          {\textbf{3. FlashDrop: High-Concurrency Flash Release \& ACID Inventory Engine} $|$ \emph{Java, Spring Boot, MySQL}}{Oct 2026}
           \vspace{-2pt}
           \small{\textbf{Source Code \& Stress Suite:} \href{https://github.com/Sohan9022}{GitHub Repository \& Benchmarks}}
           \resumeItemListStart
             \resumeItem{Architected a high-concurrency flash release inventory engine in Spring Boot backed by MySQL 8.0, eliminating race conditions and guaranteeing \textbf{zero overselling} via InnoDB pessimistic row-level locking (\textbf{SELECT ... FOR UPDATE}).}
             \resumeItem{Designed a \textbf{3NF relational schema with ACID stored procedures} (sp\_reserve\_product, sp\_checkout\_order), ensuring atomic multi-table state transitions across limited inventory, buyer holds, and finalized orders.}
-            \resumeItem{Implemented defensive database triggers to prevent negative inventory anomalies and automated native \textbf{MySQL EVENT SCHEDULER} routines to reclaim expired 5-minute temporary cart reservations.}
-            \resumeItem{Configured optimized \textbf{HikariCP connection pooling} with programmatic TransactionTemplate boundaries; verified via a multi-threaded Python stress suite simulating concurrent buyer races with \textbf{0\% data inconsistencies}.}
+            \resumeItem{Configured optimized \textbf{HikariCP connection pooling} and automated native \textbf{MySQL EVENT SCHEDULER} routines to reclaim expired 5-minute temporary holds; verified 0\% data inconsistencies via a multi-threaded Python stress suite.}
           \resumeItemListEnd
     \resumeSubHeadingListEnd
 
@@ -177,7 +174,7 @@
      \textbf{Languages}{: Python, Java, SQL, Golang, C++, C, JavaScript} \\
      \textbf{Frameworks}{: Spring Boot, FastAPI, Streamlit, XGBoost, Scikit-learn, React} \\
      \textbf{Databases \& Cloud}{: PostgreSQL, MySQL, Supabase, Docker, Git, Linux} \\
-     \textbf{Product \& Tools}{: PRD Writing, Jobs-to-be-Done (JTBD), RICE, Product Metrics, Figma, Postman, Notion, LeetCode (400+ solved, 210+ GFG)}
+     \textbf{Product \& Tools}{: PRD Writing, Jobs-to-be-Done (JTBD), RICE Prioritization, North Star \& Counter-Metrics, A/B Testing, Figma, Postman, Notion}
     }}
  \end{itemize}
 

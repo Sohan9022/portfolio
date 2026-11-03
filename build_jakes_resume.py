@@ -267,14 +267,14 @@ def build_jakes_resume():
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
     # ==========================
-    # 4. PROJECTS (With Prominent Live Links)
+    # 4. PROJECTS (Spacious & Numbered)
     # ==========================
     add_heading('Projects')
 
     # Project 1: Project Sentinel
-    p_proj1 = add_p(space_before=0.8, space_after=0.2)
+    p_proj1 = add_p(space_before=1.8, space_after=0.4)
     p_proj1.paragraph_format.tab_stops.add_tab_stop(RIGHT_TAB, WD_TAB_ALIGNMENT.RIGHT)
-    r = p_proj1.add_run('Project Sentinel: AI Decision Memory & State-Drift Agent')
+    r = p_proj1.add_run('1. Project Sentinel: AI Decision Memory & State-Drift Agent')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.8); r.font.bold = True
     r = p_proj1.add_run(' | ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.0)
@@ -284,7 +284,7 @@ def build_jakes_resume():
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.2); r.font.bold = True
 
     # Prominent Live Links Line for Sentinel
-    p_link1 = add_p(space_before=0, space_after=0.6)
+    p_link1 = add_p(space_before=0, space_after=1.0)
     r = p_link1.add_run('Interactive Prototype: ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
     add_hyperlink(p_link1, 'https://echo-sentinel-08.lovable.app', 'echo-sentinel-08.lovable.app', color_hex=COLOR_LINK, underline=True, font_size_pt=8.6)
@@ -292,42 +292,36 @@ def build_jakes_resume():
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
     add_hyperlink(p_link1, 'https://app.notion.com/p/PROJECT-SENTINEL-3d053f22e2b0800d891bd24a7f914c07?source=copy_link', 'Notion PRD Document', color_hex=COLOR_LINK, underline=True, font_size_pt=8.6)
 
-    p = add_bullet_p(space_before=0, space_after=0.7)
+    p = add_bullet_p(space_before=0, space_after=1.1)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
-    r = p.add_run('Spearheaded product discovery across engineering standups, Slack, and Jira, identifying critical context loss from unprompted bot summaries.')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
-
-    p = add_bullet_p(space_before=0, space_after=0.7)
-    r = p.add_run('• ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
-    r = p.add_run('Formulated the ')
+    r = p.add_run('Spearheaded product discovery across standups, Slack, and Jira, identifying critical context loss and formulating the ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
     r_b = p.add_run('"Silent-by-Default"')
     r_b.font.name = FONT_FAMILY; r_b.font.size = Pt(8.6); r_b.font.bold = True
-    r = p.add_run(' product thesis, passively ingesting audio transcripts and commit streams without channel distraction.')
+    r = p.add_run(' thesis to eliminate unprompted bot summaries and protect developer attention.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
-    p = add_bullet_p(space_before=0, space_after=0.7)
+    p = add_bullet_p(space_before=0, space_after=1.1)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
     r = p.add_run('Architected deterministic audit engine powered by ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
     r_b = p.add_run('append-only PostgreSQL schemas')
     r_b.font.name = FONT_FAMILY; r_b.font.size = Pt(8.6); r_b.font.bold = True
-    r = p.add_run(', surfacing discrepancies between commitments and codebase state.')
+    r = p.add_run(', surfacing discrepancies between spoken commitments and recorded codebase state strictly upon explicit user queries.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
-    p = add_bullet_p(space_before=0, space_after=1.8)
+    p = add_bullet_p(space_before=0, space_after=2.8)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
-    r = p.add_run('Shipped clickable MVP on Lovable with live state-drift queries; authored comprehensive PRD detailing state transition matrices and query grammar.')
+    r = p.add_run('Shipped clickable Lovable MVP with live drift queries; authored comprehensive PRD detailing state transition matrices, query grammar, and phased rollout while scoping out employee surveillance features.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
     # Project 2: CausalRetention
-    p_proj2 = add_p(space_before=0.8, space_after=0.2)
+    p_proj2 = add_p(space_before=1.6, space_after=0.4)
     p_proj2.paragraph_format.tab_stops.add_tab_stop(RIGHT_TAB, WD_TAB_ALIGNMENT.RIGHT)
-    r = p_proj2.add_run('CausalRetention: Prescriptive Uplift & Retention Decision Engine')
+    r = p_proj2.add_run('2. CausalRetention: Prescriptive Uplift & Customer Retention Engine')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.8); r.font.bold = True
     r = p_proj2.add_run(' | ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.0)
@@ -337,7 +331,7 @@ def build_jakes_resume():
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.2); r.font.bold = True
 
     # Prominent Live Links Line for CausalRetention
-    p_link2 = add_p(space_before=0, space_after=0.6)
+    p_link2 = add_p(space_before=0, space_after=1.0)
     r = p_link2.add_run('Live Decision Suite: ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
     add_hyperlink(p_link2, 'https://github.com/Sohan9022/CausalRetention', 'Live Demo & Repository', color_hex=COLOR_LINK, underline=True, font_size_pt=8.6)
@@ -345,27 +339,27 @@ def build_jakes_resume():
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
     add_hyperlink(p_link2, 'https://github.com/Sohan9022/CausalRetention', 'CATE Uplift Spec', color_hex=COLOR_LINK, underline=True, font_size_pt=8.6)
 
-    p = add_bullet_p(space_before=0, space_after=0.7)
+    p = add_bullet_p(space_before=0, space_after=1.1)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
     r = p.add_run('Uncovered key economic friction in retention marketing where conventional churn models incur a ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
     r_b = p.add_run('-13.1% net ROI')
     r_b.font.name = FONT_FAMILY; r_b.font.size = Pt(8.6); r_b.font.bold = True
-    r = p.add_run(' due to deadweight spend on non-responsive "Lost Causes".')
+    r = p.add_run(' due to deadweight spend on non-responsive "Lost Causes" and churn acceleration from nudging dormant "Sleeping Dogs".')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
-    p = add_bullet_p(space_before=0, space_after=0.7)
+    p = add_bullet_p(space_before=0, space_after=1.1)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
     r = p.add_run('Architected prescriptive AI decision engine using a ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
     r_b = p.add_run('Two-Model (T-Learner) XGBoost pipeline')
     r_b.font.name = FONT_FAMILY; r_b.font.size = Pt(8.6); r_b.font.bold = True
-    r = p.add_run(' to calculate CATE, segmenting customer cohorts into 4 distinct quadrants.')
+    r = p.add_run(' to calculate Conditional Average Treatment Effect (CATE), segmenting customer cohorts into 4 distinct quadrants.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
-    p = add_bullet_p(space_before=0, space_after=0.7)
+    p = add_bullet_p(space_before=0, space_after=2.8)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
     r = p.add_run('Engineered a constrained ')
@@ -376,19 +370,13 @@ def build_jakes_resume():
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
     r_b2 = p.add_run('+$112.7K+ in net preserved revenue (+752% campaign ROI)')
     r_b2.font.name = FONT_FAMILY; r_b2.font.size = Pt(8.6); r_b2.font.bold = True
-    r = p.add_run('.')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
-
-    p = add_bullet_p(space_before=0, space_after=1.8)
-    r = p.add_run('• ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
-    r = p.add_run('Shipped containerized interactive Streamlit suite with Docker; validated incrementality via Qini curves and cumulative uplift against control baselines.')
+    r = p.add_run('; validated incrementality via Qini curves in containerized Streamlit suite.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
     # Project 3: FlashDrop (Original Spring Boot & MySQL Engine)
-    p_proj3 = add_p(space_before=0.8, space_after=0.2)
+    p_proj3 = add_p(space_before=1.6, space_after=0.4)
     p_proj3.paragraph_format.tab_stops.add_tab_stop(RIGHT_TAB, WD_TAB_ALIGNMENT.RIGHT)
-    r = p_proj3.add_run('FlashDrop: High-Concurrency Flash Release & ACID Inventory Engine')
+    r = p_proj3.add_run('3. FlashDrop: High-Concurrency Flash Release & ACID Inventory Engine')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.8); r.font.bold = True
     r = p_proj3.add_run(' | ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.0)
@@ -398,12 +386,12 @@ def build_jakes_resume():
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.2); r.font.bold = True
 
     # Prominent Live Links Line for FlashDrop
-    p_link3 = add_p(space_before=0, space_after=0.6)
+    p_link3 = add_p(space_before=0, space_after=1.0)
     r = p_link3.add_run('Source Code & Stress Suite: ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
     add_hyperlink(p_link3, 'https://github.com/Sohan9022', 'GitHub Repository & Benchmarks', color_hex=COLOR_LINK, underline=True, font_size_pt=8.6)
 
-    p = add_bullet_p(space_before=0, space_after=0.7)
+    p = add_bullet_p(space_before=0, space_after=1.1)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
     r = p.add_run('Architected a high-concurrency flash release inventory engine in Spring Boot backed by MySQL 8.0, eliminating race conditions and guaranteeing ')
@@ -417,7 +405,7 @@ def build_jakes_resume():
     r = p.add_run(').')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
-    p = add_bullet_p(space_before=0, space_after=0.7)
+    p = add_bullet_p(space_before=0, space_after=1.1)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
     r = p.add_run('Designed a ')
@@ -427,28 +415,18 @@ def build_jakes_resume():
     r = p.add_run(' (sp_reserve_product, sp_checkout_order), ensuring atomic multi-table state transitions across limited inventory, buyer holds, and finalized orders.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
-    p = add_bullet_p(space_before=0, space_after=0.7)
-    r = p.add_run('• ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
-    r = p.add_run('Implemented defensive database triggers to prevent negative inventory anomalies and automated native ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
-    r_b = p.add_run('MySQL EVENT SCHEDULER')
-    r_b.font.name = FONT_FAMILY; r_b.font.size = Pt(8.6); r_b.font.bold = True
-    r = p.add_run(' routines to reclaim expired 5-minute temporary cart reservations.')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
-
-    p = add_bullet_p(space_before=0, space_after=2.4)
+    p = add_bullet_p(space_before=0, space_after=2.8)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
     r = p.add_run('Configured optimized ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
     r_b = p.add_run('HikariCP connection pooling')
     r_b.font.name = FONT_FAMILY; r_b.font.size = Pt(8.6); r_b.font.bold = True
-    r = p.add_run(' with programmatic TransactionTemplate boundaries; verified via a multi-threaded Python stress suite simulating concurrent buyer races with ')
+    r = p.add_run(' and automated native ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
-    r_b2 = p.add_run('0% data inconsistencies')
+    r_b2 = p.add_run('MySQL EVENT SCHEDULER')
     r_b2.font.name = FONT_FAMILY; r_b2.font.size = Pt(8.6); r_b2.font.bold = True
-    r = p.add_run('.')
+    r = p.add_run(' routines to reclaim expired 5-minute temporary holds; verified 0% data inconsistencies via a multi-threaded Python stress suite.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
     # ==========================
@@ -457,7 +435,7 @@ def build_jakes_resume():
     add_heading('Technical Skills')
 
     def add_skill_line(category, items):
-        p = add_p(space_before=0.3, space_after=0.8)
+        p = add_p(space_before=0.4, space_after=1.0)
         r = p.add_run(f'{category}: ')
         r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.bold = True
         r = p.add_run(items)
@@ -467,7 +445,7 @@ def build_jakes_resume():
     add_skill_line('Languages', 'Python, Java, SQL, Golang, C++, C, JavaScript')
     add_skill_line('Frameworks', 'Spring Boot, FastAPI, Streamlit, XGBoost, Scikit-learn, React')
     add_skill_line('Databases & Cloud', 'PostgreSQL, MySQL, Supabase, Docker, Git, Linux')
-    add_skill_line('Product & Tools', 'PRD Writing, Jobs-to-be-Done (JTBD), RICE, Product Metrics, Figma, Postman, Notion, LeetCode (400+ solved, 210+ GFG)')
+    add_skill_line('Product & Tools', 'PRD Writing, Jobs-to-be-Done (JTBD), RICE Prioritization, North Star & Counter-Metrics, A/B Testing, Figma, Postman, Notion')
 
     # ==========================
     # 6. CERTIFICATIONS (With Active Links)
