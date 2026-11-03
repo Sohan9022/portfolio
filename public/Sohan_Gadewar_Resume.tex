@@ -1,0 +1,174 @@
+%-------------------------
+% Resume in LaTeX - Jake's Resume Format
+% Author: Sohan Gadewar
+% License: MIT
+%-------------------------
+
+\documentclass[letterpaper,10.8pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.0in}
+\addtolength{\topmargin}{-.45in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{#2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{#2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Sohan Gadewar} \\ \vspace{2pt}
+    \small Pune, Maharashtra, India \\ \vspace{2pt}
+    \small 
+    \faPhone\ +91 9022778561 \quad
+    \href{mailto:sohangadewar9022@gmail.com}{\faEnvelope\ sohangadewar9022@gmail.com} \quad
+    \href{https://www.linkedin.com/in/sohan-gadewar-9644a530b/}{\faLinkedin\ Sohan Gadewar} \quad
+    \href{https://github.com/Sohan9022}{\faGithub\ Github} \quad
+    \href{https://portfolio-ruby-mu-r5o6ica105.vercel.app/}{\faGlobe\ Portfolio} \quad
+    \href{https://leetcode.com/u/Sohan_Gadewar/}{\faCode\ LeetCode}
+\end{center}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Vishwakarma Institute of Information Technology}{2023 -- 2027}
+      {B.Tech in Information Technology | \textbf{CGPA: 8.97/10.00}}{Pune, India}
+  \resumeSubHeadingListEnd
+  \vspace{-3pt}
+  \small{\textbf{Relevant Coursework:} Data Structures \& Algorithms, Database Management Systems, Operating Systems, Computer Networks, System Design, Object Oriented Programming, Machine Learning.}
+
+
+%-----------EXPERIENCE & LEADERSHIP-----------
+\section{Experience \& Leadership}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {India Innovates Hackathon}{Jan 2026 -- Feb 2026}
+      {National Finalist \& Lead Builder -- Ministry of Education \& AICTE}{Pune, India}
+      \resumeItemListStart
+        \resumeItem{Ranked among \textbf{top 20\% finalist teams} nationwide out of \textbf{6,000+ participating teams} across India, pitching scalable public service automation.}
+        \resumeItem{Spearheaded product discovery and rapid prototyping, coordinating cross-functional engineering execution under tight deadline constraints.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {South African Patent Office}{2025}
+      {Patent Applicant \& Inventor -- AI-Powered Lost \& Found Matching System}{Patent Filed}
+      \resumeItemListStart
+        \resumeItem{Conceptualized and filed patent for an AI matching system utilizing a \textbf{5-factor blind multimodal scoring engine} (image embeddings, NLP text, geolocation, timestamp) with automated urgency detection.}
+        \resumeItem{Qualified for Round 2 in \textbf{GHCI 25 National GenAI Hackathon} (AnitaB.org India \& Backbase | `Unbound with GenAI'), demonstrating production feasibility.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{Project Sentinel: AI Decision Memory \& State-Drift Agent} $|$ \emph{Python, PostgreSQL, FastAPI, Lovable, Notion}}{Oct 2025 -- Present}
+          \resumeItemListStart
+            \resumeItem{Spearheaded product discovery across engineering standups, Slack, and Jira, identifying critical context loss and finding that unprompted bot summaries cause heavy distraction by interrupting developer focus.}
+            \resumeItem{Formulated the \textbf{``Silent-by-Default''} product thesis, passively ingesting audio transcripts and commit streams without channel spam while deliberately scoping out employee surveillance features in V1.}
+            \resumeItem{Architected deterministic audit engine powered by \textbf{append-only PostgreSQL schemas}, surfacing discrepancies between spoken commitments and recorded codebase state strictly upon explicit user queries.}
+            \resumeItem{Shipped clickable MVP on Lovable ([\href{https://echo-sentinel-08.lovable.app}{\textbf{Live Demo}}]); authored comprehensive \href{https://app.notion.com/p/PROJECT-SENTINEL-3d053f22e2b0800d891bd24a7f914c07?source=copy_link}{\textbf{Notion PRD}} detailing state transition matrices, query grammar, and phased enterprise rollout.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{CausalRetention: Prescriptive Uplift \& Customer Retention Engine} $|$ \emph{Python, XGBoost, Streamlit, Docker}}{Aug 2025 -- Oct 2025}
+          \resumeItemListStart
+            \resumeItem{Uncovered key economic friction in retention marketing where conventional churn models incur a \textbf{-13.1\% net ROI} due to deadweight spend on non-responsive ``Lost Causes'' and churn acceleration from nudging dormant ``Sleeping Dogs''.}
+            \resumeItem{Architected prescriptive AI decision engine using a \textbf{Two-Model (T-Learner) XGBoost pipeline} to calculate Conditional Average Treatment Effect (CATE), segmenting customer cohorts into 4 distinct behavioral quadrants.}
+            \resumeItem{Engineered a constrained \textbf{Knapsack financial budget optimizer} under a fixed \$15,000 constraint, mathematically allocating incentives to top incremental-value cohorts and capturing \textbf{+\$112.7K+ in net preserved revenue (+752\% campaign ROI)}.}
+            \resumeItem{Shipped containerized \textbf{interactive Streamlit suite} with Docker and automated executive reporting ([\href{https://github.com/Sohan9022/CausalRetention}{\textbf{Live Demo \& Repo}}]); validated incrementality via Qini curves and cumulative uplift against randomized control baselines.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{FlashDrop: Ultra-Low Latency Flash Sale System} $|$ \emph{Java, Spring Boot, MySQL, Redis, Docker}}{May 2025 -- July 2025}
+          \resumeItemListStart
+            \resumeItem{Architected high-concurrency e-commerce checkout backend handling sudden flash-sale traffic surges with a \textbf{guaranteed 0\% overselling anomaly rate} under extreme write contention.}
+            \resumeItem{Engineered \textbf{5-minute automated inventory reservation locks} utilizing InnoDB pessimistic row-level locking (\textbf{SELECT FOR UPDATE}), eliminating race conditions.}
+            \resumeItem{Integrated defensive transaction rollback triggers and automated deadweight cart reclamation to immediately restore stranded stock upon session expiry.}
+            \resumeItem{Designed Redis cache-aside read architecture, reducing product catalog latency to \textbf{sub-25ms} during concurrent peak assessment traffic.}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, Java, SQL, C++, C, JavaScript} \\
+     \textbf{Frameworks}{: Spring Boot, FastAPI, Streamlit, XGBoost, Scikit-learn, React} \\
+     \textbf{Databases \& Cloud}{: PostgreSQL, MySQL, Supabase, Redis, Docker, Git, Linux} \\
+     \textbf{Product \& Tools}{: PRD Writing, Jobs-to-be-Done (JTBD), RICE, Product Metrics, Figma, Postman, Notion, LeetCode (400+ solved, 210+ GFG)}
+    }}
+ \end{itemize}
+
+%-------------------------------------------
+\end{document}
