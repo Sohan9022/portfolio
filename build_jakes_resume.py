@@ -284,7 +284,7 @@ def build_jakes_resume():
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.5)
     r_tech = p_proj1.add_run('Python, PostgreSQL, FastAPI, Lovable, Notion')
     r_tech.font.name = FONT_FAMILY; r_tech.font.size = Pt(9.0); r_tech.font.italic = True
-    r = p_proj1.add_run('\tOct 2025 – Present')
+    r = p_proj1.add_run('\tAug 2026 – Present')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.5); r.font.bold = True
 
     p = add_bullet_p(space_before=0, space_after=0.9)
@@ -334,7 +334,7 @@ def build_jakes_resume():
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.5)
     r_tech = p_proj2.add_run('Python, XGBoost, Streamlit, Docker')
     r_tech.font.name = FONT_FAMILY; r_tech.font.size = Pt(9.0); r_tech.font.italic = True
-    r = p_proj2.add_run('\tAug 2025 – Oct 2025')
+    r = p_proj2.add_run('\tMay 2026 – July 2026')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.5); r.font.bold = True
 
     p = add_bullet_p(space_before=0, space_after=0.9)
@@ -393,7 +393,7 @@ def build_jakes_resume():
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.5)
     r_tech = p_proj3.add_run('Java, Spring Boot, MySQL')
     r_tech.font.name = FONT_FAMILY; r_tech.font.size = Pt(9.0); r_tech.font.italic = True
-    r = p_proj3.add_run('\tMay 2025 – July 2025')
+    r = p_proj3.add_run('\tJan 2026 – April 2026')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.5); r.font.bold = True
 
     p = add_bullet_p(space_before=0, space_after=0.9)
