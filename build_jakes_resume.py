@@ -17,6 +17,8 @@ def build_jakes_resume():
     - Section Headings in Title Case with a razor-thin, tight horizontal rule beneath.
     - Numbered Projects (1, 2, 3) with generous vertical breathing room.
     - Two-line project headers: Line 1 = Title & Date; Line 2 = Tech Stack, Live Links & Domain.
+    - Crisp, properly indented bullet lists: subtle non-bold bullet symbol (•), indented from margin,
+      with tab-aligned hanging indent where line 1 text and wrapped line 2 text align perfectly.
     - 3 punchy, high-impact bullets per project with bold metrics.
     - Clean Experience & Leadership entries (India Innovates, GHCI 25 Hackathon with certificate link, Patent Filed).
     - Authentic FlashDrop architecture (Java, Spring Boot, MySQL, HikariCP, zero Redis/Docker).
@@ -25,7 +27,7 @@ def build_jakes_resume():
     """
     doc = docx.Document()
     
-    # 0.40 in vertical margins, 0.48 in horizontal margins
+    # 0.38 in vertical margins, 0.48 in horizontal margins
     for section in doc.sections:
         section.top_margin = Inches(0.38)
         section.bottom_margin = Inches(0.38)
@@ -46,13 +48,27 @@ def build_jakes_resume():
         p.paragraph_format.line_spacing = line_spacing
         return p
 
-    def add_bullet_p(space_before=0, space_after=1.0, line_spacing=1.05):
+    def add_bullet_p(space_before=0, space_after=1.2, line_spacing=1.05):
+        """
+        Creates a LaTeX-standard bullet list item:
+        - Bullet symbol indented slightly from margin (0.06 in = 4.3 pt)
+        - Text begins at hanging indent tab stop (0.18 in = 13.0 pt)
+        - Wrapped lines start at the exact same tab stop (0.18 in)
+        - Perfectly aligned vertical column with no stair-stepping
+        """
         p = doc.add_paragraph()
         p.paragraph_format.left_indent = Inches(0.18)
-        p.paragraph_format.first_line_indent = Inches(-0.18)
+        p.paragraph_format.first_line_indent = Inches(-0.12)
+        p.paragraph_format.tab_stops.add_tab_stop(Inches(0.18))
         p.paragraph_format.space_before = Pt(space_before)
         p.paragraph_format.space_after = Pt(space_after)
         p.paragraph_format.line_spacing = line_spacing
+        
+        r_b = p.add_run('•\t')
+        r_b.font.name = FONT_FAMILY
+        r_b.font.size = Pt(7.5)
+        r_b.font.bold = False
+        r_b.font.color.rgb = COLOR_BLACK
         return p
 
     def add_heading(title):
@@ -209,9 +225,7 @@ def build_jakes_resume():
     r = p_exp1_sub.add_run('\tPune, India')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.0); r.font.italic = True
     
-    p = add_bullet_p(space_before=0, space_after=0.8)
-    r = p.add_run('• ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
+    p = add_bullet_p(space_before=0, space_after=1.0)
     r = p.add_run('Ranked among ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
     r_b = p.add_run('top 20% finalist teams')
@@ -239,9 +253,7 @@ def build_jakes_resume():
     r = p_exp2_sub.add_run('\tNational Hackathon')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.0); r.font.italic = True
 
-    p = add_bullet_p(space_before=0, space_after=0.8)
-    r = p.add_run('• ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
+    p = add_bullet_p(space_before=0, space_after=1.0)
     r = p.add_run('Selected for Round 2 in national GenAI challenge; engineered agent workflows and automated evaluation harnesses with structured JSON guardrails, validating prototype reliability under strict prompt constraints.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
@@ -261,8 +273,6 @@ def build_jakes_resume():
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.0); r.font.italic = True
 
     p = add_bullet_p(space_before=0, space_after=2.4)
-    r = p.add_run('• ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
     r = p.add_run('Conceptualized and filed patent for an AI matching architecture utilizing a ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
     r_b = p.add_run('5-factor blind multimodal scoring engine')
@@ -283,7 +293,7 @@ def build_jakes_resume():
     r = p_proj1.add_run('\tAug 2026 – Sept 2026')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.2); r.font.bold = True
 
-    p_proj1_sub = add_p(space_before=0, space_after=1.1)
+    p_proj1_sub = add_p(space_before=0, space_after=1.2)
     p_proj1_sub.paragraph_format.tab_stops.add_tab_stop(RIGHT_TAB, WD_TAB_ALIGNMENT.RIGHT)
     r = p_proj1_sub.add_run('Python, PostgreSQL, FastAPI, Lovable  |  ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.italic = True
@@ -294,9 +304,7 @@ def build_jakes_resume():
     r = p_proj1_sub.add_run('\tEnterprise AI System')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.italic = True
 
-    p = add_bullet_p(space_before=0, space_after=1.1)
-    r = p.add_run('• ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
+    p = add_bullet_p(space_before=0, space_after=1.2)
     r = p.add_run('Spearheaded product discovery across engineering standups, Slack, and Jira, identifying critical context loss and formulating the ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
     r_b = p.add_run('"Silent-by-Default"')
@@ -304,9 +312,7 @@ def build_jakes_resume():
     r = p.add_run(' thesis to eliminate unprompted bot summaries and protect developer attention.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
-    p = add_bullet_p(space_before=0, space_after=1.1)
-    r = p.add_run('• ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
+    p = add_bullet_p(space_before=0, space_after=1.2)
     r = p.add_run('Architected deterministic audit engine powered by ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
     r_b = p.add_run('append-only PostgreSQL schemas')
@@ -314,9 +320,7 @@ def build_jakes_resume():
     r = p.add_run(', surfacing discrepancies between spoken commitments and recorded codebase state strictly upon explicit user queries.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
-    p = add_bullet_p(space_before=0, space_after=3.0)
-    r = p.add_run('• ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
+    p = add_bullet_p(space_before=0, space_after=2.8)
     r = p.add_run('Shipped clickable Lovable MVP with live drift queries; authored comprehensive PRD detailing state transition matrices, query grammar, and phased rollout while scoping out employee surveillance features.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
@@ -328,7 +332,7 @@ def build_jakes_resume():
     r = p_proj2.add_run('\tOct 2026')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.2); r.font.bold = True
 
-    p_proj2_sub = add_p(space_before=0, space_after=1.1)
+    p_proj2_sub = add_p(space_before=0, space_after=1.2)
     p_proj2_sub.paragraph_format.tab_stops.add_tab_stop(RIGHT_TAB, WD_TAB_ALIGNMENT.RIGHT)
     r = p_proj2_sub.add_run('Python, XGBoost, Streamlit, Docker  |  ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.italic = True
@@ -339,9 +343,7 @@ def build_jakes_resume():
     r = p_proj2_sub.add_run('\tCausal ML Engine')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.italic = True
 
-    p = add_bullet_p(space_before=0, space_after=1.1)
-    r = p.add_run('• ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
+    p = add_bullet_p(space_before=0, space_after=1.2)
     r = p.add_run('Uncovered key economic friction in retention marketing where conventional churn models incur a ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
     r_b = p.add_run('-13.1% net ROI')
@@ -349,9 +351,7 @@ def build_jakes_resume():
     r = p.add_run(' due to deadweight spend on non-responsive "Lost Causes" and churn acceleration from nudging dormant "Sleeping Dogs".')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
-    p = add_bullet_p(space_before=0, space_after=1.1)
-    r = p.add_run('• ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
+    p = add_bullet_p(space_before=0, space_after=1.2)
     r = p.add_run('Architected prescriptive AI decision engine using a ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
     r_b = p.add_run('Two-Model (T-Learner) XGBoost pipeline')
@@ -359,9 +359,7 @@ def build_jakes_resume():
     r = p.add_run(' to calculate Conditional Average Treatment Effect (CATE), segmenting customer cohorts into 4 distinct quadrants.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
-    p = add_bullet_p(space_before=0, space_after=3.0)
-    r = p.add_run('• ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
+    p = add_bullet_p(space_before=0, space_after=2.8)
     r = p.add_run('Engineered a constrained ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
     r_b = p.add_run('Knapsack financial budget optimizer')
@@ -381,7 +379,7 @@ def build_jakes_resume():
     r = p_proj3.add_run('\tOct 2026')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.2); r.font.bold = True
 
-    p_proj3_sub = add_p(space_before=0, space_after=1.1)
+    p_proj3_sub = add_p(space_before=0, space_after=1.2)
     p_proj3_sub.paragraph_format.tab_stops.add_tab_stop(RIGHT_TAB, WD_TAB_ALIGNMENT.RIGHT)
     r = p_proj3_sub.add_run('Java, Spring Boot, MySQL, HikariCP  |  ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.italic = True
@@ -389,9 +387,7 @@ def build_jakes_resume():
     r = p_proj3_sub.add_run('\tHigh-Concurrency Backend')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.italic = True
 
-    p = add_bullet_p(space_before=0, space_after=1.1)
-    r = p.add_run('• ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
+    p = add_bullet_p(space_before=0, space_after=1.2)
     r = p.add_run('Architected a high-concurrency flash release inventory engine in Spring Boot backed by MySQL 8.0, eliminating race conditions and guaranteeing ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
     r_b = p.add_run('zero overselling')
@@ -403,9 +399,7 @@ def build_jakes_resume():
     r = p.add_run(').')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
-    p = add_bullet_p(space_before=0, space_after=1.1)
-    r = p.add_run('• ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
+    p = add_bullet_p(space_before=0, space_after=1.2)
     r = p.add_run('Designed a ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
     r_b = p.add_run('3NF relational schema with ACID stored procedures')
@@ -414,8 +408,6 @@ def build_jakes_resume():
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
     p = add_bullet_p(space_before=0, space_after=2.8)
-    r = p.add_run('• ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
     r = p.add_run('Configured optimized ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
     r_b = p.add_run('HikariCP connection pooling')
@@ -450,18 +442,14 @@ def build_jakes_resume():
     # ==========================
     add_heading('Certifications')
     
-    p_cert = add_p(space_before=1.0, space_after=0.6)
-    r = p_cert.add_run('• ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
+    p_cert = add_bullet_p(space_before=1.0, space_after=0.6)
     r = p_cert.add_run('Product Management: ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
     add_hyperlink(p_cert, 'https://drive.google.com/file/d/199XpTr2wp9waMzs4I5PiToiuOoKuQvJK/view?usp=drive_link', 'Product Management Masterclass (GeeksforGeeks)', color_hex=COLOR_LINK, underline=True, font_size_pt=8.6, bold=False)
     r = p_cert.add_run(' — Product lifecycle, JTBD discovery frameworks, and roadmap metrics.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
-    p_cert2 = add_p(space_before=0, space_after=1.0)
-    r = p_cert2.add_run('• ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
+    p_cert2 = add_bullet_p(space_before=0, space_after=1.0)
     r = p_cert2.add_run('AI & Workflows: ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
     add_hyperlink(p_cert2, 'https://drive.google.com/file/d/1NqDNLf16tuThGlGOO2cFp1IxiTjWQCFP/view?usp=drive_link', 'Prompt Engineering', color_hex=COLOR_LINK, underline=True, font_size_pt=8.6, bold=False)
@@ -516,8 +504,8 @@ def build_jakes_resume():
     # Render preview image
     pdf = pymupdf.open(dest_pdf_1)
     pix = pdf[0].get_pixmap(dpi=150)
-    pix.save('scratch_jakes_resume_v4.png')
-    print("Saved preview scratch_jakes_resume_v4.png")
+    pix.save('scratch_jakes_resume_v5.png')
+    print("Saved preview scratch_jakes_resume_v5.png")
 
 if __name__ == '__main__':
     build_jakes_resume()
