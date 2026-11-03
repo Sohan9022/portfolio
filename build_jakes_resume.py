@@ -12,21 +12,23 @@ def build_jakes_resume():
     Builds a strictly 1-page resume matching the classic 'Jake's Resume' (LaTeX/Overleaf)
     serif formatting seen in top Ivy League & Silicon Valley / Google APM applications:
     - Font: Times New Roman serif across all sections.
-    - Centered Name & Location.
+    - Centered Name & Location with crisp margins.
     - Centered Contact bar with monochrome black icons & clickable links.
-    - Section Headings in Title Case with a crisp, full-width horizontal rule beneath.
-    - Two-column tab-aligned items: Entity (Bold) on left, Dates (Bold) on far right.
-    - Prominent Live Links for all projects and certificates in professional Deep Royal Blue (#1D4ED8).
-    - Clear, distinct separation for GHCI 25 National GenAI Hackathon, India Innovates, and South African Patent Office.
-    - Authentic FlashDrop architecture (Java, Spring Boot, MySQL, HikariCP, InnoDB locks, zero Redis/Docker).
+    - Section Headings in Title Case with a razor-thin, tight horizontal rule beneath.
+    - Numbered Projects (1, 2, 3) with generous vertical breathing room.
+    - Two-line project headers: Line 1 = Title & Date; Line 2 = Tech Stack, Live Links & Domain.
+    - 3 punchy, high-impact bullets per project with bold metrics.
+    - Clean Experience & Leadership entries (India Innovates, GHCI 25 Hackathon with certificate link, Patent Filed).
+    - Authentic FlashDrop architecture (Java, Spring Boot, MySQL, HikariCP, zero Redis/Docker).
+    - No LeetCode under Product & Tools (LeetCode is properly positioned in the header).
     - Verified strictly 1 page via Word COM and PyPDF.
     """
     doc = docx.Document()
     
     # 0.40 in vertical margins, 0.48 in horizontal margins
     for section in doc.sections:
-        section.top_margin = Inches(0.40)
-        section.bottom_margin = Inches(0.40)
+        section.top_margin = Inches(0.38)
+        section.bottom_margin = Inches(0.38)
         section.left_margin = Inches(0.48)
         section.right_margin = Inches(0.48)
         
@@ -44,7 +46,7 @@ def build_jakes_resume():
         p.paragraph_format.line_spacing = line_spacing
         return p
 
-    def add_bullet_p(space_before=0, space_after=0.8, line_spacing=1.05):
+    def add_bullet_p(space_before=0, space_after=1.0, line_spacing=1.05):
         p = doc.add_paragraph()
         p.paragraph_format.left_indent = Inches(0.18)
         p.paragraph_format.first_line_indent = Inches(-0.18)
@@ -54,7 +56,8 @@ def build_jakes_resume():
         return p
 
     def add_heading(title):
-        p = add_p(space_before=5.0, space_after=1.8)
+        # space_after is small so the horizontal rule is tightly drawn right beneath the text (LaTeX style)
+        p = add_p(space_before=5.0, space_after=0.6)
         run = p.add_run(title)
         run.font.name = FONT_FAMILY
         run.font.size = Pt(10.8)
@@ -130,7 +133,7 @@ def build_jakes_resume():
     r_name.font.name = FONT_FAMILY; r_name.font.size = Pt(20.5); r_name.font.bold = True
     r_name.font.color.rgb = COLOR_BLACK
 
-    p_loc = add_p(space_before=0, space_after=2.0)
+    p_loc = add_p(space_before=0, space_after=1.8)
     p_loc.alignment = WD_ALIGN_PARAGRAPH.CENTER
     r_loc = p_loc.add_run('Pune, Maharashtra, India')
     r_loc.font.name = FONT_FAMILY; r_loc.font.size = Pt(9.2)
@@ -164,7 +167,7 @@ def build_jakes_resume():
     # ==========================
     add_heading('Education')
     
-    p_edu = add_p(space_before=1.0, space_after=0.4)
+    p_edu = add_p(space_before=1.8, space_after=0.4)
     p_edu.paragraph_format.tab_stops.add_tab_stop(RIGHT_TAB, WD_TAB_ALIGNMENT.RIGHT)
     r = p_edu.add_run('Vishwakarma Institute of Information Technology')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.8); r.font.bold = True
@@ -192,7 +195,7 @@ def build_jakes_resume():
     add_heading('Experience & Leadership')
     
     # Entry 1: India Innovates Hackathon
-    p_exp1 = add_p(space_before=0.8, space_after=0.3)
+    p_exp1 = add_p(space_before=1.6, space_after=0.3)
     p_exp1.paragraph_format.tab_stops.add_tab_stop(RIGHT_TAB, WD_TAB_ALIGNMENT.RIGHT)
     r = p_exp1.add_run('India Innovates Hackathon')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.8); r.font.bold = True
@@ -221,7 +224,7 @@ def build_jakes_resume():
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
     # Entry 2: GHCI 25 National GenAI Hackathon (Standalone Entry)
-    p_exp2 = add_p(space_before=1.0, space_after=0.3)
+    p_exp2 = add_p(space_before=1.6, space_after=0.3)
     p_exp2.paragraph_format.tab_stops.add_tab_stop(RIGHT_TAB, WD_TAB_ALIGNMENT.RIGHT)
     r = p_exp2.add_run('GHCI 25 National GenAI Hackathon')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.8); r.font.bold = True
@@ -230,10 +233,11 @@ def build_jakes_resume():
     
     p_exp2_sub = add_p(space_before=0, space_after=0.8)
     p_exp2_sub.paragraph_format.tab_stops.add_tab_stop(RIGHT_TAB, WD_TAB_ALIGNMENT.RIGHT)
-    r = p_exp2_sub.add_run('Round 2 Qualifier — AnitaB.org India & Backbase ("Unbound with GenAI")')
+    r = p_exp2_sub.add_run('Round 2 Qualifier — AnitaB.org India & Backbase ("Unbound with GenAI")  |  ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.0); r.font.italic = True
-    r = p_exp2_sub.add_run('\t')
-    add_hyperlink(p_exp2_sub, 'https://drive.google.com/file/d/1EYQfURC7-HouESGvdT4P16jiaZ79m6RE/view?usp=drive_link', 'Credential Certificate', color_hex=COLOR_LINK, underline=True, font_size_pt=9.0, italic=True)
+    add_hyperlink(p_exp2_sub, 'https://drive.google.com/file/d/1EYQfURC7-HouESGvdT4P16jiaZ79m6RE/view?usp=drive_link', 'Credential Certificate', color_hex=COLOR_LINK, underline=True, font_size_pt=8.8, italic=True)
+    r = p_exp2_sub.add_run('\tNational Hackathon')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(9.0); r.font.italic = True
 
     p = add_bullet_p(space_before=0, space_after=0.8)
     r = p.add_run('• ')
@@ -242,7 +246,7 @@ def build_jakes_resume():
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
     # Entry 3: South African Patent Office (Standalone Entry)
-    p_exp3 = add_p(space_before=1.0, space_after=0.3)
+    p_exp3 = add_p(space_before=1.6, space_after=0.3)
     p_exp3.paragraph_format.tab_stops.add_tab_stop(RIGHT_TAB, WD_TAB_ALIGNMENT.RIGHT)
     r = p_exp3.add_run('South African Patent Office (Filed Patent)')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.8); r.font.bold = True
@@ -267,35 +271,33 @@ def build_jakes_resume():
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
     # ==========================
-    # 4. PROJECTS (Spacious & Numbered)
+    # 4. PROJECTS (Spacious & Numbered with Unified Two-Line Headers)
     # ==========================
     add_heading('Projects')
 
     # Project 1: Project Sentinel
-    p_proj1 = add_p(space_before=1.8, space_after=0.4)
+    p_proj1 = add_p(space_before=2.0, space_after=0.3)
     p_proj1.paragraph_format.tab_stops.add_tab_stop(RIGHT_TAB, WD_TAB_ALIGNMENT.RIGHT)
     r = p_proj1.add_run('1. Project Sentinel: AI Decision Memory & State-Drift Agent')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.8); r.font.bold = True
-    r = p_proj1.add_run(' | ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(9.0)
-    r_tech = p_proj1.add_run('Python, PostgreSQL, FastAPI, Lovable, Notion')
-    r_tech.font.name = FONT_FAMILY; r_tech.font.size = Pt(9.0); r_tech.font.italic = True
     r = p_proj1.add_run('\tAug 2026 – Sept 2026')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.2); r.font.bold = True
 
-    # Prominent Live Links Line for Sentinel
-    p_link1 = add_p(space_before=0, space_after=1.0)
-    r = p_link1.add_run('Interactive Prototype: ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
-    add_hyperlink(p_link1, 'https://echo-sentinel-08.lovable.app', 'echo-sentinel-08.lovable.app', color_hex=COLOR_LINK, underline=True, font_size_pt=8.6)
-    r = p_link1.add_run('   |   PRD Specification: ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
-    add_hyperlink(p_link1, 'https://app.notion.com/p/PROJECT-SENTINEL-3d053f22e2b0800d891bd24a7f914c07?source=copy_link', 'Notion PRD Document', color_hex=COLOR_LINK, underline=True, font_size_pt=8.6)
+    p_proj1_sub = add_p(space_before=0, space_after=1.1)
+    p_proj1_sub.paragraph_format.tab_stops.add_tab_stop(RIGHT_TAB, WD_TAB_ALIGNMENT.RIGHT)
+    r = p_proj1_sub.add_run('Python, PostgreSQL, FastAPI, Lovable  |  ')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.italic = True
+    add_hyperlink(p_proj1_sub, 'https://echo-sentinel-08.lovable.app', 'Live Prototype', color_hex=COLOR_LINK, underline=True, font_size_pt=8.8)
+    r = p_proj1_sub.add_run('  |  ')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
+    add_hyperlink(p_proj1_sub, 'https://app.notion.com/p/PROJECT-SENTINEL-3d053f22e2b0800d891bd24a7f914c07?source=copy_link', 'Notion PRD', color_hex=COLOR_LINK, underline=True, font_size_pt=8.8)
+    r = p_proj1_sub.add_run('\tEnterprise AI System')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.italic = True
 
     p = add_bullet_p(space_before=0, space_after=1.1)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
-    r = p.add_run('Spearheaded product discovery across standups, Slack, and Jira, identifying critical context loss and formulating the ')
+    r = p.add_run('Spearheaded product discovery across engineering standups, Slack, and Jira, identifying critical context loss and formulating the ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
     r_b = p.add_run('"Silent-by-Default"')
     r_b.font.name = FONT_FAMILY; r_b.font.size = Pt(8.6); r_b.font.bold = True
@@ -312,32 +314,30 @@ def build_jakes_resume():
     r = p.add_run(', surfacing discrepancies between spoken commitments and recorded codebase state strictly upon explicit user queries.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
-    p = add_bullet_p(space_before=0, space_after=2.8)
+    p = add_bullet_p(space_before=0, space_after=3.0)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
     r = p.add_run('Shipped clickable Lovable MVP with live drift queries; authored comprehensive PRD detailing state transition matrices, query grammar, and phased rollout while scoping out employee surveillance features.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
     # Project 2: CausalRetention
-    p_proj2 = add_p(space_before=1.6, space_after=0.4)
+    p_proj2 = add_p(space_before=2.0, space_after=0.3)
     p_proj2.paragraph_format.tab_stops.add_tab_stop(RIGHT_TAB, WD_TAB_ALIGNMENT.RIGHT)
     r = p_proj2.add_run('2. CausalRetention: Prescriptive Uplift & Customer Retention Engine')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.8); r.font.bold = True
-    r = p_proj2.add_run(' | ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(9.0)
-    r_tech = p_proj2.add_run('Python, XGBoost, Streamlit, Docker')
-    r_tech.font.name = FONT_FAMILY; r_tech.font.size = Pt(9.0); r_tech.font.italic = True
     r = p_proj2.add_run('\tOct 2026')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.2); r.font.bold = True
 
-    # Prominent Live Links Line for CausalRetention
-    p_link2 = add_p(space_before=0, space_after=1.0)
-    r = p_link2.add_run('Live Decision Suite: ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
-    add_hyperlink(p_link2, 'https://github.com/Sohan9022/CausalRetention', 'Live Demo & Repository', color_hex=COLOR_LINK, underline=True, font_size_pt=8.6)
-    r = p_link2.add_run('   |   Technical Architecture: ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
-    add_hyperlink(p_link2, 'https://github.com/Sohan9022/CausalRetention', 'CATE Uplift Spec', color_hex=COLOR_LINK, underline=True, font_size_pt=8.6)
+    p_proj2_sub = add_p(space_before=0, space_after=1.1)
+    p_proj2_sub.paragraph_format.tab_stops.add_tab_stop(RIGHT_TAB, WD_TAB_ALIGNMENT.RIGHT)
+    r = p_proj2_sub.add_run('Python, XGBoost, Streamlit, Docker  |  ')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.italic = True
+    add_hyperlink(p_proj2_sub, 'https://github.com/Sohan9022/CausalRetention', 'Live Decision Suite', color_hex=COLOR_LINK, underline=True, font_size_pt=8.8)
+    r = p_proj2_sub.add_run('  |  ')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
+    add_hyperlink(p_proj2_sub, 'https://github.com/Sohan9022/CausalRetention', 'CATE Spec', color_hex=COLOR_LINK, underline=True, font_size_pt=8.8)
+    r = p_proj2_sub.add_run('\tCausal ML Engine')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.italic = True
 
     p = add_bullet_p(space_before=0, space_after=1.1)
     r = p.add_run('• ')
@@ -359,7 +359,7 @@ def build_jakes_resume():
     r = p.add_run(' to calculate Conditional Average Treatment Effect (CATE), segmenting customer cohorts into 4 distinct quadrants.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
-    p = add_bullet_p(space_before=0, space_after=2.8)
+    p = add_bullet_p(space_before=0, space_after=3.0)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
     r = p.add_run('Engineered a constrained ')
@@ -374,22 +374,20 @@ def build_jakes_resume():
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6)
 
     # Project 3: FlashDrop (Original Spring Boot & MySQL Engine)
-    p_proj3 = add_p(space_before=1.6, space_after=0.4)
+    p_proj3 = add_p(space_before=2.0, space_after=0.3)
     p_proj3.paragraph_format.tab_stops.add_tab_stop(RIGHT_TAB, WD_TAB_ALIGNMENT.RIGHT)
     r = p_proj3.add_run('3. FlashDrop: High-Concurrency Flash Release & ACID Inventory Engine')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.8); r.font.bold = True
-    r = p_proj3.add_run(' | ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(9.0)
-    r_tech = p_proj3.add_run('Java, Spring Boot, MySQL')
-    r_tech.font.name = FONT_FAMILY; r_tech.font.size = Pt(9.0); r_tech.font.italic = True
     r = p_proj3.add_run('\tOct 2026')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.2); r.font.bold = True
 
-    # Prominent Live Links Line for FlashDrop
-    p_link3 = add_p(space_before=0, space_after=1.0)
-    r = p_link3.add_run('Source Code & Stress Suite: ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
-    add_hyperlink(p_link3, 'https://github.com/Sohan9022', 'GitHub Repository & Benchmarks', color_hex=COLOR_LINK, underline=True, font_size_pt=8.6)
+    p_proj3_sub = add_p(space_before=0, space_after=1.1)
+    p_proj3_sub.paragraph_format.tab_stops.add_tab_stop(RIGHT_TAB, WD_TAB_ALIGNMENT.RIGHT)
+    r = p_proj3_sub.add_run('Java, Spring Boot, MySQL, HikariCP  |  ')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.italic = True
+    add_hyperlink(p_proj3_sub, 'https://github.com/Sohan9022', 'GitHub Repository & Benchmarks', color_hex=COLOR_LINK, underline=True, font_size_pt=8.8)
+    r = p_proj3_sub.add_run('\tHigh-Concurrency Backend')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.italic = True
 
     p = add_bullet_p(space_before=0, space_after=1.1)
     r = p.add_run('• ')
@@ -435,7 +433,7 @@ def build_jakes_resume():
     add_heading('Technical Skills')
 
     def add_skill_line(category, items):
-        p = add_p(space_before=0.4, space_after=1.0)
+        p = add_p(space_before=0.8, space_after=0.8)
         r = p.add_run(f'{category}: ')
         r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.bold = True
         r = p.add_run(items)
@@ -452,7 +450,7 @@ def build_jakes_resume():
     # ==========================
     add_heading('Certifications')
     
-    p_cert = add_p(space_before=0.5, space_after=0.4)
+    p_cert = add_p(space_before=1.0, space_after=0.6)
     r = p_cert.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.6); r.font.bold = True
     r = p_cert.add_run('Product Management: ')
@@ -510,7 +508,7 @@ def build_jakes_resume():
     annots = reader.pages[0].get('/Annots')
     annot_count = len(annots) if annots else 0
 
-    print(f"Classic Jake's Resume with Live Links Complete!")
+    print(f"Perfection Jake's Resume Complete!")
     print(f"Word computed pages: {pages}")
     print(f"PyPDF verified pages: {pdf_pages}")
     print(f"Verified link annotations: {annot_count}")
@@ -518,8 +516,8 @@ def build_jakes_resume():
     # Render preview image
     pdf = pymupdf.open(dest_pdf_1)
     pix = pdf[0].get_pixmap(dpi=150)
-    pix.save('scratch_jakes_resume_v3.png')
-    print("Saved preview scratch_jakes_resume_v3.png")
+    pix.save('scratch_jakes_resume_v4.png')
+    print("Saved preview scratch_jakes_resume_v4.png")
 
 if __name__ == '__main__':
     build_jakes_resume()

@@ -25,7 +25,7 @@
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
-% Adjust margins (0.4in top/bottom, 0.48in left/right)
+% Adjust margins (0.38in top/bottom, 0.48in left/right)
 \addtolength{\oddsidemargin}{-0.52in}
 \addtolength{\evensidemargin}{-0.52in}
 \addtolength{\textwidth}{1.04in}
@@ -58,10 +58,11 @@
     \end{tabular*}\vspace{-7pt}
 }
 
-\newcommand{\resumeProjectHeading}[2]{
+\newcommand{\resumeProjectHeading}[4]{
     \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \small#1 & \textbf{#2} \\
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{#2} \\
+      \small#3 & \textit{\small #4} \\
     \end{tabular*}\vspace{-7pt}
 }
 
@@ -117,7 +118,7 @@
 
     \resumeSubheading
       {GHCI 25 National GenAI Hackathon}{2025}
-      {Round 2 Qualifier -- AnitaB.org India \& Backbase (``Unbound with GenAI'')}{\href{https://drive.google.com/file/d/1EYQfURC7-HouESGvdT4P16jiaZ79m6RE/view?usp=drive_link}{\textit{Credential Certificate}}}
+      {Round 2 Qualifier -- AnitaB.org India \& Backbase (``Unbound with GenAI'') \ $|$ \ \href{https://drive.google.com/file/d/1EYQfURC7-HouESGvdT4P16jiaZ79m6RE/view?usp=drive_link}{\textit{Credential Certificate}}}{National Hackathon}
       \resumeItemListStart
         \resumeItem{Selected for Round 2 in national GenAI challenge; engineered agent workflows and automated evaluation harnesses with structured JSON guardrails, validating prototype reliability under strict prompt constraints.}
       \resumeItemListEnd
@@ -136,19 +137,17 @@
 \section{Projects}
     \resumeSubHeadingListStart
       \resumeProjectHeading
-          {\textbf{1. Project Sentinel: AI Decision Memory \& State-Drift Agent} $|$ \emph{Python, PostgreSQL, FastAPI, Lovable, Notion}}{Aug 2026 -- Sept 2026}
-          \vspace{-2pt}
-          \small{\textbf{Interactive Prototype:} \href{https://echo-sentinel-08.lovable.app}{echo-sentinel-08.lovable.app} \ $|$ \ \textbf{PRD Specification:} \href{https://app.notion.com/p/PROJECT-SENTINEL-3d053f22e2b0800d891bd24a7f914c07?source=copy_link}{Notion PRD Document}}
+          {1. Project Sentinel: AI Decision Memory \& State-Drift Agent}{Aug 2026 -- Sept 2026}
+          {\textit{Python, PostgreSQL, FastAPI, Lovable} \ $|$ \ \href{https://echo-sentinel-08.lovable.app}{Live Prototype} \ $|$ \ \href{https://app.notion.com/p/PROJECT-SENTINEL-3d053f22e2b0800d891bd24a7f914c07?source=copy_link}{Notion PRD}}{Enterprise AI System}
           \resumeItemListStart
-            \resumeItem{Spearheaded product discovery across standups, Slack, and Jira, identifying critical context loss and formulating the \textbf{``Silent-by-Default''} thesis to eliminate unprompted bot summaries and protect developer attention.}
+            \resumeItem{Spearheaded product discovery across engineering standups, Slack, and Jira, identifying critical context loss and formulating the \textbf{``Silent-by-Default''} thesis to eliminate unprompted bot summaries and protect developer attention.}
             \resumeItem{Architected deterministic audit engine powered by \textbf{append-only PostgreSQL schemas}, surfacing discrepancies between spoken commitments and recorded codebase state strictly upon explicit user queries.}
             \resumeItem{Shipped clickable Lovable MVP with live drift queries; authored comprehensive PRD detailing state transition matrices, query grammar, and phased rollout while scoping out employee surveillance features.}
           \resumeItemListEnd
 
       \resumeProjectHeading
-          {\textbf{2. CausalRetention: Prescriptive Uplift \& Retention Decision Engine} $|$ \emph{Python, XGBoost, Streamlit, Docker}}{Oct 2026}
-          \vspace{-2pt}
-          \small{\textbf{Live Decision Suite:} \href{https://github.com/Sohan9022/CausalRetention}{Live Demo \& Repository} \ $|$ \ \textbf{Technical Architecture:} \href{https://github.com/Sohan9022/CausalRetention}{CATE Uplift Spec}}
+          {2. CausalRetention: Prescriptive Uplift \& Customer Retention Engine}{Oct 2026}
+          {\textit{Python, XGBoost, Streamlit, Docker} \ $|$ \ \href{https://github.com/Sohan9022/CausalRetention}{Live Decision Suite} \ $|$ \ \href{https://github.com/Sohan9022/CausalRetention}{CATE Spec}}{Causal ML Engine}
           \resumeItemListStart
             \resumeItem{Uncovered key economic friction in retention marketing where conventional churn models incur a \textbf{-13.1\% net ROI} due to deadweight spend on non-responsive ``Lost Causes'' and churn acceleration from nudging dormant ``Sleeping Dogs''.}
             \resumeItem{Architected prescriptive AI decision engine using a \textbf{Two-Model (T-Learner) XGBoost pipeline} to calculate Conditional Average Treatment Effect (CATE), segmenting customer cohorts into 4 distinct quadrants.}
@@ -156,9 +155,8 @@
           \resumeItemListEnd
 
       \resumeProjectHeading
-          {\textbf{3. FlashDrop: High-Concurrency Flash Release \& ACID Inventory Engine} $|$ \emph{Java, Spring Boot, MySQL}}{Oct 2026}
-          \vspace{-2pt}
-          \small{\textbf{Source Code \& Stress Suite:} \href{https://github.com/Sohan9022}{GitHub Repository \& Benchmarks}}
+          {3. FlashDrop: High-Concurrency Flash Release \& ACID Inventory Engine}{Oct 2026}
+          {\textit{Java, Spring Boot, MySQL, HikariCP} \ $|$ \ \href{https://github.com/Sohan9022}{GitHub Repository \& Benchmarks}}{High-Concurrency Backend}
           \resumeItemListStart
             \resumeItem{Architected a high-concurrency flash release inventory engine in Spring Boot backed by MySQL 8.0, eliminating race conditions and guaranteeing \textbf{zero overselling} via InnoDB pessimistic row-level locking (\textbf{SELECT ... FOR UPDATE}).}
             \resumeItem{Designed a \textbf{3NF relational schema with ACID stored procedures} (sp\_reserve\_product, sp\_checkout\_order), ensuring atomic multi-table state transitions across limited inventory, buyer holds, and finalized orders.}
