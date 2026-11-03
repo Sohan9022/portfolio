@@ -60,7 +60,7 @@ const SLASH_COMMANDS = [
   { command: '/resume', args: '', desc: 'Download official 1-page APM resume & ATS summary', category: 'Recruiter', icon: FileText, isLocal: true },
 
   // 6. Developer & Session Utilities
-  { command: '/status', args: '', desc: 'Live operational health check of 7 deployed prototypes', category: 'Utilities', icon: Activity, isLocal: true },
+  { command: '/status', args: '', desc: 'Live operational health check of all 9 deployed systems', category: 'Utilities', icon: Activity, isLocal: true },
   { command: '/export', args: '', desc: 'Export session as an executive candidate brief (Markdown)', category: 'Utilities', icon: Download, isLocal: true },
   { command: '/clear', args: '', desc: 'Reset conversation & clear memory buffers', category: 'Utilities', icon: RotateCcw, isLocal: true },
 ];
@@ -74,7 +74,9 @@ const PROJECT_KEYS = [
   { id: 'dynamic-forms', label: 'Dynamic Forms' },
   { id: 'giftverse', label: 'GiftVerse Moments' },
   { id: 'adaptive-ux', label: 'Adaptive UX' },
-  { id: 'asana-analyst', label: 'Asana Analyst' }
+  { id: 'asana-analyst', label: 'Asana Analyst' },
+  { id: 'causalretention', label: 'CausalRetention' },
+  { id: 'flashdrop', label: 'FlashDrop' }
 ];
 
 const STARTER_PROMPTS = [
@@ -259,7 +261,7 @@ export default function AskNova({ externalOpen, onExternalClose }) {
         content = `### APM & TECHNICAL TOOLKIT:
 - **Product Strategy & Sense:** PRD Writing, Jobs-to-be-Done (JTBD), RICE Prioritization, North Star & Counter-Metrics, Friction Mapping.
 - **Customer Discovery & UX:** User Interviews, Journey Mapping, Rapid Figma Prototyping, Usability Testing, Behavioral Loops.
-- **Technical Fluency:** Java, Spring Framework, Python, SQL & PostgreSQL RPCs, REST APIs, System Architecture, DSA.
+- **Technical Fluency:** Java, Spring Boot, Python, SQL & PostgreSQL RPCs, REST APIs, System Architecture, DSA.
 - **AI Systems & Prototyping:** LLM Prompt Engineering, Advanced RAG, Multimodal Ingestion, MCP Leasing (TrustState), CI/CD Prompt Governance (SHRH), Supabase RLS.`;
         break;
 
@@ -304,6 +306,8 @@ Calibrated 1-page Associate Product Manager resume highlighting system architect
 ● **SHRH Triage Gate (Vercel):** Operational (Live)
 ● **Dynamic Narrative Forms (Lovable):** Operational (Live)
 ● **GiftVerse Moments (Lovable):** Operational (Live)
+● **CausalRetention (Prescriptive AI):** Operational (Live)
+● **FlashDrop (ACID Engine):** Operational (Live)
 ● **Notion PRD Grounding Vault:** 9 of 9 Documents Synced (Active)
 ● **Runtime Latency:** Local Edge Dispatch <15ms`;
         break;

@@ -64,6 +64,40 @@ export const PRD_VAULT = {
     "url": "https://app.notion.com/p/TrustState-3f253f22e2b0806b8cfbfa976db926d1?source=copy_link",
     "markdown": "# TRUSTSTATE\n\n#### **Zero-Trust Runtime Integrity & MCP Lease Control Plane for AI Agents**\n**Category:** AI Security · Enterprise Control Plane\n**Live Working App:** [Live Working App](https://trust-state-qnkc9zvwy-sun-6b0b.vercel.app) · [Notion PRD](https://app.notion.com/p/TrustState-3f253f22e2b0806b8cfbfa976db926d1?source=copy_link)\n\n### The Problem\nAutonomous agents cannot treat LLMs as trusted kernels. Static API tokens and text guardrails fail when an agent ingests poisoned RAG context or indirect prompt injections. An agent with database write access retains that permission even after its execution context is hijacked.\n\n### The Core Architecture\n1. **Inline MCP Tool Proxy:** Intercepts consequential actions and validates short-lived signed state lease tokens.\n2. **3-Tier State Ledger:** Cryptographically commits Protected Execution States (PES via SHA-256) while sandboxing long-term memory updates.\n3. **Dual-Tier Latency Pipeline:** Sub-3ms local cache validation backed by asynchronous audit persistence (<25ms P95 overhead).\n4. **Deliberate Trade-off:** Sacrificed unconstrained autonomous self-modification to eliminate privilege escalation backdoors; quarantined all capability-expanding mutations to human-in-the-loop review.",
     "char_count": 1420
+  },
+  "causalretention": {
+    "title": "CausalRetention: Prescriptive Uplift & Customer Retention Engine",
+    "id": "causalretention-uplift-2026",
+    "url": "https://github.com/Sohan9022/CausalRetention",
+    "summary": "An enterprise prescriptive ML decision engine replacing wasteful correlation churn models with causal uplift (CATE) and Knapsack budget optimization to drive +752% campaign ROI.",
+    "thesis": "Standard churn prediction answers the wrong question ('Who will churn?') rather than the high-leverage business question ('Who will change their behavior if we intervene?'). Isolating true Persuadables eliminates deadweight marketing spend and prevents waking Sleeping Dogs.",
+    "problem": "Enterprises burn millions offering retention discounts to customers who would have renewed anyway (Sure Things) or who leave regardless (Lost Causes), while actively triggering churn by waking Sleeping Dogs—resulting in net negative campaign ROI (-13.1%).",
+    "insight": "Separating correlation from causality via Two-Model (T-Learner) XGBoost calculates Conditional Average Treatment Effect (CATE) per customer. Bounding interventions with a Knapsack optimizer under a fixed $15K budget captures +$112.7K+ in net preserved revenue.",
+    "architecture": [
+      "Two-Model (T-Learner) XGBoost: Estimates counterfactual treatment lift (CATE) across 4 behavioral quadrants",
+      "Qini & Cumulative Uplift Engine: Mathematically validates incrementality against randomized control baselines",
+      "Constrained Knapsack Optimizer: Dynamically allocates fixed marketing budgets ($15,000) to top incremental-value cohorts",
+      "Containerized Streamlit Executive Suite: Dockerized interactive simulation UI with automated executive reporting"
+    ],
+    "tradeoffs": "Rejected complex black-box deep causal nets in V1 in favor of interpretable XGBoost T-Learners; prioritized deterministic business trust and executive auditability over marginal AUC gains.",
+    "char_count": 1450
+  },
+  "flashdrop": {
+    "title": "FlashDrop: High-Concurrency Flash Release & Inventory Engine",
+    "id": "flashdrop-inventory-2026",
+    "url": "https://github.com/Sohan9022/FlashDrop",
+    "summary": "High-throughput flash release inventory platform eliminating overselling anomalies and cart race conditions through pessimistic ACID reservation locks and automated inventory reclamation.",
+    "thesis": "In limited-quantity product drops, the primary customer friction is phantom checkout failure—allowing a user to enter payment only to be rejected at final confirmation. Guaranteed temporary cart holds paired with deterministic auto-reclaim preserve customer trust without choking merchant sell-through.",
+    "problem": "During flash sales, thousands of concurrent buyers race for limited stock. Naive optimistic locking causes catastrophic checkout drop-offs, phantom inventory errors, and order cancellations that permanently damage brand reputation.",
+    "insight": "Balance consumer checkout security with inventory velocity. A 5-minute temporary reservation with defensive database triggers guarantees zero overselling (0% anomaly rate) while automated event schedulers return abandoned stock immediately to the active buyer queue.",
+    "architecture": [
+      "Pessimistic Row-Level Lock Gate: InnoDB SELECT ... FOR UPDATE eliminates race conditions and guarantees 0% overselling",
+      "3NF ACID Transaction Engine: Stored procedures (sp_reserve_product, sp_checkout_order) enforce atomic multi-table state shifts",
+      "Defensive Trigger & Event Scheduler: Native MySQL schedulers reclaim expired 5-minute temporary holds automatically",
+      "Optimized HikariCP Connection Pool: Programmatic TransactionTemplate boundaries stress-tested via multi-threaded Python suites"
+    ],
+    "tradeoffs": "Deliberately chose pessimistic database row locks over eventual-consistency caching; accepted bounded throughput overhead to guarantee 100% zero-oversell financial integrity.",
+    "char_count": 1500
   }
 };
 
@@ -72,7 +106,7 @@ export const MASTER_PORTFOLIO_GROUNDING = `
 - Name: Sohan Gadewar
 - Current Role: Associate Product Manager Candidate & Systems Builder
 - Education: Vishwakarma Institute of Information Technology (VIIT), Pune | B.Tech in Information Technology (2023–2027) | CGPA: 8.97 / 10.0
-- Core Competencies: Product Discovery, PRD Writing, Jobs-to-be-Done (JTBD), Guardrail & Counter-Metrics, LLM Prompt Engineering, RAG Architectures, Multimodal Ingestion, Deterministic SQL, Java, Spring, Python, PostgreSQL.
+- Core Competencies: Product Discovery, PRD Writing, Jobs-to-be-Done (JTBD), Guardrail & Counter-Metrics, LLM Prompt Engineering, RAG Architectures, Multimodal Ingestion, Deterministic SQL, Java, Spring Boot, Python, PostgreSQL.
 - Problem Solving: 400+ LeetCode, 210+ GeeksforGeeks.
 - Email: sohangadewar9022@gmail.com | Location: Pune, India
 - Resume: Calibrated 1-page APM resume available at /Sohan_Gadewar_Resume.pdf and /Sohan_Gadewar_Resume.docx.
@@ -201,7 +235,9 @@ export function getSubagentGrounding(userMessage = '', messageHistory = [], expl
 3. Project Sentinel: Silent-by-default vs unprompted Slack alerts. Banned unsolicited channel notifications to prevent cognitive fatigue.
 4. SHRH: Deterministic semantic hashing (<1ms) vs recursive LLM evals in CI/CD. Quarantined operational policy downgrades without secondary hallucination loops.
 5. Dynamic Forms: Responsive narrative form worlds vs sterile questionnaires. Limited animations to sub-400ms CSS transforms to protect Qualified Completion Rate.
-6. TrustState: Cryptographic MCP lease tokens vs static prompt guardrails. Decoupled agent scratchpads from privileged tool execution via SHA-256 state commitments.`;
+6. TrustState: Cryptographic MCP lease tokens vs static prompt guardrails. Decoupled agent scratchpads from privileged tool execution via SHA-256 state commitments.
+7. CausalRetention: Two-Model (T-Learner) XGBoost & Knapsack budget allocation vs predictive churn scoring. Converts -13.1% deadweight spend into +752% campaign ROI (+$112.7K net revenue) by strictly targeting Persuadables.
+8. FlashDrop: InnoDB row-level locking (SELECT FOR UPDATE) & 5-minute auto-reclaim holds vs naive optimistic concurrency. Eliminates phantom checkout failures with a guaranteed 0% overselling anomaly rate.`;
   }
   // 2. Check for Product Principles
   else if (combinedText.includes('/principles') || combinedText.includes('how i think') || combinedText.includes('product philosophy')) {
@@ -241,7 +277,7 @@ export function getSubagentGrounding(userMessage = '', messageHistory = [], expl
     source = 'Candidate Profile & Credentials';
     groundingText = `### SOHAN GADEWAR - APM CANDIDATE & BUILDER:
 - Education: VIIT Pune | B.Tech in Information Technology | CGPA: 8.97 / 10.0
-- Toolkit: PRD Writing, JTBD, RICE, Guardrail Metrics, LLM Prompt Eng, Supabase RLS, Java, Spring, Python, SQL/PostgreSQL RPCs.
+- Toolkit: PRD Writing, JTBD, RICE, Guardrail Metrics, LLM Prompt Eng, Supabase RLS, Java, Spring Boot, Python, SQL/PostgreSQL RPCs.
 - Problem Solving: 400+ LeetCode, 210+ GeeksforGeeks.
 - Hackathon Honors: National Finalist, India Innovates Hackathon (Top 16% of 6,000+ teams); Round 2 Qualifier, GHCI 25 GenAI Hackathon (AnitaB.org India & Backbase).
 - Certifications: Product Management Masterclass Certified (GeeksforGeeks).`;

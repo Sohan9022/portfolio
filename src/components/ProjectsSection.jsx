@@ -19,7 +19,9 @@ import {
   Globe, 
   FileCode2,
   CheckCircle2,
-  AlertTriangle
+  AlertTriangle,
+  TrendingUp,
+  Zap
 } from 'lucide-react';
 
 const iconMap = {
@@ -30,11 +32,15 @@ const iconMap = {
   shrh: ShieldCheck,
   'dynamic-forms': Sparkles,
   truststate: ShieldCheck,
+  causalretention: TrendingUp,
+  flashdrop: Zap,
 };
 
 const FILTERS = [
-  { id: 'all', label: `All Projects (${PROJECTS.length})` },
+  { id: 'all', label: `All Systems (${PROJECTS.length})` },
   { id: 'governance', label: 'AI Security & Governance (TrustState, SHRH, Sentinel)' },
+  { id: 'growth-ml', label: 'Causal AI & Economics (CausalRetention)' },
+  { id: 'platform', label: 'Platform & Systems (FlashDrop)' },
   { id: 'hci', label: 'Contextual HCI (Spaces, GiftVerse, Forms)' },
   { id: 'fintech', label: 'FinTech Systems (FinMate)' }
 ];
@@ -51,7 +57,9 @@ export default function ProjectsSection() {
     finmate: true, 
     spaces: true, 
     'dynamic-forms': true, 
-    truststate: true 
+    truststate: true,
+    causalretention: true,
+    flashdrop: true
   });
 
   const toggleExpand = (id) => {
@@ -61,6 +69,8 @@ export default function ProjectsSection() {
   const filteredProjects = PROJECTS.filter(project => {
     if (activeFilter === 'all') return true;
     if (activeFilter === 'governance') return project.id === 'truststate' || project.id === 'shrh' || project.id === 'sentinel';
+    if (activeFilter === 'growth-ml') return project.id === 'causalretention';
+    if (activeFilter === 'platform') return project.id === 'flashdrop';
     if (activeFilter === 'hci') return project.id === 'spaces' || project.id === 'giftverse' || project.id === 'dynamic-forms';
     if (activeFilter === 'fintech') return project.id === 'finmate';
     return true;
@@ -82,7 +92,7 @@ export default function ProjectsSection() {
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#121214]">
-              Seven systems built to solve real friction.
+              {PROJECTS.length} systems built to solve real friction.
             </h2>
           </div>
           

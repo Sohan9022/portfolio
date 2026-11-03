@@ -18,6 +18,27 @@ import {
   Activity
 } from 'lucide-react';
 
+function PipelineFlowBeam({ label = 'DATA THROUGHPUT PIPELINE' }) {
+  return (
+    <div className="relative w-full mb-3 hidden sm:block">
+      <div className="flex items-center justify-between text-[9px] font-mono text-[#9E9E96] mb-1">
+        <span className="flex items-center gap-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+          {label}
+        </span>
+        <span className="text-blue-600 font-semibold text-[8px] uppercase tracking-wider">Deterministic Flow</span>
+      </div>
+      <div className="relative w-full h-[2px] bg-[#EAEAE7] rounded-full overflow-hidden">
+        <motion.div
+          className="h-full w-28 bg-gradient-to-r from-transparent via-blue-500 to-transparent"
+          animate={{ x: ['-100%', '600%'] }}
+          transition={{ duration: 2.8, repeat: Infinity, ease: 'linear' }}
+        />
+      </div>
+    </div>
+  );
+}
+
 export default function SystemDiagram({ projectId }) {
   const [activeStep, setActiveStep] = useState(null);
 
@@ -34,6 +55,8 @@ export default function SystemDiagram({ projectId }) {
               <Lock className="w-3 h-3" /> Encrypted Vault
             </span>
           </div>
+
+          <PipelineFlowBeam label="30S DYNAMIC REVEAL & DECRYPTION FLOW" />
 
           <div className="grid grid-cols-1 sm:grid-cols-4 gap-2 relative">
             <motion.div 
@@ -342,6 +365,8 @@ export default function SystemDiagram({ projectId }) {
             </span>
           </div>
 
+          <PipelineFlowBeam label="ZERO-TRUST RUNTIME & LEASE VALIDATION FLOW" />
+
           <div className="grid grid-cols-1 sm:grid-cols-4 gap-2 relative">
             <motion.div 
               whileHover={{ y: -2 }}
@@ -389,6 +414,140 @@ export default function SystemDiagram({ projectId }) {
               </div>
               <div className="text-[11px] font-semibold text-emerald-950">Verified Tool Call</div>
               <div className="text-[10px] text-emerald-700 mt-0.5">Circuit breaker on drift</div>
+            </motion.div>
+          </div>
+        </div>
+      );
+
+    case 'causalretention':
+      return (
+        <div className="rounded-xl bg-[#F8F8F6] border border-[#EAEAE7] p-4 text-xs font-mono">
+          <div className="flex items-center justify-between text-[11px] text-[#666663] mb-3 pb-2 border-b border-[#EAEAE7]">
+            <span className="flex items-center gap-1.5">
+              <Activity className="w-3 h-3 text-blue-600 animate-pulse" />
+              PRESCRIPTIVE ML PIPELINE: CATE ESTIMATION & KNAPSACK OPTIMIZATION
+            </span>
+            <span className="text-emerald-700 font-semibold flex items-center gap-1 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200/60">
+              <CheckCircle2 className="w-3 h-3" /> +752% Campaign ROI
+            </span>
+          </div>
+
+          <PipelineFlowBeam label="PRESCRIPTIVE CATE UPLIFT & BUDGET FLOW" />
+
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-2 relative">
+            <motion.div 
+              whileHover={{ y: -2 }}
+              className="p-2.5 rounded-lg bg-white border border-[#EAEAE7] transition-all"
+            >
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] text-[#9E9E96]">01. COHORT INGESTION</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-ping"></span>
+              </div>
+              <div className="text-[11px] font-semibold text-[#121214]">Observational Stream</div>
+              <div className="text-[10px] text-[#666663] mt-0.5">Feature & Treatment Matrix</div>
+            </motion.div>
+
+            <motion.div 
+              whileHover={{ y: -2 }}
+              className="p-2.5 rounded-lg bg-white border border-[#EAEAE7] transition-all"
+            >
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] text-[#9E9E96]">02. T-LEARNER CATE</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+              </div>
+              <div className="text-[11px] font-semibold text-[#121214]">Two-Model XGBoost</div>
+              <div className="text-[10px] text-[#666663] mt-0.5">Isolates Persuadables</div>
+            </motion.div>
+
+            <motion.div 
+              whileHover={{ y: -2 }}
+              className="p-2.5 rounded-lg bg-amber-50/40 border border-amber-300/80 transition-all"
+            >
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] text-amber-700 font-bold">03. KNAPSACK SOLVER</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+              </div>
+              <div className="text-[11px] font-semibold text-amber-900">$15,000 Budget Cap</div>
+              <div className="text-[10px] text-amber-700 mt-0.5">Optimal Value Allocation</div>
+            </motion.div>
+
+            <motion.div 
+              whileHover={{ y: -2 }}
+              className="p-2.5 rounded-lg bg-emerald-50/60 border border-emerald-200 transition-all"
+            >
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] text-emerald-700 font-bold">04. PRESERVED VALUE</span>
+                <Check className="w-3 h-3 text-emerald-600" />
+              </div>
+              <div className="text-[11px] font-semibold text-emerald-950">+$112.7K Net Revenue</div>
+              <div className="text-[10px] text-emerald-700 mt-0.5">Qini-Validated Lift</div>
+            </motion.div>
+          </div>
+        </div>
+      );
+
+    case 'flashdrop':
+      return (
+        <div className="rounded-xl bg-[#F8F8F6] border border-[#EAEAE7] p-4 text-xs font-mono">
+          <div className="flex items-center justify-between text-[11px] text-[#666663] mb-3 pb-2 border-b border-[#EAEAE7]">
+            <span className="flex items-center gap-1.5">
+              <Database className="w-3 h-3 text-blue-600 animate-pulse" />
+              CONCURRENCY & CONSISTENCY PIPELINE: 0% OVERSELLING GUARANTEE
+            </span>
+            <span className="text-blue-700 font-semibold flex items-center gap-1 bg-blue-50 px-2 py-0.5 rounded border border-blue-200/60">
+              <Lock className="w-3 h-3" /> InnoDB Pessimistic Lock
+            </span>
+          </div>
+
+          <PipelineFlowBeam label="ACID CONCURRENCY & RESERVATION GATEWAY" />
+
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-2 relative">
+            <motion.div 
+              whileHover={{ y: -2 }}
+              className="p-2.5 rounded-lg bg-white border border-[#EAEAE7] transition-all"
+            >
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] text-[#9E9E96]">01. TRAFFIC SURGE</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping"></span>
+              </div>
+              <div className="text-[11px] font-semibold text-[#121214]">Flash Release Race</div>
+              <div className="text-[10px] text-[#666663] mt-0.5">Concurrent Buyer Claims</div>
+            </motion.div>
+
+            <motion.div 
+              whileHover={{ y: -2 }}
+              className="p-2.5 rounded-lg bg-white border border-[#EAEAE7] transition-all"
+            >
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] text-[#9E9E96]">02. ROW LOCK</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+              </div>
+              <div className="text-[11px] font-semibold text-[#121214]">SELECT FOR UPDATE</div>
+              <div className="text-[10px] text-[#666663] mt-0.5">ACID Inventory Gate</div>
+            </motion.div>
+
+            <motion.div 
+              whileHover={{ y: -2 }}
+              className="p-2.5 rounded-lg bg-amber-50/40 border border-amber-300/80 transition-all"
+            >
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] text-amber-700 font-bold">03. 5-MIN CART HOLD</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+              </div>
+              <div className="text-[11px] font-semibold text-amber-900">sp_reserve_product</div>
+              <div className="text-[10px] text-amber-700 mt-0.5">Protected Checkout Window</div>
+            </motion.div>
+
+            <motion.div 
+              whileHover={{ y: -2 }}
+              className="p-2.5 rounded-lg bg-emerald-50/60 border border-emerald-200 transition-all"
+            >
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] text-emerald-700 font-bold">04. AUTO-RECLAIM / ORDER</span>
+                <Check className="w-3 h-3 text-emerald-600" />
+              </div>
+              <div className="text-[11px] font-semibold text-emerald-950">Event Scheduler</div>
+              <div className="text-[10px] text-emerald-700 mt-0.5">0% Oversell · Instant Restock</div>
             </motion.div>
           </div>
         </div>

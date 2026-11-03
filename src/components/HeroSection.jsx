@@ -16,9 +16,12 @@ import {
   ArrowUpRight,
   Activity,
   Code2,
-  Award
+  Award,
+  TrendingUp,
+  Zap
 } from 'lucide-react';
 import Logo from './Logo';
+import AnimatedCounter from './AnimatedCounter';
 
 const PM_STAGES = [
   {
@@ -149,6 +152,30 @@ const PROTOTYPE_PREVIEWS = [
     status: 'Live on Lovable',
     metric: 'Sub-400ms UI Mutation',
     desc: 'Turns static questionnaires into responsive visual narrative worlds that dynamically mutate styling based on user intent.'
+  },
+  {
+    id: 'causalretention',
+    title: 'CausalRetention',
+    subtitle: 'Prescriptive Uplift & Retention Engine',
+    domain: 'Causal AI · Growth Economics',
+    url: 'https://github.com/Sohan9022/CausalRetention',
+    prdUrl: 'https://github.com/Sohan9022/CausalRetention',
+    icon: TrendingUp,
+    status: 'Live Production App',
+    metric: '+752% Campaign ROI',
+    desc: 'Replaces wasteful predictive churn models with causal treatment effect (CATE) and Knapsack budget optimization to capture +$112.7K revenue.'
+  },
+  {
+    id: 'flashdrop',
+    title: 'FlashDrop',
+    subtitle: 'High-Concurrency Inventory Platform',
+    domain: 'Platform Systems · E-Commerce Infra',
+    url: 'https://github.com/Sohan9022/FlashDrop',
+    prdUrl: 'https://github.com/Sohan9022/FlashDrop',
+    icon: Zap,
+    status: 'ACID Engine & Stress Suite',
+    metric: '0% Overselling Guarantee',
+    desc: 'Eliminates flash sale phantom carts and race conditions through InnoDB row-level locking and 5-min auto-reclaiming reservation holds.'
   }
 ];
 
@@ -244,7 +271,7 @@ export default function HeroSection() {
             <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono text-[#666663]">
               <span className="flex items-center gap-1.5">
                 <Code2 className="w-3.5 h-3.5 text-blue-600" />
-                <span>400+ LeetCode · Java/Spring/SQL</span>
+                <span>400+ LeetCode · Java, Spring Boot, SQL</span>
               </span>
               <span className="text-[#D0D0CB]">·</span>
               <span className="flex items-center gap-1.5">
@@ -272,7 +299,7 @@ export default function HeroSection() {
                   </span>
                 </div>
                 <span className="font-mono text-[10px] text-blue-700 bg-blue-50/80 px-2.5 py-0.5 rounded-full border border-blue-200/60 font-semibold">
-                  7 Clickable Systems
+                  {PROTOTYPE_PREVIEWS.length} Clickable Systems
                 </span>
               </div>
 
@@ -371,15 +398,21 @@ export default function HeroSection() {
               {/* 3 Metric Counts */}
               <div className="grid grid-cols-3 gap-2 pt-2 border-t border-[#F0F0EC] text-center font-mono">
                 <div className="p-2 rounded-lg bg-[#FBFBFA] border border-[#EAEAE7]">
-                  <div className="text-base font-bold text-[#121214]">7</div>
+                  <div className="text-base font-bold text-[#121214]">
+                    <AnimatedCounter value={PROTOTYPE_PREVIEWS.length} duration={1.0} />
+                  </div>
                   <div className="text-[10px] text-[#666663] uppercase tracking-tight">Live Systems</div>
                 </div>
                 <div className="p-2 rounded-lg bg-[#FBFBFA] border border-[#EAEAE7]">
-                  <div className="text-base font-bold text-[#121214]">8</div>
+                  <div className="text-base font-bold text-[#121214]">
+                    <AnimatedCounter value={8} duration={1.0} />
+                  </div>
                   <div className="text-[10px] text-[#666663] uppercase tracking-tight">Notion PRDs</div>
                 </div>
                 <div className="p-2 rounded-lg bg-[#FBFBFA] border border-[#EAEAE7]">
-                  <div className="text-base font-bold text-[#121214]">8.97</div>
+                  <div className="text-base font-bold text-[#121214]">
+                    <AnimatedCounter value={8.97} decimals={2} duration={1.2} />
+                  </div>
                   <div className="text-[10px] text-[#666663] uppercase tracking-tight">CGPA (IT)</div>
                 </div>
               </div>

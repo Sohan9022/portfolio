@@ -18,7 +18,11 @@ import {
   RotateCcw,
   Check,
   Radio,
-  Lock
+  Lock,
+  TrendingUp,
+  Zap,
+  BarChart3,
+  Clock
 } from 'lucide-react';
 
 const iconMap = {
@@ -29,6 +33,8 @@ const iconMap = {
   shrh: ShieldCheck,
   'dynamic-forms': Sparkles,
   truststate: Shield,
+  causalretention: TrendingUp,
+  flashdrop: Zap,
 };
 
 export default function InteractiveShowcase() {
@@ -57,6 +63,18 @@ export default function InteractiveShowcase() {
 
   // TrustState State
   const [trustStateScenario, setTrustStateScenario] = useState('authorized'); // 'authorized' | 'poisoned'
+
+
+
+  // CausalRetention State
+
+  const [causalModel, setCausalModel] = useState('causal'); // 'standard' | 'causal'
+
+
+
+  // FlashDrop State
+
+  const [flashConcurrency, setFlashConcurrency] = useState('acid'); // 'naive' | 'acid'
 
   return (
     <section className="py-12 border-b border-[#EAEAE7] bg-[#FFFFFF]">
@@ -781,6 +799,209 @@ export default function InteractiveShowcase() {
                             </div>
                             <div className="p-2 rounded bg-rose-50/70 border border-rose-200 text-rose-900 text-[10px] leading-relaxed">
                               <strong>Zero-Trust Guarantee:</strong> The LLM lacks the private signing key. Consequential action blocked at the MCP boundary; zero unauthorized database writes permitted.
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+
+                  {/* CausalRetention Interactive Simulator */}
+                  {project.id === 'causalretention' && (
+                    <div className="space-y-4">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 rounded-xl bg-white border border-[#EAEAE7]">
+                        <span className="text-xs font-semibold text-[#121214]">Compare Retention Models:</span>
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => setCausalModel('standard')}
+                            className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all ${
+                              causalModel === 'standard'
+                                ? 'bg-rose-50 text-rose-800 border border-rose-300 font-semibold'
+                                : 'bg-[#F0F0EC] text-[#666663] hover:text-[#121214]'
+                            }`}
+                          >
+                            Standard Churn Model (Risk Score)
+                          </button>
+                          <button
+                            onClick={() => setCausalModel('causal')}
+                            className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all ${
+                              causalModel === 'causal'
+                                ? 'bg-emerald-600 text-white shadow-sm font-semibold'
+                                : 'bg-[#F0F0EC] text-[#666663] hover:text-[#121214]'
+                            }`}
+                          >
+                            CausalRetention (T-Learner CATE)
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="p-4 rounded-xl bg-white border border-[#EAEAE7] space-y-3 font-mono text-xs">
+                        {causalModel === 'causal' ? (
+                          <>
+                            <div className="flex items-center justify-between pb-2 border-b border-[#F0F0EC]">
+                              <span className="text-emerald-700 font-bold flex items-center gap-1.5">
+                                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                                STRATEGY: ISOLATE PERSUADABLES (KNAPSACK BOUNDED)
+                              </span>
+                              <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">
+                                Campaign ROI: +752%
+                              </span>
+                            </div>
+                            <div className="space-y-1.5 text-[11px] text-[#4A4A46]">
+                              <div className="flex justify-between">
+                                <span className="text-[#9E9E96]">Targeted Cohort:</span>
+                                <span className="font-semibold text-slate-900">1,120 Persuadables (High Incremental Lift)</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-[#9E9E96]">Knapsack Budget Allocated:</span>
+                                <span className="font-semibold text-emerald-700">$5,600 / $15,000 Cap (Optimal Value)</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-[#9E9E96]">Sleeping Dogs & Sure Things:</span>
+                                <span className="text-emerald-800 font-medium">0 Nudged · 0 Free Discounts Wasted</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-[#9E9E96]">Net Preserved Revenue:</span>
+                                <span className="font-bold text-emerald-700">+$112,740 Preserved (Qini Validated)</span>
+                              </div>
+                            </div>
+                            <div className="p-2 rounded bg-emerald-50/70 border border-emerald-200 text-emerald-900 text-[10px] leading-relaxed font-sans">
+                              <strong>Causal Advantage:</strong> T-Learner XGBoost separates correlation from causation. Spending budget exclusively on users who only convert *because* of the incentive achieves +752% ROI with zero deadweight loss.
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div className="flex items-center justify-between pb-2 border-b border-[#F0F0EC]">
+                              <span className="text-rose-700 font-bold flex items-center gap-1.5">
+                                <AlertTriangle className="w-4 h-4 text-rose-600" />
+                                STRATEGY: PREDICTIVE CHURN RISK (BLANKET BLAST)
+                              </span>
+                              <span className="text-[10px] px-1.5 py-0.5 rounded bg-rose-50 text-rose-800 border border-rose-200">
+                                Campaign ROI: -13.1% (Loss)
+                              </span>
+                            </div>
+                            <div className="space-y-1.5 text-[11px] text-[#4A4A46]">
+                              <div className="flex justify-between">
+                                <span className="text-[#9E9E96]">Targeted Cohort:</span>
+                                <span className="font-semibold text-rose-700">4,500 Highest-Risk Churn Users</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-[#9E9E96]">Budget Consumed:</span>
+                                <span className="font-semibold text-slate-800">$15,000 (100% Budget Exhausted)</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-[#9E9E96]">Deadweight Failure:</span>
+                                <span className="font-semibold text-rose-800">2,800 Lost Causes churned anyway + 300 Sleeping Dogs woke up</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-[#9E9E96]">Net Preserved Revenue:</span>
+                                <span className="font-bold text-rose-700">-$1,965 Net Financial Loss</span>
+                              </div>
+                            </div>
+                            <div className="p-2 rounded bg-rose-50/70 border border-rose-200 text-rose-900 text-[10px] leading-relaxed font-sans">
+                              <strong>The Correlation Trap:</strong> Standard ML churn models target users who are already destined to cancel or would renew anyway, wasting money and irritating dormant subscribers.
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* FlashDrop Interactive Simulator */}
+                  {project.id === 'flashdrop' && (
+                    <div className="space-y-4">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 rounded-xl bg-white border border-[#EAEAE7]">
+                        <span className="text-xs font-semibold text-[#121214]">Flash Concurrency Architecture:</span>
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => setFlashConcurrency('naive')}
+                            className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all ${
+                              flashConcurrency === 'naive'
+                                ? 'bg-rose-50 text-rose-800 border border-rose-300 font-semibold'
+                                : 'bg-[#F0F0EC] text-[#666663] hover:text-[#121214]'
+                            }`}
+                          >
+                            Naive Optimistic Cart
+                          </button>
+                          <button
+                            onClick={() => setFlashConcurrency('acid')}
+                            className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all ${
+                              flashConcurrency === 'acid'
+                                ? 'bg-blue-600 text-white shadow-sm font-semibold'
+                                : 'bg-[#F0F0EC] text-[#666663] hover:text-[#121214]'
+                            }`}
+                          >
+                            FlashDrop ACID Engine
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="p-4 rounded-xl bg-white border border-[#EAEAE7] space-y-3 font-mono text-xs">
+                        {flashConcurrency === 'acid' ? (
+                          <>
+                            <div className="flex items-center justify-between pb-2 border-b border-[#F0F0EC]">
+                              <span className="text-blue-700 font-bold flex items-center gap-1.5">
+                                <CheckCircle2 className="w-4 h-4 text-blue-600" />
+                                GUARANTEE: ZERO OVERSELLING (ACID RESERVATION GATE)
+                              </span>
+                              <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-50 text-blue-800 border border-blue-200">
+                                0% Anomaly Rate
+                              </span>
+                            </div>
+                            <div className="space-y-1.5 text-[11px] text-[#4A4A46]">
+                              <div className="flex justify-between">
+                                <span className="text-[#9E9E96]">Incoming Flash Traffic:</span>
+                                <span className="font-semibold text-slate-900">1,000 Concurrent Buyers / 50 Limited Items</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-[#9E9E96]">Row-Level Lock Boundary:</span>
+                                <span className="font-semibold text-blue-700">InnoDB SELECT FOR UPDATE (sp_reserve_product)</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-[#9E9E96]">Temporary Cart Hold:</span>
+                                <span className="text-emerald-800 font-medium">5-Minute Guaranteed Reservation (Timer Active)</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-[#9E9E96]">Expired Cart Routine:</span>
+                                <span className="font-bold text-slate-800">MySQL EVENT SCHEDULER Auto-Reclaims Abandoned Units</span>
+                              </div>
+                            </div>
+                            <div className="p-2 rounded bg-blue-50/70 border border-blue-200 text-blue-900 text-[10px] leading-relaxed font-sans">
+                              <strong>Fairness Architecture:</strong> Buyers who secure a cart hold are 100% guaranteed their purchase during the 5-minute window without phantom checkout ejections. Expired carts seamlessly re-enter stock.
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div className="flex items-center justify-between pb-2 border-b border-[#F0F0EC]">
+                              <span className="text-rose-700 font-bold flex items-center gap-1.5">
+                                <AlertTriangle className="w-4 h-4 text-rose-600" />
+                                FAILURE MODE: OPTIMISTIC LOCKING RACE & PHANTOM CARTS
+                              </span>
+                              <span className="text-[10px] px-1.5 py-0.5 rounded bg-rose-50 text-rose-800 border border-rose-200">
+                                8 Units Oversold · 190 Failed Checkouts
+                              </span>
+                            </div>
+                            <div className="space-y-1.5 text-[11px] text-[#4A4A46]">
+                              <div className="flex justify-between">
+                                <span className="text-[#9E9E96]">Checkout Race Condition:</span>
+                                <span className="font-semibold text-rose-700">240 buyers simultaneously reached payment gateway</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-[#9E9E96]">Final Order Processing:</span>
+                                <span className="font-semibold text-slate-800">50 succeeded, 190 payment attempts failed at final step</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-[#9E9E96]">Overselling Anomaly:</span>
+                                <span className="font-semibold text-rose-800">8 orders confirmed beyond physical warehouse stock</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-[#9E9E96]">Customer Impact:</span>
+                                <span className="font-bold text-rose-700">Angry support tickets, manual chargeback refunds, brand hit</span>
+                              </div>
+                            </div>
+                            <div className="p-2 rounded bg-rose-50/70 border border-rose-200 text-rose-900 text-[10px] leading-relaxed font-sans">
+                              <strong>The Phantom Inventory Crisis:</strong> Allowing buyers to enter credit card details without reserving database stock produces checkout rage and order cancellation friction.
                             </div>
                           </>
                         )}

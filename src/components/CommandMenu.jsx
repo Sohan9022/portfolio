@@ -17,7 +17,9 @@ import {
   Scale, 
   Compass, 
   X,
-  Command
+  Command,
+  TrendingUp,
+  Zap
 } from 'lucide-react';
 import { PROJECTS } from '../data/projectsData';
 
@@ -74,7 +76,9 @@ export default function CommandMenu({ isOpen, onClose, onOpenNova }) {
         { label: 'Spaces Context Switch', desc: 'Contextual telemetry firewall & isolated vector spaces', url: 'https://space-context-switch.lovable.app', icon: Layers, isExternal: true },
         { label: 'Dynamic Narrative Forms', desc: 'Responsive narrative form worlds with real-time UI mutation', url: 'https://dynamic-narrative-forms.lovable.app', icon: Sparkles, isExternal: true },
         { label: 'GiftVerse Moments', desc: 'Interactive 30-60s suspense unboxing engine', url: 'https://gift-verse-moments.lovable.app', icon: Play, isExternal: true },
-        { label: 'Adaptive UX Framework Prototype', desc: 'Refine UPI app frontend interactive Figma sandbox', url: 'https://www.figma.com/make/PWbUyJaOpqKLsqVlDpJOdG/Refine-UPI-app-frontend?t=aZVJGio9dMWpELlU-1', icon: Play, isExternal: true }
+        { label: 'Adaptive UX Framework Prototype', desc: 'Refine UPI app frontend interactive Figma sandbox', url: 'https://www.figma.com/make/PWbUyJaOpqKLsqVlDpJOdG/Refine-UPI-app-frontend?t=aZVJGio9dMWpELlU-1', icon: Play, isExternal: true },
+        { label: 'CausalRetention Decision Engine', desc: 'Prescriptive uplift (CATE) & Knapsack budget optimization (+752% ROI)', url: 'https://github.com/Sohan9022/CausalRetention', icon: TrendingUp, isExternal: true },
+        { label: 'FlashDrop ACID Engine', desc: 'High-concurrency inventory platform with 0% overselling guarantee', url: 'https://github.com/Sohan9022/FlashDrop', icon: Zap, isExternal: true },
       ]
     },
     {
@@ -87,7 +91,9 @@ export default function CommandMenu({ isOpen, onClose, onOpenNova }) {
         { label: 'Spaces PRD', desc: 'Vector Context Separation & Middleware SDK', url: 'https://app.notion.com/p/SPACES-3ce53f22e2b0805db12ef30ed696c7b5?source=copy_link', icon: FileText, isExternal: true },
         { label: 'Dynamic Forms PRD', desc: 'Experience Director & adaptive UI mutation spec', url: 'https://app.notion.com/p/DYNAMIC-FORMS-3d053f22e2b080ee849ce455ae22c3a8?source=copy_link', icon: FileText, isExternal: true },
         { label: 'GiftVerse PRD', desc: 'Experience Director & Encrypted Payload Spec', url: 'https://app.notion.com/p/GIFTVVERSE-3d053f22e2b0804b8b90cf6da95b931f?source=copy_link', icon: FileText, isExternal: true },
-        { label: 'AI Asana Analyst PRD', desc: 'Edge CV vs. Asynchronous GenAI for posture analytics', url: 'https://app.notion.com/p/AI-ASANA-ANALYST-3ed53f22e2b080aebdd9ec74e5845aba?source=copy_link', icon: FileText, isExternal: true }
+        { label: 'AI Asana Analyst PRD', desc: 'Edge CV vs. Asynchronous GenAI for posture analytics', url: 'https://app.notion.com/p/AI-ASANA-ANALYST-3ed53f22e2b080aebdd9ec74e5845aba?source=copy_link', icon: FileText, isExternal: true },
+        { label: 'CausalRetention Architecture Spec', desc: 'Two-Model T-Learner XGBoost & Knapsack budget solver', url: 'https://github.com/Sohan9022/CausalRetention', icon: FileText, isExternal: true },
+        { label: 'FlashDrop Concurrency Spec', desc: 'InnoDB row locking, 3NF ACID schema & 5-min auto-reclaim routine', url: 'https://github.com/Sohan9022/FlashDrop', icon: FileText, isExternal: true }
       ]
     },
     {

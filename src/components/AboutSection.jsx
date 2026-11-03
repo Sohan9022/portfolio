@@ -19,6 +19,7 @@ export default function AboutSection() {
         'PRD Writing',
         'Problem Framing',
         'Jobs-to-be-Done (JTBD)',
+        'Business Case & ROI Modeling',
         'RICE Prioritization',
         'Trade-off Analysis',
         'North Star & Counter-Metrics',
@@ -40,9 +41,10 @@ export default function AboutSection() {
       category: 'Technical Fluency',
       skills: [
         'Java',
-        'Spring Framework',
+        'Spring Boot',
         'Python',
         'SQL & PostgreSQL RPCs',
+        'Concurrency & ACID Locks',
         'REST APIs',
         'System Architecture',
         'DSA (400+ LeetCode, 210+ GFG)'
@@ -51,12 +53,13 @@ export default function AboutSection() {
     {
       category: 'AI Systems & Prototyping',
       skills: [
+        'Causal ML (CATE / T-Learner)',
+        'Uplift & Econometric Modeling',
         'LLM Prompt Engineering',
         'Advanced RAG Architectures',
         'Multimodal Ingestion',
-        'AI Governance (SHRH)',
-        'Lovable.dev Rapid MVPs',
-        'Supabase / RLS'
+        'AI Governance (SHRH & TrustState)',
+        'Lovable.dev Rapid MVPs'
       ]
     }
   ];
@@ -125,7 +128,7 @@ export default function AboutSection() {
                 I'm <strong>Sohan Gadewar</strong>. I study Information Technology at <strong>VIIT Pune</strong> (CGPA: 8.97 / 10.0), but my center of gravity is Product Management.
               </p>
               <p>
-                My technical foundations—solving 400+ LeetCode problems, building backend systems with Java and Spring, and exploring vector search—give me strong architectural empathy. I know what engineering trade-offs feel like because I've written the code.
+                My technical foundations—solving 400+ LeetCode problems, building backend systems with Java, Spring Boot, and exploring vector search—give me strong architectural empathy. I know what engineering trade-offs feel like because I've written the code.
               </p>
               <div className="font-editorial italic text-lg sm:text-xl text-slate-900 border-l-2 border-slate-900 pl-4 py-1.5 my-3 bg-slate-50/70 rounded-r-lg">
                 "Writing code is only half the battle. The harder and more exhilarating challenge is deciding <em>what</em> to build, <em>why</em> to build it, and <em>what to leave out</em> to protect user attention."

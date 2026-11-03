@@ -218,6 +218,74 @@ export const PROJECTS = [
         { label: '04. MCP Gateway', desc: 'Privileged Execution / Quarantine' }
       ]
     }
+  },
+  {
+    id: 'causalretention',
+    number: '08',
+    title: 'CausalRetention',
+    subtitle: 'Prescriptive Uplift & Retention Decision Engine',
+    category: 'Causal AI · Growth Economics',
+    badges: ['Live Demo', 'GitHub Repo', 'Prescriptive ML'],
+    status: 'Live Production App',
+    hasLiveDemo: true,
+    liveUrl: 'https://github.com/Sohan9022/CausalRetention',
+    githubUrl: 'https://github.com/Sohan9022/CausalRetention',
+    notionUrl: 'https://github.com/Sohan9022/CausalRetention',
+    summary: 'An enterprise prescriptive ML decision engine replacing wasteful correlation churn models with causal uplift (CATE) and Knapsack budget optimization to drive +752% campaign ROI.',
+    thesis: 'Standard churn prediction answers the wrong question ("Who will churn?") rather than the high-leverage business question ("Who will change their behavior if we intervene?"). Isolating true Persuadables eliminates deadweight marketing spend and prevents nudging Sleeping Dogs.',
+    problem: 'Enterprises burn millions offering retention discounts to customers who would have renewed anyway (Sure Things) or who leave regardless (Lost Causes), while actively triggering churn by waking Sleeping Dogs—resulting in net negative campaign ROI (-13.1%).',
+    insight: 'Separating correlation from causality via Two-Model (T-Learner) XGBoost calculates Conditional Average Treatment Effect (CATE) per customer. Bounding interventions with a Knapsack optimizer under a fixed $15K budget captures +$112.7K+ in net preserved revenue.',
+    architecture: [
+      'Two-Model (T-Learner) XGBoost: Estimates counterfactual treatment lift (CATE) across 4 behavioral quadrants',
+      'Qini & Cumulative Uplift Engine: Mathematically validates incrementality against randomized control baselines',
+      'Constrained Knapsack Optimizer: Dynamically allocates fixed marketing budgets ($15,000) to top incremental-value cohorts',
+      'Containerized Streamlit Executive Suite: Dockerized interactive simulation UI with automated executive reporting'
+    ],
+    tradeoffs: 'Rejected complex black-box deep causal nets in V1 in favor of interpretable XGBoost T-Learners; prioritized deterministic business trust and executive auditability over marginal AUC gains.',
+    specDetails: 'Full production pipeline with Docker containerization, interactive Streamlit simulation workspace, Qini validation curves, and Knapsack budget optimizer.',
+    diagramType: 'causal-quadrant',
+    diagramData: {
+      quadrants: [
+        { name: 'Persuadables', tag: 'High CATE', action: 'Target Promotion', roi: '+752% ROI' },
+        { name: 'Sleeping Dogs', tag: 'Negative CATE', action: 'Do Not Touch', roi: 'Prevent Churn' },
+        { name: 'Sure Things', tag: 'Zero Delta', action: 'Zero Spend', roi: 'Save Budget' },
+        { name: 'Lost Causes', tag: 'Zero Delta', action: 'Zero Spend', roi: 'Eliminate Waste' }
+      ]
+    }
+  },
+  {
+    id: 'flashdrop',
+    number: '09',
+    title: 'FlashDrop',
+    subtitle: 'High-Concurrency Flash Release & Inventory Engine',
+    category: 'Platform Systems · E-Commerce Infra',
+    badges: ['GitHub Repo', 'ACID Engine', 'Stress Suite'],
+    status: 'Production Engine',
+    hasLiveDemo: true,
+    liveUrl: 'https://github.com/Sohan9022/FlashDrop',
+    githubUrl: 'https://github.com/Sohan9022/FlashDrop',
+    notionUrl: 'https://github.com/Sohan9022/FlashDrop',
+    summary: 'High-throughput flash release inventory platform eliminating overselling anomalies and cart race conditions through pessimistic ACID reservation locks and automated inventory reclamation.',
+    thesis: 'In limited-quantity product drops, the primary customer friction is phantom checkout failure—allowing a user to enter payment only to be rejected at final confirmation. Guaranteed temporary cart holds paired with deterministic auto-reclaim preserve customer trust without choking merchant sell-through.',
+    problem: 'During flash sales, thousands of concurrent buyers race for limited stock. Naive optimistic locking causes catastrophic checkout drop-offs, phantom inventory errors, and order cancellations that permanently damage brand reputation.',
+    insight: 'Balance consumer checkout security with inventory velocity. A 5-minute temporary reservation with defensive database triggers guarantees zero overselling (0% anomaly rate) while automated event schedulers return abandoned stock immediately to the active buyer queue.',
+    architecture: [
+      'Pessimistic Row-Level Lock Gate: InnoDB SELECT ... FOR UPDATE eliminates race conditions and guarantees 0% overselling',
+      '3NF ACID Transaction Engine: Stored procedures (sp_reserve_product, sp_checkout_order) enforce atomic multi-table state shifts',
+      'Defensive Trigger & Event Scheduler: Native MySQL schedulers reclaim expired 5-minute temporary holds automatically',
+      'Optimized HikariCP Connection Pool: Programmatic TransactionTemplate boundaries stress-tested via multi-threaded Python suites'
+    ],
+    tradeoffs: 'Deliberately chose pessimistic database row locks over eventual-consistency caching; accepted bounded throughput overhead to guarantee 100% zero-oversell financial integrity.',
+    specDetails: 'Spring Boot 8.0 engine, MySQL 3NF schema with ACID stored procedures, defensive triggers, and concurrent Python stress-test suite.',
+    diagramType: 'reservation-pipeline',
+    diagramData: {
+      steps: [
+        { step: '01. Flash Surge', desc: 'Concurrent Buyer Race' },
+        { step: '02. Pessimistic Lock', desc: 'InnoDB Row-Level Guard' },
+        { step: '03. 5-Min Cart Hold', desc: 'Atomic State Reservation' },
+        { step: '04. Auto-Reclaim / Pay', desc: 'Event Scheduler or Final Order' }
+      ]
+    }
   }
 ];
 
@@ -308,6 +376,24 @@ export const DECISION_LOG = [
     context: 'When an autonomous agent is granted database write access, standard API keys allow continuous access even if the agent’s working memory is hijacked via indirect prompt injection.',
     tradeoff: 'Refused to grant persistent tool access. Enforced short-lived cryptographic leases (T_lease) minted per verified state commitment, adding <25ms P95 overhead via local sidecar cache.',
     rationale: 'In autonomous AI systems, permission must be bound to verifiable execution state, not just identity. If state invariants drift or tamper occurs, the circuit breaker halts lease minting immediately.'
+  },
+  {
+    id: 'decision-causalretention',
+    project: 'CausalRetention',
+    tag: 'Causal AI & Growth Economics',
+    decision: 'Prescriptive Uplift (CATE) & Knapsack Budget Allocation vs. Predictive Churn Scoring',
+    context: 'Standard churn models predict who is likely to leave, mistakenly targeting users who would leave regardless (lost causes) and users who would stay anyway (sure things).',
+    tradeoff: 'Accepted the mathematical complexity of a Two-Model (T-Learner) XGBoost pipeline and Qini curve validation over standard binary classification precision/recall metrics.',
+    rationale: 'Retention interventions incur tangible marketing costs. By isolating the true "Persuadables" quadrant and solving budget constraints via a Knapsack optimizer ($15,000 cap), we flipped a -13.1% deadweight spend into +752% campaign ROI and +$112.7K net preserved revenue.'
+  },
+  {
+    id: 'decision-flashdrop',
+    project: 'FlashDrop',
+    tag: 'Platform Engineering & E-Commerce Infra',
+    decision: 'Pessimistic Row-Level Reservation with 5-Min Expiration vs. Optimistic Locking with Checkout Failures',
+    context: 'During high-velocity flash sales, concurrent buyers race for limited inventory. Optimistic concurrency control allows thousands into checkout, only to fail them at payment confirmation.',
+    tradeoff: 'Sacrificed unbounded concurrent write throughput by enforcing InnoDB row-level locks (SELECT ... FOR UPDATE) and 5-minute temporary reservation holds via MySQL Event Schedulers.',
+    rationale: 'In high-stakes e-commerce, overselling and checkout-stage inventory ejection permanently destroy brand trust. A 5-minute guaranteed cart lock provides consumer certainty while automated reclaim preserves merchant inventory velocity.'
   }
 ];
 

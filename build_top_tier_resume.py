@@ -15,9 +15,10 @@ def build_top_tier_resume():
     - Single-line contact header with embedded logos for Phone, Mail, Portfolio, LinkedIn, and GitHub.
     - APM Profile Summary without CGPA (CGPA kept under Education).
     - Education: '2023 – 2027', 'CGPA: 8.97 / 10.0 (Pursuing)'.
-    - Work Experience & Projects: Removed years from both projects.
-    - Honors & Awards: 'National Finalist at India Innovates Hackathon' (removed 'Won').
-    - HCI Research Study: Submitted to JASE for Peer Review.
+    - Flagship 1: Project Sentinel (Enterprise AI & Workflow Governance).
+    - Flagship 2: CausalRetention (Causal ML & Growth Economics Engine).
+    - Patents: Filed Patent (South African Patent Office) on AI Lost & Found System.
+    - Honors & Awards: National Finalist at India Innovates Hackathon (top 20%), GHCI 25 Round 2 Qualifier.
     - Drive Certificate links embedded in Certifications and Honors/Awards.
     - Strictly 1 page, verified via Word COM and PyPDF.
     """
@@ -67,6 +68,7 @@ def build_top_tier_resume():
         u_tag = '<w:u w:val="single"/>' if underline else ''
         b_tag = '<w:b/>' if bold else ''
         sz_val = int(font_size_pt * 2)
+        safe_text = text.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
         xml_str = f'''<w:hyperlink xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" r:id="{r_id}">
             <w:r>
                 <w:rPr>
@@ -76,7 +78,7 @@ def build_top_tier_resume():
                     {u_tag}
                     {b_tag}
                 </w:rPr>
-                <w:t xml:space="preserve">{text}</w:t>
+                <w:t xml:space="preserve">{safe_text}</w:t>
             </w:r>
         </w:hyperlink>'''
         paragraph._p.append(parse_xml(xml_str))
@@ -237,75 +239,75 @@ def build_top_tier_resume():
     r = p.add_run(' detailing state transition matrices, query grammar, and phased enterprise rollout.')
     r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.color.rgb = COLOR_BLACK
 
-    # Flagship 2: FinMate AI (No years)
+    # Flagship 2: CausalRetention (No years)
     p_p2_title = add_p(space_before=1.4, space_after=0.3)
-    r = p_p2_title.add_run('FinMate AI — Conversational Expense Memory & Deterministic Accounting')
+    r = p_p2_title.add_run('CausalRetention — Prescriptive Uplift & Customer Retention Engine')
     r.font.name = 'Calibri'; r.font.size = Pt(9.3); r.font.bold = True; r.font.color.rgb = COLOR_BLACK
-    r = p_p2_title.add_run('  |  FinTech Systems')
+    r = p_p2_title.add_run('  |  Causal ML & Growth Economics')
     r.font.name = 'Calibri'; r.font.size = Pt(8.6); r.font.color.rgb = COLOR_BLACK
 
     p_link2 = add_p(space_before=0, space_after=0.6)
-    r = p_link2.add_run('Live Production MVP: ')
+    r = p_link2.add_run('Live Decision Suite: ')
     r.font.name = 'Calibri'; r.font.size = Pt(8.6); r.font.bold = True; r.font.color.rgb = COLOR_BLACK
-    add_hyperlink(p_link2, 'https://tell-finmate-ai.lovable.app', 'tell-finmate-ai.lovable.app', underline=True, font_size_pt=8.6, bold=False)
-    r = p_link2.add_run('   |   Architecture & PRD: ')
+    add_hyperlink(p_link2, 'https://github.com/Sohan9022/CausalRetention', 'Live Demo & Repo', underline=True, font_size_pt=8.6, bold=False)
+    r = p_link2.add_run('   |   System Architecture: ')
     r.font.name = 'Calibri'; r.font.size = Pt(8.6); r.font.bold = True; r.font.color.rgb = COLOR_BLACK
-    add_hyperlink(p_link2, 'https://app.notion.com/p/FINMATE-AI-3d053f22e2b080479a82e50becf237f2?source=copy_link', 'Notion PRD', underline=True, font_size_pt=8.6, bold=False)
+    add_hyperlink(p_link2, 'https://github.com/Sohan9022/CausalRetention', 'Technical Spec', underline=True, font_size_pt=8.6, bold=False)
 
     p = add_bullet_p(space_before=0, space_after=0.6)
     r = p.add_run('• ')
     r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.bold = True; r.font.color.rgb = COLOR_BLACK
-    r = p.add_run('Uncovered key user friction in expense tracking where tedious manual multi-field forms trigger severe drop-off, while identifying that pure LLM bots hallucinate arithmetic totals, destroying financial trust.')
+    r = p.add_run('Uncovered key economic friction in retention marketing where conventional churn models incur a ')
     r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.color.rgb = COLOR_BLACK
-
-    p = add_bullet_p(space_before=0, space_after=0.6)
-    r = p.add_run('• ')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.bold = True; r.font.color.rgb = COLOR_BLACK
-    r = p.add_run('Engineered ')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.color.rgb = COLOR_BLACK
-    r_b = p.add_run('two-stage decoupled architecture')
+    r_b = p.add_run('-13.1% net ROI')
     r_b.font.name = 'Calibri'; r_b.font.size = Pt(8.7); r_b.font.bold = True; r_b.font.color.rgb = COLOR_BLACK
-    r = p.add_run(' directing multimodal LLMs (voice notes, OCR receipts, chat) to extract structured JSON intents and entities, while routing all arithmetic calculations to concurrency-safe PostgreSQL stored procedures (RPCs).')
+    r = p.add_run(' due to deadweight spend on non-responsive "Lost Causes" and churn acceleration from nudging dormant "Sleeping Dogs".')
     r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.color.rgb = COLOR_BLACK
 
     p = add_bullet_p(space_before=0, space_after=0.6)
     r = p.add_run('• ')
     r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.bold = True; r.font.color.rgb = COLOR_BLACK
-    r = p.add_run('Enforced complete financial auditability through ')
+    r = p.add_run('Architected prescriptive AI decision engine using a ')
     r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.color.rgb = COLOR_BLACK
-    r_b = p.add_run('evidence-linked ledger rows')
+    r_b = p.add_run('Two-Model (T-Learner) XGBoost pipeline')
     r_b.font.name = 'Calibri'; r_b.font.size = Pt(8.7); r_b.font.bold = True; r_b.font.color.rgb = COLOR_BLACK
-    r = p.add_run(', guaranteeing clickable citations for every balance response and preventing arithmetic discrepancies.')
+    r = p.add_run(' to calculate Conditional Average Treatment Effect (CATE), segmenting customer cohorts into 4 distinct behavioral quadrants.')
+    r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.color.rgb = COLOR_BLACK
+
+    p = add_bullet_p(space_before=0, space_after=0.6)
+    r = p.add_run('• ')
+    r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.bold = True; r.font.color.rgb = COLOR_BLACK
+    r = p.add_run('Engineered a constrained ')
+    r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.color.rgb = COLOR_BLACK
+    r_b = p.add_run('Knapsack financial budget optimizer')
+    r_b.font.name = 'Calibri'; r_b.font.size = Pt(8.7); r_b.font.bold = True; r_b.font.color.rgb = COLOR_BLACK
+    r = p.add_run(' under a fixed $15,000 constraint, mathematically allocating incentives to top incremental-value cohorts and capturing ')
+    r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.color.rgb = COLOR_BLACK
+    r_b2 = p.add_run('+$112.7K+ in net preserved revenue (+752% campaign ROI)')
+    r_b2.font.name = 'Calibri'; r_b2.font.size = Pt(8.7); r_b2.font.bold = True; r_b2.font.color.rgb = COLOR_BLACK
+    r = p.add_run('.')
     r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.color.rgb = COLOR_BLACK
 
     p = add_bullet_p(space_before=0, space_after=2.0)
     r = p.add_run('• ')
     r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.bold = True; r.font.color.rgb = COLOR_BLACK
-    r = p.add_run('Deployed production-ready MVP on Lovable with ')
+    r = p.add_run('Shipped containerized ')
     r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.color.rgb = COLOR_BLACK
-    r_b = p.add_run('streaming voice transcription')
+    r_b = p.add_run('interactive Streamlit suite')
     r_b.font.name = 'Calibri'; r_b.font.size = Pt(8.7); r_b.font.bold = True; r_b.font.color.rgb = COLOR_BLACK
-    r = p.add_run(' and informal loan tracking; authored complete PRD covering database schemas, Row-Level Security (RLS) policies, and error handling.')
+    r = p.add_run(' with Docker and automated executive reporting; validated incrementality via Qini curves and cumulative uplift against randomized control baselines.')
     r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.color.rgb = COLOR_BLACK
 
     # ==========================
-    # 5. PATENTS & RESEARCH
+    # 5. PATENTS
     # ==========================
-    add_heading('PATENTS & RESEARCH')
-    p = add_bullet_p(space_before=0.8, space_after=0.6)
+    add_heading('PATENTS')
+    p = add_bullet_p(space_before=0.8, space_after=1.6)
     r = p.add_run('• ')
     r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.bold = True; r.font.color.rgb = COLOR_BLACK
     r = p.add_run('Filed Patent (South African Patent Office): ')
     r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.bold = True; r.font.color.rgb = COLOR_BLACK
     r = p.add_run('AI-Powered Lost & Found Matching System — Conceptualized 5-factor blind multimodal scoring architecture (image embeddings, NLP text, geolocation, timestamp) with automated urgency detection | 2025')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.color.rgb = COLOR_BLACK
-
-    p = add_bullet_p(space_before=0, space_after=2.0)
-    r = p.add_run('• ')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.bold = True; r.font.color.rgb = COLOR_BLACK
-    r = p.add_run('HCI Research Study (Submitted to JASE for Peer Review): ')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.bold = True; r.font.color.rgb = COLOR_BLACK
-    r = p.add_run('AI-Driven Multilingual Adaptive UX Framework & Zero-Risk Financial Sandbox — Designed dual-mode environment pairing live transactions with a simulated practice sandbox (dummy balances), in-situ Hold-to-Translate, and Circle-to-Understand gesture affordances | 2025')
     r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.color.rgb = COLOR_BLACK
 
     # ==========================
@@ -348,35 +350,27 @@ def build_top_tier_resume():
     r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.bold = True; r.font.color.rgb = COLOR_BLACK
     r = p.add_run('Product Management: ')
     r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.bold = True; r.font.color.rgb = COLOR_BLACK
-    r = p.add_run('Product Discovery, Product Requirements Document (PRD), Jobs-to-be-Done (JTBD), User Journey Mapping, RICE Prioritization, North Star & Guardrail Metrics, Customer Interviews, Experimentation, Go-to-Market (GTM) Strategy, Trade-off Analysis, Figma')
+    r = p.add_run('PRD Writing, Product Strategy, User Research & Interviews, JTBD, RICE Prioritization, Product Telemetry & Metrics, A/B Testing, Go-to-Market (GTM), Trade-off Analysis')
     r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.color.rgb = COLOR_BLACK
 
     p = add_bullet_p(space_before=0, space_after=0.6)
     r = p.add_run('• ')
     r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.bold = True; r.font.color.rgb = COLOR_BLACK
-    r = p.add_run('AI & Systems: ')
+    r = p.add_run('AI & Technical Systems: ')
     r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.bold = True; r.font.color.rgb = COLOR_BLACK
-    r = p.add_run('LLM Prompt Engineering, Retrieval-Augmented Generation (RAG), AI Governance, Vector Embeddings, Multimodal AI (Voice, Vision OCR), PostgreSQL Stored Procedures (RPC), REST APIs, High-Level Design (HLD)')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.color.rgb = COLOR_BLACK
-
-    p = add_bullet_p(space_before=0, space_after=0.6)
-    r = p.add_run('• ')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.bold = True; r.font.color.rgb = COLOR_BLACK
-    r = p.add_run('Technical & Problem-Solving: ')
-    r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.bold = True; r.font.color.rgb = COLOR_BLACK
-    r = p.add_run('Java, Spring Framework, Python, SQL/PostgreSQL, REST APIs, Git, LangChain, LangGraph, Rapid Prototyping (Lovable.dev)')
+    r = p.add_run('Causal ML (CATE / T-Learner), Econometric Budgeting (Knapsack), Prompt Engineering, Advanced RAG, PostgreSQL Stored Procedures, System Architecture, Concurrency & ACID Transactions')
     r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.color.rgb = COLOR_BLACK
 
     p = add_bullet_p(space_before=0, space_after=2.0)
     r = p.add_run('• ')
     r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.bold = True; r.font.color.rgb = COLOR_BLACK
-    r = p.add_run('DSA & Competitive Programming: ')
+    r = p.add_run('Tools & Programming: ')
     r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.bold = True; r.font.color.rgb = COLOR_BLACK
-    r = p.add_run('610+ Solved Problems — 400+ LeetCode, 210+ GeeksforGeeks (Data Structures, Algorithms, Problem Solving)')
+    r = p.add_run('Python, Java, Spring Boot, SQL, Docker, Streamlit, Git, Postman, Figma, Lovable.dev, Notion, Supabase, DSA (400+ LeetCode, 210+ GFG)')
     r.font.name = 'Calibri'; r.font.size = Pt(8.7); r.font.color.rgb = COLOR_BLACK
 
     # ==========================
-    # 8. CERTIFICATIONS (With User-Provided Drive Links)
+    # 8. CERTIFICATIONS
     # ==========================
     add_heading('CERTIFICATIONS')
     p_cert = add_p(space_before=0.8, space_after=0)
