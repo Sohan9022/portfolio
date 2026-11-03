@@ -121,7 +121,7 @@
       {Patent Applicant \& Inventor -- AI-Powered Lost \& Found Matching System}{Patent Filed}
       \resumeItemListStart
         \resumeItem{Conceptualized and filed patent for an AI matching system utilizing a \textbf{5-factor blind multimodal scoring engine} (image embeddings, NLP text, geolocation, timestamp) with automated urgency detection.}
-        \resumeItem{Qualified for Round 2 in \textbf{GHCI 25 National GenAI Hackathon} (AnitaB.org India \& Backbase | `Unbound with GenAI'), demonstrating production feasibility.}
+        \resumeItem{Qualified for Round 2 in \textbf{GHCI 25 National GenAI Hackathon} (AnitaB.org India \& Backbase $|$ `Unbound with GenAI' $|$ [\href{https://drive.google.com/file/d/1EYQfURC7-HouESGvdT4P16jiaZ79m6RE/view?usp=drive_link}{\textbf{Certificate}}]), demonstrating production feasibility.}
       \resumeItemListEnd
 
   \resumeSubHeadingListEnd
@@ -149,12 +149,12 @@
           \resumeItemListEnd
 
       \resumeProjectHeading
-          {\textbf{FlashDrop: Ultra-Low Latency Flash Sale System} $|$ \emph{Java, Spring Boot, MySQL, Redis, Docker}}{May 2025 -- July 2025}
+          {\textbf{FlashDrop: High-Concurrency Flash Release \& ACID Inventory Engine} $|$ \emph{Java, Spring Boot, MySQL}}{May 2025 -- July 2025}
           \resumeItemListStart
-            \resumeItem{Architected high-concurrency e-commerce checkout backend handling sudden flash-sale traffic surges with a \textbf{guaranteed 0\% overselling anomaly rate} under extreme write contention.}
-            \resumeItem{Engineered \textbf{5-minute automated inventory reservation locks} utilizing InnoDB pessimistic row-level locking (\textbf{SELECT FOR UPDATE}), eliminating race conditions.}
-            \resumeItem{Integrated defensive transaction rollback triggers and automated deadweight cart reclamation to immediately restore stranded stock upon session expiry.}
-            \resumeItem{Designed Redis cache-aside read architecture, reducing product catalog latency to \textbf{sub-25ms} during concurrent peak assessment traffic.}
+            \resumeItem{Architected a high-concurrency flash release inventory engine in Spring Boot backed by MySQL 8.0, eliminating race conditions and guaranteeing \textbf{zero overselling} via InnoDB pessimistic row-level locking (\textbf{SELECT ... FOR UPDATE}).}
+            \resumeItem{Designed a \textbf{3NF relational schema with ACID stored procedures} (sp\_reserve\_product, sp\_checkout\_order), ensuring atomic multi-table state transitions across limited inventory, buyer holds, and finalized orders.}
+            \resumeItem{Implemented defensive database triggers to physically prevent negative inventory anomalies and automated native \textbf{MySQL EVENT SCHEDULER} routines to reclaim expired 5-minute temporary cart reservations.}
+            \resumeItem{Configured optimized \textbf{HikariCP connection pooling} with programmatic TransactionTemplate boundaries; verified via a multi-threaded Python stress suite simulating concurrent buyer races with \textbf{0\% data inconsistencies} ([\href{https://github.com/Sohan9022}{\textbf{GitHub Repo}}]).}
           \resumeItemListEnd
     \resumeSubHeadingListEnd
 
@@ -163,9 +163,9 @@
 \section{Technical Skills}
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
-     \textbf{Languages}{: Python, Java, SQL, C++, C, JavaScript} \\
+     \textbf{Languages}{: Python, Java, SQL, Golang, C++, C, JavaScript} \\
      \textbf{Frameworks}{: Spring Boot, FastAPI, Streamlit, XGBoost, Scikit-learn, React} \\
-     \textbf{Databases \& Cloud}{: PostgreSQL, MySQL, Supabase, Redis, Docker, Git, Linux} \\
+     \textbf{Databases \& Cloud}{: PostgreSQL, MySQL, Supabase, Docker, Git, Linux} \\
      \textbf{Product \& Tools}{: PRD Writing, Jobs-to-be-Done (JTBD), RICE, Product Metrics, Figma, Postman, Notion, LeetCode (400+ solved, 210+ GFG)}
     }}
  \end{itemize}

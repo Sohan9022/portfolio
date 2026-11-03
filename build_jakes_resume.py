@@ -257,14 +257,17 @@ def build_jakes_resume():
     r = p.add_run(' (image embeddings, NLP text, geolocation, timestamp) with automated urgency detection.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
 
-    p = add_bullet_p(space_before=0, space_after=3.0)
+    p = add_bullet_p(space_before=0, space_after=2.8)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.bold = True
     r = p.add_run('Qualified for Round 2 in ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
     r_b = p.add_run('GHCI 25 National GenAI Hackathon')
     r_b.font.name = FONT_FAMILY; r_b.font.size = Pt(8.8); r_b.font.bold = True
-    r = p.add_run(" (AnitaB.org India & Backbase | 'Unbound with GenAI'), demonstrating production feasibility.")
+    r = p.add_run(" (AnitaB.org India & Backbase | 'Unbound with GenAI' | [")
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
+    add_hyperlink(p, 'https://drive.google.com/file/d/1EYQfURC7-HouESGvdT4P16jiaZ79m6RE/view?usp=drive_link', 'Certificate', underline=False, font_size_pt=8.8, bold=True)
+    r = p.add_run(']), demonstrating production feasibility.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
 
     # ==========================
@@ -284,13 +287,13 @@ def build_jakes_resume():
     r = p_proj1.add_run('\tOct 2025 – Present')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.5); r.font.bold = True
 
-    p = add_bullet_p(space_before=0, space_after=1.0)
+    p = add_bullet_p(space_before=0, space_after=0.9)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.bold = True
     r = p.add_run('Spearheaded product discovery across engineering standups, Slack, and Jira, identifying critical context loss and finding that unprompted bot summaries cause heavy distraction by interrupting developer focus.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
 
-    p = add_bullet_p(space_before=0, space_after=1.0)
+    p = add_bullet_p(space_before=0, space_after=0.9)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.bold = True
     r = p.add_run('Formulated the ')
@@ -300,7 +303,7 @@ def build_jakes_resume():
     r = p.add_run(' product thesis, passively ingesting audio transcripts and commit streams without channel spam while deliberately scoping out employee surveillance features in V1.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
 
-    p = add_bullet_p(space_before=0, space_after=1.0)
+    p = add_bullet_p(space_before=0, space_after=0.9)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.bold = True
     r = p.add_run('Architected deterministic audit engine powered by ')
@@ -310,7 +313,7 @@ def build_jakes_resume():
     r = p.add_run(', surfacing discrepancies between spoken commitments and recorded codebase state strictly upon explicit user queries.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
 
-    p = add_bullet_p(space_before=0, space_after=2.2)
+    p = add_bullet_p(space_before=0, space_after=2.0)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.bold = True
     r = p.add_run('Shipped clickable MVP on Lovable ([')
@@ -334,7 +337,7 @@ def build_jakes_resume():
     r = p_proj2.add_run('\tAug 2025 – Oct 2025')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.5); r.font.bold = True
 
-    p = add_bullet_p(space_before=0, space_after=1.0)
+    p = add_bullet_p(space_before=0, space_after=0.9)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.bold = True
     r = p.add_run('Uncovered key economic friction in retention marketing where conventional churn models incur a ')
@@ -344,7 +347,7 @@ def build_jakes_resume():
     r = p.add_run(' due to deadweight spend on non-responsive "Lost Causes" and churn acceleration from nudging dormant "Sleeping Dogs".')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
 
-    p = add_bullet_p(space_before=0, space_after=1.0)
+    p = add_bullet_p(space_before=0, space_after=0.9)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.bold = True
     r = p.add_run('Architected prescriptive AI decision engine using a ')
@@ -354,7 +357,7 @@ def build_jakes_resume():
     r = p.add_run(' to calculate Conditional Average Treatment Effect (CATE), segmenting customer cohorts into 4 distinct behavioral quadrants.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
 
-    p = add_bullet_p(space_before=0, space_after=1.0)
+    p = add_bullet_p(space_before=0, space_after=0.9)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.bold = True
     r = p.add_run('Engineered a constrained ')
@@ -368,7 +371,7 @@ def build_jakes_resume():
     r = p.add_run('.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
 
-    p = add_bullet_p(space_before=0, space_after=2.2)
+    p = add_bullet_p(space_before=0, space_after=2.0)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.bold = True
     r = p.add_run('Shipped containerized ')
@@ -381,56 +384,67 @@ def build_jakes_resume():
     r = p.add_run(']); validated incrementality via Qini curves and cumulative uplift against randomized control baselines.')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
 
-    # Project 3: FlashDrop
+    # Project 3: FlashDrop (Original Spring Boot & MySQL Engine)
     p_proj3 = add_p(space_before=1.0, space_after=0.5)
     p_proj3.paragraph_format.tab_stops.add_tab_stop(RIGHT_TAB, WD_TAB_ALIGNMENT.RIGHT)
-    r = p_proj3.add_run('FlashDrop: Ultra-Low Latency Flash Sale System')
+    r = p_proj3.add_run('FlashDrop: High-Concurrency Flash Release & ACID Inventory Engine')
     r.font.name = FONT_FAMILY; r.font.size = Pt(10.0); r.font.bold = True
     r = p_proj3.add_run(' | ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.5)
-    r_tech = p_proj3.add_run('Java, Spring Boot, MySQL, Redis, Docker')
+    r_tech = p_proj3.add_run('Java, Spring Boot, MySQL')
     r_tech.font.name = FONT_FAMILY; r_tech.font.size = Pt(9.0); r_tech.font.italic = True
     r = p_proj3.add_run('\tMay 2025 – July 2025')
     r.font.name = FONT_FAMILY; r.font.size = Pt(9.5); r.font.bold = True
 
-    p = add_bullet_p(space_before=0, space_after=1.0)
+    p = add_bullet_p(space_before=0, space_after=0.9)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.bold = True
-    r = p.add_run('Architected high-concurrency e-commerce checkout backend handling sudden flash-sale traffic surges with a ')
+    r = p.add_run('Architected a high-concurrency flash release inventory engine in Spring Boot backed by MySQL 8.0, eliminating race conditions and guaranteeing ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
-    r_b = p.add_run('guaranteed 0% overselling anomaly rate')
+    r_b = p.add_run('zero overselling')
     r_b.font.name = FONT_FAMILY; r_b.font.size = Pt(8.8); r_b.font.bold = True
-    r = p.add_run(' under extreme write contention.')
+    r = p.add_run(' via InnoDB pessimistic row-level locking (')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
-
-    p = add_bullet_p(space_before=0, space_after=1.0)
-    r = p.add_run('• ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.bold = True
-    r = p.add_run('Engineered ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
-    r_b = p.add_run('5-minute automated inventory reservation locks')
-    r_b.font.name = FONT_FAMILY; r_b.font.size = Pt(8.8); r_b.font.bold = True
-    r = p.add_run(' utilizing InnoDB pessimistic row-level locking (')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
-    r_c = p.add_run('SELECT FOR UPDATE')
+    r_c = p.add_run('SELECT ... FOR UPDATE')
     r_c.font.name = FONT_FAMILY; r_c.font.size = Pt(8.8); r_c.font.bold = True
-    r = p.add_run('), eliminating race conditions.')
+    r = p.add_run(').')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
 
-    p = add_bullet_p(space_before=0, space_after=1.0)
+    p = add_bullet_p(space_before=0, space_after=0.9)
     r = p.add_run('• ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.bold = True
-    r = p.add_run('Integrated defensive transaction rollback triggers and automated deadweight cart reclamation to immediately restore stranded stock upon session expiry.')
+    r = p.add_run('Designed a ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
-
-    p = add_bullet_p(space_before=0, space_after=3.2)
-    r = p.add_run('• ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.bold = True
-    r = p.add_run('Designed Redis cache-aside read architecture, reducing product catalog latency to ')
-    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
-    r_b = p.add_run('sub-25ms')
+    r_b = p.add_run('3NF relational schema with ACID stored procedures')
     r_b.font.name = FONT_FAMILY; r_b.font.size = Pt(8.8); r_b.font.bold = True
-    r = p.add_run(' during concurrent peak assessment traffic.')
+    r = p.add_run(' (sp_reserve_product, sp_checkout_order), ensuring atomic multi-table state transitions across limited inventory, buyer holds, and finalized orders.')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
+
+    p = add_bullet_p(space_before=0, space_after=0.9)
+    r = p.add_run('• ')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.bold = True
+    r = p.add_run('Implemented defensive database triggers to physically prevent negative inventory anomalies and automated native ')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
+    r_b = p.add_run('MySQL EVENT SCHEDULER')
+    r_b.font.name = FONT_FAMILY; r_b.font.size = Pt(8.8); r_b.font.bold = True
+    r = p.add_run(' routines to reclaim expired 5-minute temporary cart reservations.')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
+
+    p = add_bullet_p(space_before=0, space_after=2.8)
+    r = p.add_run('• ')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.bold = True
+    r = p.add_run('Configured optimized ')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
+    r_b = p.add_run('HikariCP connection pooling')
+    r_b.font.name = FONT_FAMILY; r_b.font.size = Pt(8.8); r_b.font.bold = True
+    r = p.add_run(' with programmatic TransactionTemplate boundaries; verified via a multi-threaded Python stress suite simulating concurrent buyer races with ')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
+    r_b2 = p.add_run('0% data inconsistencies')
+    r_b2.font.name = FONT_FAMILY; r_b2.font.size = Pt(8.8); r_b2.font.bold = True
+    r = p.add_run(' ([')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
+    add_hyperlink(p, 'https://github.com/Sohan9022', 'GitHub Repo', underline=False, font_size_pt=8.8, bold=True)
+    r = p.add_run(']).')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
 
     # ==========================
@@ -446,9 +460,9 @@ def build_jakes_resume():
         r.font.name = FONT_FAMILY; r.font.size = Pt(9.0)
         return p
 
-    add_skill_line('Languages', 'Python, Java, SQL, C++, C, JavaScript')
+    add_skill_line('Languages', 'Python, Java, SQL, Golang, C++, C, JavaScript')
     add_skill_line('Frameworks', 'Spring Boot, FastAPI, Streamlit, XGBoost, Scikit-learn, React')
-    add_skill_line('Databases & Cloud', 'PostgreSQL, MySQL, Supabase, Redis, Docker, Git, Linux')
+    add_skill_line('Databases & Cloud', 'PostgreSQL, MySQL, Supabase, Docker, Git, Linux')
     add_skill_line('Product & Tools', 'PRD Writing, Jobs-to-be-Done (JTBD), RICE, Product Metrics, Figma, Postman, Notion, LeetCode (400+ solved, 210+ GFG)')
 
     # ==========================
