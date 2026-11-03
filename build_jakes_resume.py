@@ -439,7 +439,7 @@ def build_jakes_resume():
     add_heading('Technical Skills')
 
     def add_skill_line(category, items):
-        p = add_p(space_before=0.5, space_after=1.2)
+        p = add_p(space_before=0.4, space_after=1.0)
         r = p.add_run(f'{category}: ')
         r.font.name = FONT_FAMILY; r.font.size = Pt(9.0); r.font.bold = True
         r = p.add_run(items)
@@ -450,6 +450,38 @@ def build_jakes_resume():
     add_skill_line('Frameworks', 'Spring Boot, FastAPI, Streamlit, XGBoost, Scikit-learn, React')
     add_skill_line('Databases & Cloud', 'PostgreSQL, MySQL, Supabase, Redis, Docker, Git, Linux')
     add_skill_line('Product & Tools', 'PRD Writing, Jobs-to-be-Done (JTBD), RICE, Product Metrics, Figma, Postman, Notion, LeetCode (400+ solved, 210+ GFG)')
+
+    # ==========================
+    # 6. CERTIFICATIONS
+    # ==========================
+    add_heading('Certifications')
+    
+    p_cert = add_p(space_before=0.6, space_after=0.5)
+    r = p_cert.add_run('• ')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.bold = True
+    r = p_cert.add_run('Product Management: ')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.bold = True
+    add_hyperlink(p_cert, 'https://drive.google.com/file/d/199XpTr2wp9waMzs4I5PiToiuOoKuQvJK/view?usp=drive_link', 'Product Management Masterclass (GeeksforGeeks)', underline=False, font_size_pt=8.8, bold=True)
+    r = p_cert.add_run(' — Product lifecycle, JTBD discovery, and roadmap metrics.')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
+
+    p_cert2 = add_p(space_before=0, space_after=1.5)
+    r = p_cert2.add_run('• ')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.bold = True
+    r = p_cert2.add_run('AI & Workflows: ')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.bold = True
+    add_hyperlink(p_cert2, 'https://drive.google.com/file/d/1NqDNLf16tuThGlGOO2cFp1IxiTjWQCFP/view?usp=drive_link', 'Prompt Engineering', underline=False, font_size_pt=8.8, bold=False)
+    r = p_cert2.add_run('  |  ')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
+    r = p_cert2.add_run('Advanced RAG (CampusX)')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
+    r = p_cert2.add_run('  |  ')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
+    add_hyperlink(p_cert2, 'https://drive.google.com/file/d/16eh0ob2JVliyVaThmYrngZXz-AVuKIV0/view?usp=drive_link', 'Docker for ML (CampusX)', underline=False, font_size_pt=8.8, bold=False)
+    r = p_cert2.add_run('  |  ')
+    r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
+    add_hyperlink(p_cert2, 'https://drive.google.com/file/d/1phqwetDgCSHg1ykofHUi9J4a7JWGJ74Y/view?usp=drive_link', 'n8n Automation (CampusX)', underline=False, font_size_pt=8.8, bold=False)
+
 
     # Save documents
     dest_docx_1 = os.path.abspath('e:/pm_portfoli_new/Sohan_Gadewar_Google_APM_Resume.docx')
