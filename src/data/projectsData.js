@@ -228,7 +228,7 @@ export const PROJECTS = [
     badges: ['Live Demo', 'GitHub Repo', 'Prescriptive ML'],
     status: 'Live Production App',
     hasLiveDemo: true,
-    liveUrl: 'https://github.com/Sohan9022/CausalRetention',
+    liveUrl: 'https://causal-retention.streamlit.app',
     githubUrl: 'https://github.com/Sohan9022/CausalRetention',
     notionUrl: 'https://github.com/Sohan9022/CausalRetention',
     summary: 'An enterprise prescriptive ML decision engine replacing wasteful correlation churn models with causal uplift (CATE) and Knapsack budget optimization to drive +752% campaign ROI.',

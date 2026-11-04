@@ -68,7 +68,7 @@ export const PRD_VAULT = {
   "causalretention": {
     "title": "CausalRetention: Prescriptive Uplift & Customer Retention Engine",
     "id": "causalretention-uplift-2026",
-    "url": "https://github.com/Sohan9022/CausalRetention",
+    "url": "https://causal-retention.streamlit.app",
     "summary": "An enterprise prescriptive ML decision engine replacing wasteful correlation churn models with causal uplift (CATE) and Knapsack budget optimization to drive +752% campaign ROI.",
     "thesis": "Standard churn prediction answers the wrong question ('Who will churn?') rather than the high-leverage business question ('Who will change their behavior if we intervene?'). Isolating true Persuadables eliminates deadweight marketing spend and prevents waking Sleeping Dogs.",
     "problem": "Enterprises burn millions offering retention discounts to customers who would have renewed anyway (Sure Things) or who leave regardless (Lost Causes), while actively triggering churn by waking Sleeping Dogs—resulting in net negative campaign ROI (-13.1%).",

@@ -176,7 +176,7 @@ def build_jakes_resume():
     
     r_lc = p_contact.add_run('</> ')
     r_lc.font.name = FONT_FAMILY; r_lc.font.size = Pt(8.2); r_lc.font.bold = True
-    add_hyperlink(p_contact, 'https://leetcode.com/u/Sohan_Gadewar/', 'LeetCode', color_hex="000000", underline=False, font_size_pt=8.8)
+    add_hyperlink(p_contact, 'https://leetcode.com/u/sohangadewar9022/', 'LeetCode', color_hex="000000", underline=False, font_size_pt=8.8)
 
     # ==========================
     # 2. EDUCATION
@@ -336,7 +336,7 @@ def build_jakes_resume():
     p_proj2_sub.paragraph_format.tab_stops.add_tab_stop(RIGHT_TAB, WD_TAB_ALIGNMENT.RIGHT)
     r = p_proj2_sub.add_run('Python, XGBoost, Streamlit, Docker  |  ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8); r.font.italic = True
-    add_hyperlink(p_proj2_sub, 'https://github.com/Sohan9022/CausalRetention', 'Live Decision Suite', color_hex=COLOR_LINK, underline=True, font_size_pt=8.8)
+    add_hyperlink(p_proj2_sub, 'https://causal-retention.streamlit.app', 'Live Decision Suite', color_hex=COLOR_LINK, underline=True, font_size_pt=8.8)
     r = p_proj2_sub.add_run('  |  ')
     r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
     add_hyperlink(p_proj2_sub, 'https://github.com/Sohan9022/CausalRetention', 'CATE Spec', color_hex=COLOR_LINK, underline=True, font_size_pt=8.8)

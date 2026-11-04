@@ -158,7 +158,7 @@ const PROTOTYPE_PREVIEWS = [
     title: 'CausalRetention',
     subtitle: 'Prescriptive Uplift & Retention Engine',
     domain: 'Causal AI · Growth Economics',
-    url: 'https://github.com/Sohan9022/CausalRetention',
+    url: 'https://causal-retention.streamlit.app',
     prdUrl: 'https://github.com/Sohan9022/CausalRetention',
     icon: TrendingUp,
     status: 'Live Production App',

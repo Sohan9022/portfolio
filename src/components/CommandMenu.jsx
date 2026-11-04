@@ -77,7 +77,7 @@ export default function CommandMenu({ isOpen, onClose, onOpenNova }) {
         { label: 'Dynamic Narrative Forms', desc: 'Responsive narrative form worlds with real-time UI mutation', url: 'https://dynamic-narrative-forms.lovable.app', icon: Sparkles, isExternal: true },
         { label: 'GiftVerse Moments', desc: 'Interactive 30-60s suspense unboxing engine', url: 'https://gift-verse-moments.lovable.app', icon: Play, isExternal: true },
         { label: 'Adaptive UX Framework Prototype', desc: 'Refine UPI app frontend interactive Figma sandbox', url: 'https://www.figma.com/make/PWbUyJaOpqKLsqVlDpJOdG/Refine-UPI-app-frontend?t=aZVJGio9dMWpELlU-1', icon: Play, isExternal: true },
-        { label: 'CausalRetention Decision Engine', desc: 'Prescriptive uplift (CATE) & Knapsack budget optimization (+752% ROI)', url: 'https://github.com/Sohan9022/CausalRetention', icon: TrendingUp, isExternal: true },
+        { label: 'CausalRetention Decision Engine', desc: 'Prescriptive uplift (CATE) & Knapsack budget optimization (+752% ROI)', url: 'https://causal-retention.streamlit.app', icon: TrendingUp, isExternal: true },
         { label: 'FlashDrop ACID Engine', desc: 'High-concurrency inventory platform with 0% overselling guarantee', url: 'https://github.com/Sohan9022/FlashDrop', icon: Zap, isExternal: true },
       ]
     },
