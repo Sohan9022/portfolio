@@ -21,7 +21,6 @@ import {
   Zap
 } from 'lucide-react';
 import Logo from './Logo';
-import AnimatedCounter from './AnimatedCounter';
 
 const PM_STAGES = [
   {
@@ -399,19 +398,19 @@ export default function HeroSection() {
               <div className="grid grid-cols-3 gap-2 pt-2 border-t border-[#F0F0EC] text-center font-mono">
                 <div className="p-2 rounded-lg bg-[#FBFBFA] border border-[#EAEAE7]">
                   <div className="text-base font-bold text-[#121214]">
-                    <AnimatedCounter value={PROTOTYPE_PREVIEWS.length} duration={1.0} />
+                    {PROTOTYPE_PREVIEWS.length}
                   </div>
                   <div className="text-[10px] text-[#666663] uppercase tracking-tight">Live Systems</div>
                 </div>
                 <div className="p-2 rounded-lg bg-[#FBFBFA] border border-[#EAEAE7]">
                   <div className="text-base font-bold text-[#121214]">
-                    <AnimatedCounter value={8} duration={1.0} />
+                    8
                   </div>
                   <div className="text-[10px] text-[#666663] uppercase tracking-tight">Notion PRDs</div>
                 </div>
                 <div className="p-2 rounded-lg bg-[#FBFBFA] border border-[#EAEAE7]">
                   <div className="text-base font-bold text-[#121214]">
-                    <AnimatedCounter value={8.97} decimals={2} duration={1.2} />
+                    8.97
                   </div>
                   <div className="text-[10px] text-[#666663] uppercase tracking-tight">CGPA (IT)</div>
                 </div>

@@ -141,6 +141,8 @@ export default function ProjectsSection() {
                   const matching = PROJECTS.filter(project => {
                     if (f.id === 'all') return true;
                     if (f.id === 'governance') return project.id === 'truststate' || project.id === 'shrh' || project.id === 'sentinel';
+                    if (f.id === 'growth-ml') return project.id === 'causalretention';
+                    if (f.id === 'platform') return project.id === 'flashdrop';
                     if (f.id === 'hci') return project.id === 'spaces' || project.id === 'giftverse' || project.id === 'dynamic-forms';
                     if (f.id === 'fintech') return project.id === 'finmate';
                     return true;

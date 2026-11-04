@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Terminal, 
@@ -15,9 +15,7 @@ import {
   Database,
   ArrowRight,
   ShieldCheck,
-  BellOff,
-  Code2,
-  Check
+  BellOff
 } from 'lucide-react';
 
 const SENTINEL_STEPS = [
@@ -28,16 +26,7 @@ const SENTINEL_STEPS = [
     badge: 'Discovery',
     content: `In fast-moving engineering teams, critical architectural decisions are made verbally during 15-minute daily standups or buried in 40-message Slack threads. Weeks later, when a regression occurs, no one remembers why a decision was made, who approved it, or what constraints were accepted.`,
     artifactLabel: 'Observed Failure Mode',
-    artifact: '“The Said-vs-Confirmed Gap”: An engineer verbally reports “migration is completed” in standup, but database telemetry still shows open pending migrations.',
-    terminalData: {
-      type: 'telemetry',
-      title: 'DISCOVERY TELEMETRY AUDIT',
-      status: 'GAP DETECTED',
-      statusColor: 'text-rose-400 bg-rose-950/40 border-rose-800',
-      line1: 'Spoken Standup: "Auth0 migration completed on staging"',
-      line2: 'Observed Codebase: Git PR #104 pending review · Staging v1.4 endpoint',
-      insight: 'Context fragmentation causes teams to unknowingly contradict previous decisions weeks later.'
-    }
+    artifact: '“The Said-vs-Confirmed Gap”: An engineer verbally reports “migration is completed” in standup, but database telemetry still shows open pending migrations.'
   },
   {
     step: '02',
@@ -46,16 +35,7 @@ const SENTINEL_STEPS = [
     badge: 'User Research',
     content: `I spoke with developers and engineering leads who had installed popular Slack summary bots. The unanimous feedback was negative: bots posted unsolicited paragraph summaries after every meeting, filling channels with noise, misattributing ownership, and prompting teams to mute or uninstall them within 2 weeks.`,
     artifactLabel: 'Direct User Insight',
-    artifact: '“We don’t need another bot talking in our channel. We need an infallible memory we can interrogate when something doesn’t add up.”',
-    terminalData: {
-      type: 'research',
-      title: 'USER INTERVIEW SYNTHESIS',
-      status: 'BOT FATIGUE OBSERVED',
-      statusColor: 'text-amber-400 bg-amber-950/40 border-amber-800',
-      line1: 'Interview Cohort: 14 Engineering Leads & Senior Developers',
-      line2: 'Core Failure: Proactive AI channel messages trigger muting within 14 days',
-      insight: 'Users reject chatty bots. They want an infallible, silent oracle that responds only when queried.'
-    }
+    artifact: '“We don’t need another bot talking in our channel. We need an infallible memory we can interrogate when something doesn’t add up.”'
   },
   {
     step: '03',
@@ -64,16 +44,7 @@ const SENTINEL_STEPS = [
     badge: 'Product Thesis',
     content: `Proactive AI bot interruptions are themselves the UX failure. An effective team memory agent must adhere to the "Silent by Default" principle: passively ingest context without ever speaking unprompted, earning team trust by strictly remaining a query-driven oracle.`,
     artifactLabel: 'Product Rule #1',
-    artifact: 'Zero unprompted messages. Sentinel never posts to a channel unless directly mentioned or queried via a dedicated slash command.',
-    terminalData: {
-      type: 'rule',
-      title: 'CORE INVARIANT SPECIFICATION',
-      status: 'RULE ENFORCED',
-      statusColor: 'text-emerald-400 bg-emerald-950/40 border-emerald-800',
-      line1: 'Invariant 01: Ingestion is 100% passive (standup transcripts & commits)',
-      line2: 'Invariant 02: Outbound messaging permitted ONLY upon explicit slash command',
-      insight: 'Earning engineering trust requires respecting deep focus. Silence is a feature, not a limitation.'
-    }
+    artifact: 'Zero unprompted messages. Sentinel never posts to a channel unless directly mentioned or queried via a dedicated slash command.'
   },
   {
     step: '04',
@@ -82,16 +53,7 @@ const SENTINEL_STEPS = [
     badge: 'Scope & Non-Goals',
     content: `To ship a focused MVP and de-risk the product, I defined explicit non-goals. We refused to build automated Jira ticket creators, autonomous code commit reversers, or predictive schedule estimators. V1 focused purely on immutable decision logging and state-drift detection.`,
     artifactLabel: 'Explicit Non-Goals (V1)',
-    artifact: '❌ No automatic task assignment · ❌ No proactive status reports · ❌ No sentiment analysis on team members.',
-    terminalData: {
-      type: 'scope',
-      title: 'V1 BOUNDED SCOPE GATE',
-      status: 'NON-GOALS SCOPED',
-      statusColor: 'text-blue-400 bg-blue-950/40 border-blue-800',
-      line1: 'SCOPED OUT: Automated Jira auto-assignment (avoids false task spam)',
-      line2: 'SCOPED OUT: Autonomous git revert bot (protects developer authority)',
-      insight: 'Narrowing scope to immutable decision logging maximized learning per engineering unit.'
-    }
+    artifact: '❌ No automatic task assignment · ❌ No proactive status reports · ❌ No sentiment analysis on team members.'
   },
   {
     step: '05',
@@ -100,16 +62,7 @@ const SENTINEL_STEPS = [
     badge: 'System Design',
     content: `Designed an append-only PostgreSQL event schema capturing { timestamp, speaker, stated_intent, verified_tool_state, drift_flag }. When queried, Sentinel compares the latest spoken commitments against actual Git commit SHAs and Jira issue states to highlight discrepancies.`,
     artifactLabel: 'Schema Decision',
-    artifact: 'Deterministic event log ensuring all detected drift is tied directly to timestamped transcript IDs.',
-    terminalData: {
-      type: 'schema',
-      title: 'POSTGRESQL APPEND-ONLY SCHEMA',
-      status: '3NF DDL READY',
-      statusColor: 'text-purple-400 bg-purple-950/40 border-purple-800',
-      line1: 'TABLE decisions (id UUID, speaker TEXT, stated_intent TEXT, tool_sha TEXT)',
-      line2: 'TRIGGER on_audit: Compares stated_intent against git_commits table on query',
-      insight: 'Deterministic event sourcing prevents AI hallucinations when verifying historical project commitments.'
-    }
+    artifact: 'Deterministic event log ensuring all detected drift is tied directly to timestamped transcript IDs.'
   },
   {
     step: '06',
@@ -118,16 +71,7 @@ const SENTINEL_STEPS = [
     badge: 'Prototyping',
     content: `Instead of presenting static Figma screens, I directed Lovable to build an interactive 8-step working MVP (echo-sentinel-08.lovable.app). Users can trigger mock standups, watch Sentinel passively log commitments, and run drift queries to inspect conflicting states.`,
     artifactLabel: 'Working MVP Scope',
-    artifact: '8-step interactive simulation featuring live event timelines, filterable drift views, and transcript audits.',
-    terminalData: {
-      type: 'mvp',
-      title: 'LOVABLE WORKING PROTOTYPE',
-      status: 'LIVE ON PRODUCTION',
-      statusColor: 'text-emerald-400 bg-emerald-950/40 border-emerald-800',
-      line1: 'URL: echo-sentinel-08.lovable.app (8-step interactive simulator)',
-      line2: 'Features: Live event timeline, filterable drift views, transcript auditing',
-      insight: 'A clickable artifact answers user interaction and latency questions 10x faster than static slides.'
-    }
+    artifact: '8-step interactive simulation featuring live event timelines, filterable drift views, and transcript audits.'
   },
   {
     step: '07',
@@ -136,16 +80,7 @@ const SENTINEL_STEPS = [
     badge: 'Ethics & Safety',
     content: `A memory agent can easily feel like managerial surveillance. I instituted a privacy guardrail: Sentinel only audits technical delivery drift (said vs deployed), never individual engineer velocity or bathroom breaks. Transcripts are scoped exclusively to designated sprint channels.`,
     artifactLabel: 'Trust Guardrail',
-    artifact: 'Public team visibility: Every team member can see exactly what context Sentinel has indexed; zero covert recording.',
-    terminalData: {
-      type: 'ethics',
-      title: 'PSYCHOLOGICAL SAFETY BOUNDARY',
-      status: 'PRIVACY LOCKED',
-      statusColor: 'text-emerald-400 bg-emerald-950/40 border-emerald-800',
-      line1: 'Guardrail: Technical delivery drift ONLY (never engineer velocity tracking)',
-      line2: 'Transparency: 100% public team audit log; zero covert background scraping',
-      insight: 'Enterprise AI fails without psychological safety. Guardrails must be architectural, not verbal.'
-    }
+    artifact: 'Public team visibility: Every team member can see exactly what context Sentinel has indexed; zero covert recording.'
   },
   {
     step: '08',
@@ -154,16 +89,7 @@ const SENTINEL_STEPS = [
     badge: 'Outcomes',
     content: `The prototype validated that engineering teams welcome AI when it respects attentional boundaries. This project solidified my conviction that the best AI PMs design for restraint: knowing when an AI system should remain completely silent is just as critical as knowing what it should say.`,
     artifactLabel: 'Core PM Takeaway',
-    artifact: 'Restraint is a competitive moat. In high-stakes developer tools, respecting user attention builds lasting product adoption.',
-    terminalData: {
-      type: 'outcome',
-      title: 'EXECUTIVE APM TAKEAWAY',
-      status: 'HYPOTHESIS VALIDATED',
-      statusColor: 'text-blue-400 bg-blue-950/40 border-blue-800',
-      line1: 'Key Finding: Silent-by-default increased query voluntary usage by 4.2x',
-      line2: 'Core Competency: Defining clear negative boundaries (what NOT to build)',
-      insight: 'In high-velocity AI products, restraint and user respect create durable enterprise moats.'
-    }
+    artifact: 'Restraint is a competitive moat. In high-stakes developer tools, respecting user attention builds lasting product adoption.'
   }
 ];
 
@@ -197,45 +123,7 @@ const DRIFT_SCENARIOS = [
 export default function CaseStudyDeepDive() {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
   const [activeDriftScenario, setActiveDriftScenario] = useState(DRIFT_SCENARIOS[0]);
-  const stepRefs = useRef([]);
-
   const currentStep = SENTINEL_STEPS[activeStepIndex];
-
-  // Set up intersection observer for sticky scroll tracking
-  useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '-20% 0px -40% 0px',
-      threshold: 0.1
-    };
-
-    const handleIntersect = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const index = Number(entry.target.getAttribute('data-step-index'));
-          if (!isNaN(index)) {
-            setActiveStepIndex(index);
-          }
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(handleIntersect, observerOptions);
-
-    stepRefs.current.forEach((el) => {
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  const scrollToStep = (index) => {
-    setActiveStepIndex(index);
-    const targetEl = stepRefs.current[index];
-    if (targetEl) {
-      targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  };
 
   return (
     <section id="case-study" className="py-24 border-b border-[#EAEAE7] bg-[#FFFFFF]">
@@ -276,146 +164,123 @@ export default function CaseStudyDeepDive() {
           </div>
         </div>
 
-        {/* Sticky Scroll Split Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-20 relative">
-          
-          {/* Pinned Sticky Left Column (System Terminal & Quick Timeline) */}
-          <div className="lg:col-span-5 lg:sticky lg:top-28 space-y-4">
-            
-            {/* Step Navigator Bar */}
-            <div className="p-2.5 rounded-xl bg-[#F8F8F6] border border-[#EAEAE7] space-y-2 shadow-xs">
-              <div className="flex items-center justify-between text-[11px] font-mono text-[#666663] px-1">
-                <span>Timeline Navigation</span>
-                <span className="text-blue-700 font-semibold">
-                  Step {currentStep.step} / 08
-                </span>
-              </div>
-              <div className="grid grid-cols-4 sm:grid-cols-8 lg:grid-cols-4 gap-1.5">
-                {SENTINEL_STEPS.map((s, idx) => {
-                  const isActive = idx === activeStepIndex;
-                  return (
-                    <button
-                      key={s.step}
-                      onClick={() => scrollToStep(idx)}
-                      className={`py-1.5 px-2 rounded-lg text-center transition-all text-xs font-mono flex items-center justify-center gap-1 ${
-                        isActive
-                          ? 'bg-[#121214] text-white font-bold shadow-xs'
-                          : 'bg-white border border-[#EAEAE7] text-[#666663] hover:text-[#121214] hover:bg-slate-50'
-                      }`}
-                    >
-                      <span>{s.step}</span>
-                      <span className="hidden xl:inline text-[10px] opacity-75">{s.badge}</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Dynamic Sticky Terminal Window */}
-            <div className="rounded-2xl bg-[#111115] border border-zinc-800 p-5 text-zinc-200 font-mono text-xs space-y-4 shadow-xl">
-              <div className="flex items-center justify-between pb-3 border-b border-zinc-800 text-[11px]">
-                <span className="flex items-center gap-2 text-zinc-300 font-semibold tracking-wider">
-                  <Terminal className="w-3.5 h-3.5 text-blue-400" />
-                  <span>{currentStep.terminalData.title}</span>
-                </span>
-                <span className={`px-2 py-0.5 rounded text-[10px] font-bold border ${currentStep.terminalData.statusColor}`}>
-                  {currentStep.terminalData.status}
-                </span>
-              </div>
-
-              <div className="space-y-2">
-                <div className="bg-zinc-900/90 p-3 rounded-lg border border-zinc-800/80 space-y-1.5">
-                  <div className="text-zinc-400 text-[10px] uppercase tracking-wider">Observed Signal:</div>
-                  <div className="text-zinc-100 font-mono text-[11px] leading-relaxed">
-                    {currentStep.terminalData.line1}
-                  </div>
-                </div>
-
-                <div className="bg-zinc-900/90 p-3 rounded-lg border border-zinc-800/80 space-y-1.5">
-                  <div className="text-zinc-400 text-[10px] uppercase tracking-wider">System State:</div>
-                  <div className="text-zinc-300 font-mono text-[11px] leading-relaxed">
-                    {currentStep.terminalData.line2}
-                  </div>
-                </div>
-              </div>
-
-              {/* Artifact Highlight */}
-              <div className="p-3 rounded-lg bg-blue-950/20 border border-blue-900/40 space-y-1 text-[11px]">
-                <div className="text-blue-400 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5">
-                  <Check className="w-3 h-3 text-blue-400" />
-                  <span>{currentStep.artifactLabel}</span>
-                </div>
-                <p className="text-zinc-200 font-sans italic text-xs leading-relaxed">
-                  {currentStep.artifact}
-                </p>
-              </div>
-
-              <div className="pt-2 border-t border-zinc-800/80 text-[10px] text-zinc-500 flex items-center justify-between">
-                <span>Sync Mode: Scroll-Linked Telemetry</span>
-                <span className="text-blue-400">P95 &lt;15ms</span>
-              </div>
-            </div>
-
+        {/* Step Progress & Navigation Bar */}
+        <div className="space-y-3 mb-10">
+          <div className="flex items-center justify-between text-xs font-mono text-[#666663]">
+            <span>PM Process Timeline: Discovery → Insight → Architecture → Execution</span>
+            <span className="text-blue-700 font-semibold">
+              Step {currentStep.step} of 08 ({Math.round(((activeStepIndex + 1) / 8) * 100)}%)
+            </span>
           </div>
 
-          {/* Scrolling Narrative Steps (Right Column) */}
-          <div className="lg:col-span-7 space-y-8">
+          <div className="grid grid-cols-4 sm:grid-cols-8 gap-1.5 p-1.5 rounded-xl bg-[#F6F6F3] border border-[#EAEAE7]">
             {SENTINEL_STEPS.map((s, idx) => {
               const isActive = idx === activeStepIndex;
               return (
-                <div
+                <button
                   key={s.step}
-                  ref={(el) => (stepRefs.current[idx] = el)}
-                  data-step-index={idx}
-                  className={`rounded-2xl border transition-all p-6 sm:p-8 ${
-                    isActive 
-                      ? 'bg-[#FBFBFA] border-blue-400/80 shadow-[0_4px_20px_rgba(0,0,0,0.04)] ring-1 ring-blue-400/40' 
-                      : 'bg-white border-[#EAEAE7] hover:border-[#D5D5CE]'
+                  onClick={() => setActiveStepIndex(idx)}
+                  className={`relative p-2 sm:p-2.5 rounded-lg text-center transition-colors ${
+                    isActive
+                      ? 'text-[#121214] font-semibold'
+                      : 'text-[#666663] hover:text-[#121214]'
                   }`}
                 >
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                      <span className="font-mono text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
-                        Step {s.step} of 08
-                      </span>
-                      <span className="text-xs font-mono text-[#666663]">·</span>
-                      <span className="text-xs font-mono uppercase tracking-wider text-[#666663] font-semibold">
-                        {s.badge}
-                      </span>
-                    </div>
-                    {isActive && (
-                      <span className="inline-flex items-center gap-1 text-[10px] font-mono font-semibold text-blue-700 bg-blue-50/80 px-2 py-0.5 rounded-full border border-blue-200">
-                        <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
-                        In View
-                      </span>
-                    )}
-                  </div>
-
-                  <h3 className="text-2xl font-bold text-[#121214] tracking-tight mb-1">
-                    {s.title}
-                  </h3>
-                  <p className="text-sm font-medium text-[#666663] mb-4">
-                    {s.subtitle}
-                  </p>
-
-                  <p className="text-sm text-[#4A4A46] leading-relaxed mb-5">
-                    {s.content}
-                  </p>
-
-                  <div className="p-4 rounded-xl bg-[#F8F8F6] border border-[#EAEAE7] text-xs font-editorial italic text-[#121214] leading-relaxed">
-                    <div className="text-[10px] uppercase font-mono not-italic font-bold text-blue-700 mb-1">
-                      {s.artifactLabel}
-                    </div>
-                    {s.artifact}
-                  </div>
-                </div>
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeSentinelStep"
+                      className="absolute inset-0 bg-white rounded-lg shadow-xs border border-[#D5D5CE]"
+                      transition={{ type: 'spring', stiffness: 450, damping: 35 }}
+                    />
+                  )}
+                  <span className="relative z-10 font-mono text-[10px] block text-[#9E9E96]">
+                    {s.step}
+                  </span>
+                  <span className="relative z-10 text-[11px] font-semibold hidden md:inline truncate">
+                    {s.badge}
+                  </span>
+                </button>
               );
             })}
           </div>
-
         </div>
 
-        {/* Interactive Feature Simulator: "The Silent-by-Default State Engine" */}
+        {/* Active Step Content Card */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentStep.step}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="rounded-2xl bg-[#FBFBFA] border border-[#EAEAE7] p-6 sm:p-9 shadow-[0_2px_12px_rgba(0,0,0,0.02)] mb-10"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              
+              {/* Left Column: Narrative */}
+              <div className="lg:col-span-7 space-y-4">
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                    Step {currentStep.step} of 08
+                  </span>
+                  <span className="text-xs font-mono text-[#666663]">·</span>
+                  <span className="text-xs font-mono uppercase tracking-wider text-[#666663] font-semibold">
+                    {currentStep.badge}
+                  </span>
+                </div>
+
+                <h3 className="text-2xl sm:text-3xl font-bold text-[#121214] tracking-tight">
+                  {currentStep.title}
+                </h3>
+                <p className="text-sm font-medium text-[#666663]">
+                  {currentStep.subtitle}
+                </p>
+
+                <div className="pt-2 text-sm text-[#4A4A46] leading-relaxed">
+                  {currentStep.content}
+                </div>
+
+                {/* Step Controls */}
+                <div className="pt-4 flex items-center gap-3 text-xs">
+                  <motion.button
+                    whileHover={{ y: -1 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => setActiveStepIndex(Math.max(0, activeStepIndex - 1))}
+                    disabled={activeStepIndex === 0}
+                    className="px-3.5 py-1.5 rounded-lg bg-white border border-[#EAEAE7] text-[#4A4A46] disabled:opacity-40 hover:bg-[#F6F6F3] shadow-xs transition-all"
+                  >
+                    ← Previous Step
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ y: -1 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => setActiveStepIndex(Math.min(SENTINEL_STEPS.length - 1, activeStepIndex + 1))}
+                    disabled={activeStepIndex === SENTINEL_STEPS.length - 1}
+                    className="px-3.5 py-1.5 rounded-lg bg-[#121214] text-white disabled:opacity-40 hover:bg-black font-medium shadow-xs transition-all"
+                  >
+                    Next Step →
+                  </motion.button>
+                </div>
+              </div>
+
+              {/* Right Column: PM Artifact Callout */}
+              <div className="lg:col-span-5 p-5 sm:p-6 rounded-xl bg-white border border-[#EAEAE7] space-y-3 shadow-xs">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-blue-700 font-semibold block pb-2 border-b border-[#F0F0EC]">
+                  {currentStep.artifactLabel}
+                </span>
+                <div className="font-editorial italic text-base text-[#121214] leading-relaxed bg-[#F8F8F6] p-4 rounded-xl border border-[#EAEAE7]">
+                  {currentStep.artifact}
+                </div>
+                <div className="text-[11px] text-[#666663] pt-1 font-mono">
+                  From: Project Sentinel Product Requirement Document & Execution Log (2026)
+                </div>
+              </div>
+
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Unique PM Idea: Interactive "Said-vs-Confirmed State Drift Simulator" */}
         <div className="rounded-2xl bg-white border border-[#E2E2DC] p-6 sm:p-8 shadow-[0_2px_16px_rgba(0,0,0,0.03)] space-y-5">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-[#F0F0EC]">
             <div className="flex items-center gap-2">
