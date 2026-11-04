@@ -432,7 +432,7 @@ def build_jakes_resume():
         r.font.name = FONT_FAMILY; r.font.size = Pt(8.8)
         return p
 
-    add_skill_line('Languages', 'Python, Java, SQL, Golang, C++, C, JavaScript')
+    add_skill_line('Languages', 'Python, Java, SQL, Golang, C++, C')
     add_skill_line('Frameworks', 'Spring Boot, FastAPI, Streamlit, XGBoost, Scikit-learn, React')
     add_skill_line('Databases & Cloud', 'PostgreSQL, MySQL, Supabase, Docker, Git, Linux')
     add_skill_line('Product & Tools', 'PRD Writing, Jobs-to-be-Done (JTBD), RICE Prioritization, North Star & Counter-Metrics, A/B Testing, Figma, Postman, Notion')
