@@ -352,6 +352,73 @@ export default function SystemDiagram({ projectId }) {
         </div>
       );
 
+    case 'dynamic-forms':
+      return (
+        <div className="rounded-xl bg-[#F8F8F6] border border-[#EAEAE7] p-4 text-xs font-mono">
+          <div className="flex items-center justify-between text-[11px] text-[#666663] mb-3 pb-2 border-b border-[#EAEAE7]">
+            <span className="flex items-center gap-1.5">
+              <Activity className="w-3 h-3 text-purple-600 animate-pulse" />
+              SYSTEM LOGIC: REAL-TIME NARRATIVE MUTATION ENGINE
+            </span>
+            <span className="text-purple-700 font-semibold flex items-center gap-1 bg-purple-50 px-2 py-0.5 rounded border border-purple-200/60">
+              <Sparkles className="w-3 h-3" /> Sub-400ms SLA
+            </span>
+          </div>
+
+          <PipelineFlowBeam label="DYNAMIC FORM THEME &amp; BRANCHING PIPELINE" />
+
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-2 relative">
+            <motion.div 
+              whileHover={{ y: -2 }}
+              className="p-2.5 rounded-lg bg-white border border-[#EAEAE7] transition-all"
+            >
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] text-[#9E9E96]">01. INPUT STREAM</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-ping"></span>
+              </div>
+              <div className="text-[11px] font-semibold text-[#121214]">Keystroke Telemetry</div>
+              <div className="text-[10px] text-[#666663] mt-0.5">Tone &amp; Response Pacing</div>
+            </motion.div>
+
+            <motion.div 
+              whileHover={{ y: -2 }}
+              className="p-2.5 rounded-lg bg-white border border-[#EAEAE7] transition-all"
+            >
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] text-[#9E9E96]">02. CLASSIFIER</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+              </div>
+              <div className="text-[11px] font-semibold text-[#121214]">Intent Engine</div>
+              <div className="text-[10px] text-[#666663] mt-0.5">Persona &amp; Mood Inference</div>
+            </motion.div>
+
+            <motion.div 
+              whileHover={{ y: -2 }}
+              className="p-2.5 rounded-lg bg-purple-50/40 border border-purple-300/80 transition-all"
+            >
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] text-purple-700 font-bold">03. UI MUTATION</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></span>
+              </div>
+              <div className="text-[11px] font-semibold text-purple-900">Dynamic Palette</div>
+              <div className="text-[10px] text-purple-700 mt-0.5">&lt;400ms CSS Tokens</div>
+            </motion.div>
+
+            <motion.div 
+              whileHover={{ y: -2 }}
+              className="p-2.5 rounded-lg bg-emerald-50/40 border border-emerald-300/80 transition-all"
+            >
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] text-emerald-700 font-bold">04. BRANCHING</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              </div>
+              <div className="text-[11px] font-semibold text-emerald-900">Contextual Flow</div>
+              <div className="text-[10px] text-emerald-700 mt-0.5">Next-Best Question World</div>
+            </motion.div>
+          </div>
+        </div>
+      );
+
     case 'truststate':
       return (
         <div className="rounded-xl bg-[#F8F8F6] border border-[#EAEAE7] p-4 text-xs font-mono">
