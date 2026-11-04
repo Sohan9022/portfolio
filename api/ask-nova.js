@@ -60,6 +60,10 @@ Your mission is to warmly welcome recruiters, engineering leaders, and hiring ma
    "Companies want AI agents to do real work like updating databases or refunding customers, but a hacker could sneak hidden instructions into a customer email to trick the AI into stealing data. TrustState acts like an operating system security guard: even if the AI is tricked, TrustState locks the database door because the AI doesn't have the cryptographic lease token required to execute privileged tools."
    - [Live Working App](https://trust-state-qnkc9zvwy-sun-6b0b.vercel.app) · [Notion PRD](https://app.notion.com/p/TrustState-3f253f22e2b0806b8cfbfa976db926d1?source=copy_link)
 
+10. **CausalRetention in Simple Words:**
+   "Most companies waste millions giving discounts to customers who would have bought anyway, or bothering unhappy customers into leaving faster. CausalRetention uses causal ML (T-Learner XGBoost) and knapsack budget optimization to target only the 'Persuadables'—turning a -13.1% deadweight campaign into +752% ROI."
+   - [Live Decision Suite](https://causal-retention.streamlit.app) · [Notion PRD](https://app.notion.com/p/CausalRetention-3fa53f22e2b0808799fbe22b71014f30?source=copy_link) · [GitHub Repo](https://github.com/Sohan9022/CausalRetention)
+
 Formatting instructions:
 - Use clean Markdown with bolding, lists, and clickable links for prototypes ([Live Prototype](url)) and PRDs ([Notion PRD](url)).
 - Keep answers punchy and scannable (2–4 concise paragraphs or bullet points).
@@ -147,6 +151,18 @@ Most AI summarizers suffer steep uninstall rates because unprompted pings disrup
 - 🔗 **Explore:** [Live Prototype](https://space-context-switch.lovable.app) · [Notion PRD](https://app.notion.com/p/SPACES-3ce53f22e2b0805db12ef30ed696c7b5?source=copy_link)
 
 *Follow-up question:* Would you like to hear about how our pluggable client SDK isolates embeddings?`;
+      } else if (lower.includes('causal') || lower.includes('uplift') || lower.includes('cate') || lower.includes('knapsack') || lower.includes('persuadable')) {
+        fallbackText = `In **CausalRetention**, I designed an enterprise prescriptive ML decision engine replacing wasteful correlation churn models with causal uplift (CATE) and Knapsack budget optimization.
+
+**The Architectural Solution:**
+1. **Two-Model (T-Learner) XGBoost:** Decoupled treatment and control estimators calculate individual Conditional Average Treatment Effect (CATE), isolating Persuadables from Sleeping Dogs, Sure Things, and Lost Causes.
+2. **Qini & Cumulative Uplift Validation:** Mathematically measures incrementality against randomized control baselines rather than misleading AUC-ROC classification accuracy.
+3. **Knapsack Budget Allocator:** Optimizes fixed retention capital ($15,000 cap) strictly to top incremental-value cohorts, capturing +$112.7K+ in net preserved revenue (+752% campaign ROI).
+4. **Deliberate Trade-off:** Rejected black-box deep causal neural networks in V1 in favor of interpretable XGBoost T-Learners to provide deterministic business trust and executive auditability.
+
+- 🔗 **Explore:** [Live Decision Suite](https://causal-retention.streamlit.app) · [Notion PRD](https://app.notion.com/p/CausalRetention-3fa53f22e2b0808799fbe22b71014f30?source=copy_link) · [GitHub Spec](https://github.com/Sohan9022/CausalRetention)
+
+*Follow-up question:* Would you like to know how CausalRetention prevents 'Sleeping Dogs' from being nudged into churning?`;
       } else if (lower.includes('asana') || lower.includes('yoga') || lower.includes('posture') || lower.includes('vision') || lower.includes('mediapipe')) {
         fallbackText = `In **AI Asana Analyst**, I designed a real-time computer vision yoga analytics system solving a critical edge AI bottleneck: **protecting the 40ms per-frame budget**.
 

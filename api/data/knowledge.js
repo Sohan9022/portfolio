@@ -67,8 +67,12 @@ export const PRD_VAULT = {
   },
   "causalretention": {
     "title": "CausalRetention: Prescriptive Uplift & Customer Retention Engine",
-    "id": "causalretention-uplift-2026",
-    "url": "https://causal-retention.streamlit.app",
+    "id": "3fa53f22-e2b0-8087-99fb-e22b71014f30",
+    "url": "https://app.notion.com/p/CausalRetention-3fa53f22e2b0808799fbe22b71014f30?source=copy_link",
+    "notionUrl": "https://app.notion.com/p/CausalRetention-3fa53f22e2b0808799fbe22b71014f30?source=copy_link",
+    "liveUrl": "https://causal-retention.streamlit.app",
+    "githubUrl": "https://github.com/Sohan9022/CausalRetention",
+    "markdown": "# CAUSALRETENTION\n\n#### **Prescriptive Uplift & Customer Retention Decision Engine**\n**Category:** Causal AI · Growth Economics\n**Live Decision Suite:** [Live Decision Suite](https://causal-retention.streamlit.app) · [Notion PRD](https://app.notion.com/p/CausalRetention-3fa53f22e2b0808799fbe22b71014f30?source=copy_link) · [GitHub Repo](https://github.com/Sohan9022/CausalRetention)\n\n### The Problem\nEnterprises burn millions offering retention discounts to customers who would have renewed anyway (Sure Things) or who leave regardless (Lost Causes), while actively triggering churn by waking Sleeping Dogs—resulting in net negative campaign ROI (-13.1%).\n\n### The Core Architecture\n1. **Two-Model (T-Learner) XGBoost:** Decoupled treatment and control estimators calculate individual Conditional Average Treatment Effect (CATE), isolating Persuadables from Sleeping Dogs.\n2. **Qini & Cumulative Uplift Engine:** Mathematically validates incrementality against randomized control baselines rather than misleading AUC-ROC classification accuracy.\n3. **Constrained Knapsack Optimizer:** Dynamically allocates fixed marketing budgets ($15,000 cap) to top incremental-value cohorts, capturing +$112.7K+ in net preserved revenue (+752% campaign ROI).\n4. **Deliberate Trade-off:** Rejected black-box deep causal neural networks in V1 in favor of interpretable XGBoost T-Learners to provide deterministic business trust and executive auditability.",
     "summary": "An enterprise prescriptive ML decision engine replacing wasteful correlation churn models with causal uplift (CATE) and Knapsack budget optimization to drive +752% campaign ROI.",
     "thesis": "Standard churn prediction answers the wrong question ('Who will churn?') rather than the high-leverage business question ('Who will change their behavior if we intervene?'). Isolating true Persuadables eliminates deadweight marketing spend and prevents waking Sleeping Dogs.",
     "problem": "Enterprises burn millions offering retention discounts to customers who would have renewed anyway (Sure Things) or who leave regardless (Lost Causes), while actively triggering churn by waking Sleeping Dogs—resulting in net negative campaign ROI (-13.1%).",
@@ -143,6 +147,13 @@ export const MASTER_PORTFOLIO_GROUNDING = `
    - Notion PRD: https://app.notion.com/p/AI-ASANA-ANALYST-3ed53f22e2b080aebdd9ec74e5845aba?source=copy_link
 8. Adaptive UX Framework: High-Stakes FinTech Practice Sandbox
    - Interactive Figma Prototype: https://www.figma.com/make/PWbUyJaOpqKLsqVlDpJOdG/Refine-UPI-app-frontend?t=aZVJGio9dMWpELlU-1
+9. TrustState: Zero-Trust Runtime Integrity & MCP Lease Control Plane
+   - Live Working App: https://trust-state-qnkc9zvwy-sun-6b0b.vercel.app
+   - Notion PRD: https://app.notion.com/p/TrustState-3f253f22e2b0806b8cfbfa976db926d1?source=copy_link
+10. CausalRetention: Prescriptive Uplift & Customer Retention Decision Engine
+   - Live Decision Suite: https://causal-retention.streamlit.app
+   - Notion PRD: https://app.notion.com/p/CausalRetention-3fa53f22e2b0808799fbe22b71014f30?source=copy_link
+   - GitHub Repo: https://github.com/Sohan9022/CausalRetention
 
 ### CROSS-PROJECT DELIBERATE NON-GOALS & TRADE-OFFS MATRIX:
 1. Project Sentinel:
@@ -311,6 +322,9 @@ export function getSubagentGrounding(userMessage = '', messageHistory = [], expl
     } else if (combinedText.includes('asana') || combinedText.includes('yoga') || combinedText.includes('posture')) {
       targetProject = PRD_VAULT['asana_analyst'];
       source = 'AI Asana Analyst PRD';
+    } else if (combinedText.includes('causal') || combinedText.includes('uplift') || combinedText.includes('cate') || combinedText.includes('knapsack') || combinedText.includes('persuadable')) {
+      targetProject = PRD_VAULT['causalretention'];
+      source = 'CausalRetention PRD & Architecture';
     }
 
     if (targetProject) {
@@ -318,7 +332,7 @@ export function getSubagentGrounding(userMessage = '', messageHistory = [], expl
       const preview = targetProject.markdown.slice(0, 1800);
       groundingText = `### TARGET SPECIFICATION FOR ${targetProject.title.toUpperCase()}:\nURL: ${targetProject.url}\n${preview}...`;
     } else {
-      groundingText = `### PORTFOLIO SYSTEMS OVERVIEW:\n- TrustState: Zero-trust runtime integrity & MCP lease control plane (Vercel)\n- Project Sentinel: Silent-by-default decision memory & drift agent (Lovable)\n- FinMate AI: Voice/receipt capture + deterministic SQL arithmetic (Lovable)\n- Spaces: Contextual telemetry firewall & isolated vector spaces (Lovable)\n- SHRH: CI/CD prompt change governance & triage gateway (Vercel)\n- Dynamic Forms: Responsive narrative form worlds (Lovable)\n- GiftVerse: 30-60s micro-suspense unboxing engine (Lovable)\n- AI Asana Analyst: Real-time edge CV posture coach (<40ms CPU)\n- Adaptive UX: Simulated practice sandbox for high-stakes FinTech (Figma)`;
+      groundingText = `### PORTFOLIO SYSTEMS OVERVIEW:\n- TrustState: Zero-trust runtime integrity & MCP lease control plane (Vercel)\n- Project Sentinel: Silent-by-default decision memory & drift agent (Lovable)\n- FinMate AI: Voice/receipt capture + deterministic SQL arithmetic (Lovable)\n- Spaces: Contextual telemetry firewall & isolated vector spaces (Lovable)\n- SHRH: CI/CD prompt change governance & triage gateway (Vercel)\n- Dynamic Forms: Responsive narrative form worlds (Lovable)\n- GiftVerse: 30-60s micro-suspense unboxing engine (Lovable)\n- AI Asana Analyst: Real-time edge CV posture coach (<40ms CPU)\n- Adaptive UX: Simulated practice sandbox for high-stakes FinTech (Figma)\n- CausalRetention: Prescriptive uplift & Knapsack budget optimization engine (Streamlit / Docker)`;
     }
   }
 

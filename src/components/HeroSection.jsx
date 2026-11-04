@@ -158,7 +158,7 @@ const PROTOTYPE_PREVIEWS = [
     subtitle: 'Prescriptive Uplift & Retention Engine',
     domain: 'Causal AI · Growth Economics',
     url: 'https://causal-retention.streamlit.app',
-    prdUrl: 'https://github.com/Sohan9022/CausalRetention',
+    prdUrl: 'https://app.notion.com/p/CausalRetention-3fa53f22e2b0808799fbe22b71014f30?source=copy_link',
     icon: TrendingUp,
     status: 'Live Production App',
     metric: '+752% Campaign ROI',

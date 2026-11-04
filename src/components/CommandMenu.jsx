@@ -92,7 +92,7 @@ export default function CommandMenu({ isOpen, onClose, onOpenNova }) {
         { label: 'Dynamic Forms PRD', desc: 'Experience Director & adaptive UI mutation spec', url: 'https://app.notion.com/p/DYNAMIC-FORMS-3d053f22e2b080ee849ce455ae22c3a8?source=copy_link', icon: FileText, isExternal: true },
         { label: 'GiftVerse PRD', desc: 'Experience Director & Encrypted Payload Spec', url: 'https://app.notion.com/p/GIFTVVERSE-3d053f22e2b0804b8b90cf6da95b931f?source=copy_link', icon: FileText, isExternal: true },
         { label: 'AI Asana Analyst PRD', desc: 'Edge CV vs. Asynchronous GenAI for posture analytics', url: 'https://app.notion.com/p/AI-ASANA-ANALYST-3ed53f22e2b080aebdd9ec74e5845aba?source=copy_link', icon: FileText, isExternal: true },
-        { label: 'CausalRetention Architecture Spec', desc: 'Two-Model T-Learner XGBoost & Knapsack budget solver', url: 'https://github.com/Sohan9022/CausalRetention', icon: FileText, isExternal: true },
+        { label: 'CausalRetention Notion PRD', desc: 'Prescriptive uplift (CATE), T-Learner XGBoost & Knapsack budget solver', url: 'https://app.notion.com/p/CausalRetention-3fa53f22e2b0808799fbe22b71014f30?source=copy_link', icon: FileText, isExternal: true },
         { label: 'FlashDrop Concurrency Spec', desc: 'InnoDB row locking, 3NF ACID schema & 5-min auto-reclaim routine', url: 'https://github.com/Sohan9022/FlashDrop', icon: FileText, isExternal: true }
       ]
     },

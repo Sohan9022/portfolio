@@ -250,7 +250,7 @@ export default function AskNova({ externalOpen, onExternalClose }) {
         content = `### SOHAN GADEWAR — APM CANDIDATE & BUILDER
 - **Education:** Vishwakarma Institute of Information Technology (VIIT), Pune | B.Tech in Information Technology | **CGPA: 8.97 / 10.0**
 - **Core Focus:** Bridging deep system engineering, algorithmic guardrails, and user-centric product craft.
-- **Track Record:** Architected and shipped 7 production prototypes & MVPs (**TrustState**, **Sentinel**, **FinMate AI**, **Spaces**, **SHRH**, **Dynamic Forms**, **GiftVerse Moments**).
+- **Track Record:** Architected and shipped production systems & MVPs (**TrustState**, **Sentinel**, **FinMate AI**, **CausalRetention**, **Spaces**, **SHRH**, **Dynamic Forms**, **GiftVerse Moments**).
 - **Contact:** [sohangadewar9022@gmail.com](mailto:sohangadewar9022@gmail.com) · [LinkedIn Profile](https://www.linkedin.com/in/sohangadewar)
 - **Problem Solving:** 400+ LeetCode, 210+ GeeksforGeeks.`;
         break;
