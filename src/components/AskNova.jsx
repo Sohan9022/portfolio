@@ -107,10 +107,10 @@ export default function AskNova({ externalOpen, onExternalClose }) {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: `Hi! I'm **Nova**, your interactive portfolio AI companion. ✦\n\nI'm equipped with a **Claude Code-style command engine** and 6 specialized subagents grounded across all my systems (**TrustState**, **Sentinel**, **FinMate**, **Spaces**, **SHRH**, **Dynamic Forms**, **GiftVerse**, **Adaptive UX**, **Asana Analyst**), my 6 decision logs, and my APM qualifications.\n\nType \`/\` to browse all commands or ask any question!`,
+      content: `Hi! I'm **Nova**, your interactive portfolio AI companion. ✦\n\nType \`/\` to browse all commands or ask any question!`,
       timestamp: new Date(),
       subagent: { name: 'Nova Coordinator', role: 'System Orchestrator' },
-      telemetry: { latencyMs: 14, tokens: 180, source: 'Local Initialization' }
+      telemetry: { latencyMs: 14, tokens: 45, source: 'Local Initialization' }
     }
   ]);
   const [inputValue, setInputValue] = useState('');
@@ -118,7 +118,7 @@ export default function AskNova({ externalOpen, onExternalClose }) {
   const [streamingMessageIndex, setStreamingMessageIndex] = useState(null);
   const [streamedText, setStreamedText] = useState('');
   
-  // Claude Code Telemetry & Subagent Trace State
+  // Telemetry & Subagent Trace State
   const [telemetryTrace, setTelemetryTrace] = useState(null);
   const [selectedSlashIndex, setSelectedSlashIndex] = useState(0);
   const [activeCategoryFilter, setActiveCategoryFilter] = useState('All');
@@ -749,7 +749,7 @@ ${transcriptText}
                               {renderFormattedContent(textToDisplay, isStreaming)}
                             </div>
 
-                            {/* Claude Code High-Density Telemetry Footer */}
+                            {/* High-Density Telemetry Footer */}
                             {msg.telemetry && (
                               <div className="mt-2.5 pt-2 border-t border-[#EAEAE7]/60 flex items-center justify-between text-[9px] font-mono text-[#666663]">
                                 <div className="flex items-center gap-1.5">
@@ -840,7 +840,7 @@ ${transcriptText}
                 </div>
               )}
 
-              {/* Floating Claude Code Slash Command Palette */}
+              {/* Floating Slash Command Palette */}
               <AnimatePresence>
                 {isSlashActive && filteredSlashCommands.length > 0 && (
                   <motion.div
